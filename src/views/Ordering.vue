@@ -1,15 +1,21 @@
 <template>
   <div id="ordering">
+
+    <div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    </div>
+
     <img class="example-panel" src="@/assets/exampleImage.jpg">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
     <h1>{{ uiLabels.ingredients }}</h1>
-
     <Ingredient
       ref="ingredient"
       v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"  
-      :item="item" 
+      v-on:increment="addToOrder(item)"
+      :item="item"
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
@@ -20,11 +26,11 @@
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
-      <OrderItem 
+      <OrderItem
         v-for="(order, key) in orders"
         v-if="order.status !== 'done'"
         :order-id="key"
-        :order="order" 
+        :order="order"
         :ui-labels="uiLabels"
         :lang="lang"
         :key="key">
@@ -43,7 +49,7 @@ import OrderItem from '@/components/OrderItem.vue'
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 
-/* instead of defining a Vue instance, export default allows the only 
+/* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
   name: 'Ordering',
@@ -51,7 +57,7 @@ export default {
     Ingredient,
     OrderItem
   },
-  mixins: [sharedVueStuff], // include stuff that is used in both 
+  mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
@@ -95,7 +101,34 @@ export default {
   margin:auto;
   width: 40em;
 }
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
 
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; /* Used in this example to enable scrolling */
+}
 .example-panel {
   position: fixed;
   left:0;
