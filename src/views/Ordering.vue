@@ -1,23 +1,23 @@
 <template>
   <div id="ordering">
 
-
-
     <div class="navbar">
     <a href="#brod">BRÖD</a>
     <a href="#burgare">BURGARE</a>
     <a href="#dressing">DRESSING</a>
-    <a href="#gronsaker">GÖNSAKER</a>
+    <a href="#gronsaker">GRÖNSAKER</a>
     <a href="#dryck">DRYCK</a>
     <a href="#tillbehor">TILLBEHÖR</a>
     </div>
 
 
-    <div class = "LanguageButton">
+    <div class="LanguageButton">
       <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
     </div>
 
     <img class="example-panel"src="@/assets/exampleImage.jpg">
+    <br>
+    <br>
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
@@ -29,21 +29,23 @@
       :key="item.ingredient_id">
     </Ingredient>
 
-    <h1>{{ uiLabels.order }}</h1>
-    {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-    <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    <div class="reciept">
+      <h1>{{ uiLabels.order }}</h1>
+      {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
+      <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
 
-    <h1>{{ uiLabels.ordersInQueue }}</h1>
-    <div>
-      <OrderItem
-        v-for="(order, key) in orders"
-        v-if="order.status !== 'done'"
-        :order-id="key"
-        :order="order"
-        :ui-labels="uiLabels"
-        :lang="lang"
-        :key="key">
-      </OrderItem>
+      <h1>{{ uiLabels.ordersInQueue }}</h1>
+      <div>
+        <OrderItem
+          v-for="(order, key) in orders"
+          v-if="order.status !== 'done'"
+          :order-id="key"
+          :order="order"
+          :ui-labels="uiLabels"
+          :lang="lang"
+          :key="key">
+        </OrderItem>
+      </div>
     </div>
   </div>
 </template>
@@ -110,14 +112,22 @@ export default {
   margin:auto;
   width: 40em;
 }
+.reciept {
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: white;
+   color: black;
+   text-align: center;
+}
+
 .LanguageButton{
   overflow: hidden;
   background-color: #333;
   position: fixed;
   top: 0;
   width: 100%;
-
-
 }
 
 .navbar {
