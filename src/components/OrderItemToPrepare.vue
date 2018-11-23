@@ -1,23 +1,23 @@
 <template>
   <!-- Note in this component that it is using another component -->
 <div>
-  <OrderItemStarted
+  <OrderItem
     :ui-labels="uiLabels"
     :lang="lang"
     :order-id="orderId"
     :order="order">
-  </OrderItemStarted>
+  </OrderItem>
   <button v-on:click="orderStarted">
     {{uiLabels.started}}
   </button>
 </div>
 </template>
 <script>
-import OrderItemStarted from '@/components/OrderItemStarted.vue'
+import OrderItem from '@/components/OrderItem.vue'
 
 export default {
   name: 'OrderItemToPrepare',
-  components: { OrderItemStarted },
+  components: { OrderItem },
   props: {
     uiLabels: Object,
     order: Object,
@@ -28,8 +28,7 @@ export default {
     orderStarted: function () {
       // sending 'done' message to parent component or view so that it
       // can catch it with v-on:done in the component declaration
-      console.log("klickat på orderstarted")
-      this.$emit('started');
+      this.$emit('done');
     },
     cancelOrder: function () {
       // not implemented

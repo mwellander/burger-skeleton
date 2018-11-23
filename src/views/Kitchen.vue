@@ -7,8 +7,8 @@
   <div class="box e">
     <OrderItemToPrepare
       v-for="(order, key) in orders"
-      v-if="order.status !== 'started'"
-      v-on:done="markDone(key)"
+      v-if="order.status !== 'started' && order.status !== 'done'"
+      v-on:done="markStarted(key)"
       :order-id="key"
       :order="order"
       :ui-labels="uiLabels"
@@ -20,6 +20,7 @@
     <OrderItemStarted
       v-for="(order, key) in orders"
       v-if="order.status === 'started'"
+      v-on:done="markDone(key)"
       :order-id="key"
       :order="order"
       :lang="lang"
@@ -38,9 +39,8 @@
        :key="key">
      </OrderItem>
  </div>
-
-
 </div>
+
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
@@ -54,7 +54,8 @@ export default {
   name: 'Ordering',
   components: {
     OrderItem,
-    OrderItemToPrepare
+    OrderItemToPrepare,
+    OrderItemStarted
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -67,6 +68,9 @@ export default {
   methods: {
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
+    },
+    markStarted: function (orderid) {
+      this.$store.state.socket.emit("orderStarted", orderid);
     }
   }
 }
@@ -80,22 +84,16 @@ export default {
      background-color: #fff;
      color: #444;
   }
-
-  h1 {
-    text-transform: uppercase;
-    font-size: 1.4em;
-  }
   .box {
     background-color: #444;
     color: #fff;
     border-radius: 5px;
     padding: 20px;
     font-size: 150%;
-
 }
 
 .a {
-    grid-column:1/span 3;
+    grid-column: 1 / span 3;
 }
 .b {
     grid-column: 1 ;
@@ -103,22 +101,28 @@ export default {
 }
 .c {
     grid-column: 2 ;
-    grid-row: 2 ;
+    grid-row: 2 / span 1;
 }
 .d {
     grid-column: 3 ;
-    grid-row: 2 ;
+    grid-row: 2 / span 1;
 }
 .e {
-  grid-column: 1;
-  grid-row:3;
+  grid-column: 1 ;
+  grid-row: 3 / span 1;
 }
+
 .f {
-  grid-column: 2;
-  grid-row:3;
+  grid-column: 2 ;
+  grid-row: 3 / span 1;
 }
+
 .g {
-  grid-column: 3;
-  grid-row:3;
+  grid-column: 3 ;
+  grid-row: 3 / span 1;
 }
+  h1 {
+    text-transform: uppercase;
+    font-size: 1.4em;
+  }
 </style>

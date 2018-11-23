@@ -28,7 +28,6 @@ export default {
     orderDone: function () {
       // sending 'done' message to parent component or view so that it
       // can catch it with v-on:done in the component declaration
-      console.log("klickat på orderdone")
       this.$emit('done');
     },
     cancelOrder: function () {
