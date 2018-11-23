@@ -9,12 +9,14 @@
   "pay" : "Betala",
   "sum" :"Summa",
   "ordersFinished" : "Färdiga beställningar",
+  "ordersStarted" : "Påbörjade beställningar",
   "ordersInQueue" : "Beställningar att förbereda",
   "ordersTrending" : "Populära beställningar",
   "placeOrder" : "Beställ",
   "sideorders" : "Tillbehör",
   "ingredients" : "Ingredienser",
   "ready" : "Klart",
+  "started" : "Starta",
   "order" : "Min burgare",
   "language" : "English"
 }

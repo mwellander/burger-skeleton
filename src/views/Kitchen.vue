@@ -1,21 +1,14 @@
 <template>
 <div class="orders">
-  <div class="box a">A</div>
-  <div class="box b">
-    <h1>{{ uiLabels.ordersInQueue }}</h1>
-  </div>
-  <div class="box c">C</div>
-  <div class="box d">
-  <h1>{{ uiLabels.ordersFinished }}</h1>
-</div>
-  <div class="box e">E</div>
-  <div class="box f">F</div>
-  <div class="box g">G</div>
-  <div>
+  <div class="box a">STAFF VIEW</div>
+  <div class="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
+  <div class="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
+  <div class="box d"><h1>{{ uiLabels.ordersFinished }}</h1></div>
+  <div class="box e">
     <OrderItemToPrepare
       v-for="(order, key) in orders"
-      v-if="order.status !== 'done'"
-      v-on:done="markDone(key)"
+      v-if="order.status !== 'started' && order.status !== 'done'"
+      v-on:done="markStarted(key)"
       :order-id="key"
       :order="order"
       :ui-labels="uiLabels"
@@ -23,22 +16,36 @@
       :key="key">
     </OrderItemToPrepare>
   </div>
-  <div>
-    <OrderItem
+  <div class="box f">
+    <OrderItemStarted
       v-for="(order, key) in orders"
-      v-if="order.status === 'done'"
+      v-if="order.status === 'started'"
+      v-on:done="markDone(key)"
       :order-id="key"
       :order="order"
       :lang="lang"
       :ui-labels="uiLabels"
       :key="key">
-    </OrderItem>
+    </OrderItemStarted>
   </div>
+   <div class="box g">
+     <OrderItem
+       v-for="(order, key) in orders"
+       v-if="order.status === 'done'"
+       :order-id="key"
+       :order="order"
+       :lang="lang"
+       :ui-labels="uiLabels"
+       :key="key">
+     </OrderItem>
+ </div>
 </div>
+
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
+import OrderItemStarted from '@/components/OrderItemStarted.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -47,7 +54,8 @@ export default {
   name: 'Ordering',
   components: {
     OrderItem,
-    OrderItemToPrepare
+    OrderItemToPrepare,
+    OrderItemStarted
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -60,18 +68,21 @@ export default {
   methods: {
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
+    },
+    markStarted: function (orderid) {
+      this.$store.state.socket.emit("orderStarted", orderid);
     }
   }
 }
 </script>
 <style scoped>
 	.orders {
-    font-size: 24pt;
+    font-size:15pt;
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 33% 33% 33%;
-    background-color: #fff;
-    color: #444;
+     grid-gap: 10px;
+     grid-template-columns: 33% 33% 33%;
+     background-color: #fff;
+     color: #444;
   }
   .box {
     background-color: #444;
@@ -110,9 +121,6 @@ export default {
   grid-column: 3 ;
   grid-row: 3 / span 1;
 }
-
-
-
   h1 {
     text-transform: uppercase;
     font-size: 1.4em;
