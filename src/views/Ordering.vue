@@ -1,16 +1,25 @@
 <template>
   <div id="ordering">
 
+
+
     <div class="navbar">
-    <a href="#home">Home</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
+    <a href="#brod">BRÖD</a>
+    <a href="#burgare">BURGARE</a>
+    <a href="#dressing">DRESSING</a>
+    <a href="#gronsaker">GÖNSAKER</a>
+    <a href="#dryck">DRYCK</a>
+    <a href="#tillbehor">TILLBEHÖR</a>
     </div>
 
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
+    <div class = "LanguageButton">
+      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+    </div>
+
+    <img class="example-panel"src="@/assets/exampleImage.jpg">
     <h1>{{ uiLabels.ingredients }}</h1>
+
     <Ingredient
       ref="ingredient"
       v-for="item in ingredients"
@@ -101,11 +110,21 @@ export default {
   margin:auto;
   width: 40em;
 }
-.navbar {
+.LanguageButton{
   overflow: hidden;
   background-color: #333;
   position: fixed;
   top: 0;
+  width: 100%;
+
+
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 1;
   width: 100%;
 }
 
@@ -134,6 +153,7 @@ export default {
   left:0;
   top:0;
   z-index: -2;
+
 }
 .ingredient {
   border: 1px solid #ccd;
