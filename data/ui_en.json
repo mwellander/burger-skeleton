@@ -9,12 +9,14 @@
   "pay" : "Pay",
   "sum": "Sum",
   "ordersFinished" : "Finished orders",
+  "ordersStarted" : "Started orders",
   "ordersInQueue" : "Order queue",
   "ordersTrending" : "Trending orders",
   "placeOrder" : "Place order",
   "sideorders" : "Side orders",
   "ingredients" : "Ingredients",
   "ready" : "Done",
+  "started" : "Start",
   "order" : "My burger",
   "language" : "Svenska"
 }

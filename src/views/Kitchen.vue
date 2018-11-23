@@ -2,13 +2,12 @@
 <div class="orders">
   <div class="box a">STAFF VIEW</div>
   <div class="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
-  <div class="box c"><h1>{{ uiLabels.ordersFinished }}</h1></div>
-  <div class="box d">F</div>
+  <div class="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
+  <div class="box d"><h1>{{ uiLabels.ordersFinished }}</h1></div>
   <div class="box e">
-  <div>
     <OrderItemToPrepare
       v-for="(order, key) in orders"
-      v-if="order.status !== 'done'"
+      v-if="order.status !== 'started'"
       v-on:done="markDone(key)"
       :order-id="key"
       :order="order"
@@ -16,9 +15,19 @@
       :lang="lang"
       :key="key">
     </OrderItemToPrepare>
-  </div></div>
-   <div class="box f">
-   <div>
+  </div>
+  <div class="box f">
+    <OrderItemStarted
+      v-for="(order, key) in orders"
+      v-if="order.status === 'started'"
+      :order-id="key"
+      :order="order"
+      :lang="lang"
+      :ui-labels="uiLabels"
+      :key="key">
+    </OrderItemStarted>
+  </div>
+   <div class="box g">
      <OrderItem
        v-for="(order, key) in orders"
        v-if="order.status === 'done'"
@@ -28,9 +37,7 @@
        :ui-labels="uiLabels"
        :key="key">
      </OrderItem>
-   </div>
  </div>
-   <div class="box g">G</div>
 
 
 </div>
@@ -38,6 +45,7 @@
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
+import OrderItemStarted from '@/components/OrderItemStarted.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -65,7 +73,7 @@ export default {
 </script>
 <style scoped>
 	.orders {
-    font-size:24pt;
+    font-size:15pt;
     display: grid;
      grid-gap: 10px;
      grid-template-columns: 33% 33% 33%;
