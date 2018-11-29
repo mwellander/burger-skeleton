@@ -1,33 +1,107 @@
 <template>
   <div id="ordering">
 
-    <div class="navbar">
-    <a href="#bread">{{ uiLabels.bread }}</a>
+    <!-- <div class="navbar">
     <a href="#burger">{{ uiLabels.burger }}</a>
+    <a href="#toppings">{{ uiLabels.toppings }}</a>
     <a href="#dressing">{{ uiLabels.dressing }}</a>
-    <a href="#gronsaker">{{ uiLabels.vegetables }}</a>
-    <a href="#drinks">{{ uiLabels.drink }}</a>
+    <a href="#bread">{{ uiLabels.bread }}</a>
     <a href="#sides">{{ uiLabels.sides }}</a>
-    </div>
+    <a href="#beverage">{{ uiLabels.beverage }}</a>
+    </div> -->
 
+    <div class="tabs">
+      <button class="tabButton" v-on:click="toBurger()">{{uiLabels.burger}}</button>
+      <button class="tabButton" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
+      <button class="tabButton" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+      <button class="tabButton" v-on:click="toBread()">{{uiLabels.bread}}</button>
+      <button class="tabButton" v-on:click="toSides()">{{uiLabels.sides}}</button>
+      <button class="tabButton" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+    </div>
 
     <div class="LanguageButton">
       <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
     </div>
 
-    <img class="example-panel"src="@/assets/exampleImage.jpg">
+    <img class="example-panel" src="@/assets/exampleImage.jpg">
     <br>
     <br>
     <h1>{{ uiLabels.ingredients }}</h1>
 
+<button id="nextButton" v-show="burger" v-on:click='toToppings()'>{{uiLabels.next}}</button>
     <Ingredient
       ref="ingredient"
+      v-show="state === 'burger'"
+      v-if="item.category===1"
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
+
+<button id="previousButton" v-show="toppings" v-on:click="toBurger()">{{uiLabels.previous}}</button>
+<button id="nextButton" v-show="toppings" v-on:click='toDressing()'>{{uiLabels.next}}</button>
+    <Ingredient
+      ref="ingredient"
+      v-show="state === 'toppings'"
+      v-if="item.category===2"
+      v-for="item in ingredients"
+      v-on:increment="addToOrder(item)"
+      :item="item"
+      :lang="lang"
+      :key="item.ingredient_id">
+    </Ingredient>
+
+<button id="previousButton" v-show="dressing" v-on:click="toToppings()">{{uiLabels.previous}}</button>
+<button v-show="dressing" v-on:click='toBread()'>{{uiLabels.next}}</button>
+        <Ingredient
+          ref="ingredient"
+          v-show="state === 'dressing'"
+          v-if="item.category===3"
+          v-for="item in ingredients"
+          v-on:increment="addToOrder(item)"
+          :item="item"
+          :lang="lang"
+          :key="item.ingredient_id">
+        </Ingredient>
+
+<button class="previousButton" v-show="bread" v-on:click="toDressing()">{{uiLabels.previous}}</button>
+<button v-show="bread" v-on:click='toSides()'>{{uiLabels.next}}</button>
+            <Ingredient
+              ref="ingredient"
+              v-show="state === 'bread'"
+              v-if="item.category===4"
+              v-for="item in ingredients"
+              v-on:increment="addToOrder(item)"
+              :item="item"
+              :lang="lang"
+              :key="item.ingredient_id">
+            </Ingredient>
+
+<button class="previousButton" v-show="sides" v-on:click="toBread()">{{uiLabels.previous}}</button>
+<button v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
+                <Ingredient
+                  ref="ingredient"
+                  v-show="state === 'sides'"
+                  v-if="item.category===5"
+                  v-for="item in ingredients"
+                  v-on:increment="addToOrder(item)"
+                  :item="item"
+                  :lang="lang"
+                  :key="item.ingredient_id">
+                </Ingredient>
+<button class="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
+                    <Ingredient
+                      ref="ingredient"
+                      v-show="state === 'beverage'"
+                      v-if="item.category===6"
+                      v-for="item in ingredients"
+                      v-on:increment="addToOrder(item)"
+                      :item="item"
+                      :lang="lang"
+                      :key="item.ingredient_id">
+                    </Ingredient>
 
     <div class="receipt">
       <div class="row">
@@ -93,7 +167,17 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
+<<<<<<< HEAD
       //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
+=======
+      state:"burger",
+      burger:true,
+      toppings:false,
+      dressing:false,
+      bread:false,
+      sides:false,
+      beverages:false
+>>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -103,8 +187,64 @@ export default {
     }.bind(this));
   },
   methods: {
+<<<<<<< HEAD
     cancelOrder: function () {
       //Här ska beställningen avbrytas
+=======
+    toBurger: function(){
+      this.state="burger";
+      this.burger=true;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=false;
+      this.beverage=false;
+    },
+    toToppings: function(){
+      this.state="toppings";
+      this.burger=false;
+      this.toppings=true;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=false;
+      this.beverage=false;
+    },
+    toDressing: function(){
+      this.state="dressing";
+      this.burger=false;
+      this.toppings=false;
+      this.dressing=true;
+      this.bread=false;
+      this.sides=false;
+      this.beverage=false;
+    },
+    toBread: function(){
+      this.state="bread";
+      this.burger=false;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=true;
+      this.sides=false;
+      this.beverage=false;
+    },
+    toSides: function(){
+      this.state="sides";
+      this.burger=false;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=true;
+      this.beverage=false;
+    },
+    toBeverage: function(){
+      this.state="beverage";
+      this.burger=false;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=false;
+      this.beverage=true;
+>>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
     },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
@@ -135,6 +275,7 @@ export default {
   margin:auto;
   width: 40em;
 }
+<<<<<<< HEAD
 * {
     box-sizing: border-box;
 }
@@ -148,6 +289,15 @@ export default {
     width: 50%;
     padding: 0em;
     height: 13em;
+=======
+.nextButton {
+  position:relative;
+  background-color:green;
+  padding: 1px solid black;
+}
+.previousButton{
+  position:relative;
+>>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
 }
 .receipt {
   position: fixed;
@@ -211,10 +361,22 @@ export default {
   text-decoration: none;
   font-size: 17px;
 }
-
 .navbar a:hover {
   background: #ddd;
   color: black;
+}
+.tabs button{
+  float: left;
+  display: block;
+  background-color: grey;
+  border: 1px solid black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
+}
+.tabs button:hover{
+  background-color:#ddd;
 }
 
 .main {
