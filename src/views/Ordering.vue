@@ -107,20 +107,19 @@
       <div class="row">
         <div class="column" style="background-color:#aaa;">
           <h3>{{ uiLabels.order }}</h3>
-          {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}
-          <!-- <ul>
-            <li v-for="items in orderArray">
-              Burger: {{items}}
-            </li>
-          </ul> -->
+          <p v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+          <p v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+          <p v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+          <p v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</p>
         </div>
         <div class="column" style="background-color:#bbb;">
           <h3>{{ uiLabels.sideOrder }}</h3>
-          <p>Hej hej</p>
+          <p v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+          <p v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</p>
         </div>
       </div>
 
-      <h3 style="text-align:right">Totalt: {{ price }} kr</h3>
+      <h3 style="text-align:right">{{uiLabels.total}}: {{ price }} kr</h3>
       <div style="text-align:right">
         <button class="cancelButton" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
         <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
@@ -164,7 +163,20 @@ export default {
                             // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
-      chosenIngredients: [],
+      chosenIngredientsBurger: [],
+      chosenIngredientsSides: [],
+      Burger: [],
+      Toppings: [],
+      Dressing: [],
+      Bread: [],
+      Sides: [],
+      Beverage: [],
+      burgerOrder:false,
+      toppingsOrder:false,
+      dressingOrder:false,
+      breadOrder:false,
+      sidesOrder:false,
+      beverageOrder:false,
       price: 0,
       orderNumber: "",
       state:"burger",
@@ -241,7 +253,36 @@ export default {
       this.beverage=true;
     },
     addToOrder: function (item) {
-      this.chosenIngredients.push(item);
+      if(item.category===5 || item.category===6){
+        this.chosenIngredientsSides.push(item);
+        if(item.category===5){
+          this.Sides.push(item);
+          this.sidesOrder=true;
+        }
+        else{
+          this.Beverage.push(item);
+          this.beverageOrder=true;
+        }
+      }
+      else{
+        this.chosenIngredientsBurger.push(item);
+        if(item.category===1){
+          this.Burger.push(item);
+          this.burgerOrder=true;
+        }
+        if(item.category===2){
+          this.Toppings.push(item);
+          this.toppingsOrder=true;
+        }
+        if(item.category===3){
+          this.Dressing.push(item);
+          this.dressingOrder=true;
+        }
+        if(item.category===4){
+          this.Bread.push(item);
+          this.breadOrder=true;
+        }
+      }
       this.price += +item.selling_price;
     },
     placeOrder: function () {
@@ -292,7 +333,7 @@ export default {
   position:relative;
 }
 .receipt {
-  position: fixed;
+  position: sticky;
    left: center;
    bottom: 0;
    width: 40em;
@@ -356,6 +397,10 @@ export default {
 .navbar a:hover {
   background: #ddd;
   color: black;
+}
+.tabs{
+  overflow:hidden;
+  position:fixed;
 }
 .tabs button{
   float: left;

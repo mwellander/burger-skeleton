@@ -27,5 +27,6 @@
   "cancelOrder" : "Cancel",
   "toppings" : "Toppings",
   "beverage" : "Beverage",
-  "sides" : "Sides"
+  "sides" : "Sides",
+  "total" : "Total"
 }
