@@ -24,5 +24,7 @@
   "dressing" : "Dressing",
   "vegetables" : "Vegetables",
   "drink" : "Drink",
-  "sides" : "Sides"
+  "sides" : "Sides",
+  "stock" : "Stock",
+  "staffView": "Staff View"
 }
