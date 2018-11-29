@@ -9,8 +9,9 @@
     <a href="#sides">{{ uiLabels.sides }}</a>
     <a href="#beverage">{{ uiLabels.beverage }}</a>
     </div> -->
+<button class="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
 
-    <div class="tabs">
+    <div class="tabs" v-show="started">
       <button class="tabButton" v-on:click="toBurger()">{{uiLabels.burger}}</button>
       <button class="tabButton" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
       <button class="tabButton" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
@@ -27,7 +28,7 @@
     <img class="example-panel" src="@/assets/exampleImage.jpg">
     <br>
     <br>
-    <h1>{{ uiLabels.ingredients }}</h1>
+    <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
 
     <button id="nextButton" v-show="burger" v-on:click='toToppings()'>{{uiLabels.next}}</button>
     <Ingredient
@@ -104,24 +105,23 @@
                       :key="item.ingredient_id">
                     </Ingredient>
 
-    <div class="receipt">
+    <div class="receipt" v-show="started">
       <div class="row">
-        <div class="column" style="background-color:#aaa;">
-          <h3>{{ uiLabels.order }}</h3>
-          {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}
-          <!-- <ul>
-            <li v-for="items in orderArray">
-              Burger: {{items}}
-            </li>
-          </ul> -->
+        <div class="column a"><h3>{{ uiLabels.order }}</h3></div>
+        <div class="column b"><h3>{{ uiLabels.sideOrder }}</h3></div>
+        <div class="column c">
+          <p v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+          <p v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+          <p v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+          <p v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</p>
         </div>
-        <div class="column" style="background-color:#bbb;">
-          <h3>{{ uiLabels.sideOrder }}</h3>
-          <p>Hej hej</p>
+        <div class="column d">
+          <p v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+          <p v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</p>
         </div>
       </div>
 
-      <h3 style="text-align:right">Totalt: {{ price }} kr</h3>
+      <h3 style="text-align:right">{{uiLabels.total}}: {{ price }} kr</h3>
       <div style="text-align:right">
         <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
         <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
@@ -165,17 +165,31 @@ export default {
                             // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
-      chosenIngredients: [],
+      chosenIngredientsBurger: [],
+      chosenIngredientsSides: [],
+      Burger: [],
+      Toppings: [],
+      Dressing: [],
+      Bread: [],
+      Sides: [],
+      Beverage: [],
+      burgerOrder:false,
+      toppingsOrder:false,
+      dressingOrder:false,
+      breadOrder:false,
+      sidesOrder:false,
+      beverageOrder:false,
       price: 0,
       orderNumber: "",
-      //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
-      state:"burger",
-      burger:true,
+      state:"start",
+      start:true,
+      burger:false,
       toppings:false,
       dressing:false,
       bread:false,
       sides:false,
-      beverages:false
+      beverages:false,
+      started:false
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -185,8 +199,34 @@ export default {
     }.bind(this));
   },
   methods: {
+    startOrder: function(){
+      this.started=true;
+      this.state="burger";
+    },
     cancelOrder: function () {
-      //Här ska beställningen avbrytas
+      this.chosenIngredientsBurger= [];
+      this.chosenIngredientsSides= [];
+      this.Burger= [];
+      this.Toppings= [];
+      this.Dressing= [];
+      this.Bread= [];
+      this.Sides= [];
+      this.Beverage= [];
+      this.burgerOrder=false;
+      this.toppingsOrder=false;
+      this.dressingOrder=false;
+      this.breadOrder=false;
+      this.sidesOrder=false;
+      this.beverageOrder=false;
+      this.price= 0;
+      this.orderNumber= "";
+      this.state="burger";
+      this.burger=true;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=false;
+      this.beverages=false;
     },
     toBurger: function(){
       this.state="burger";
@@ -243,7 +283,36 @@ export default {
       this.beverage=true;
     },
     addToOrder: function (item) {
-      this.chosenIngredients.push(item);
+      if(item.category===5 || item.category===6){
+        this.chosenIngredientsSides.push(item);
+        if(item.category===5){
+          this.Sides.push(item);
+          this.sidesOrder=true;
+        }
+        else{
+          this.Beverage.push(item);
+          this.beverageOrder=true;
+        }
+      }
+      else{
+        this.chosenIngredientsBurger.push(item);
+        if(item.category===1){
+          this.Burger.push(item);
+          this.burgerOrder=true;
+        }
+        if(item.category===2){
+          this.Toppings.push(item);
+          this.toppingsOrder=true;
+        }
+        if(item.category===3){
+          this.Dressing.push(item);
+          this.dressingOrder=true;
+        }
+        if(item.category===4){
+          this.Bread.push(item);
+          this.breadOrder=true;
+        }
+      }
       this.price += +item.selling_price;
     },
     placeOrder: function () {
@@ -274,6 +343,14 @@ export default {
 * {
     box-sizing: border-box;
 }
+.startButton{
+  margin-top:20em;
+  margin-bottom:10em;
+  margin-left: 20%;
+  margin-right: 20%;
+  width:60%;
+  height:50%;
+}
 .row:after {
     content: "";
     display: table;
@@ -283,7 +360,26 @@ export default {
     float: left;
     width: 50%;
     padding: 0em;
-    height: 13em;
+}
+.a{
+  height:3em;
+  overflow:hidden;
+  background-color: grey;
+}
+.b{
+  height:3em;
+  overflow:hidden;
+  background-color: grey;
+}
+.c{
+  overflow:scroll;
+  height: 10em;
+  background-color:#bbb;
+}
+.d{
+  overflow:scroll;
+  height: 10em;
+  background-color:#bbb;
 }
 .nextButton {
   position:relative;
@@ -294,9 +390,9 @@ export default {
   position:relative;
 }
 .receipt {
-  position: fixed;
+  bottom: 0;
+  position: sticky;
    left: center;
-   bottom: 0;
    width: 40em;
    background-color: white;
    color: black;
@@ -370,6 +466,10 @@ export default {
   background-color: black;
   width: 40em;
   height: 7em;
+}
+.tabs{
+  overflow:hidden;
+  position:fixed;
 }
 .tabs button{
   float: left;

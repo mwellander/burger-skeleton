@@ -23,10 +23,14 @@
   "bread" : "Bread",
   "burger" : "Burger",
   "dressing" : "Dressing",
+  "stock" : "Stock",
+  "staffView": "Staff View",
   "sideOrder" : "Sides and drinks",
   "cancelOrder" : "Cancel",
   "toppings" : "Toppings",
   "beverage" : "Beverage",
   "sides" : "Sides",
-  "flag" : "800px-Flag_of_Sweden.svg.png"
+  "flag" : "800px-Flag_of_Sweden.svg.png",
+  "total" : "Total",
+  "ordersToView": "Orders"
 }

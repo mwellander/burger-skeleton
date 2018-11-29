@@ -1,12 +1,98 @@
 <template>
-  <div class="orders">
-  <div class="head">
-  <div class="box a">STAFF VIEW</div>
-  <div class="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
-  <div class="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
-  <div class="box d"><h1>{{ uiLabels.ordersFinished }}</h1></div>
+  <section class="orders">
+
+  <div class="box a">{{ uiLabels.staffView }}
+      <button v-on:click="switchLang()" class="LanguageButton">{{ uiLabels.language }}</button>
+      <button v-on:click="stockView()" class="OrderButton" id="OrderButton">{{ uiLabels.ordersToView }}</button>
+      <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
 </div>
-  <div class="box e">
+
+<div id="currentStock">
+  <div class="tabs">
+    <button class="tabButton" v-on:click="toBurger()">{{uiLabels.burger}}</button>
+    <button class="tabButton" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
+    <button class="tabButton" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+    <button class="tabButton" v-on:click="toBread()">{{uiLabels.bread}}</button>
+    <button class="tabButton" v-on:click="toSides()">{{uiLabels.sides}}</button>
+    <button class="tabButton" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+  </div>
+
+  <!-- kom ihåg att ändra addToOrder-funktionen (ska vara en funktion som antingen
+  minskar eller ökar saldot) -->
+
+    <Ingredient
+        ref="ingredient"
+        v-show="state === 'burger'"
+        v-if="item.category===1"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </Ingredient>
+
+      <Ingredient
+        ref="ingredient"
+        v-show="state === 'toppings'"
+        v-if="item.category===2"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </Ingredient>
+
+      <Ingredient
+        ref="ingredient"
+        v-show="state === 'dressing'"
+        v-if="item.category===3"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </Ingredient>
+
+      <Ingredient
+        ref="ingredient"
+        v-show="state === 'bread'"
+        v-if="item.category===4"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </Ingredient>
+
+      <Ingredient
+        ref="ingredient"
+        v-show="state === 'sides'"
+        v-if="item.category===5"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </Ingredient>
+
+      <Ingredient
+        ref="ingredient"
+        v-show="state === 'beverage'"
+        v-if="item.category===6"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </Ingredient>
+
+</div>
+
+  <div class="box b" id="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
+  <div class="box c" id="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
+  <div class="box d" id="box d"><h1>{{ uiLabels.ordersFinished }}</h1></div>
+
+  <div class="box e" id="box e">
     <OrderItemToPrepare
       v-for="(order, key) in orders"
       v-if="order.status !== 'started' && order.status !== 'done'"
@@ -18,7 +104,7 @@
       :key="key">
     </OrderItemToPrepare>
   </div>
-  <div class="box f">
+  <div class="box f" id="box f">
     <OrderItemStarted
       v-for="(order, key) in orders"
       v-if="order.status === 'started'"
@@ -30,7 +116,7 @@
       :key="key">
     </OrderItemStarted>
   </div>
-   <div class="box g">
+   <div class="box g" id="box g">
      <OrderItem
        v-for="(order, key) in orders"
        v-if="order.status === 'done'"
@@ -40,14 +126,15 @@
        :ui-labels="uiLabels"
        :key="key">
      </OrderItem>
- </div>
 </div>
+</section>
 
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemStarted from '@/components/OrderItemStarted.vue'
+import Ingredient from '@/components/Ingredient.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -57,14 +144,22 @@ export default {
   components: {
     OrderItem,
     OrderItemToPrepare,
-    OrderItemStarted
+    OrderItemStarted,
+    Ingredient
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
   data: function(){
     return {
       chosenIngredients: [],
-      price: 0
+      price: 0,
+      state: "burger",
+      burger:true,
+      toppings:false,
+      dressing:false,
+      bread:false,
+      sides:false,
+      beverages:false
     }
   },
   methods: {
@@ -73,7 +168,93 @@ export default {
     },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid);
+    },
+    stockView: function(){
+     var stock = document.getElementById("currentStock");
+     var b = document.getElementById("box b");
+     var c = document.getElementById("box c");
+     var d = document.getElementById("box d");
+     var e = document.getElementById("box e");
+     var f = document.getElementById("box f");
+    var g = document.getElementById("box g");
+     var stockButt = document.getElementById("StockButton");
+     var orderButt = document.getElementById("OrderButton");
+     if (stock.style.display === "none" || stock.style.display === "") {
+        stock.style.display = "block";
+        b.style.display = "none";
+        c.style.display = "none";
+        d.style.display = "none";
+        e.style.display = "none";
+        f.style.display = "none";
+        g.style.display = "none";
+        orderButt.style.display = "block";
+        stockButt.style.display = "none";
+    } else {
+        stock.style.display = "none";
+        b.style.display = "block";
+        c.style.display = "block";
+        d.style.display = "block";
+        e.style.display = "block";
+        f.style.display = "block";
+        g.style.display = "block";
+        orderButt.style.display = "none";
+        stockButt.style.display = "block";
     }
+  },
+  toBurger: function(){
+    this.state="burger";
+    this.burger=true;
+    this.toppings=false;
+    this.dressing=false;
+    this.bread=false;
+    this.sides=false;
+    this.beverage=false;
+  },
+  toToppings: function(){
+    this.state="toppings";
+    this.burger=false;
+    this.toppings=true;
+    this.dressing=false;
+    this.bread=false;
+    this.sides=false;
+    this.beverage=false;
+  },
+  toDressing: function(){
+    this.state="dressing";
+    this.burger=false;
+    this.toppings=false;
+    this.dressing=true;
+    this.bread=false;
+    this.sides=false;
+    this.beverage=false;
+  },
+  toBread: function(){
+    this.state="bread";
+    this.burger=false;
+    this.toppings=false;
+    this.dressing=false;
+    this.bread=true;
+    this.sides=false;
+    this.beverage=false;
+  },
+  toSides: function(){
+    this.state="sides";
+    this.burger=false;
+    this.toppings=false;
+    this.dressing=false;
+    this.bread=false;
+    this.sides=true;
+    this.beverage=false;
+  },
+  toBeverage: function(){
+    this.state="beverage";
+    this.burger=false;
+    this.toppings=false;
+    this.dressing=false;
+    this.bread=false;
+    this.sides=false;
+    this.beverage=true;
+  }
   }
 }
 </script>
@@ -85,7 +266,10 @@ export default {
     grid-template-columns: 33% 33% 33%;
     background-color: #fff;
     color: #444;
+    position: sticky;
+    top: 0;
   }
+
  .box {
     background-color: #444;
     color: #fff;
@@ -94,24 +278,77 @@ export default {
     font-size: 150%;
 }
 
-.head {
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: 33% 33% 33%;
-  position: sticky;
-  top: 0;
-  grid-column: 1 / span 3;
-}
 .a {
-/*  position: sticky;*/
-  grid-column: 1 / span 3;
-/*  top: 0;*/
+display: grid;
+grid-template-columns: 20% 60% 20%;
+ grid-column: 1 / span 3;
+ grid-row: 1;
+ top: 0;
   background-color: black;
   color: white;
   text-align: center;
 }
+
+.StockButton {
+  background-color: #000000;
+  border: 2px solid #fff;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 100%;
+  margin: 4px 2px;
+  cursor: pointer;
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.OrderButton {
+  background-color: #000000;
+  border: 2px solid #fff;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 100%;
+  margin: 4px 2px;
+  cursor: pointer;
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.LanguageButton {
+  background-color: #000000;
+  border: 2px solid #fff;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 100%;
+  margin: 4px 2px;
+  cursor: pointer;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.tabButton{
+  background-color: #000000;
+  border: 2px solid #fff;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 100%;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 .b {
-/*  position: fixed;*/
+
   grid-column: 1 ;
   grid-row: 2 / span 1;
 }
@@ -124,18 +361,44 @@ export default {
     grid-row: 2 / span 1;
 }
 .e {
+  overflow: scroll;
+  height: 17em;
   grid-column: 1 ;
   grid-row: 3 / span 1;
 }
 
 .f {
+  overflow: scroll;
+  height: 17em;
   grid-column: 2 ;
   grid-row: 3 / span 1;
 }
 
 .g {
+  overflow: scroll;
+  height: 17em;
   grid-column: 3 ;
   grid-row: 3 / span 1;
+}
+
+#currentStock {
+    overflow: scroll;
+    z-index: 2;
+    grid-column: 1 / span 3;
+    grid-row: 2 / span 2;
+    width: 100%;
+    height: 30em;
+    text-align: center;
+    background-color: lightblue;
+    padding: 50px 0;
+    display: none;
+    font-size: 100%;
+}
+
+.ingredient {
+  border: 1px solid #ccd;
+  padding: 1em;
+  color: black;
 }
   h1 {
     text-transform: uppercase;

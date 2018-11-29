@@ -23,10 +23,14 @@
   "bread" : "Bröd",
   "burger" : "Burgare",
   "dressing" : "Dressing",
+  "stock" : "Lager",
+  "staffView": "Köksvy",
   "sideOrder" : "Tillbehör och dryck",
   "cancelOrder" : "Avbryt",
   "toppings" : "Toppings",
   "beverage" : "Dryck",
   "sides" : "Tillbehör",
-  "flag" : "Flag_of_Britain.svg.png"
+  "flag" : "Flag_of_Britain.svg.png",
+  "total" : "Totalt",
+  "ordersToView": "Beställningar"
 }
