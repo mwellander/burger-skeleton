@@ -1,6 +1,7 @@
 {
   "cancelOrder" : "Cancel order",
   "next" : "Next",
+  "previous" : "Previous",
   "changeIng" : "Change ingredient",
   "content" : "Content",
   "thankOrder" : "Thank you for your order!",
@@ -22,7 +23,7 @@
   "bread" : "Bread",
   "burger" : "Burger",
   "dressing" : "Dressing",
-  "vegetables" : "Vegetables",
-  "drink" : "Drink",
+  "toppings" : "Toppings",
+  "beverage" : "Beverage",
   "sides" : "Sides"
 }

@@ -1,6 +1,7 @@
 {
   "cancelOrder" : "Avbryt köp",
   "next" : "Nästa",
+  "previous" :"Tillbaka",
   "changeIng" : "Byt ut ingrediens",
   "content": "Innehåll",
   "thankOrder" : "Tack för din beställning!",
@@ -22,7 +23,7 @@
   "bread" : "Bröd",
   "burger" : "Burgare",
   "dressing" : "Dressing",
-  "vegetables" : "Grönsaker",
-  "drink" : "Dryck",
+  "toppings" : "Toppings",
+  "beverage" : "Dryck",
   "sides" : "Tillbehör"
 }
