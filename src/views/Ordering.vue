@@ -350,10 +350,6 @@ export default {
   width:60%;
   height:50%;
 }
-.startButton button{
-  width:60%;
-  height:50%;
-}
 .row:after {
     content: "";
     display: table;
