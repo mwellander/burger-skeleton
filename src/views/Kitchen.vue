@@ -1,9 +1,11 @@
 <template>
-<div class="orders">
+  <div class="orders">
+  <div class="head">
   <div class="box a">STAFF VIEW</div>
   <div class="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
   <div class="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
   <div class="box d"><h1>{{ uiLabels.ordersFinished }}</h1></div>
+</div>
   <div class="box e">
     <OrderItemToPrepare
       v-for="(order, key) in orders"
@@ -79,12 +81,12 @@ export default {
 	.orders {
     font-size:15pt;
     display: grid;
-     grid-gap: 10px;
-     grid-template-columns: 33% 33% 33%;
-     background-color: #fff;
-     color: #444;
+    grid-gap: 5px;
+    grid-template-columns: 33% 33% 33%;
+    background-color: #fff;
+    color: #444;
   }
-  .box {
+ .box {
     background-color: #444;
     color: #fff;
     border-radius: 5px;
@@ -92,12 +94,26 @@ export default {
     font-size: 150%;
 }
 
+.head {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 33% 33% 33%;
+  position: sticky;
+  top: 0;
+  grid-column: 1 / span 3;
+}
 .a {
-    grid-column: 1 / span 3;
+/*  position: sticky;*/
+  grid-column: 1 / span 3;
+/*  top: 0;*/
+  background-color: black;
+  color: white;
+  text-align: center;
 }
 .b {
-    grid-column: 1 ;
-    grid-row: 2 / span 1;
+/*  position: fixed;*/
+  grid-column: 1 ;
+  grid-row: 2 / span 1;
 }
 .c {
     grid-column: 2 ;
