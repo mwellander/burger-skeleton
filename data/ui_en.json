@@ -23,6 +23,8 @@
   "bread" : "Bread",
   "burger" : "Burger",
   "dressing" : "Dressing",
+  "stock" : "Stock",
+  "staffView": "Staff View",
   "sideOrder" : "Sides and drinks",
   "cancelOrder" : "Cancel",
   "toppings" : "Toppings",
