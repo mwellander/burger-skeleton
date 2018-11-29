@@ -2,12 +2,12 @@
   <div id="ordering">
 
     <div class="navbar">
-    <a href="#brod">{{ uiLabels.bread }}</a>
-    <a href="#burgare">{{ uiLabels.burger }}</a>
+    <a href="#bread">{{ uiLabels.bread }}</a>
+    <a href="#burger">{{ uiLabels.burger }}</a>
     <a href="#dressing">{{ uiLabels.dressing }}</a>
     <a href="#gronsaker">{{ uiLabels.vegetables }}</a>
-    <a href="#dryck">{{ uiLabels.drink }}</a>
-    <a href="#tillbehor">{{ uiLabels.sides }}</a>
+    <a href="#drinks">{{ uiLabels.drink }}</a>
+    <a href="#sides">{{ uiLabels.sides }}</a>
     </div>
 
 
@@ -30,11 +30,29 @@
     </Ingredient>
 
     <div class="receipt">
-      <h1>{{ uiLabels.order }}</h1>
-      {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-      <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+      <div class="row">
+        <div class="column" style="background-color:#aaa;">
+          <h3>{{ uiLabels.order }}</h3>
+          {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}
+          <!-- <ul>
+            <li v-for="items in orderArray">
+              Burger: {{items}}
+            </li>
+          </ul> -->
+        </div>
+        <div class="column" style="background-color:#bbb;">
+          <h3>{{ uiLabels.sideOrder }}</h3>
+          <p>Hej hej</p>
+        </div>
+      </div>
 
-      <h1>{{ uiLabels.ordersInQueue }}</h1>
+      <h3 style="text-align:right">Totalt: {{ price }} kr</h3>
+      <div style="text-align:right">
+        <button class="cancelButton" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
+        <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+      </div>
+
+      <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
       <div>
         <OrderItem
           v-for="(order, key) in orders"
@@ -45,7 +63,7 @@
           :lang="lang"
           :key="key">
         </OrderItem>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -75,7 +93,9 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
+      //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
     }
+    //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
@@ -83,6 +103,9 @@ export default {
     }.bind(this));
   },
   methods: {
+    cancelOrder: function () {
+      //Här ska beställningen avbrytas
+    },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
@@ -112,14 +135,30 @@ export default {
   margin:auto;
   width: 40em;
 }
+* {
+    box-sizing: border-box;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.column {
+    float: left;
+    width: 50%;
+    padding: 0em;
+    height: 13em;
+}
 .receipt {
   position: fixed;
-   left: 0;
+   left: center;
    bottom: 0;
-   width: 100%;
+   width: 40em;
    background-color: white;
    color: black;
    text-align: center;
+   padding: 0.8em;
+   border: 0.1em solid black;
 }
 
 .LanguageButton{
@@ -129,7 +168,32 @@ export default {
   top: 0;
   width: 100%;
 }
-
+.orderButton {
+  background-color: #4CAF50;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  border-radius: 1em;
+}
+.cancelButton {
+  background-color: #f44336;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  border-radius: 1em;
+}
 .navbar {
   overflow: hidden;
   background-color: #333;

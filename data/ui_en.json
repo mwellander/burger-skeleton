@@ -12,7 +12,7 @@
   "ordersStarted" : "Started orders",
   "ordersInQueue" : "Order queue",
   "ordersTrending" : "Trending orders",
-  "placeOrder" : "Place order",
+  "placeOrder" : "Add to cart",
   "sideorders" : "Side orders",
   "ingredients" : "Ingredients",
   "ready" : "Done",
@@ -24,5 +24,7 @@
   "dressing" : "Dressing",
   "vegetables" : "Vegetables",
   "drink" : "Drink",
-  "sides" : "Sides"
+  "sides" : "Sides",
+  "sideOrder" : "Sides and drinks",
+  "cancelOrder" : "Cancel"
 }
