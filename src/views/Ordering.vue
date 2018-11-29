@@ -1,6 +1,6 @@
 <template>
   <div id="ordering">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <div class="navbar">
     <a href="#burger">{{ uiLabels.burger }}</a>
     <a href="#toppings">{{ uiLabels.toppings }}</a>
@@ -19,8 +19,9 @@
       <button class="tabButton" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
     </div>
 
-    <div class="LanguageButton">
-      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+    <div style="text-align:left">
+      <!-- <button class="LanguageButton" v-on:click="switchLang()">{{ uiLabels.language }}</button> -->
+      <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
     </div>
 
     <img class="example-panel" src="@/assets/exampleImage.jpg">
@@ -28,7 +29,7 @@
     <br>
     <h1>{{ uiLabels.ingredients }}</h1>
 
-<button id="nextButton" v-show="burger" v-on:click='toToppings()'>{{uiLabels.next}}</button>
+    <button id="nextButton" v-show="burger" v-on:click='toToppings()'>{{uiLabels.next}}</button>
     <Ingredient
       ref="ingredient"
       v-show="state === 'burger'"
@@ -40,8 +41,8 @@
       :key="item.ingredient_id">
     </Ingredient>
 
-<button id="previousButton" v-show="toppings" v-on:click="toBurger()">{{uiLabels.previous}}</button>
-<button id="nextButton" v-show="toppings" v-on:click='toDressing()'>{{uiLabels.next}}</button>
+    <button id="previousButton" v-show="toppings" v-on:click="toBurger()">{{uiLabels.previous}}</button>
+    <button id="nextButton" v-show="toppings" v-on:click='toDressing()'>{{uiLabels.next}}</button>
     <Ingredient
       ref="ingredient"
       v-show="state === 'toppings'"
@@ -53,8 +54,8 @@
       :key="item.ingredient_id">
     </Ingredient>
 
-<button id="previousButton" v-show="dressing" v-on:click="toToppings()">{{uiLabels.previous}}</button>
-<button v-show="dressing" v-on:click='toBread()'>{{uiLabels.next}}</button>
+    <button id="previousButton" v-show="dressing" v-on:click="toToppings()">{{uiLabels.previous}}</button>
+    <button v-show="dressing" v-on:click='toBread()'>{{uiLabels.next}}</button>
         <Ingredient
           ref="ingredient"
           v-show="state === 'dressing'"
@@ -66,8 +67,8 @@
           :key="item.ingredient_id">
         </Ingredient>
 
-<button class="previousButton" v-show="bread" v-on:click="toDressing()">{{uiLabels.previous}}</button>
-<button v-show="bread" v-on:click='toSides()'>{{uiLabels.next}}</button>
+        <button class="previousButton" v-show="bread" v-on:click="toDressing()">{{uiLabels.previous}}</button>
+        <button v-show="bread" v-on:click='toSides()'>{{uiLabels.next}}</button>
             <Ingredient
               ref="ingredient"
               v-show="state === 'bread'"
@@ -79,8 +80,8 @@
               :key="item.ingredient_id">
             </Ingredient>
 
-<button class="previousButton" v-show="sides" v-on:click="toBread()">{{uiLabels.previous}}</button>
-<button v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
+          <button class="previousButton" v-show="sides" v-on:click="toBread()">{{uiLabels.previous}}</button>
+          <button v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
                 <Ingredient
                   ref="ingredient"
                   v-show="state === 'sides'"
@@ -91,7 +92,7 @@
                   :lang="lang"
                   :key="item.ingredient_id">
                 </Ingredient>
-<button class="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
+          <button class="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
                     <Ingredient
                       ref="ingredient"
                       v-show="state === 'beverage'"
@@ -122,7 +123,7 @@
 
       <h3 style="text-align:right">Totalt: {{ price }} kr</h3>
       <div style="text-align:right">
-        <button class="cancelButton" v-on:click="cancelOrder()">{{ uiLabels.cancelOrder }}</button>
+        <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
         <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
       </div>
 
@@ -167,9 +168,7 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-<<<<<<< HEAD
       //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
-=======
       state:"burger",
       burger:true,
       toppings:false,
@@ -177,7 +176,6 @@ export default {
       bread:false,
       sides:false,
       beverages:false
->>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -187,10 +185,9 @@ export default {
     }.bind(this));
   },
   methods: {
-<<<<<<< HEAD
     cancelOrder: function () {
       //Här ska beställningen avbrytas
-=======
+    },
     toBurger: function(){
       this.state="burger";
       this.burger=true;
@@ -244,7 +241,6 @@ export default {
       this.bread=false;
       this.sides=false;
       this.beverage=true;
->>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
     },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
@@ -272,10 +268,9 @@ export default {
 <style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
-  margin:auto;
+  margin: auto;
   width: 40em;
 }
-<<<<<<< HEAD
 * {
     box-sizing: border-box;
 }
@@ -289,7 +284,7 @@ export default {
     width: 50%;
     padding: 0em;
     height: 13em;
-=======
+}
 .nextButton {
   position:relative;
   background-color:green;
@@ -297,7 +292,6 @@ export default {
 }
 .previousButton{
   position:relative;
->>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
 }
 .receipt {
   position: fixed;
@@ -312,11 +306,14 @@ export default {
 }
 
 .LanguageButton{
-  overflow: hidden;
-  background-color: #333;
+  background-color: black;
+  border: 0.1em solid black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
   position: fixed;
   top: 0;
-  width: 100%;
 }
 .orderButton {
   background-color: #4CAF50;
@@ -344,7 +341,7 @@ export default {
   cursor: pointer;
   border-radius: 1em;
 }
-.navbar {
+/* .navbar {
   overflow: hidden;
   background-color: #333;
   position: fixed;
@@ -364,6 +361,15 @@ export default {
 .navbar a:hover {
   background: #ddd;
   color: black;
+} */
+.tabs {
+  overflow: hidden;
+  position: fixed;
+  top: 1;
+  padding-top: 50px;
+  background-color: black;
+  width: 40em;
+  height: 7em;
 }
 .tabs button{
   float: left;
