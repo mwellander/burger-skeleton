@@ -15,11 +15,11 @@
   This is my DIV element.<br>
 </div>
 
-  <div class="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
-  <div class="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
-  <div class="box d"><h1>{{ uiLabels.ordersFinished }}</h1></div>
+  <div class="box b" id="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
+  <div class="box c" id="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
+  <div class="box d" id="box d"><h1>{{ uiLabels.ordersFinished }}</h1></div>
 
-  <div class="box e">
+  <div class="box e" id="box e">
     <OrderItemToPrepare
       v-for="(order, key) in orders"
       v-if="order.status !== 'started' && order.status !== 'done'"
@@ -31,7 +31,7 @@
       :key="key">
     </OrderItemToPrepare>
   </div>
-  <div class="box f">
+  <div class="box f" id="box f">
     <OrderItemStarted
       v-for="(order, key) in orders"
       v-if="order.status === 'started'"
@@ -43,7 +43,7 @@
       :key="key">
     </OrderItemStarted>
   </div>
-   <div class="box g">
+   <div class="box g" id="box g">
      <OrderItem
        v-for="(order, key) in orders"
        v-if="order.status === 'done'"
@@ -88,12 +88,28 @@ export default {
       this.$store.state.socket.emit("orderStarted", orderid);
     },
     stockView: function(){
-     var x = document.getElementById("currentStock");
-    // console.log(x);
-      if (x.style.display === "none" || x.style.display === "") {
-        x.style.display = "block";
+     var stock = document.getElementById("currentStock");
+     var b = document.getElementById("box b");
+     var c = document.getElementById("box c");
+     var d = document.getElementById("box d");
+     var e = document.getElementById("box e");
+     var f = document.getElementById("box f");
+    console.log(stock);
+    console.log(e);
+    if (stock.style.display === "none" || stock.style.display === "") {
+        stock.style.display = "block";
+        b.style.display = "none";
+        c.style.display = "none";
+        d.style.display = "none";
+        e.style.display = "none";
+        f.style.display = "none";
     } else {
-        x.style.display = "none";
+        stock.style.display = "none";
+        b.style.display = "block";
+        c.style.display = "block";
+        d.style.display = "block";
+        e.style.display = "block";
+        f.style.display = "block";
     }
     }
   }
@@ -110,6 +126,7 @@ export default {
     position: sticky;
     top: 0;
   }
+
  .box {
     background-color: #444;
     color: #fff;
@@ -197,14 +214,14 @@ grid-template-columns: 20% 60% 20%;
     overflow: scroll;
     z-index: 2;
     grid-column: 1 / span 3;
-    grid-row: 2 / span 3;
+    grid-row: 2 / span 2;
     width: 100%;
-    height: 17em;
+    height: 6em;
     text-align: center;
     background-color: lightblue;
     padding: 50px 0;
     display: none;
-    font-size: 150%;
+    font-size: 500%;
 }
   h1 {
     text-transform: uppercase;

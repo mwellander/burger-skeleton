@@ -1,6 +1,7 @@
 {
   "cancelOrder" : "Cancel order",
   "next" : "Next",
+  "previous" : "Previous",
   "changeIng" : "Change ingredient",
   "content" : "Content",
   "thankOrder" : "Thank you for your order!",
@@ -12,7 +13,7 @@
   "ordersStarted" : "Started orders",
   "ordersInQueue" : "Order queue",
   "ordersTrending" : "Trending orders",
-  "placeOrder" : "Place order",
+  "placeOrder" : "Add to cart",
   "sideorders" : "Side orders",
   "ingredients" : "Ingredients",
   "ready" : "Done",
@@ -22,9 +23,11 @@
   "bread" : "Bread",
   "burger" : "Burger",
   "dressing" : "Dressing",
-  "vegetables" : "Vegetables",
-  "drink" : "Drink",
-  "sides" : "Sides",
   "stock" : "Stock",
-  "staffView": "Staff View"
+  "staffView": "Staff View",
+  "sideOrder" : "Sides and drinks",
+  "cancelOrder" : "Cancel",
+  "toppings" : "Toppings",
+  "beverage" : "Beverage",
+  "sides" : "Sides"
 }
