@@ -29,5 +29,6 @@
   "cancelOrder" : "Avbryt",
   "toppings" : "Toppings",
   "beverage" : "Dryck",
-  "sides" : "Tillbehör"
+  "sides" : "Tillbehör",
+  "ordersToView": "Beställningar"
 }
