@@ -2,12 +2,12 @@
   <div id="ordering">
 
     <div class="navbar">
-    <a href="#brod">BRÖD</a>
-    <a href="#burgare">BURGARE</a>
-    <a href="#dressing">DRESSING</a>
-    <a href="#gronsaker">GRÖNSAKER</a>
-    <a href="#dryck">DRYCK</a>
-    <a href="#tillbehor">TILLBEHÖR</a>
+    <a href="#brod">{{ uiLabels.bread }}</a>
+    <a href="#burgare">{{ uiLabels.burger }}</a>
+    <a href="#dressing">{{ uiLabels.dressing }}</a>
+    <a href="#gronsaker">{{ uiLabels.vegetables }}</a>
+    <a href="#dryck">{{ uiLabels.drink }}</a>
+    <a href="#tillbehor">{{ uiLabels.sides }}</a>
     </div>
 
 
@@ -29,7 +29,7 @@
       :key="item.ingredient_id">
     </Ingredient>
 
-    <div class="reciept">
+    <div class="receipt">
       <h1>{{ uiLabels.order }}</h1>
       {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
       <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
@@ -112,7 +112,7 @@ export default {
   margin:auto;
   width: 40em;
 }
-.reciept {
+.receipt {
   position: fixed;
    left: 0;
    bottom: 0;

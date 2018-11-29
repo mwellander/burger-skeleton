@@ -18,5 +18,11 @@
   "ready" : "Done",
   "started" : "Start",
   "order" : "My burger",
-  "language" : "Svenska"
+  "language" : "Svenska",
+  "bread" : "Bread",
+  "burger" : "Burger",
+  "dressing" : "Dressing",
+  "vegetables" : "Vegetables",
+  "drink" : "Drink",
+  "sides" : "Sides"
 }

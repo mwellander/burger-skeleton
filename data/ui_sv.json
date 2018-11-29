@@ -18,5 +18,11 @@
   "ready" : "Klart",
   "started" : "Starta",
   "order" : "Min burgare",
-  "language" : "English"
+  "language" : "English",
+  "bread" : "Bröd",
+  "burger" : "Burgare",
+  "dressing" : "Dressing",
+  "vegetables" : "Grönsaker",
+  "drink" : "Dryck",
+  "sides" : "Tillbehör"
 }
