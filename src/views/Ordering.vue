@@ -167,9 +167,6 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-<<<<<<< HEAD
-      //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
-=======
       state:"burger",
       burger:true,
       toppings:false,
@@ -177,7 +174,6 @@ export default {
       bread:false,
       sides:false,
       beverages:false
->>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -187,10 +183,9 @@ export default {
     }.bind(this));
   },
   methods: {
-<<<<<<< HEAD
     cancelOrder: function () {
       //Här ska beställningen avbrytas
-=======
+    },
     toBurger: function(){
       this.state="burger";
       this.burger=true;
@@ -244,7 +239,6 @@ export default {
       this.bread=false;
       this.sides=false;
       this.beverage=true;
->>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
     },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
@@ -275,7 +269,6 @@ export default {
   margin:auto;
   width: 40em;
 }
-<<<<<<< HEAD
 * {
     box-sizing: border-box;
 }
@@ -289,7 +282,7 @@ export default {
     width: 50%;
     padding: 0em;
     height: 13em;
-=======
+}
 .nextButton {
   position:relative;
   background-color:green;
@@ -297,7 +290,6 @@ export default {
 }
 .previousButton{
   position:relative;
->>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
 }
 .receipt {
   position: fixed;

@@ -23,15 +23,9 @@
   "bread" : "Bröd",
   "burger" : "Burgare",
   "dressing" : "Dressing",
-<<<<<<< HEAD
-  "vegetables" : "Grönsaker",
-  "drink" : "Dryck",
-  "sides" : "Tillbehör",
   "sideOrder" : "Tillbehör och dryck",
-  "cancelOrder" : "Avbryt"
-=======
+  "cancelOrder" : "Avbryt",
   "toppings" : "Toppings",
   "beverage" : "Dryck",
   "sides" : "Tillbehör"
->>>>>>> d1eaddbc52de3c5c067454a1f257282da26e4845
 }
