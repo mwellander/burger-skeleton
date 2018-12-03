@@ -1,21 +1,21 @@
 <template>
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class="navbar">
+  <!--  <div class="navbar">
     <a href="#burger">{{ uiLabels.burger }}</a>
     <a href="#toppings">{{ uiLabels.toppings }}</a>
     <a href="#dressing">{{ uiLabels.dressing }}</a>
     <a href="#bread">{{ uiLabels.bread }}</a>
     <a href="#sides">{{ uiLabels.sides }}</a>
     <a href="#beverage">{{ uiLabels.beverage }}</a>
-    </div>
+  </div> -->
 <button class="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
 
     <div class="tabs" v-show="started">
-      <button class="tabButton" v-on:click="toBurger()">{{uiLabels.burger}}</button>
-      <button class="tabButton" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
-      <button class="tabButton" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
       <button class="tabButton" v-on:click="toBread()">{{uiLabels.bread}}</button>
+      <button class="tabButton" v-on:click="toBurger()">{{uiLabels.burger}}</button>
+      <button class="tabButton" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+      <button class="tabButton" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
       <button class="tabButton" v-on:click="toSides()">{{uiLabels.sides}}</button>
       <button class="tabButton" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
     </div>
@@ -30,7 +30,22 @@
     <br>
     <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
 
-    <button id="nextButton" v-show="burger" v-on:click='toToppings()'>{{uiLabels.next}}</button>
+    <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
+    <div class="breadPage">
+        <Ingredient
+          ref="ingredient"
+          v-show="state === 'bread'"
+          v-if="item.category===4"
+          v-for="item in ingredients"
+          v-on:increment="addToOrder(item)"
+          :item="item"
+          :lang="lang"
+          :key="item.ingredient_id">
+        </Ingredient>
+      </div>
+
+      <button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
+      <button id="nextButton" v-show="burger" v-on:click='toDressing()'>{{uiLabels.next}}</button><div class="burgerPage">
     <Ingredient
       ref="ingredient"
       v-show="state === 'burger'"
@@ -41,9 +56,26 @@
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
+  </div>
 
-    <button id="previousButton" v-show="toppings" v-on:click="toBurger()">{{uiLabels.previous}}</button>
-    <button id="nextButton" v-show="toppings" v-on:click='toDressing()'>{{uiLabels.next}}</button>
+  <button id="previousButton" v-show="dressing" v-on:click="toBurger()">{{uiLabels.previous}}</button>
+  <button id="nextButton" v-show="dressing" v-on:click='toToppings()'>{{uiLabels.next}}</button>
+  <div class="dressingPage">
+      <Ingredient
+        ref="ingredient"
+        v-show="state === 'dressing'"
+        v-if="item.category===3"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </Ingredient>
+    </div>
+
+    <button id="previousButton" v-show="toppings" v-on:click="toDressing()">{{uiLabels.previous}}</button>
+    <button id="nextButton" v-show="toppings" v-on:click='toSides()'>{{uiLabels.next}}</button>
+<div class="toppingPage">
     <Ingredient
       ref="ingredient"
       v-show="state === 'toppings'"
@@ -54,35 +86,11 @@
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
+</div>
 
-    <button id="previousButton" v-show="dressing" v-on:click="toToppings()">{{uiLabels.previous}}</button>
-    <button v-show="dressing" v-on:click='toBread()'>{{uiLabels.next}}</button>
-        <Ingredient
-          ref="ingredient"
-          v-show="state === 'dressing'"
-          v-if="item.category===3"
-          v-for="item in ingredients"
-          v-on:increment="addToOrder(item)"
-          :item="item"
-          :lang="lang"
-          :key="item.ingredient_id">
-        </Ingredient>
-
-        <button class="previousButton" v-show="bread" v-on:click="toDressing()">{{uiLabels.previous}}</button>
-        <button v-show="bread" v-on:click='toSides()'>{{uiLabels.next}}</button>
-            <Ingredient
-              ref="ingredient"
-              v-show="state === 'bread'"
-              v-if="item.category===4"
-              v-for="item in ingredients"
-              v-on:increment="addToOrder(item)"
-              :item="item"
-              :lang="lang"
-              :key="item.ingredient_id">
-            </Ingredient>
-
-          <button class="previousButton" v-show="sides" v-on:click="toBread()">{{uiLabels.previous}}</button>
-          <button v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
+          <button id="previousButton" v-show="sides" v-on:click="toToppings()">{{uiLabels.previous}}</button>
+          <button id="nextButton" v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
+          <div class="sidesPage">
                 <Ingredient
                   ref="ingredient"
                   v-show="state === 'sides'"
@@ -93,7 +101,10 @@
                   :lang="lang"
                   :key="item.ingredient_id">
                 </Ingredient>
-          <button class="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
+              </div>
+
+          <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
+          <div class="beveragePage">
                     <Ingredient
                       ref="ingredient"
                       v-show="state === 'beverage'"
@@ -104,6 +115,7 @@
                       :lang="lang"
                       :key="item.ingredient_id">
                     </Ingredient>
+                  </div>
 
     <div class="receipt" v-show="started">
       <div class="row">
@@ -203,8 +215,8 @@ export default {
   methods: {
     startOrder: function(){
       this.started=true;
-      this.state="burger";
-      this.burger=true;
+      this.state="bread";
+      this.bread=true;
     },
     cancelOrder: function () {
       this.chosenIngredientsBurger= [];
@@ -491,7 +503,7 @@ export default {
   background-color:#ddd;
 }
 
-.main {
+ .main {
   padding: 16px;
   margin-top: 30px;
   height: 1500px; /* Used in this example to enable scrolling */
@@ -508,5 +520,71 @@ export default {
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
+}
+
+.burgerPage {
+  overflow: scroll;
+  height: 22em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  top: 0;
+  text-align: center;
+}
+
+.toppingPage {
+  overflow: scroll;
+  height: 22em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  top: 0;
+  text-align: center;
+}
+
+.dressingPage {
+  overflow: scroll;
+  height: 22em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  top: 0;
+  text-align: center;
+}
+
+.breadPage {
+  overflow: scroll;
+  height: 22em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  top: 0;
+  text-align: center;
+}
+
+.sidesPage {
+  overflow: scroll;
+  height: 22em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  top: 0;
+  text-align: center;
+}
+
+.beveragePage {
+  overflow: scroll;
+  height: 22em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  top: 0;
+  text-align: center;
 }
 </style>
