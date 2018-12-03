@@ -134,7 +134,7 @@
             <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
             <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
           </ul>
-          <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+          <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
         </div>
       </div>
 
@@ -405,28 +405,28 @@ export default {
     width: 50%;
     padding: 0em;
 }
-.a{
+.a {
   height:3em;
   overflow:hidden;
   background-color: white;
   /* text-decoration: underline; */
   border-bottom: 0.1em solid black;
 }
-.b{
+.b {
   height:3em;
   overflow:hidden;
   background-color: white;
   /* text-decoration: underline; */
   border-bottom: 0.1em solid black;
 }
-.c{
+.c {
   overflow:scroll;
   height: 8em;
   background-color: white;
 }
-.d{
+.d {
   overflow:scroll;
-  height: 8em;
+  height: 6em;
   background-color: white;
 }
 .nextButton {
@@ -434,7 +434,7 @@ export default {
   background-color:green;
   padding: 1px solid black;
 }
-.previousButton{
+.previousButton {
   position:relative;
 }
 .receipt {
@@ -448,8 +448,7 @@ export default {
    padding: 0.8em;
    border: 0.1em solid black;
 }
-
-.LanguageButton{
+.LanguageButton {
   background-color: black;
   border: 0.1em solid black;
   text-align: center;
@@ -459,6 +458,7 @@ export default {
   position: fixed;
   top: 0;
 }
+
 .orderButton {
   background-color: #4CAF50;
   border: 0.1em solid black;
@@ -473,6 +473,7 @@ export default {
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
+
 .cancelButton {
   background-color: #f44336;
   border: 0.1em solid black;
@@ -517,11 +518,13 @@ export default {
   width: 40em;
   height: 7em;
 }
-.tabs{
+
+.tabs {
   overflow:hidden;
   position:fixed;
 }
-.tabs button{
+
+.tabs button {
   float: left;
   display: block;
   background-color: grey;
@@ -531,34 +534,38 @@ export default {
   text-decoration: none;
   font-size: 18px;
 }
-.tabs button:hover{
+
+.tabs button:hover {
   background-color:#ddd;
 }
 
- .main {
+.main {
   padding: 16px;
   margin-top: 30px;
   height: 1500px; /* Used in this example to enable scrolling */
 }
+
 .example-panel {
   position: fixed;
   left:0;
   top:0;
   z-index: -2;
-
 }
+
 .ingredient {
   border: 1px solid #ccd;
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
 }
+
 .totalText {
   position: absolute;
   bottom: 0;
   right: 0;
   padding: 4em;
 }
+
 .burgerPage {
   overflow: scroll;
   height: 22em;
