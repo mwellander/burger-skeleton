@@ -474,12 +474,24 @@ export default {
   box-sizing: border-box;
 }
 .startButton{
-  margin-top:20em;
+  margin-top:10em;
   margin-bottom:10em;
   margin-left: 20%;
   margin-right: 20%;
   width:60%;
   height:50%;
+
+  background-color: #4CAF50;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2em;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  border-radius: 1em;
 }
 .row:after {
   content: "";
