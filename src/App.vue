@@ -17,8 +17,8 @@ export default {
 
 <style>
 body {
-  background-color: white;
-   overflow: hidden; 
+  background-color: black;
+   overflow: hidden;
   /* height:100vh;
   background: radial-gradient(white, lightblue);
   background-size: 200% 200%;

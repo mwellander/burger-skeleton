@@ -1,7 +1,7 @@
 <template>
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!--  <div class="navbar">
+    <!--  <div class="navbar">
     <a href="#burger">{{ uiLabels.burger }}</a>
     <a href="#toppings">{{ uiLabels.toppings }}</a>
     <a href="#dressing">{{ uiLabels.dressing }}</a>
@@ -9,156 +9,157 @@
     <a href="#sides">{{ uiLabels.sides }}</a>
     <a href="#beverage">{{ uiLabels.beverage }}</a>
   </div> -->
-<button class="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
+  <button class="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
 
-    <div class="tabs" v-show="started">
-      <button class="tabButton" v-on:click="toBread()">{{uiLabels.bread}}</button>
-      <button class="tabButton" v-on:click="toBurger()">{{uiLabels.burger}}</button>
-      <button class="tabButton" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
-      <button class="tabButton" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
-      <button class="tabButton" v-on:click="toSides()">{{uiLabels.sides}}</button>
-      <button class="tabButton" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
-    </div>
-
-    <div style="text-align:left">
-      <!-- <button class="LanguageButton" v-on:click="switchLang()">{{ uiLabels.language }}</button>   -->
-      <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
-    </div>
-
-    <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
-    <br>
-    <br>
-    <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
-
-    <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
-    <div class="breadPage" id="breadPage">
-        <Ingredient
-          ref="ingredient"
-          v-show="state === 'bread'"
-          v-if="item.category===4"
-          v-for="item in ingredients"
-          v-on:increment="addToOrder(item)"
-          :item="item"
-          :lang="lang"
-          :key="item.ingredient_id">
-        </Ingredient>
-      </div>
-
-      <button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
-      <button id="nextButton" v-show="burger" v-on:click='toDressing()'>{{uiLabels.next}}</button>
-      <div class="burgerPage" id="burgerPage">
-    <Ingredient
-      ref="ingredient"
-      v-show="state === 'burger'"
-      v-if="item.category===1"
-      v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"
-      :item="item"
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
+  <div class="tabs" v-show="started">
+    <button v-on:click="toBread()">{{uiLabels.bread}}</button>
+    <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
+    <button v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+    <button v-on:click="toToppings()">{{uiLabels.toppings}}</button>
+    <button v-on:click="toSides()">{{uiLabels.sides}}</button>
+    <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
   </div>
 
-  <button id="previousButton" v-show="dressing" v-on:click="toBurger()">{{uiLabels.previous}}</button>
-  <button id="nextButton" v-show="dressing" v-on:click='toToppings()'>{{uiLabels.next}}</button>
-  <div class="dressingPage" id="dressingPage">
-      <Ingredient
-        ref="ingredient"
-        v-show="state === 'dressing'"
-        v-if="item.category===3"
-        v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
-        :item="item"
-        :lang="lang"
-        :key="item.ingredient_id">
-      </Ingredient>
-    </div>
+  <div style="text-align:left">
+    <!-- <button class="LanguageButton" v-on:click="switchLang()">{{ uiLabels.language }}</button>   -->
+    <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+  </div>
 
-    <button id="previousButton" v-show="toppings" v-on:click="toDressing()">{{uiLabels.previous}}</button>
-    <button id="nextButton" v-show="toppings" v-on:click='toSides()'>{{uiLabels.next}}</button>
-<div class="toppingPage" id="toppingPage">
+  <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
+  <br>
+  <!-- <br> -->
+  <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
+
+  <div class="breadPage" id="breadPage">
     <Ingredient
-      ref="ingredient"
-      v-show="state === 'toppings'"
-      v-if="item.category===2"
-      v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"
-      :item="item"
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
+    ref="ingredient"
+    v-show="state === 'bread'"
+    v-if="item.category===4"
+    v-for="item in ingredients"
+    v-on:increment="addToOrder(item)"
+    :item="item"
+    :lang="lang"
+    :key="item.ingredient_id">
+  </Ingredient>
 </div>
+<button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
 
-          <button id="previousButton" v-show="sides" v-on:click="toToppings()">{{uiLabels.previous}}</button>
-          <button id="nextButton" v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
-          <div class="sidesPage" id="sidesPage">
-                <Ingredient
-                  ref="ingredient"
-                  v-show="state === 'sides'"
-                  v-if="item.category===5"
-                  v-for="item in ingredients"
-                  v-on:increment="addToOrder(item)"
-                  :item="item"
-                  :lang="lang"
-                  :key="item.ingredient_id">
-                </Ingredient>
-              </div>
+<div class="burgerPage" id="burgerPage">
+  <Ingredient
+  ref="ingredient"
+  v-show="state === 'burger'"
+  v-if="item.category===1"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder(item)"
+  :item="item"
+  :lang="lang"
+  :key="item.ingredient_id">
+</Ingredient>
+</div>
+<button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
+<button id="nextButton" v-show="burger" v-on:click='toDressing()'>{{uiLabels.next}}</button>
 
-          <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
-          <div class="beveragePage" id="beveragePage">
-                    <Ingredient
-                      ref="ingredient"
-                      v-show="state === 'beverage'"
-                      v-if="item.category===6"
-                      v-for="item in ingredients"
-                      v-on:increment="addToOrder(item)"
-                      :item="item"
-                      :lang="lang"
-                      :key="item.ingredient_id">
-                    </Ingredient>
-                  </div>
+<div class="dressingPage" id="dressingPage">
+  <Ingredient
+  ref="ingredient"
+  v-show="state === 'dressing'"
+  v-if="item.category===3"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder(item)"
+  :item="item"
+  :lang="lang"
+  :key="item.ingredient_id">
+</Ingredient>
+</div>
+<button id="previousButton" v-show="dressing" v-on:click="toBurger()">{{uiLabels.previous}}</button>
+<button id="nextButton" v-show="dressing" v-on:click='toToppings()'>{{uiLabels.next}}</button>
 
-    <div class="receipt" v-show="started">
-      <div class="row">
-        <div class="column a"><h3>{{ uiLabels.order }}</h3></div>
-        <div class="column b"><h3>{{ uiLabels.sideOrder }}</h3></div>
-        <div class="column c" style="text-align:left">
-          <ul style="list-style-type:none">
-            <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-          </ul>
-        </div>
-        <div class="column d" style="text-align:left">
-          <ul style="list-style-type:none">
-            <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-          </ul>
-          <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
-        </div>
-      </div>
+<div class="toppingPage" id="toppingPage">
+  <Ingredient
+  ref="ingredient"
+  v-show="state === 'toppings'"
+  v-if="item.category===2"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder(item)"
+  :item="item"
+  :lang="lang"
+  :key="item.ingredient_id">
+</Ingredient>
+</div>
+<button id="previousButton" v-show="toppings" v-on:click="toDressing()">{{uiLabels.previous}}</button>
+<button id="nextButton" v-show="toppings" v-on:click='toSides()'>{{uiLabels.next}}</button>
 
-      <!-- <h3 style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
-      <div style="text-align:right">
-        <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-        <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
-      </div>
+<div class="sidesPage" id="sidesPage">
+  <Ingredient
+  ref="ingredient"
+  v-show="state === 'sides'"
+  v-if="item.category===5"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder(item)"
+  :item="item"
+  :lang="lang"
+  :key="item.ingredient_id">
+</Ingredient>
+</div>
+<button id="previousButton" v-show="sides" v-on:click="toToppings()">{{uiLabels.previous}}</button>
+<button id="nextButton" v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
 
-      <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
-      <div>
-        <OrderItem
-          v-for="(order, key) in orders"
-          v-if="order.status !== 'done'"
-          :order-id="key"
-          :order="order"
-          :ui-labels="uiLabels"
-          :lang="lang"
-          :key="key">
-        </OrderItem>
-      </div> -->
+<div class="beveragePage" id="beveragePage">
+  <Ingredient
+  ref="ingredient"
+  v-show="state === 'beverage'"
+  v-if="item.category===6"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder(item)"
+  :item="item"
+  :lang="lang"
+  :key="item.ingredient_id">
+</Ingredient>
+</div>
+<button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
+
+<div class="receipt" v-show="started">
+  <div class="row">
+    <div class="column a"><h3>{{ uiLabels.order }}</h3></div>
+    <div class="column b"><h3>{{ uiLabels.sideOrder }}</h3></div>
+    <div class="column c" style="text-align:left">
+      <ul style="list-style-type:none">
+        <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+      </ul>
+    </div>
+    <div class="column d" style="text-align:left">
+      <ul style="list-style-type:none">
+        <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+      </ul>
+      <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
     </div>
   </div>
+
+  <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+
+  <div style="text-align:right">
+    <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+    <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+  </div>
+
+  <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
+  <div>
+  <OrderItem
+  v-for="(order, key) in orders"
+  v-if="order.status !== 'done'"
+  :order-id="key"
+  :order="order"
+  :ui-labels="uiLabels"
+  :lang="lang"
+  :key="key">
+</OrderItem>
+</div> -->
+</div>
+</div>
 </template>
 <script>
 
@@ -180,7 +181,7 @@ export default {
     OrderItem
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
-                            // the ordering system and the kitchen
+  // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
       chosenIngredients:[],
@@ -424,10 +425,10 @@ export default {
     placeOrder: function () {
       var i,
       //Wrap the order in an object
-        order = {
-          ingredients: this.chosenIngredients,
-          price: this.price
-        };
+      order = {
+        ingredients: this.chosenIngredients,
+        price: this.price
+      };
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
       this.$store.state.socket.emit('order', {order: order});
       //set all counters to 0. Notice the use of $refs
@@ -470,7 +471,7 @@ export default {
   width: 40em;
 }
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 .startButton{
   margin-top:20em;
@@ -481,14 +482,14 @@ export default {
   height:50%;
 }
 .row:after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 .column {
-    float: left;
-    width: 50%;
-    padding: 0em;
+  float: left;
+  width: 50%;
+  padding: 0em;
 }
 .a {
   height:3em;
@@ -513,25 +514,44 @@ export default {
   overflow:scroll;
   height: 6em;
   background-color: white;
+  /* z-index: 1; */
 }
-.nextButton {
-  position:relative;
-  background-color:green;
-  padding: 1px solid black;
+#nextButton {
+  background-color: #4CAF50;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  border-radius: 1em;
 }
-.previousButton {
-  position:relative;
+#previousButton {
+  background-color: #0000CD;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  border-radius: 1em;
 }
 .receipt {
   bottom: 0;
   position: fixed;
-   left: center;
-   width: 40em;
-   background-color: white;
-   color: black;
-   text-align: center;
-   padding: 0.8em;
-   border: 0.1em solid black;
+  left: center;
+  width: 40em;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 0.8em;
+  border: 0.1em solid black;
 }
 .LanguageButton {
   background-color: black;
@@ -542,6 +562,7 @@ export default {
   cursor: pointer;
   position: fixed;
   top: 0;
+  margin-top: 0.5em;
 }
 
 .orderButton {
@@ -574,39 +595,34 @@ export default {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 /* .navbar {
-  overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  top: 1;
-  width: 100%;
+overflow: hidden;
+background-color: #333;
+position: fixed;
+top: 1;
+width: 100%;
 }
 
 .navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+float: left;
+display: block;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
 }
 .navbar a:hover {
-  background: #ddd;
-  color: black;
+background: #ddd;
+color: black;
 } */
 .tabs {
   overflow: hidden;
   position: fixed;
   top: 1;
-  padding-top: 50px;
+  padding-top: 2.5em;
   background-color: black;
   width: 40em;
-  height: 7em;
-}
-
-.tabs {
-  overflow:hidden;
-  position:fixed;
+  height: 6em;
 }
 
 .tabs button {
@@ -618,6 +634,7 @@ export default {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 18px;
+  width: 5.92em;
 }
 
 .tabs button:hover {
@@ -639,8 +656,9 @@ export default {
 
 .ingredient {
   border: 1px solid #ccd;
-  padding: 1em;
-  background-image: url('~@/assets/exampleImage.jpg');
+   padding: 1em;
+  /* background-image: url('~@/assets/exampleImage.jpg'); */
+  background-color: black;
   color: white;
 }
 
@@ -648,72 +666,68 @@ export default {
   position: absolute;
   bottom: 0;
   right: 0;
-  padding: 4em;
+  /* padding: 4em; */
+  margin-bottom: 5em;
+  margin-right: 1em;
 }
 
 .burgerPage {
   overflow: scroll;
-  height: 22em;
+  height: 25em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
   grid-row: 1;
-  top: 0;
   text-align: center;
 }
 
 .toppingPage {
   overflow: scroll;
-  height: 22em;
+  height: 25em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
   grid-row: 1;
-  top: 0;
   text-align: center;
 }
 
 .dressingPage {
   overflow: scroll;
-  height: 22em;
+  height: 25em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
   grid-row: 1;
-  top: 0;
   text-align: center;
 }
 
 .breadPage {
   overflow: scroll;
-  height: 22em;
+  height: 25em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
   grid-row: 1;
-  top: 0;
   text-align: center;
 }
 
 .sidesPage {
   overflow: scroll;
-  height: 22em;
+  height: 25em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
   grid-row: 1;
-  top: 0;
   text-align: center;
 }
 
 .beveragePage {
   overflow: scroll;
-  height: 22em;
+  height: 25em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
   grid-row: 1;
-  top: 0;
   text-align: center;
 }
 </style>

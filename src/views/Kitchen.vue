@@ -177,7 +177,7 @@ export default {
      var d = document.getElementById("box d");
      var e = document.getElementById("box e");
      var f = document.getElementById("box f");
-    var g = document.getElementById("box g");
+     var g = document.getElementById("box g");
      var stockButt = document.getElementById("StockButton");
      var orderButt = document.getElementById("OrderButton");
      if (stock.style.display === "none" || stock.style.display === "") {
