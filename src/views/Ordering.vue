@@ -165,6 +165,7 @@ export default {
                             // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
+      chosenIngredients:[],
       chosenIngredientsBurger: [],
       chosenIngredientsSides: [],
       Burger: [],
@@ -189,7 +190,8 @@ export default {
       bread:false,
       sides:false,
       beverages:false,
-      started:false
+      started:false,
+      orderingvue:true
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -202,6 +204,7 @@ export default {
     startOrder: function(){
       this.started=true;
       this.state="burger";
+      this.burger=true;
     },
     cancelOrder: function () {
       this.chosenIngredientsBurger= [];
@@ -283,6 +286,7 @@ export default {
       this.beverage=true;
     },
     addToOrder: function (item) {
+      this.chosenIngredients.push(item);
       if(item.category===5 || item.category===6){
         this.chosenIngredientsSides.push(item);
         if(item.category===5){
