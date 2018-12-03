@@ -25,13 +25,13 @@
       <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
     </div>
 
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
+    <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
     <br>
     <br>
     <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
 
     <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
-    <div class="breadPage">
+    <div class="breadPage" id="breadPage">
         <Ingredient
           ref="ingredient"
           v-show="state === 'bread'"
@@ -45,7 +45,8 @@
       </div>
 
       <button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
-      <button id="nextButton" v-show="burger" v-on:click='toDressing()'>{{uiLabels.next}}</button><div class="burgerPage">
+      <button id="nextButton" v-show="burger" v-on:click='toDressing()'>{{uiLabels.next}}</button>
+      <div class="burgerPage" id="burgerPage">
     <Ingredient
       ref="ingredient"
       v-show="state === 'burger'"
@@ -60,7 +61,7 @@
 
   <button id="previousButton" v-show="dressing" v-on:click="toBurger()">{{uiLabels.previous}}</button>
   <button id="nextButton" v-show="dressing" v-on:click='toToppings()'>{{uiLabels.next}}</button>
-  <div class="dressingPage">
+  <div class="dressingPage" id="dressingPage">
       <Ingredient
         ref="ingredient"
         v-show="state === 'dressing'"
@@ -75,7 +76,7 @@
 
     <button id="previousButton" v-show="toppings" v-on:click="toDressing()">{{uiLabels.previous}}</button>
     <button id="nextButton" v-show="toppings" v-on:click='toSides()'>{{uiLabels.next}}</button>
-<div class="toppingPage">
+<div class="toppingPage" id="toppingPage">
     <Ingredient
       ref="ingredient"
       v-show="state === 'toppings'"
@@ -90,7 +91,7 @@
 
           <button id="previousButton" v-show="sides" v-on:click="toToppings()">{{uiLabels.previous}}</button>
           <button id="nextButton" v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
-          <div class="sidesPage">
+          <div class="sidesPage" id="sidesPage">
                 <Ingredient
                   ref="ingredient"
                   v-show="state === 'sides'"
@@ -104,7 +105,7 @@
               </div>
 
           <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
-          <div class="beveragePage">
+          <div class="beveragePage" id="beveragePage">
                     <Ingredient
                       ref="ingredient"
                       v-show="state === 'beverage'"
@@ -256,6 +257,20 @@ export default {
       this.bread=false;
       this.sides=false;
       this.beverage=false;
+
+      var BreadPage = document.getElementById("breadPage");
+      var BurgerPage = document.getElementById("burgerPage");
+      var DressingPage = document.getElementById("dressingPage");
+      var ToppingPage = document.getElementById("toppingPage");
+      var SidesPage = document.getElementById("sidesPage");
+      var BeveragePage = document.getElementById("beveragePage");
+
+      BreadPage.style.display = "none";
+      BurgerPage.style.display = "grid";
+      DressingPage.style.display = "none";
+      ToppingPage.style.display = "none";
+      SidesPage.style.display = "none";
+      BeveragePage.style.display = "none";
     },
     toToppings: function(){
       this.state="toppings";
@@ -265,6 +280,20 @@ export default {
       this.bread=false;
       this.sides=false;
       this.beverage=false;
+
+      var BreadPage = document.getElementById("breadPage");
+      var BurgerPage = document.getElementById("burgerPage");
+      var DressingPage = document.getElementById("dressingPage");
+      var ToppingPage = document.getElementById("toppingPage");
+      var SidesPage = document.getElementById("sidesPage");
+      var BeveragePage = document.getElementById("beveragePage");
+
+      BreadPage.style.display = "none";
+      BurgerPage.style.display = "none";
+      DressingPage.style.display = "none";
+      ToppingPage.style.display = "grid";
+      SidesPage.style.display = "none";
+      BeveragePage.style.display = "none";
     },
     toDressing: function(){
       this.state="dressing";
@@ -274,6 +303,20 @@ export default {
       this.bread=false;
       this.sides=false;
       this.beverage=false;
+
+      var BreadPage = document.getElementById("breadPage");
+      var BurgerPage = document.getElementById("burgerPage");
+      var DressingPage = document.getElementById("dressingPage");
+      var ToppingPage = document.getElementById("toppingPage");
+      var SidesPage = document.getElementById("sidesPage");
+      var BeveragePage = document.getElementById("beveragePage");
+
+      BreadPage.style.display = "none";
+      BurgerPage.style.display = "none";
+      DressingPage.style.display = "grid";
+      ToppingPage.style.display = "none";
+      SidesPage.style.display = "none";
+      BeveragePage.style.display = "none";
     },
     toBread: function(){
       this.state="bread";
@@ -283,6 +326,20 @@ export default {
       this.bread=true;
       this.sides=false;
       this.beverage=false;
+
+      var BreadPage = document.getElementById("breadPage");
+      var BurgerPage = document.getElementById("burgerPage");
+      var DressingPage = document.getElementById("dressingPage");
+      var ToppingPage = document.getElementById("toppingPage");
+      var SidesPage = document.getElementById("sidesPage");
+      var BeveragePage = document.getElementById("beveragePage");
+
+      BreadPage.style.display = "grid";
+      BurgerPage.style.display = "none";
+      DressingPage.style.display = "none";
+      ToppingPage.style.display = "none";
+      SidesPage.style.display = "none";
+      BeveragePage.style.display = "none";
     },
     toSides: function(){
       this.state="sides";
@@ -292,6 +349,20 @@ export default {
       this.bread=false;
       this.sides=true;
       this.beverage=false;
+
+      var BreadPage = document.getElementById("breadPage");
+      var BurgerPage = document.getElementById("burgerPage");
+      var DressingPage = document.getElementById("dressingPage");
+      var ToppingPage = document.getElementById("toppingPage");
+      var SidesPage = document.getElementById("sidesPage");
+      var BeveragePage = document.getElementById("beveragePage");
+
+      BreadPage.style.display = "none";
+      BurgerPage.style.display = "none";
+      DressingPage.style.display = "none";
+      ToppingPage.style.display = "none";
+      SidesPage.style.display = "grid";
+      BeveragePage.style.display = "none";
     },
     toBeverage: function(){
       this.state="beverage";
@@ -301,6 +372,20 @@ export default {
       this.bread=false;
       this.sides=false;
       this.beverage=true;
+
+      var BreadPage = document.getElementById("breadPage");
+      var BurgerPage = document.getElementById("burgerPage");
+      var DressingPage = document.getElementById("dressingPage");
+      var ToppingPage = document.getElementById("toppingPage");
+      var SidesPage = document.getElementById("sidesPage");
+      var BeveragePage = document.getElementById("beveragePage");
+
+      BreadPage.style.display = "none";
+      BurgerPage.style.display = "none";
+      DressingPage.style.display = "none";
+      ToppingPage.style.display = "none";
+      SidesPage.style.display = "none";
+      BeveragePage.style.display = "grid";
     },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
@@ -540,9 +625,9 @@ export default {
 }
 
 .main {
-  padding: 16px;
-  margin-top: 30px;
-  height: 1500px; /* Used in this example to enable scrolling */
+  padding: 1px;
+  margin-top: 3px;
+  height: 15px; /* Used in this example to enable scrolling*/
 }
 
 .example-panel {

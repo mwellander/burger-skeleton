@@ -17,10 +17,12 @@ export default {
 
 <style>
 body {
-  height:100vh;
+  background-color: white;
+   overflow: hidden; 
+  /* height:100vh;
   background: radial-gradient(white, lightblue);
   background-size: 200% 200%;
-  animation: Gradient 20s linear infinite;
+  animation: Gradient 20s linear infinite; */
 }
 
 </style>
