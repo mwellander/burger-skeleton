@@ -1,10 +1,11 @@
 <template>
   <div class="ingredient">
-    <label>
-      <button v-on:click="incrementCounter">{{ counter }}</button>
-      {{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{item.stock}} pcs
-    </label>
-      <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" width="100">
+      <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" width="100">
+      <label>
+        <br>{{item["ingredient_"+ lang]}}, 
+        {{item.selling_price}}:-
+        <br><button v-on:click="incrementCounter">{{ counter }}</button>
+      </label>
   </div>
 </template>
 <script>

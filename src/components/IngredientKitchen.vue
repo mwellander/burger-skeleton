@@ -2,6 +2,9 @@
   <div class="ingredientKitchen">
     <label>
       {{item["ingredient_"+ lang]}}, {{item.stock}}
+      <label for="addStock"></label>
+      <input type="number" id="addStock">
+      <button type="submit" v-on:click="addStocks()">add</button>
     </label>
   </div>
 </template>
@@ -15,6 +18,7 @@ export default {
     data: function () {
     return {
       counter: 0,
+      increaseBy:0
     };
   },
   methods: {
@@ -26,6 +30,11 @@ export default {
     },
     resetCounter: function () {
       this.counter = 0;
+    },
+    addStocks: function(){
+      increaseBy = document.getElementById("addStock").value;
+      this.stock += increaseBy;
+      console.log("increaseBy",increaseBy);
     }
   }
 }

@@ -576,7 +576,6 @@ export default {
   top: 0;
   margin-top: 0.5em;
 }
-
 .orderButton {
   background-color: #4CAF50;
   border: 0.1em solid black;
@@ -591,7 +590,6 @@ export default {
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-
 .cancelButton {
   background-color: #f44336;
   border: 0.1em solid black;
@@ -636,7 +634,6 @@ color: black;
   width: 40em;
   height: 6em;
 }
-
 .tabs button {
   float: left;
   display: block;
@@ -648,24 +645,20 @@ color: black;
   font-size: 18px;
   width: 5.92em;
 }
-
 .tabs button:hover {
   background-color:#ddd;
 }
-
 .main {
   padding: 1px;
   margin-top: 3px;
   height: 15px; /* Used in this example to enable scrolling*/
 }
-
 .example-panel {
   position: fixed;
   left:0;
   top:0;
   z-index: -2;
 }
-
 .ingredient {
   border: 1px solid #ccd;
    padding: 1em;
@@ -673,7 +666,6 @@ color: black;
   background-color: black;
   color: white;
 }
-
 .totalText {
   position: absolute;
   bottom: 0;
@@ -682,7 +674,6 @@ color: black;
   margin-bottom: 5em;
   margin-right: 1em;
 }
-
 .burgerPage {
   overflow: scroll;
   height: 25em;
@@ -692,7 +683,6 @@ color: black;
   grid-row: 1;
   text-align: center;
 }
-
 .toppingPage {
   overflow: scroll;
   height: 25em;
@@ -702,7 +692,6 @@ color: black;
   grid-row: 1;
   text-align: center;
 }
-
 .dressingPage {
   overflow: scroll;
   height: 25em;
@@ -712,7 +701,6 @@ color: black;
   grid-row: 1;
   text-align: center;
 }
-
 .breadPage {
   overflow: scroll;
   height: 25em;
@@ -722,7 +710,6 @@ color: black;
   grid-row: 1;
   text-align: center;
 }
-
 .sidesPage {
   overflow: scroll;
   height: 25em;
@@ -732,7 +719,6 @@ color: black;
   grid-row: 1;
   text-align: center;
 }
-
 .beveragePage {
   overflow: scroll;
   height: 25em;
