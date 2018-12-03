@@ -159,7 +159,8 @@ export default {
       dressing:false,
       bread:false,
       sides:false,
-      beverages:false
+      beverages:false,
+      orderingvue:false
     }
   },
   methods: {

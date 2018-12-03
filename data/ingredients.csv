@@ -4,7 +4,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 3,nötfärsburgare 200g,beef patty 200g,1,1,1,0,60,beef.png
 4,kycklingburgare,chicken patty,1,1,0,0,40,chickenpatty.png
 5,friterad halloumi,deep-fried halloumi,1,0,0,0,40,halloumi.png
-6,fiskfilé,fish filet,1,1,0,0,40,fish.png
+6,fiskfilé,fish filet,1,1,0,0,40,fish.jpg
 7,grillad aubergine,grilled eggplant,1,1,1,1,30,eggplant.png
 8,hummer,lobster,1,1,1,0,80,lobster.jpg
 9,pulled jackfruit,pulled jackfruit,1,1,1,1,40,jackfruit.png
@@ -26,9 +26,9 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 25,svampstuvning,mushroom stew,2,0,1,0,15,mushroom_stew.jpg
 26,pepper jack-ost,pepper jack cheese,2,0,1,0,10,pepper_jack.jpg
 27,inlagd gurka,pickled cucumber,2,1,1,1,5,pickled_cucumber.jpg
-28,inlagd rödlök,pickled red onion,2,1,1,1,5,onion_red.png
+28,inlagd rödlök,pickled red onion,2,1,1,1,5,onion_red.jpg
 29,rå rödlök,raw red onion,2,1,1,1,5,onion_red.png
-30,rå gul lök,raw yellow onion,2,1,1,1,5,onionyellow.jpg
+30,rå gul lök,raw yellow onion,2,1,1,1,5,onionyellow.png
 31,salami,salami,2,1,1,0,10,Salami.jpg
 32,surkål,sauerkraut,2,1,1,1,5,mango.png
 33,tomat,tomato,2,1,1,1,5,tomato.png
@@ -39,17 +39,17 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 38,klassisk hamburgarsås,classic hamburger dressing,3,1,1,0,5,hamburger_dressingA.png
 39,dijonsås,dijon sauce,3,1,1,0,5,dijonA.png
 40,guacamole,guacamole,3,1,1,1,10,guacamoleA.png
-41,hot salsa,hot salsa,3,1,1,1,5,salsaA.png
+41,hot salsa,hot salsa,3,1,1,1,5,salsaA.jpg
 42,hummus,hummus,3,1,1,1,10,hummus.jpg
 43,ketchup,ketchup,3,1,1,1,0,ketchup.jpg
 44,majonnäs,mayonnaise,3,1,1,0,5,moyonnaise.jpg
 45,senap,mustard,3,1,1,1,0,mustard.jpg
-46,sriracha,sriracha,3,1,1,1,0,sriracha.png
+46,sriracha,sriracha,3,1,1,1,0,sriracha.jpg
 47,teriyakisås,teriyaki sauce,3,1,1,1,5,teriyaki.jpg
 48,tryffelmajonnäs,truffle mayonnaise,3,1,1,0,5,moyonnaise.jpg
 49,tzatziki,tzatziki,3,0,1,0,5,tzatziki.png
-50,brioche,brioche,4,0,0,0,10,briocheA.png
-51,glutenfritt bröd,gluten free bread,4,1,1,1,10,bread_white.jpg
+50,brioche,brioche,4,0,0,0,10,BriocheA.png
+51,glutenfritt bröd,gluten free bread,4,1,1,1,10,bread_white.png
 52,veganskt bröd,vegan bun,4,0,0,1,10,bread_white.png
 53,fullkornsbrioche,whole wheat brioche,4,0,0,0,10,wholewheatA.jpg
 54,nachochips,nachos,5,1,0,1,20,NachosA.png
