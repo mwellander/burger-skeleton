@@ -9,15 +9,15 @@
     <a href="#sides">{{ uiLabels.sides }}</a>
     <a href="#beverage">{{ uiLabels.beverage }}</a>
   </div> -->
-<button class="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
+    <button class="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
 
     <div class="tabs" v-show="started">
-      <button class="tabButton" v-on:click="toBread()">{{uiLabels.bread}}</button>
-      <button class="tabButton" v-on:click="toBurger()">{{uiLabels.burger}}</button>
-      <button class="tabButton" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
-      <button class="tabButton" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
-      <button class="tabButton" v-on:click="toSides()">{{uiLabels.sides}}</button>
-      <button class="tabButton" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+      <button v-on:click="toBread()">{{uiLabels.bread}}</button>
+      <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
+      <button v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+      <button v-on:click="toToppings()">{{uiLabels.toppings}}</button>
+      <button v-on:click="toSides()">{{uiLabels.sides}}</button>
+      <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
     </div>
 
     <div style="text-align:left">
@@ -138,7 +138,8 @@
         </div>
       </div>
 
-      <!-- <h3 style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
+      <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+
       <div style="text-align:right">
         <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
         <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
@@ -428,6 +429,7 @@ export default {
   overflow:scroll;
   height: 6em;
   background-color: white;
+  /* z-index: 1; */
 }
 .nextButton {
   position:relative;
@@ -457,6 +459,7 @@ export default {
   cursor: pointer;
   position: fixed;
   top: 0;
+  margin-top: 0.5em;
 }
 
 .orderButton {
@@ -513,15 +516,10 @@ export default {
   overflow: hidden;
   position: fixed;
   top: 1;
-  padding-top: 50px;
+  padding-top: 2.5em;
   background-color: black;
   width: 40em;
-  height: 7em;
-}
-
-.tabs {
-  overflow:hidden;
-  position:fixed;
+  height: 6em;
 }
 
 .tabs button {
@@ -533,6 +531,7 @@ export default {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 18px;
+  width: 5.92em;
 }
 
 .tabs button:hover {
@@ -563,7 +562,9 @@ export default {
   position: absolute;
   bottom: 0;
   right: 0;
-  padding: 4em;
+  /* padding: 4em; */
+  margin-bottom: 5em;
+  margin-right: 1em;
 }
 
 .burgerPage {
