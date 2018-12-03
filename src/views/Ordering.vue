@@ -391,7 +391,7 @@ export default {
 }
 .receipt {
   bottom: 0;
-  position: sticky;
+  position: fixed;
    left: center;
    width: 40em;
    background-color: white;
@@ -423,6 +423,7 @@ export default {
   /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .cancelButton {
   background-color: #f44336;
@@ -436,6 +437,7 @@ export default {
   /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 /* .navbar {
   overflow: hidden;
