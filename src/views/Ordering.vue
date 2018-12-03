@@ -1,14 +1,14 @@
 <template>
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <div class="navbar">
+    <div class="navbar">
     <a href="#burger">{{ uiLabels.burger }}</a>
     <a href="#toppings">{{ uiLabels.toppings }}</a>
     <a href="#dressing">{{ uiLabels.dressing }}</a>
     <a href="#bread">{{ uiLabels.bread }}</a>
     <a href="#sides">{{ uiLabels.sides }}</a>
     <a href="#beverage">{{ uiLabels.beverage }}</a>
-    </div> -->
+    </div>
 <button class="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
 
     <div class="tabs" v-show="started">
@@ -21,7 +21,7 @@
     </div>
 
     <div style="text-align:left">
-      <!-- <button class="LanguageButton" v-on:click="switchLang()">{{ uiLabels.language }}</button> -->
+      <!-- <button class="LanguageButton" v-on:click="switchLang()">{{ uiLabels.language }}</button>   -->
       <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
     </div>
 

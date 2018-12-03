@@ -4,6 +4,7 @@
       <button v-on:click="incrementCounter">{{ counter }}</button>
       {{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{item.stock}} pcs
     </label>
+      <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" width="100">
   </div>
 </template>
 <script>
@@ -32,5 +33,5 @@ export default {
 }
 </script>
 <style scoped>
-  
+
 </style>
