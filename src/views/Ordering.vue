@@ -109,19 +109,24 @@
       <div class="row">
         <div class="column a"><h3>{{ uiLabels.order }}</h3></div>
         <div class="column b"><h3>{{ uiLabels.sideOrder }}</h3></div>
-        <div class="column c">
-          <p v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</p>
-          <p v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</p>
-          <p v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</p>
-          <p v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+        <div class="column c" style="text-align:left">
+          <ul style="list-style-type:none">
+            <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+          </ul>
         </div>
-        <div class="column d">
-          <p v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</p>
-          <p v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</p>
+        <div class="column d" style="text-align:left">
+          <ul style="list-style-type:none">
+            <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+          </ul>
+          <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
         </div>
       </div>
 
-      <h3 style="text-align:right">{{uiLabels.total}}: {{ price }} kr</h3>
+      <!-- <h3 style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
       <div style="text-align:right">
         <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
         <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
@@ -334,6 +339,29 @@ export default {
       }
       this.price = 0;
       this.chosenIngredients = [];
+      this.chosenIngredientsBurger= [];
+      this.chosenIngredientsSides= [];
+      this.Burger= [];
+      this.Toppings= [];
+      this.Dressing= [];
+      this.Bread= [];
+      this.Sides= [];
+      this.Beverage= [];
+      this.burgerOrder=false;
+      this.toppingsOrder=false;
+      this.dressingOrder=false;
+      this.breadOrder=false;
+      this.sidesOrder=false;
+      this.beverageOrder=false;
+      this.price= 0;
+      //this.orderNumber= "";
+      //this.state="burger";
+      this.burger=true;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=false;
+      this.beverages=false;
     }
   }
 }
@@ -368,22 +396,26 @@ export default {
 .a{
   height:3em;
   overflow:hidden;
-  background-color: grey;
+  background-color: white;
+  /* text-decoration: underline; */
+  border-bottom: 0.1em solid black;
 }
 .b{
   height:3em;
   overflow:hidden;
-  background-color: grey;
+  background-color: white;
+  /* text-decoration: underline; */
+  border-bottom: 0.1em solid black;
 }
 .c{
   overflow:scroll;
-  height: 10em;
-  background-color:#bbb;
+  height: 8em;
+  background-color: white;
 }
 .d{
   overflow:scroll;
-  height: 10em;
-  background-color:#bbb;
+  height: 8em;
+  background-color: white;
 }
 .nextButton {
   position:relative;
@@ -508,5 +540,11 @@ export default {
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
+}
+.totalText {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 4em;
 }
 </style>
