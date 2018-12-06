@@ -3,10 +3,7 @@ import Router from 'vue-router'
 import Ordering from './views/Ordering.vue'
 import Home from './views/Home.vue'
 import Ordering2 from './views/Ordering2.vue'
-<<<<<<< HEAD
 import Start from './views/Start.vue'
-=======
->>>>>>> 8cf20f850f54af43b841256f3e732dd2eaf75386
 
 Vue.use(Router)
 
