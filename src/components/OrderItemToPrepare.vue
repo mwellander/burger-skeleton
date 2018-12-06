@@ -6,11 +6,12 @@
     :lang="lang"
     :order-id="orderId"
     :order="order">
-  </OrderItem>
-  <button v-on:click="orderStarted">
+    <button class = "OrderStartedButton" slot="knapp" v-on:click="orderStarted">
     {{uiLabels.started}}
-  </button>
+    </button>
+  </OrderItem>
 </div>
+
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
@@ -37,5 +38,20 @@ export default {
 }
 </script>
 <style scoped>
+.OrderStartedButton{
+  background-color: #339966;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0,2em;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+  border-radius: 1em;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
 
 </style>
