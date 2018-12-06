@@ -30,6 +30,7 @@
   <!-- <br> -->
   <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
 
+<div class="fixedStuff">
   <div class="breadPage" id="breadPage">
     <Ingredient
     ref="ingredient"
@@ -42,9 +43,9 @@
     :key="item.ingredient_id">
   </Ingredient>
   </div>
-<div id="buttonPanelBread">
-<button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
-</div>
+  <div id="buttonPanelBread">
+  <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
+  </div>
 
 <div class="burgerPage" id="burgerPage">
   <Ingredient
@@ -132,6 +133,7 @@
 <div id="buttonPanelBeverage">
 <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
 </div>
+</div>
 
 
 <div class="readyBurgerPage" id="readyBurgerPage">
@@ -174,7 +176,7 @@
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
     <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
   </div>
-
+</div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
   <div>
   <OrderItem
@@ -187,7 +189,6 @@
   :key="key">
 </OrderItem>
 </div> -->
-</div>
 </div>
 </template>
 <script>
@@ -660,52 +661,68 @@ export default {
   /* z-index: 1; */
 }
 
+.fixedStuff {
+}
+
 #buttonPanelBread {
+  background-color: black;
+  z-index: 3;
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  position: relative;
+  bottom: 16em;
+  position: fixed;
   width: 40em;
-  height: 3em;
+  height: 3.5em;
 }
 
 #buttonPanelBurger {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  position: relative;
+  position: fixed;
   width: 40em;
-  height: 3em;
+  height: 3.5em;
+  bottom: 16em;
 }
 
 #buttonPanelDressing {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  position: relative;
+  position: fixed;
   width: 40em;
-  height: 3em;
+  height: 3.5em;
+  bottom: 16em;
 }
 
 #buttonPanelToppings {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  position: relative;
+  position: fixed;
   width: 40em;
-  height: 3em;
+  height: 3.5em;
+  bottom: 16em;
 }
 
 #buttonPanelSides {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  position: relative;
+  position: fixed;
   width: 40em;
-  height: 3em;
+  height: 3.5em;
+  bottom: 16em;
 }
 
 #buttonPanelBeverage {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  position: relative;
+  position: fixed;
   width: 40em;
-  height: 3em;
+  height: 3.5em;
+  bottom: 16em;
 }
 
 #nextButton {
@@ -865,6 +882,7 @@ export default {
   text-align: center;
 }
 .breadPage {
+  z-index: -6;
   overflow: scroll;
   height: 25em;
   display: grid;
