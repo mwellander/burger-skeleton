@@ -238,15 +238,11 @@ export default {
       bread:true,
       sides:false,
       beverages:false,
-<<<<<<< HEAD
-      started:false
-=======
       started:false,
       readyBurger:false,
       sides2:false,
       beverage2:false,
       nrBurgerOrder: 0
->>>>>>> 4dccf07ed0e7b488a9dd57ffe5329b03e7bee73c
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
