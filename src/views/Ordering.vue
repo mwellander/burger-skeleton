@@ -1,4 +1,5 @@
 <template>
+<div id="headDiv">
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  <div class="navbar">
@@ -158,6 +159,7 @@
   :key="key">
 </OrderItem>
 </div> -->
+</div>
 </div>
 </div>
 </template>
@@ -466,9 +468,15 @@ export default {
 </script>
 <style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
+
+
 #ordering {
+  width: 45%;
+  height: 100%;
+  min-width: 100px;
+  min-height: 100px;
   margin: auto;
-  width: 40em;
+  /*width: 40em;*/
 }
 * {
   box-sizing: border-box;
@@ -604,27 +612,7 @@ export default {
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-/* .navbar {
-overflow: hidden;
-background-color: #333;
-position: fixed;
-top: 1;
-width: 100%;
-}
 
-.navbar a {
-float: left;
-display: block;
-color: #f2f2f2;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-font-size: 17px;
-}
-.navbar a:hover {
-background: #ddd;
-color: black;
-} */
 .tabs {
   overflow: hidden;
   position: fixed;
@@ -638,12 +626,13 @@ color: black;
   float: left;
   display: block;
   background-color: grey;
-  border: 1px solid black;
+  border: 0.1em solid black;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0.7em 0.5em;
+  /* padding:  14px 16px; */
   text-decoration: none;
-  font-size: 18px;
-  width: 5.92em;
+  font-size: 1.2em;
+  width: 5.55em;
 }
 .tabs button:hover {
   background-color:#ddd;
