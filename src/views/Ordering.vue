@@ -9,7 +9,7 @@
     <a href="#sides">{{ uiLabels.sides }}</a>
     <a href="#beverage">{{ uiLabels.beverage }}</a>
   </div> -->
-  <button class="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
+  <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
 
   <div class="tabs" v-show="started">
     <button v-on:click="toBread()">{{uiLabels.bread}}</button>
@@ -133,7 +133,6 @@
 <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
 </div>
 </div>
-
 
 <div class="readyBurgerPage" id="readyBurgerPage">
   <Ingredient
@@ -277,7 +276,7 @@ export default {
       this.readyBurgerOrder=false;
       this.price= 0;
       this.orderNumber= "";
-      this.state="burger";
+      this.state="bread";
       this.burger=true;
       this.toppings=false;
       this.dressing=false;
@@ -605,6 +604,7 @@ export default {
   box-sizing: border-box;
 }
 .startButton{
+  z-index: 100;
   margin-top:10em;
   margin-bottom:10em;
   margin-left: 20%;
@@ -664,14 +664,13 @@ export default {
 }
 
 #buttonPanelBread {
-  background-color: black;
   z-index: 3;
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  bottom: 16em;
   position: fixed;
   width: 40em;
   height: 3.5em;
+  bottom: 16.3em;
 }
 
 #buttonPanelBurger {
@@ -681,7 +680,7 @@ export default {
   position: fixed;
   width: 40em;
   height: 3.5em;
-  bottom: 16em;
+  bottom: 16.3em;
 }
 
 #buttonPanelDressing {
@@ -691,7 +690,7 @@ export default {
   position: fixed;
   width: 40em;
   height: 3.5em;
-  bottom: 16em;
+  bottom: 16.3em;
 }
 
 #buttonPanelToppings {
@@ -701,7 +700,7 @@ export default {
   position: fixed;
   width: 40em;
   height: 3.5em;
-  bottom: 16em;
+  bottom: 16.3em;
 }
 
 #buttonPanelSides {
@@ -711,7 +710,7 @@ export default {
   position: fixed;
   width: 40em;
   height: 3.5em;
-  bottom: 16em;
+  bottom: 16.3em;
 }
 
 #buttonPanelBeverage {
@@ -721,7 +720,7 @@ export default {
   position: fixed;
   width: 40em;
   height: 3.5em;
-  bottom: 16em;
+  bottom: 16.3em;
 }
 
 #nextButton {
@@ -836,7 +835,7 @@ export default {
   position: fixed;
   left:0;
   top:0;
-  z-index: -2;
+  z-index: -200;
 }
 .ingredient {
   border: 1px solid #ccd;
@@ -853,9 +852,21 @@ export default {
   margin-bottom: 5em;
   margin-right: 1em;
 }
+
+/* .FixedPage {
+  background-color: green;
+  position: fixed;
+
+} */
+
+
 .burgerPage {
+  z-index: -100;
   overflow: scroll;
-  height: 25em;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
@@ -863,8 +874,12 @@ export default {
   text-align: center;
 }
 .toppingPage {
+  z-index: -100;
   overflow: scroll;
-  height: 25em;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
@@ -872,8 +887,12 @@ export default {
   text-align: center;
 }
 .dressingPage {
+  z-index: -100;
   overflow: scroll;
-  height: 25em;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
@@ -881,9 +900,12 @@ export default {
   text-align: center;
 }
 .breadPage {
-  z-index: -6;
+  z-index: -1;
   overflow: scroll;
-  height: 25em;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
@@ -891,8 +913,12 @@ export default {
   text-align: center;
 }
 .sidesPage {
+  z-index: -100;
   overflow: scroll;
-  height: 25em;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
@@ -900,8 +926,12 @@ export default {
   text-align: center;
 }
 .beveragePage {
+  z-index: -100;
   overflow: scroll;
-  height: 25em;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
