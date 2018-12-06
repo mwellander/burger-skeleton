@@ -21,7 +21,7 @@
   </div>
 
   <div style="text-align:left">
-    <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+    <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
   </div>
 
   <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
@@ -149,9 +149,9 @@
 
 <div class="receipt">
   <div class="row">
-    <div class="column a"><h3>{{ uiLabels.order }}</h3></div>
-    <div class="column b"><h3>{{ uiLabels.sideOrder }}</h3></div>
-    <div class="column c" style="text-align:left">
+    <div class="column aa"><h3>{{ uiLabels.order }}</h3></div>
+    <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div>
+    <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
         <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
         <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
@@ -159,7 +159,7 @@
         <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
       </ul>
     </div>
-    <div class="column d" style="text-align:left">
+    <div class="column dd" style="text-align:left">
       <ul style="list-style-type:none">
         <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
         <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
@@ -172,7 +172,7 @@
 
   <div style="text-align:right">
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
@@ -238,7 +238,15 @@ export default {
       bread:true,
       sides:false,
       beverages:false,
+<<<<<<< HEAD
       started:false
+=======
+      started:false,
+      readyBurger:false,
+      sides2:false,
+      beverage2:false,
+      nrBurgerOrder: 0
+>>>>>>> 4dccf07ed0e7b488a9dd57ffe5329b03e7bee73c
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -248,6 +256,9 @@ export default {
     }.bind(this));
   },
   methods: {
+    sendOrderHome: function() {
+      this.nrBurgerOrder++;
+    },
     startOrder: function(){
       this.started=true;
       this.state="bread";
@@ -588,7 +599,7 @@ export default {
   },
 }
 </script>
-<style scoped="">
+<style>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
   height: 100%;
@@ -631,34 +642,32 @@ export default {
   width: 50%;
   padding: 0em;
 }
-.a {
+.aa {
   height:3em;
   overflow:hidden;
   background-color: white;
-  /* text-decoration: underline; */
   border-bottom: 0.1em solid black;
 }
-.b {
+/* .bb {
   height:3em;
   overflow:hidden;
   background-color: white;
-  /* text-decoration: underline; */
   border-bottom: 0.1em solid black;
-}
-.c {
+} */
+.cc {
   overflow:scroll;
   height: 8em;
   background-color: white;
 }
-.d {
+.dd {
   overflow:scroll;
   height: 6em;
   background-color: white;
   /* z-index: 1; */
 }
 
-.fixedStuff {
-}
+/* .fixedStuff {
+} */
 
 #buttonPanelBread {
   z-index: 3;
@@ -759,7 +768,7 @@ export default {
   padding: 0.8em;
   border: 0.1em solid black;
 }
-.LanguageButton {
+.LanguageButtonO {
   background-color: black;
   border: 0.1em solid black;
   text-align: center;
@@ -770,7 +779,7 @@ export default {
   top: 0;
   margin-top: 0.5em;
 }
-.orderButton {
+.orderButtonO {
   background-color: #4CAF50;
   border: 0.1em solid black;
   color: black;

@@ -36,5 +36,6 @@
   "createBurger": "Skapa din egna burgare",
   "favouriteBurger": "Favoritburgarna",
   "sidesDrink": "Tillbehör/Dryck",
-  "readyBurger":"Favoritburgare"
+  "readyBurger": "Favoritburgare",
+  "yourOrder": "Din beställning"
 }
