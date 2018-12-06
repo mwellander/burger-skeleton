@@ -40,8 +40,10 @@
     :lang="lang"
     :key="item.ingredient_id">
   </Ingredient>
-</div>
+  </div>
+<div id="buttonPanelBread">
 <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
+</div>
 
 <div class="burgerPage" id="burgerPage">
   <Ingredient
@@ -55,8 +57,11 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
+<div id="buttonPanelBurger">
 <button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="burger" v-on:click='toDressing()'>{{uiLabels.next}}</button>
+</div>
+
 
 <div class="dressingPage" id="dressingPage">
   <Ingredient
@@ -70,8 +75,11 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
+<div id="buttonPanelDressing">
 <button id="previousButton" v-show="dressing" v-on:click="toBurger()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="dressing" v-on:click='toToppings()'>{{uiLabels.next}}</button>
+</div>
+
 
 <div class="toppingPage" id="toppingPage">
   <Ingredient
@@ -85,8 +93,11 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
+<div id="buttonPanelToppings">
 <button id="previousButton" v-show="toppings" v-on:click="toDressing()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="toppings" v-on:click='toSides()'>{{uiLabels.next}}</button>
+</div>
+
 
 <div class="sidesPage" id="sidesPage">
   <Ingredient
@@ -100,8 +111,10 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
+<div id="buttonPanelSides">
 <button id="previousButton" v-show="sides" v-on:click="toToppings()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
+</div>
 
 <div class="beveragePage" id="beveragePage">
   <Ingredient
@@ -115,7 +128,10 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
+<div id="buttonPanelBeverage">
 <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
+</div>
+
 
 <div class="readyBurgerPage" id="readyBurgerPage">
   <Ingredient
@@ -291,6 +307,21 @@ export default {
       ToppingPage.style.display = "none";
       SidesPage.style.display = "none";
       BeveragePage.style.display = "none";
+
+      var buttonPanelBread = document.getElementById("buttonPanelBread");
+      var buttonPanelBurger = document.getElementById("buttonPanelBurger");
+      var buttonPanelDressing = document.getElementById("buttonPanelDressing");
+      var buttonPanelToppings = document.getElementById("buttonPanelToppings");
+      var buttonPanelSides = document.getElementById("buttonPanelSides");
+      var buttonPanelBeverage = document.getElementById("buttonPanelBeverage");
+
+      buttonPanelBread.style.display = "none";
+      buttonPanelBurger.style.display = "grid";
+      buttonPanelDressing.style.display = "none";
+      buttonPanelToppings.style.display = "none";
+      buttonPanelSides.style.display = "none";
+      buttonPanelBeverage.style.display = "none";
+
     },
     toToppings: function(){
       this.state="toppings";
@@ -314,6 +345,20 @@ export default {
       ToppingPage.style.display = "grid";
       SidesPage.style.display = "none";
       BeveragePage.style.display = "none";
+
+      var buttonPanelBread = document.getElementById("buttonPanelBread");
+      var buttonPanelBurger = document.getElementById("buttonPanelBurger");
+      var buttonPanelDressing = document.getElementById("buttonPanelDressing");
+      var buttonPanelToppings = document.getElementById("buttonPanelToppings");
+      var buttonPanelSides = document.getElementById("buttonPanelSides");
+      var buttonPanelBeverage = document.getElementById("buttonPanelBeverage");
+
+      buttonPanelBread.style.display = "none";
+      buttonPanelBurger.style.display = "none";
+      buttonPanelDressing.style.display = "none";
+      buttonPanelToppings.style.display = "grid";
+      buttonPanelSides.style.display = "none";
+      buttonPanelBeverage.style.display = "none";
     },
     toDressing: function(){
       this.state="dressing";
@@ -337,6 +382,20 @@ export default {
       ToppingPage.style.display = "none";
       SidesPage.style.display = "none";
       BeveragePage.style.display = "none";
+
+      var buttonPanelBread = document.getElementById("buttonPanelBread");
+      var buttonPanelBurger = document.getElementById("buttonPanelBurger");
+      var buttonPanelDressing = document.getElementById("buttonPanelDressing");
+      var buttonPanelToppings = document.getElementById("buttonPanelToppings");
+      var buttonPanelSides = document.getElementById("buttonPanelSides");
+      var buttonPanelBeverage = document.getElementById("buttonPanelBeverage");
+
+      buttonPanelBread.style.display = "none";
+      buttonPanelBurger.style.display = "none";
+      buttonPanelDressing.style.display = "grid";
+      buttonPanelToppings.style.display = "none";
+      buttonPanelSides.style.display = "none";
+      buttonPanelBeverage.style.display = "none";
     },
     toBread: function(){
       this.state="bread";
@@ -360,6 +419,20 @@ export default {
       ToppingPage.style.display = "none";
       SidesPage.style.display = "none";
       BeveragePage.style.display = "none";
+
+      var buttonPanelBread = document.getElementById("buttonPanelBread");
+      var buttonPanelBurger = document.getElementById("buttonPanelBurger");
+      var buttonPanelDressing = document.getElementById("buttonPanelDressing");
+      var buttonPanelToppings = document.getElementById("buttonPanelToppings");
+      var buttonPanelSides = document.getElementById("buttonPanelSides");
+      var buttonPanelBeverage = document.getElementById("buttonPanelBeverage");
+
+      buttonPanelBread.style.display = "grid";
+      buttonPanelBurger.style.display = "none";
+      buttonPanelDressing.style.display = "none";
+      buttonPanelToppings.style.display = "none";
+      buttonPanelSides.style.display = "none";
+      buttonPanelBeverage.style.display = "none";
     },
     toSides: function(){
       this.state="sides";
@@ -383,6 +456,20 @@ export default {
       ToppingPage.style.display = "none";
       SidesPage.style.display = "grid";
       BeveragePage.style.display = "none";
+
+      var buttonPanelBread = document.getElementById("buttonPanelBread");
+      var buttonPanelBurger = document.getElementById("buttonPanelBurger");
+      var buttonPanelDressing = document.getElementById("buttonPanelDressing");
+      var buttonPanelToppings = document.getElementById("buttonPanelToppings");
+      var buttonPanelSides = document.getElementById("buttonPanelSides");
+      var buttonPanelBeverage = document.getElementById("buttonPanelBeverage");
+
+      buttonPanelBread.style.display = "none";
+      buttonPanelBurger.style.display = "none";
+      buttonPanelDressing.style.display = "none";
+      buttonPanelToppings.style.display = "none";
+      buttonPanelSides.style.display = "grid";
+      buttonPanelBeverage.style.display = "none";
     },
     toBeverage: function(){
       this.state="beverage";
@@ -406,6 +493,20 @@ export default {
       ToppingPage.style.display = "none";
       SidesPage.style.display = "none";
       BeveragePage.style.display = "grid";
+
+      var buttonPanelBread = document.getElementById("buttonPanelBread");
+      var buttonPanelBurger = document.getElementById("buttonPanelBurger");
+      var buttonPanelDressing = document.getElementById("buttonPanelDressing");
+      var buttonPanelToppings = document.getElementById("buttonPanelToppings");
+      var buttonPanelSides = document.getElementById("buttonPanelSides");
+      var buttonPanelBeverage = document.getElementById("buttonPanelBeverage");
+
+      buttonPanelBread.style.display = "none";
+      buttonPanelBurger.style.display = "none";
+      buttonPanelDressing.style.display = "none";
+      buttonPanelToppings.style.display = "none";
+      buttonPanelSides.style.display = "none";
+      buttonPanelBeverage.style.display = "grid";
     },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
@@ -493,6 +594,9 @@ export default {
 <style>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
+  height: 100%;
+  min-width: 100px;
+  min-height: 100px;
   margin: auto;
   width: 40em;
 }
@@ -554,7 +658,57 @@ export default {
   background-color: white;
   /* z-index: 1; */
 }
+
+#buttonPanelBread {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: relative;
+  width: 40em;
+  height: 3em;
+}
+
+#buttonPanelBurger {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: relative;
+  width: 40em;
+  height: 3em;
+}
+
+#buttonPanelDressing {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: relative;
+  width: 40em;
+  height: 3em;
+}
+
+#buttonPanelToppings {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: relative;
+  width: 40em;
+  height: 3em;
+}
+
+#buttonPanelSides {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: relative;
+  width: 40em;
+  height: 3em;
+}
+
+#buttonPanelBeverage {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: relative;
+  width: 40em;
+  height: 3em;
+}
+
 #nextButton {
+  grid-column: 3;
   background-color: #4CAF50;
   border: 0.1em solid black;
   color: black;
@@ -568,6 +722,7 @@ export default {
   border-radius: 1em;
 }
 #previousButton {
+  grid-column: 1;
   background-color: #0000CD;
   border: 0.1em solid black;
   color: black;
@@ -655,11 +810,11 @@ export default {
 .tabs button:hover {
   background-color:#ddd;
 }
-.main {
+/* .main {
   padding: 1px;
   margin-top: 3px;
-  height: 15px; /* Used in this example to enable scrolling*/
-}
+  height: 15px; /* Used in this example to enable scrolling
+} */
 .example-panel {
   position: fixed;
   left:0;
