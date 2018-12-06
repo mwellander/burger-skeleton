@@ -1,6 +1,5 @@
 <template>
   <div id="ordering">
-    <!-- <meta http-equiv="refresh" content="1"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  <div class="navbar">
     <a href="#burger">{{ uiLabels.burger }}</a>

@@ -20,19 +20,19 @@
   <!-- kom ihåg att ändra addToOrder-funktionen (ska vara en funktion som antingen
   minskar eller ökar saldot) -->
 
-    <ingredientKitchen
-        ref="ingredientKitchen"
+    <Ingredient
+        ref="ingredient"
         v-show="state === 'burger'"
         v-if="item.category===1"
         v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
+        v-on:updateStock="updateStock(item, $event)"
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </IngredientKitchen>
+      </Ingredient>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
+      <Ingredient
+        ref="ingredient"
         v-show="state === 'toppings'"
         v-if="item.category===2"
         v-for="item in ingredients"
@@ -40,10 +40,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </IngredientKitchen>
+      </Ingredient>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
+      <Ingredient
+        ref="ingredient"
         v-show="state === 'dressing'"
         v-if="item.category===3"
         v-for="item in ingredients"
@@ -51,10 +51,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </IngredientKitchen>
+      </Ingredient>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
+      <Ingredient
+        ref="ingredient"
         v-show="state === 'bread'"
         v-if="item.category===4"
         v-for="item in ingredients"
@@ -62,10 +62,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </IngredientKitchen>
+      </Ingredient>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
+      <Ingredient
+        ref="ingredient"
         v-show="state === 'sides'"
         v-if="item.category===5"
         v-for="item in ingredients"
@@ -73,10 +73,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </IngredientKitchen>
+      </Ingredient>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
+      <Ingredient
+        ref="ingredient"
         v-show="state === 'beverage'"
         v-if="item.category===6"
         v-for="item in ingredients"
@@ -84,7 +84,7 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </IngredientKitchen>
+      </Ingredient>
 
 </div>
 
@@ -135,7 +135,6 @@ import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemStarted from '@/components/OrderItemStarted.vue'
 import Ingredient from '@/components/Ingredient.vue'
-import IngredientKitchen from '@/components/IngredientKitchen.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -146,8 +145,7 @@ export default {
     OrderItem,
     OrderItemToPrepare,
     OrderItemStarted,
-    Ingredient,
-    IngredientKitchen
+    Ingredient
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -166,9 +164,61 @@ export default {
     }
   },
   methods: {
+<<<<<<< HEAD
+
+
+
+
+=======
+    updateStock: function(item, payload){
+      this.$store.state.socket.emit("updateStock", {item,payload});
+
+    },
+>>>>>>> c6b626703cc4a847ded4695372aade84d3020c2b
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
     },
+    placeOrder: function () {
+      var i,
+      //Wrap the order in an object
+      order = {
+        ingredients: this.chosenIngredients,
+        price: this.price
+      };  // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
+        this.$store.state.socket.emit('order', {order: order});
+        //set all counters to 0. Notice the use of $refs
+        for (i = 0; i < this.$refs.ingredient.length; i += 1) {
+          this.$refs.ingredient[i].resetCounter();
+        }
+        this.price = 0;
+        this.chosenIngredients = [];
+        this.chosenIngredientsBurger= [];
+        this.chosenIngredientsSides= [];
+        this.Burger= [];
+        this.Toppings= [];
+        this.Dressing= [];
+        this.Bread= [];
+        this.Sides= [];
+        this.Beverage= [];
+        this.ReadyBurger=[];
+        this.readyBurgerOrder=false;
+        this.burgerOrder=false;
+        this.toppingsOrder=false;
+        this.dressingOrder=false;
+        this.breadOrder=false;
+        this.sidesOrder=false;
+        this.beverageOrder=false;
+        this.price= 0;
+        //this.orderNumber= "";
+        //this.state="burger";
+        this.burger=true;
+        this.toppings=false;
+        this.dressing=false;
+        this.bread=false;
+        this.sides=false;
+        this.beverages=false;
+        this.readyBurger=false;
+      },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid);
     },
@@ -290,6 +340,7 @@ grid-template-columns: 20% 60% 20%;
   background-color: black;
   color: white;
   text-align: center;
+  
 }
 
 .StockButton {
@@ -354,14 +405,33 @@ grid-template-columns: 20% 60% 20%;
 
   grid-column: 1 ;
   grid-row: 2 / span 1;
+  height: 3,5em;
+  text-align: center;
+  font-size: 100%;
+
+
+
+
 }
 .c {
     grid-column: 2 ;
     grid-row: 2 / span 1;
+    height: 3,5em;
+    text-align: center;
+    font-size: 100%;
+
+
+
 }
 .d {
     grid-column: 3 ;
     grid-row: 2 / span 1;
+    height: 3,5em;
+    text-align: center;
+    font-size: 100%;
+
+
+
 }
 .e {
   overflow: scroll;
@@ -399,11 +469,6 @@ grid-template-columns: 20% 60% 20%;
 }
 
 .ingredient {
-  border: 1px solid #ccd;
-  padding: 1em;
-  color: black;
-}
-.ingredientKitchen {
   border: 1px solid #ccd;
   padding: 1em;
   color: black;
