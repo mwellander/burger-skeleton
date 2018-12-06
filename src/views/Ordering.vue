@@ -604,27 +604,7 @@ export default {
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-/* .navbar {
-overflow: hidden;
-background-color: #333;
-position: fixed;
-top: 1;
-width: 100%;
-}
 
-.navbar a {
-float: left;
-display: block;
-color: #f2f2f2;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-font-size: 17px;
-}
-.navbar a:hover {
-background: #ddd;
-color: black;
-} */
 .tabs {
   overflow: hidden;
   position: fixed;
@@ -638,12 +618,13 @@ color: black;
   float: left;
   display: block;
   background-color: grey;
-  border: 1px solid black;
+  border: 0.1em solid black;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0.7em 0.5em;
+  /* padding:  14px 16px; */
   text-decoration: none;
-  font-size: 18px;
-  width: 5.92em;
+  font-size: 1.2em;
+  width: 5.55em;
 }
 .tabs button:hover {
   background-color:#ddd;
