@@ -7,13 +7,16 @@
 <script>
 import Ordering from "./views/Ordering.vue"
 import Home from "./views/Home.vue"
-// import Ordering2 from "./views/Ordering2.vue"
+import Ordering2 from "./views/Ordering2.vue"
+import Start from "./views/Start.vue"
 
 export default {
   name: 'app',
   components: {
     Ordering,
-    Home
+    Home,
+    Ordering2,
+    Start
   }
 }
 </script>

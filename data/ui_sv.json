@@ -36,5 +36,7 @@
   "createBurger": "Skapa din egna burgare",
   "favouriteBurger": "Favoritburgarna",
   "sidesDrink": "Tillbehör/Dryck",
-  "readyBurger":"Favoritburgare"
+  "readyBurger":"Favoritburgare",
+  "start": "Påbörja Beställning",
+  "welcome": "Väkommen till NoKetchup"
 }

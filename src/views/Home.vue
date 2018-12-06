@@ -2,7 +2,7 @@
   <div id="home">
     <link rel="stylesheet" href="Ordering.vue">
     <div style="text-align:left">
-      <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
     </div>
     <div class="buttonHome">
       <div class="createBurgerButton">
@@ -10,6 +10,37 @@
       </div>
       <a href="#/favouriteburger"><button>{{uiLabels.favouriteBurger}}</button></a>
       <button>{{uiLabels.sidesDrink}}</button>
+    </div>
+
+    <div class="receipt">
+      <div class="row">
+        <div class="column aa aaa"><h3>{{ uiLabels.order }}</h3></div>
+        <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
+        <div class="column cc" style="text-align:left">
+          <p>Hej</p>
+          <!-- <ul style="list-style-type:none">
+            <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+          </ul> -->
+        </div>
+        <!-- <div class="column dd" style="text-align:left">
+          <ul style="list-style-type:none">
+            <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+          </ul>
+          <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+        </div> -->
+        <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+      </div>
+
+      <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+
+      <div style="text-align:right">
+        <button class="cancelButton"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+        <button class="orderButtonO">{{ uiLabels.placeOrder }}</button>
+      </div>
     </div>
 
   </div>
@@ -23,7 +54,8 @@
   export default {
     name: 'Home' ,
     components: {
-
+      Ingredient,
+      OrderItem
   },
   mixins: [sharedVueStuff],
   methods: {
@@ -39,14 +71,15 @@
     width: 40em;
     background-color: yellow;
   }
-  .createBurgerButton {
-
+  .aaa {
+    width: 100%;
   }
   .buttonHome {
     color: yellow;
   }
   .buttonHome button {
     width: 16em;
+    margin: 0.5em;
     background-color: #4CAF50;
     border: 0.1em solid black;
     color: black;
@@ -55,10 +88,12 @@
     text-decoration: none;
     display: inline-block;
     font-size: 2em;
-    /* margin: 4px 2px; */
     cursor: pointer;
     border-radius: 1em;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  .createBurgerButton {
+    margin-top: 4em;
   }
   .buttonHome button:hover {
     background-color:#ddd;
