@@ -32,5 +32,6 @@
   "sides" : "Sides",
   "flag" : "800px-Flag_of_Sweden.svg.png",
   "total" : "Total",
-  "ordersToView": "Orders"
+  "ordersToView": "Orders",
+  "readyBurger":"Favourite Burgers"
 }
