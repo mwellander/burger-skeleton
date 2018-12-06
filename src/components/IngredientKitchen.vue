@@ -3,8 +3,8 @@
     <label>
       {{item["ingredient_"+ lang]}}, {{item.stock}}
       <label for="addStock"></label>
-      <input type="number" id="addStock">
-      <button type="submit" v-on:click="addStocks()">add</button>
+      <input type="number" v-model="stock">
+      <button type="submit" v-on:click="updateStock">add</button>
     </label>
   </div>
 </template>
@@ -17,16 +17,17 @@ export default {
   },
     data: function () {
     return {
-      counter: 0,
-      increaseBy:0
+      stock: this.item.stock
     };
   },
+  // computed: {
+  //   stock: function() { return this.item.stock; }
+  // },
   methods: {
-    incrementCounter: function () {
-      this.counter += 1;
+    updateStock: function () {
       // sending 'increment' message to parent component or view so that it
       // can catch it with v-on:increment in the component declaration
-      this.$emit('increment');
+      this.$emit('updateStock', this.stock);
     },
     resetCounter: function () {
       this.counter = 0;}

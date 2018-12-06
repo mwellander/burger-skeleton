@@ -7,6 +7,7 @@
 <script>
 import Ordering from "./views/Ordering.vue"
 import Home from "./views/Home.vue"
+import Kitchen from "./views/Kitchen.vue"
 
 export default {
   name: 'app',
