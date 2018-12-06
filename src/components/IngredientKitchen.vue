@@ -29,13 +29,13 @@ export default {
       this.$emit('increment');
     },
     resetCounter: function () {
-      this.counter = 0;
-    },
-    addStocks: function(){
-      increaseBy = document.getElementById("addStock").value;
-      this.stock += increaseBy;
-      console.log("increaseBy",increaseBy);
-    }
+      this.counter = 0;}
+    // ,
+    // addStocks: function(){
+    //   increaseBy = document.getElementById("addStock").value;
+    //   this.stock += increaseBy;
+    //   console.log("increaseBy",increaseBy);
+    // }
   }
 }
 </script>
