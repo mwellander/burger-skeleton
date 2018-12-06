@@ -6,7 +6,7 @@
     </div>
     <div class="buttonHome">
       <div class="createBurgerButton">
-        <a href="#/customburger"><button>{{uiLabels.createBurger}}</button></a>
+        <a href=""><button>{{uiLabels.createBurger}}</button></a>
       </div>
       <a href="#/favouriteburger"><button>{{uiLabels.favouriteBurger}}</button></a>
       <button>{{uiLabels.sidesDrink}}</button>

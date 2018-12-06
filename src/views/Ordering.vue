@@ -1,5 +1,6 @@
 <template>
   <div id="ordering">
+    <meta http-equiv="refresh" content="1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  <div class="navbar">
     <a href="#burger">{{ uiLabels.burger }}</a>
@@ -591,7 +592,7 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped="">
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
   height: 100%;
