@@ -1,5 +1,6 @@
 <template>
   <div id="ordering">
+    <meta http-equiv="refresh" content="1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  <div class="navbar">
     <a href="#burger">{{ uiLabels.burger }}</a>
@@ -29,6 +30,7 @@
   <!-- <br> -->
   <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
 
+<div class="fixedStuff">
   <div class="breadPage" id="breadPage">
     <Ingredient
     ref="ingredient"
@@ -41,9 +43,9 @@
     :key="item.ingredient_id">
   </Ingredient>
   </div>
-<div id="buttonPanelBread">
-<button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
-</div>
+  <div id="buttonPanelBread">
+  <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
+  </div>
 
 <div class="burgerPage" id="burgerPage">
   <Ingredient
@@ -131,6 +133,7 @@
 <div id="buttonPanelBeverage">
 <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
 </div>
+</div>
 
 <div class="readyBurgerPage" id="readyBurgerPage">
   <Ingredient
@@ -172,7 +175,7 @@
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
     <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
   </div>
-
+</div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
   <div>
   <OrderItem
@@ -185,7 +188,6 @@
   :key="key">
 </OrderItem>
 </div> -->
-</div>
 </div>
 </template>
 <script>
@@ -590,7 +592,7 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped="">
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
   height: 100%;
@@ -659,6 +661,9 @@ export default {
   /* z-index: 1; */
 }
 
+.fixedStuff {
+}
+
 #buttonPanelBread {
   z-index: 3;
   display: grid;
@@ -670,6 +675,7 @@ export default {
 }
 
 #buttonPanelBurger {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
   position: fixed;
@@ -679,6 +685,7 @@ export default {
 }
 
 #buttonPanelDressing {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
   position: fixed;
@@ -688,6 +695,7 @@ export default {
 }
 
 #buttonPanelToppings {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
   position: fixed;
@@ -697,6 +705,7 @@ export default {
 }
 
 #buttonPanelSides {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
   position: fixed;
@@ -706,6 +715,7 @@ export default {
 }
 
 #buttonPanelBeverage {
+  background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
   position: fixed;
