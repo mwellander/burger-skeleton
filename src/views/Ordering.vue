@@ -1,4 +1,5 @@
 <template>
+<div id="headDiv">
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  <div class="navbar">
@@ -158,6 +159,7 @@
   :key="key">
 </OrderItem>
 </div> -->
+</div>
 </div>
 </div>
 </template>
@@ -466,9 +468,15 @@ export default {
 </script>
 <style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
+
+
 #ordering {
+  width: 45%;
+  height: 100%;
+  min-width: 100px;
+  min-height: 100px;
   margin: auto;
-  width: 40em;
+  /*width: 40em;*/
 }
 * {
   box-sizing: border-box;
