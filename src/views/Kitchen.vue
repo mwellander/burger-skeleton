@@ -164,17 +164,9 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
-
-
-
-
-=======
     updateStock: function(item, payload){
       this.$store.state.socket.emit("updateStock", {item,payload});
-
     },
->>>>>>> c6b626703cc4a847ded4695372aade84d3020c2b
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
     },
@@ -340,7 +332,7 @@ grid-template-columns: 20% 60% 20%;
   background-color: black;
   color: white;
   text-align: center;
-  
+
 }
 
 .StockButton {
