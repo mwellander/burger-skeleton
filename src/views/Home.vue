@@ -4,7 +4,7 @@
     <div style="text-align:left">
       <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
     </div>
-    <div class="buttonHome">
+    <div class="buttonHome" style="text-align:center">
       <div class="createBurgerButton">
         <a href=""><button>{{uiLabels.createBurger}}</button></a>
       </div>
@@ -14,10 +14,11 @@
 
     <div class="receipt">
       <div class="row">
-        <div class="column aa aaa"><h3>{{ uiLabels.order }}</h3></div>
+        <div class="column aa aaa"><h3>{{ uiLabels.yourOrder }}</h3></div>
         <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
         <div class="column cc" style="text-align:left">
           <p>Hej</p>
+
           <!-- <ul style="list-style-type:none">
             <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
             <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
@@ -25,21 +26,12 @@
             <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
           </ul> -->
         </div>
-        <!-- <div class="column dd" style="text-align:left">
-          <ul style="list-style-type:none">
-            <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-          </ul>
-          <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
-        </div> -->
         <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
       </div>
 
-      <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
-
       <div style="text-align:right">
         <button class="cancelButton"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-        <button class="orderButtonO">{{ uiLabels.placeOrder }}</button>
+        <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
       </div>
     </div>
 
@@ -69,31 +61,31 @@
   #home {
     margin: auto;
     width: 40em;
-    background-color: yellow;
+    background-color: black;
   }
   .aaa {
     width: 100%;
   }
   .buttonHome {
-    color: yellow;
+    color: black;
   }
   .buttonHome button {
     width: 16em;
-    margin: 0.5em;
+    margin: 3%;
     background-color: #4CAF50;
     border: 0.1em solid black;
     color: black;
-    padding: 1em 2em;
+    padding: 4%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 2em;
     cursor: pointer;
-    border-radius: 1em;
+    border-radius: 1.5em;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
   .createBurgerButton {
-    margin-top: 4em;
+    margin-top: 7%;
   }
   .buttonHome button:hover {
     background-color:#ddd;

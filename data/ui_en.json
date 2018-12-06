@@ -36,5 +36,6 @@
   "createBurger": "Create your own burger",
   "favouriteBurger": "Favourite burgers",
   "sidesDrink": "Sides/Beverages",
-  "readyBurger":"Favourite Burgers"
+  "readyBurger":"Favourite Burgers",
+  "yourOrder": "Your order"
 }
