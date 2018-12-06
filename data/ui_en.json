@@ -38,5 +38,6 @@
   "sidesDrink": "Sides/Beverages",
   "readyBurger":"Favourite Burgers",
   "start": "Start Order",
-  "welcome": "Welcome to NoKetchup"
+  "welcome": "Welcome to NoKetchup",
+  "yourOrder": "Your order"
 }

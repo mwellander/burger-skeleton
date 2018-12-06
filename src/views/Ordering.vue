@@ -1,6 +1,5 @@
 <template>
   <div id="ordering">
-    <!-- <meta http-equiv="refresh" content="1"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  <div class="navbar">
     <a href="#burger">{{ uiLabels.burger }}</a>
@@ -10,9 +9,9 @@
     <a href="#sides">{{ uiLabels.sides }}</a>
     <a href="#beverage">{{ uiLabels.beverage }}</a>
   </div> -->
-  <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button>
+  <!-- <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button> -->
 
-  <div class="tabs" v-show="started">
+  <div class="tabs">
     <button v-on:click="toBread()">{{uiLabels.bread}}</button>
     <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
     <button v-on:click="toDressing()">{{uiLabels.dressing}}</button>
@@ -148,7 +147,7 @@
 </Ingredient>
 </div>
 
-<div class="receipt" v-show="started">
+<div class="receipt">
   <div class="row">
     <div class="column aa"><h3>{{ uiLabels.order }}</h3></div>
     <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div>
@@ -173,7 +172,7 @@
 
   <div style="text-align:right">
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
@@ -231,18 +230,23 @@ export default {
       beverageOrder:false,
       price: 0,
       orderNumber: "",
-      state:"start",
+      state:"bread",
       start:true,
       burger:false,
       toppings:false,
       dressing:false,
-      bread:false,
+      bread:true,
       sides:false,
       beverages:false,
+<<<<<<< HEAD
+      started:false
+=======
       started:false,
       readyBurger:false,
       sides2:false,
-      beverage2:false
+      beverage2:false,
+      nrBurgerOrder: 0
+>>>>>>> 4dccf07ed0e7b488a9dd57ffe5329b03e7bee73c
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -252,6 +256,9 @@ export default {
     }.bind(this));
   },
   methods: {
+    sendOrderHome: function() {
+      this.nrBurgerOrder++;
+    },
     startOrder: function(){
       this.started=true;
       this.state="bread";
@@ -925,6 +932,45 @@ export default {
   text-align: center;
 }
 .beveragePage {
+  z-index: -100;
+  overflow: scroll;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  text-align: center;
+}
+.readyBurgerPage {
+  z-index: -1;
+  overflow: scroll;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  text-align: center;
+}
+.sidesPage2 {
+  z-index: -100;
+  overflow: scroll;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  text-align: center;
+}
+.beveragePage2 {
   z-index: -100;
   overflow: scroll;
   position: absolute;
