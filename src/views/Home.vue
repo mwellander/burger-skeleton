@@ -1,11 +1,15 @@
 <template>
   <div id="home">
+    <link rel="stylesheet" href="Ordering.vue">
+    <div style="text-align:left">
+      <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+    </div>
     <div class="buttonHome">
       <div class="createBurgerButton">
-        <a href=""><button>Skapa din egna burgare</button></a>
+        <a href=""><button>{{uiLabels.createBurger}}</button></a>
       </div>
-      <button>Favoritburgarna</button>
-      <button>Tillbehör/Dryck</button>
+      <button>{{uiLabels.favouriteBurger}}</button>
+      <button>{{uiLabels.sidesDrink}}</button>
     </div>
 
   </div>
@@ -23,7 +27,7 @@
   },
   mixins: [sharedVueStuff],
   methods: {
-    
+
   }
 
 }
@@ -33,6 +37,7 @@
   #home {
     margin: auto;
     width: 40em;
+    background-color: yellow;
   }
   .createBurgerButton {
 

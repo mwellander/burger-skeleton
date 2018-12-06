@@ -32,5 +32,8 @@
   "sides" : "Tillbehör",
   "flag" : "Flag_of_Britain.svg.png",
   "total" : "Totalt",
-  "ordersToView": "Beställningar"
+  "ordersToView": "Beställningar",
+  "createBurger": "Skapa din egna burgare",
+  "favouriteBurger": "Favoritburgarna",
+  "sidesDrink": "Tillbehör/Dryck"
 }

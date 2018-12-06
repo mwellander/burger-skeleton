@@ -22,7 +22,6 @@
   </div>
 
   <div style="text-align:left">
-    <!-- <button class="LanguageButton" v-on:click="switchLang()">{{ uiLabels.language }}</button>   -->
     <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
   </div>
 
@@ -466,7 +465,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 
 
