@@ -21,7 +21,6 @@
   </div>
 
   <div style="text-align:left">
-    <!-- <button class="LanguageButton" v-on:click="switchLang()">{{ uiLabels.language }}</button>   -->
     <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
   </div>
 
@@ -134,6 +133,19 @@
 </div>
 
 
+<div class="readyBurgerPage" id="readyBurgerPage">
+  <Ingredient
+  ref="ingredient"
+  v-show="state === 'readyBurger'"
+  v-if="item.category===7"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder(item)"
+  :item="item"
+  :lang="lang"
+  :key="item.ingredient_id">
+</Ingredient>
+</div>
+
 <div class="receipt" v-show="started">
   <div class="row">
     <div class="column a"><h3>{{ uiLabels.order }}</h3></div>
@@ -209,6 +221,7 @@ export default {
       Bread: [],
       Sides: [],
       Beverage: [],
+      ReadyBurger: [],
       burgerOrder:false,
       toppingsOrder:false,
       dressingOrder:false,
@@ -226,7 +239,9 @@ export default {
       sides:false,
       beverages:false,
       started:false,
-      orderingvue:true
+      readyBurger:false,
+      sides2:false,
+      beverage2:false
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -242,6 +257,7 @@ export default {
       this.bread=true;
     },
     cancelOrder: function () {
+      this.chosenIngredients=[];
       this.chosenIngredientsBurger= [];
       this.chosenIngredientsSides= [];
       this.Burger= [];
@@ -250,12 +266,14 @@ export default {
       this.Bread= [];
       this.Sides= [];
       this.Beverage= [];
+      this.ReadyBurger=[];
       this.burgerOrder=false;
       this.toppingsOrder=false;
       this.dressingOrder=false;
       this.breadOrder=false;
       this.sidesOrder=false;
       this.beverageOrder=false;
+      this.readyBurgerOrder=false;
       this.price= 0;
       this.orderNumber= "";
       this.state="burger";
@@ -265,6 +283,7 @@ export default {
       this.bread=false;
       this.sides=false;
       this.beverages=false;
+      this.readyBurger=false;
     },
     toBurger: function(){
       this.state="burger";
@@ -502,6 +521,10 @@ export default {
           this.beverageOrder=true;
         }
       }
+      else if(item.category===7){
+        this.ReadyBurger.push(item);
+        this.readyBurgerOrder=true;
+      }
       else{
         this.chosenIngredientsBurger.push(item);
         if(item.category===1){
@@ -546,6 +569,8 @@ export default {
       this.Bread= [];
       this.Sides= [];
       this.Beverage= [];
+      this.ReadyBurger=[];
+      this.readyBurgerOrder=false;
       this.burgerOrder=false;
       this.toppingsOrder=false;
       this.dressingOrder=false;
@@ -561,21 +586,19 @@ export default {
       this.bread=false;
       this.sides=false;
       this.beverages=false;
+      this.readyBurger=false;
     }
-  }
+  },
 }
 </script>
-<style scoped>
+<style>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
-
-
 #ordering {
-  width: 40em;
   height: 100%;
   min-width: 100px;
   min-height: 100px;
   margin: auto;
-  /*width: 40em;*/
+  width: 40em;
 }
 * {
   box-sizing: border-box;
