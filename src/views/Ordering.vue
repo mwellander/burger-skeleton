@@ -29,7 +29,6 @@
   <!-- <br> -->
   <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
 
-<div class="fixedStuff">
   <div class="breadPage" id="breadPage">
     <Ingredient
     ref="ingredient"
@@ -131,7 +130,6 @@
 </div>
 <div id="buttonPanelBeverage">
 <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
-</div>
 </div>
 
 <div class="readyBurgerPage" id="readyBurgerPage">
@@ -607,27 +605,7 @@ export default {
 * {
   box-sizing: border-box;
 }
-.startButton{
-  z-index: 100;
-  margin-top:10em;
-  margin-bottom:10em;
-  margin-left: 20%;
-  margin-right: 20%;
-  width:60%;
-  height:50%;
 
-  background-color: #4CAF50;
-  border: 0.1em solid black;
-  color: black;
-  padding: 1em 2em;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 2em;
-  /* margin: 4px 2px; */
-  cursor: pointer;
-  border-radius: 1em;
-}
 .row:after {
   content: "";
   display: table;
@@ -661,9 +639,6 @@ export default {
   background-color: white;
   /* z-index: 1; */
 }
-
-/* .fixedStuff {
-} */
 
 #buttonPanelBread {
   z-index: 3;
@@ -855,15 +830,7 @@ export default {
   margin-right: 1em;
 }
 
-/* .FixedPage {
-  background-color: green;
-  position: fixed;
-
-} */
-
-
 .burgerPage {
-  z-index: -100;
   overflow: scroll;
   position: absolute;
   bottom: 20em;
@@ -876,7 +843,6 @@ export default {
   text-align: center;
 }
 .toppingPage {
-  z-index: -100;
   overflow: scroll;
   position: absolute;
   bottom: 20em;
@@ -889,7 +855,6 @@ export default {
   text-align: center;
 }
 .dressingPage {
-  z-index: -100;
   overflow: scroll;
   position: absolute;
   bottom: 20em;
@@ -902,7 +867,7 @@ export default {
   text-align: center;
 }
 .breadPage {
-  z-index: -1;
+  z-index: 10;
   overflow: scroll;
   position: absolute;
   bottom: 20em;
@@ -915,7 +880,6 @@ export default {
   text-align: center;
 }
 .sidesPage {
-  z-index: -100;
   overflow: scroll;
   position: absolute;
   bottom: 20em;
@@ -928,7 +892,6 @@ export default {
   text-align: center;
 }
 .beveragePage {
-  z-index: -100;
   overflow: scroll;
   position: absolute;
   bottom: 20em;

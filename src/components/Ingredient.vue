@@ -2,7 +2,7 @@
   <div class="ingredient">
       <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" width="100">
       <label>
-        <br>{{item["ingredient_"+ lang]}}, 
+        <br>{{item["ingredient_"+ lang]}},
         {{item.selling_price}}:-
         <br><button v-on:click="incrementCounter">{{ counter }}</button>
       </label>
