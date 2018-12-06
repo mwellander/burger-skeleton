@@ -8,7 +8,7 @@
       <div class="createBurgerButton">
         <a href=""><button>{{uiLabels.createBurger}}</button></a>
       </div>
-      <button>{{uiLabels.favouriteBurger}}</button>
+      <a href="#/favouriteburger"><button>{{uiLabels.favouriteBurger}}</button></a>
       <button>{{uiLabels.sidesDrink}}</button>
     </div>
 
