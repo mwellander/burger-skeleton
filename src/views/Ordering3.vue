@@ -48,7 +48,7 @@
 <div class="receipt">
   <div class="row">
     <div class="column aa"><h3>{{ uiLabels.sides }}</h3></div>
-    <div class="column bb"><h3>{{ uiLabels.beverage }}</h3></div>
+    <div class="column aa"><h3>{{ uiLabels.beverage }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
         <li>{{ Sides3.map(item => item["ingredient_"+lang]).join(", ") }}</li>
@@ -66,7 +66,7 @@
 
   <div style="text-align:right">
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 
 </div>

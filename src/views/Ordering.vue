@@ -198,6 +198,7 @@ export default {
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
+
       chosenIngredients:[],
       chosenIngredientsBurger: [],
       chosenIngredientsSides: [],
