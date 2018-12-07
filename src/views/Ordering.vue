@@ -132,18 +132,6 @@
 <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
 </div>
 
-<div class="readyBurgerPage" id="readyBurgerPage">
-  <Ingredient
-  ref="ingredient"
-  v-show="state === 'readyBurger'"
-  v-if="item.category===7"
-  v-for="item in ingredients"
-  v-on:increment="addToOrder(item)"
-  :item="item"
-  :lang="lang"
-  :key="item.ingredient_id">
-</Ingredient>
-</div>
 
 <div class="receipt">
   <div class="row">
@@ -219,7 +207,6 @@ export default {
       Bread: [],
       Sides: [],
       Beverage: [],
-      ReadyBurger: [],
       burgerOrder:false,
       toppingsOrder:false,
       dressingOrder:false,
@@ -235,12 +222,22 @@ export default {
       dressing:false,
       bread:true,
       sides:false,
-      beverages:false,
+      beverage:false,
       started:false,
-      readyBurger:false,
-      sides2:false,
-      beverage2:false,
-      nrBurgerOrder: 0
+      nrBurgerOrder: 0,
+
+      chosenIngredients2:[],
+      chosenIngredientsBurger2: [],
+      chosenIngredientsSides2: [],
+      Sides2: [],
+      Beverage2: [],
+      ReadyBurger: [],
+
+
+      chosenIngredients3:[],
+      chosenIngredientsSides3: [],
+      Sides3: [],
+      Beverage3: []
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -269,6 +266,10 @@ export default {
       this.Sides= [];
       this.Beverage= [];
       this.ReadyBurger=[];
+      this.Sides2=[];
+      this.Beverage2=[];
+      this.Sides3=[];
+      this.Beverage3=[];
       this.burgerOrder=false;
       this.toppingsOrder=false;
       this.dressingOrder=false;
@@ -276,16 +277,26 @@ export default {
       this.sidesOrder=false;
       this.beverageOrder=false;
       this.readyBurgerOrder=false;
+      this.sidesOrder2=false;
+      this.beverageOrder2=false;
+      this.sidesOrder3=false;
+      this.beverageOrder3=false;
       this.price= 0;
       this.orderNumber= "";
       this.state="bread";
+      this.state2="readyburger";
+      this.state3="sides3";
       this.burger=true;
       this.toppings=false;
       this.dressing=false;
       this.bread=false;
       this.sides=false;
-      this.beverages=false;
-      this.readyBurger=false;
+      this.beverage=false;
+      this.readyBurger=true;
+      this.sides2=false;
+      this.beverage2=false;
+      this.sides3=false;
+      this.beverage3=false;
     },
     toBurger: function(){
       this.state="burger";
@@ -517,10 +528,18 @@ export default {
         if(item.category===5){
           this.Sides.push(item);
           this.sidesOrder=true;
+          this.Sides2.push(item);
+          this.sidesOrder2=true;
+          this.Sides3.push(item);
+          this.sidesOrder3=true;
         }
         else{
           this.Beverage.push(item);
           this.beverageOrder=true;
+          this.Beverage2.push(item);
+          this.beverageOrder2=true;
+          this.Beverage3.push(item);
+          this.beverageOrder3=true;
         }
       }
       else if(item.category===7){
@@ -579,6 +598,11 @@ export default {
       this.breadOrder=false;
       this.sidesOrder=false;
       this.beverageOrder=false;
+      this.readyBurgerOrder=false;
+      this.sidesOrder2=false;
+      this.beverageOrder2=false;
+      this.sidesOrder3=false;
+      this.beverageOrder3=false;
       this.price= 0;
       //this.orderNumber= "";
       //this.state="burger";
@@ -587,8 +611,12 @@ export default {
       this.dressing=false;
       this.bread=false;
       this.sides=false;
-      this.beverages=false;
-      this.readyBurger=false;
+      this.beverage=false;
+      this.readyBurger=true;
+      this.sides2=false;
+      this.beverage2=false;
+      this.sides3=false;
+      this.beverage3=false;
     }
   },
 }
@@ -691,6 +719,51 @@ export default {
 }
 
 #buttonPanelBeverage {
+  background-color: black;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: fixed;
+  width: 40em;
+  height: 3.5em;
+  bottom: 16.3em;
+}
+#buttonPanelReadyBurger {
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: fixed;
+  width: 40em;
+  height: 3.5em;
+  bottom: 16.3em;
+}
+#buttonPanelSides2 {
+  background-color: black;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: fixed;
+  width: 40em;
+  height: 3.5em;
+  bottom: 16.3em;
+}
+#buttonPanelBeverage2 {
+  background-color: black;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: fixed;
+  width: 40em;
+  height: 3.5em;
+  bottom: 16.3em;
+}
+#buttonPanelSides3 {
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  position: fixed;
+  width: 40em;
+  height: 3.5em;
+  bottom: 16.3em;
+}
+#buttonPanelBeverage3 {
   background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -930,6 +1003,32 @@ export default {
   text-align: center;
 }
 .beveragePage2 {
+  z-index: -100;
+  overflow: scroll;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  text-align: center;
+}
+.sidesPage3 {
+  z-index: -1;
+  overflow: scroll;
+  position: absolute;
+  bottom: 20em;
+  top: 7em;
+  width: 40em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  text-align: center;
+}
+.beveragePage3 {
   z-index: -100;
   overflow: scroll;
   position: absolute;

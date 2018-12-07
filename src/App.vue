@@ -9,6 +9,7 @@ import Ordering from "./views/Ordering.vue"
 import Home from "./views/Home.vue"
 import Ordering2 from "./views/Ordering2.vue"
 import Start from "./views/Start.vue"
+import Ordering3 from "./views/Ordering3.vue"
 
 
 export default {
@@ -17,7 +18,8 @@ export default {
     Ordering,
     Home,
     Ordering2,
-    Start
+    Start,
+    Ordering3
   }
 }
 </script>

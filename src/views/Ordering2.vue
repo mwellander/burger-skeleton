@@ -7,16 +7,15 @@
       <button v-on:click="toSides2()">{{uiLabels.sides}}</button>
       <button v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
     </div>
-    <!-- <div style="text-align:left">
-      <button class="LanguageButton" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+    <div style="text-align:left">
+      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
     </div>
-    <br> -->
     <br>
-    <h1>{{ uiLabels.ingredients }}</h1>
+    <br>
     <div class="readyBurgerPage" id="readyBurgerPage">
       <Ingredient
       ref="ingredient"
-      v-show="state === 'readyBurger'"
+      v-show="state2 === 'readyBurger'"
       v-if="item.category===7"
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
@@ -25,12 +24,14 @@
       :key="item.ingredient_id">
     </Ingredient>
   </div>
+  <div id="buttonPanelReadyBurger">
   <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
+</div>
 
-  <div class="sidesPage2" id="sidesPage">
+  <div class="sidesPage2" id="sidesPage2">
     <Ingredient
     ref="ingredient"
-    v-show="state === 'sides'"
+    v-show="state2 === 'sides2'"
     v-if="item.category===5"
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
@@ -39,13 +40,15 @@
     :key="item.ingredient_id">
   </Ingredient>
 </div>
+<div id="buttonPanelSides2">
 <button id="previousButton" v-show="sides2" v-on:click="toReadyBurger()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="sides2" v-on:click='toBeverage2()'>{{uiLabels.next}}</button>
+</div>
 
-<div class="beveragePage2" id="beveragePage">
+<div class="beveragePage2" id="beveragePage2">
   <Ingredient
   ref="ingredient"
-  v-show="state === 'beverage'"
+  v-show="state2 === 'beverage2'"
   v-if="item.category===6"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
@@ -54,11 +57,13 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
+<div id="buttonPanelBeverage3">
 <button id="previousButton" v-show="beverage2" v-on:click="toSides2()">{{uiLabels.previous}}</button>
+</div>
 
-<!-- <div class="receipt">
+<div class="receipt">
   <div class="row">
-    <div class="column aa"><h3>{{ uiLabels.order }}</h3></div>
+    <div class="column aa"><h3>{{ uiLabels.readyBurger }}</h3></div>
     <div class="column bb"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
@@ -70,18 +75,18 @@
         <li v-show="sidesOrder2">{{uiLabels.sides}}: {{ Sides2.map(item => item["ingredient_"+lang]).join(", ") }}</li>
         <li v-show="beverageOrder2">{{uiLabels.beverage}}: {{ Beverage2.map(item => item["ingredient_"+lang]).join(", ") }}</li>
       </ul>
-      <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
-    <!-- </div>
+      <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+    </div>
   </div>
 
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
   <div style="text-align:right">
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <button class="orderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
   </div>
 
-</div>  -->
+</div>
 </div>
 </template>
 <script>
@@ -91,6 +96,7 @@ import OrderItem from '@/components/OrderItem.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
+import ordering from '@/views/Ordering.vue'
 
 export default {
   name: 'Ordering2',
@@ -98,25 +104,19 @@ export default {
     Ingredient,
     OrderItem
   },
-  mixins: [sharedVueStuff], // include stuff that is used in both
+  mixins: [sharedVueStuff,ordering],
+ // include stuff that is used in both
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
-      chosenIngredients2:[],
-      chosenIngredientsBurger2: [],
-      chosenIngredientsSides2: [],
-      Sides2: [],
-      Beverage2: [],
-      ReadyBurger: [],
-      readyBurgerOrder:false,
-      sidesOrder2:false,
-      beverageOrder2:false,
-      price: 0,
-      orderNumber: "",
-      state:"readyBurger",
-      readyBurger:true,
-      sides2:false,
-      beverage2:false
+            start:true,
+            readyBurgerOrder:false,
+            sidesOrder2:false,
+            beverageOrder2:false,
+            state2:"readyBurger",
+            readyBurger:true,
+            sides2:false,
+            beverage2:false
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -128,14 +128,14 @@ export default {
   methods: {
     startOrder2: function(){
       this.started2=true;
-      this.state="readyBurger";
+      this.state2="readyBurger";
       this.readyBurger=true;
     },
     toReadyBurger: function(){
-      this.state="readyBurger";
+      this.state2="readyBurger";
       this.readyBurger=true;
       this.sides2=false;
-      this.beverage2=true;
+      this.beverage2=false;
 
       var ReadyBurgerPage = document.getElementById("readyBurgerPage");
       var SidesPage2 = document.getElementById("sidesPage2");
@@ -146,7 +146,7 @@ export default {
       BeveragePage2.style.display = "none";
     },
     toSides2: function(){
-      this.state="beverage2";
+      this.state2="sides2";
       this.readyBurger=false;
       this.sides2=true;
       this.beverage2=false;
@@ -160,7 +160,7 @@ export default {
       BeveragePage2.style.display = "none";
     },
     toBeverage2:function(){
-      this.state="beverage2";
+      this.state2="beverage2";
       this.readyBurger=false;
       this.sides2=false;
       this.beverage2=true;
@@ -173,7 +173,7 @@ export default {
       SidesPage2.style.display = "none";
       BeveragePage2.style.display = "grid";
     }
-  },
+  }
 }
 
 </script>

@@ -9,7 +9,7 @@
         <a href=""><button>{{uiLabels.createBurger}}</button></a>
       </div>
       <a href="#/favouriteburger"><button>{{uiLabels.favouriteBurger}}</button></a>
-      <button>{{uiLabels.sidesDrink}}</button>
+      <a href="#/sidesandbeverage"><button>{{uiLabels.sidesDrink}}</button></a>
     </div>
 
     <div class="receipt">
@@ -42,6 +42,7 @@
   import Ingredient from '@/components/Ingredient.vue'
   import OrderItem from '@/components/OrderItem.vue'
   import sharedVueStuff from '@/components/sharedVueStuff.js'
+  import ordering from '@/views/Ordering.vue'
 
   export default {
     name: 'Home' ,
@@ -49,7 +50,7 @@
       Ingredient,
       OrderItem
   },
-  mixins: [sharedVueStuff],
+  mixins: [sharedVueStuff,ordering],
   methods: {
 
   }

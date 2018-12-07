@@ -27,7 +27,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 26,Pepper Jack-ost,Pepper Jack Cheese,2,0,1,0,10,pepper_jack.jpg
 27,Inlagd Gurka,Pickled Cucumber,2,1,1,1,5,pickled_cucumber.jpg
 28,Inlagd Rödlök,Pickled Red Onion,2,1,1,1,5,onion_red.jpg
-29,Rå Rödlök,Raw Red Onion,2,1,1,1,5,onion_red.png
+29,Rå Rödlök,Raw Red Onion,2,1,1,1,5,onion_red.jpg
 30,Rå Gul Lök,Raw Yellow Onion,2,1,1,1,5,onionyellow.png
 31,Salami,Salami,2,1,1,0,10,Salami.jpg
 32,Surkål,Sauerkraut,2,1,1,1,5,mango.png
@@ -60,9 +60,9 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 59,Läsk,Soda,6,1,1,1,20,cola.png
 60,Jordgubbsmilkshake,Strawberry Milk Shake,6,0,1,0,40,stawberry_milkshake.png
 61,Vegansk Mango Lassi,Vegan Mango Lassi,6,1,1,1,40,mango.png
-62,NoKetchups Favorit,NoKetchup's Favourite,7,0,0,0,70
-63,Kycklingburgare,Chicken Burger,7,1,0,0,70
-64,Vegetarisk Bönburgare,Vegetarian Beanburger,1,0,0,70
-65,Vegansk Sojaburgare,Vegan Soy Burger,1,0,1,70
-66,Glutenfri Kycklingburgare,Gluten Free Chicken Burger,1,1,0,70
-67,Glutenfri Sojaburgare,Gluten Free Soy Burger
+62,NoKetchups Favorit,NoKetchup's Favourite,7,0,0,0,70,sweetpotato.jpg
+63,Kycklingburgare,Chicken Burger,7,1,0,0,70,sweetpotato.jpg
+64,Vegetarisk Bönburgare,Vegetarian Bean Burger,7,1,0,0,70,sweetpotato.jpg
+65,Vegansk Sojaburgare,Vegan Soy Burger,7,1,0,1,70,sweetpotato.jpg
+66,Glutenfri Kycklingburgare,Gluten Free Chicken Burger,7,1,1,0,70,sweetpotato.jpg
+67,Glutenfri Sojaburgare,Gluten Free Soy Burger,7,1,1,1,70,sweetpotato.jpg

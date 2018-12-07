@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Ordering from './views/Ordering.vue'
 import Home from './views/Home.vue'
 import Ordering2 from './views/Ordering2.vue'
+import Ordering3 from './views/Ordering3.vue'
 import Start from './views/Start.vue'
 
 Vue.use(Router)
@@ -24,6 +25,14 @@ let router = new Router({
       },
       name: 'ordering2',
       component: Ordering2
+    },
+    {
+      path: '/sidesandbeverage',
+      meta: {
+        title: 'NoKetchup',
+      },
+      name: 'ordering3',
+      component: Ordering3
     },
     {
       path: '/kitchen',
