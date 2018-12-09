@@ -4,7 +4,7 @@
       <label>
         <br>{{item["ingredient_"+ lang]}},
         {{item.selling_price}}:-
-        <br><button v-on:click="incrementCounter">{{ counter }}</button>
+        <br><button id="incrementButton" v-on:click="incrementCounter">{{ counter }}</button>
       </label>
   </div>
 </template>
@@ -34,5 +34,20 @@ export default {
 }
 </script>
 <style scoped>
+@media screen and (min-width: 300px){
+  #incrementButton{
+    padding:0.2em;
+    width:1.5em;
+    height:1.5em;
+  }
 
+}
+@media screen and (min-width: 700px){
+  #incrementButton{
+  width:2em;
+  height:2em;
+}}
+#incrementButton{
+  border-radius:50%;  
+}
 </style>

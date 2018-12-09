@@ -13,7 +13,7 @@
         </div>
         <br>
         <br>
-<div class="sidesPage3" id="sidesPage3">
+<div class="breadPage" id="sidesPage3">
   <Ingredient
   ref="ingredient"
   v-show="state3 === 'sides3'"
@@ -25,11 +25,11 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
-<div id="buttonPanelSides3">
+<div class="buttonPanelBread" id="buttonPanelSides3">
 <button id="nextButton" v-show="sides3" v-on:click='toBeverage3()'>{{uiLabels.next}}</button>
 </div>
 
-<div class="beveragePage3" id="beveragePage3">
+<div class="Page" id="beveragePage3">
   <Ingredient
   ref="ingredient"
   v-show="state3 === 'beverage3'"
@@ -41,7 +41,7 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
-<div id="buttonPanelBeverage3">
+<div class="buttonPanel" id="buttonPanelBeverage3">
 <button id="previousButton" v-show="beverage3" v-on:click="toSides3()">{{uiLabels.previous}}</button>
 </div>
 
@@ -142,8 +142,36 @@ export default {
 <style>
 
 #ordering3 {
-  margin: auto;
-  width: 40em;
+  height: 100%;
+  min-width: 100px;
+  min-height: 100px;
+}
+@media screen and (min-width: 300px) {
+  #ordering3 {
+    width:20em;
+    margin-left:3%;
+    margin-right:3%;
+  }
+  .tabs3{
+    width:20em;
+  }
+  .tabs3 button {
+    width: 20em;
+    font-size: 0.5em;
+  }
+}
+@media screen and (min-width: 700px) {
+  #ordering2 {
+    width:40em;
+    margin:auto;
+  }
+  .tabs3{
+    width:40em;
+  }
+  .tabs3 button {
+    width: 16.6em;
+    font-size: 1.2em;
+  }
 }
 
 .tabs3 {
@@ -152,7 +180,6 @@ export default {
   top: 1;
   padding-top: 2.5em;
   background-color: black;
-  width: 40em;
   height: 6em;
 }
 .tabs3 button {
@@ -164,8 +191,6 @@ export default {
   padding: 0.7em 0.5em;
   /* padding:  14px 16px; */
   text-decoration: none;
-  font-size: 1.2em;
-  width: 16.6em;
 }
 .tabs3 button:hover {
   background-color:#ddd;

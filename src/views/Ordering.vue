@@ -45,7 +45,7 @@
   <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
   </div>
 
-<div class="burgerPage" id="burgerPage">
+<div class="Page" id="burgerPage">
   <Ingredient
   ref="ingredient"
   v-show="state === 'burger'"
@@ -57,13 +57,13 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
-<div id="buttonPanelBurger">
+<div class="buttonPanel" id="buttonPanelBurger">
 <button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="burger" v-on:click='toDressing()'>{{uiLabels.next}}</button>
 </div>
 
 
-<div class="dressingPage" id="dressingPage">
+<div class="Page" id="dressingPage">
   <Ingredient
   ref="ingredient"
   v-show="state === 'dressing'"
@@ -75,13 +75,13 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
-<div id="buttonPanelDressing">
+<div class="buttonPanel" id="buttonPanelDressing">
 <button id="previousButton" v-show="dressing" v-on:click="toBurger()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="dressing" v-on:click='toToppings()'>{{uiLabels.next}}</button>
 </div>
 
 
-<div class="toppingPage" id="toppingPage">
+<div class="Page" id="toppingPage">
   <Ingredient
   ref="ingredient"
   v-show="state === 'toppings'"
@@ -93,13 +93,13 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
-<div id="buttonPanelToppings">
+<div class="buttonPanel" id="buttonPanelToppings">
 <button id="previousButton" v-show="toppings" v-on:click="toDressing()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="toppings" v-on:click='toSides()'>{{uiLabels.next}}</button>
 </div>
 
 
-<div class="sidesPage" id="sidesPage">
+<div class="Page" id="sidesPage">
   <Ingredient
   ref="ingredient"
   v-show="state === 'sides'"
@@ -111,12 +111,12 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
-<div id="buttonPanelSides">
+<div class="buttonPanel" id="buttonPanelSides">
 <button id="previousButton" v-show="sides" v-on:click="toToppings()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
 </div>
 
-<div class="beveragePage" id="beveragePage">
+<div class="Page" id="beveragePage">
   <Ingredient
   ref="ingredient"
   v-show="state === 'beverage'"
@@ -128,15 +128,15 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
-<div id="buttonPanelBeverage">
+<div class="buttonPanel" id="buttonPanelBeverage">
 <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
 </div>
 
 
 <div class="receipt">
   <div class="row">
-    <div class="column aa"><h3>{{ uiLabels.order }}</h3></div>
-    <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div>
+    <div class="column aa" id="myBurger"><h3>{{ uiLabels.order }}</h3></div>
+    <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
         <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
@@ -628,8 +628,148 @@ export default {
   height: 100%;
   min-width: 100px;
   min-height: 100px;
-  margin: auto;
-  width: 40em;
+}
+@media screen and (min-width: 300px) {
+  #ordering{
+    width:20em;
+    margin-left:3%;
+    margin-right:3%;
+  }
+  .receipt {
+    width: 20em;
+  }
+  .tabs{
+    width:20em;
+  }
+  .tabs button {
+    width: 6.66em;
+    font-size: 0.5em;
+  }
+  .Page{
+    bottom: 18.5em;
+    top: 4.5em;
+    width: 20em;
+  }
+
+  .breadPage{
+    bottom: 18.5em;
+    top: 4.5em;
+    width: 20em;
+  }
+  #buttonPanelBread{
+    width:20em;
+    grid-template-columns: 30% 40% 30%;
+    height: 3.5em;
+    bottom: 14.7em;
+  }
+  .buttonPanel{
+    width:20em;
+    grid-template-columns: 30% 40% 30%;
+    height: 3.5em;
+    bottom: 14.7em;
+  }
+  #previousButton{
+    padding: 1em 1em;
+  }
+  .ingredient{
+    font-size:0.5em;
+    padding: 0.2em;
+  }
+  #myBurger{
+    font-size:0.7em;
+  }
+  #sidesAndBeverage{
+    font-size:0.7em;
+  }
+  .orderButtonO{
+    font-size:0.7;
+  }
+  .cancelButton{
+    font-size:0.7;
+  }
+  .totalText{
+    font-size:0.7em;
+    margin-bottom: 6em;
+  }
+  .column{
+    font-size: 0.6em;
+  }
+  .cc{
+    height: 13em;
+  }
+  .dd{
+    height: 10em;
+  }
+}
+@media screen and (min-width: 700px) {
+  #ordering{
+    width:40em;
+    margin: auto;
+  }
+  .tabs{
+    width:40em;
+  }
+  .tabs button {
+    width: 5.55em;
+    font-size: 1.2em;
+  }
+   .receipt {
+      width:40em;
+   }
+   .Page {
+     bottom:20em;
+     top: 7em;
+     width: 40em;
+   }
+   .breadPage {
+     bottom:20em;
+     top: 7em;
+     width: 40em;
+   }
+   #buttonPanelBread{
+     width:40em;
+     grid-template-columns: 20% 60% 20%;
+     height: 3.5em;
+     bottom: 16.3em;
+   }
+   .buttonPanel{
+     width:40em;
+     grid-template-columns: 20% 60% 20%;
+     height: 3.5em;
+     bottom: 16.3em;
+   }
+   .previousButton{
+     padding: 1em 2em;
+   }
+   .ingredient{
+     font-size:1em;
+     padding: 1em;
+   }
+   #myBurger{
+     font-size:1em;
+   }
+   #sidesAndBeverage{
+     font-size:1em;
+   }
+   .orderButtonO{
+     font-size:1;
+   }
+   .cancelButton{
+     font-size:1;
+   }
+   .totalText{
+     font-size:1em;
+     margin-bottom: 4em;
+   }
+   .column{
+     font-size: 1em;
+   }
+   .cc{
+     height: 8em;
+   }
+   .dd{
+     height: 6em;
+   }
 }
 * {
   box-sizing: border-box;
@@ -659,27 +799,27 @@ export default {
 } */
 .cc {
   overflow:scroll;
-  height: 8em;
   background-color: white;
+  text-align:left;
 }
 .dd {
   overflow:scroll;
-  height: 6em;
   background-color: white;
+  text-align:left;
   /* z-index: 1; */
 }
 
 #buttonPanelBread {
   z-index: 3;
   display: grid;
-  grid-template-columns: 20% 60% 20%;
   position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
 }
-
-#buttonPanelBurger {
+.buttonPanel {
+  background-color: black;
+  display: grid;
+  position: fixed;
+}
+/* #buttonPanelBurger {
   background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -687,8 +827,8 @@ export default {
   width: 40em;
   height: 3.5em;
   bottom: 16.3em;
-}
-
+} */
+/*
 #buttonPanelDressing {
   background-color: black;
   display: grid;
@@ -727,8 +867,8 @@ export default {
   width: 40em;
   height: 3.5em;
   bottom: 16.3em;
-}
-#buttonPanelReadyBurger {
+} */
+/* #buttonPanelReadyBurger {
   z-index: 3;
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -772,7 +912,7 @@ export default {
   width: 40em;
   height: 3.5em;
   bottom: 16.3em;
-}
+} */
 
 #nextButton {
   grid-column: 3;
@@ -793,7 +933,6 @@ export default {
   background-color: #0000CD;
   border: 0.1em solid black;
   color: black;
-  padding: 1em 2em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -806,7 +945,6 @@ export default {
   bottom: 0;
   position: fixed;
   left: center;
-  width: 40em;
   background-color: white;
   color: black;
   text-align: center;
@@ -832,7 +970,6 @@ export default {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1em;
   /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
@@ -846,7 +983,6 @@ export default {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1em;
   /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
@@ -859,7 +995,6 @@ export default {
   top: 1;
   padding-top: 2.5em;
   background-color: black;
-  width: 40em;
   height: 6em;
 }
 .tabs button {
@@ -871,8 +1006,6 @@ export default {
   padding: 0.7em 0.5em;
   /* padding:  14px 16px; */
   text-decoration: none;
-  font-size: 1.2em;
-  width: 5.55em;
 }
 .tabs button:hover {
   background-color:#ddd;
@@ -890,7 +1023,6 @@ export default {
 }
 .ingredient {
   border: 1px solid #ccd;
-   padding: 1em;
   /* background-image: url('~@/assets/exampleImage.jpg'); */
   background-color: black;
   color: white;
@@ -900,16 +1032,21 @@ export default {
   bottom: 0;
   right: 0;
   /* padding: 4em; */
-  margin-bottom: 5em;
   margin-right: 1em;
 }
 
-.burgerPage {
+.Page{
+    overflow: scroll;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    text-align: center;
+}
+/* .burgerPage {
   overflow: scroll;
   position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
@@ -919,9 +1056,6 @@ export default {
 .toppingPage {
   overflow: scroll;
   position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
@@ -931,34 +1065,25 @@ export default {
 .dressingPage {
   overflow: scroll;
   position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
   grid-row: 1;
   text-align: center;
-}
+} */
 .breadPage {
   z-index: 10;
   overflow: scroll;
   position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
   grid-row: 1;
   text-align: center;
 }
-.sidesPage {
+/* .sidesPage {
   overflow: scroll;
   position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
@@ -968,16 +1093,13 @@ export default {
 .beveragePage {
   overflow: scroll;
   position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column: 1 / span 3;
   grid-row: 1;
   text-align: center;
-}
-.readyBurgerPage {
+} */
+/* .readyBurgerPage {
   z-index: -1;
   overflow: scroll;
   position: absolute;
@@ -1041,5 +1163,5 @@ export default {
   grid-column: 1 / span 3;
   grid-row: 1;
   text-align: center;
-}
+} */
 </style>

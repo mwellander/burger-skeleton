@@ -12,7 +12,7 @@
     </div>
     <br>
     <br>
-    <div class="readyBurgerPage" id="readyBurgerPage">
+    <div class="breadPage" id="readyBurgerPage">
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'readyBurger'"
@@ -24,11 +24,11 @@
       :key="item.ingredient_id">
     </Ingredient>
   </div>
-  <div id="buttonPanelReadyBurger">
+  <div class="buttonPanelBread" id="buttonPanelReadyBurger">
   <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
 </div>
 
-  <div class="sidesPage2" id="sidesPage2">
+  <div class="Page" id="sidesPage2">
     <Ingredient
     ref="ingredient"
     v-show="state2 === 'sides2'"
@@ -40,12 +40,12 @@
     :key="item.ingredient_id">
   </Ingredient>
 </div>
-<div id="buttonPanelSides2">
+<div class="buttonPanel" id="buttonPanelSides2">
 <button id="previousButton" v-show="sides2" v-on:click="toReadyBurger()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="sides2" v-on:click='toBeverage2()'>{{uiLabels.next}}</button>
 </div>
 
-<div class="beveragePage2" id="beveragePage2">
+<div class="Page" id="beveragePage2">
   <Ingredient
   ref="ingredient"
   v-show="state2 === 'beverage2'"
@@ -57,7 +57,7 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
-<div id="buttonPanelBeverage3">
+<div class="buttonPanel" id="buttonPanelBeverage2">
 <button id="previousButton" v-show="beverage2" v-on:click="toSides2()">{{uiLabels.previous}}</button>
 </div>
 
@@ -67,7 +67,7 @@
     <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="readyBurgerOrder">{{uiLabels.readyBurger}}: {{ ReadyBurger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="readyBurgerOrder">{{ ReadyBurger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
       </ul>
     </div>
     <div class="column dd" style="text-align:left">
@@ -180,17 +180,43 @@ export default {
 <style>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering2 {
-  margin: auto;
-  width: 40em;
+  height: 100%;
+  min-width: 100px;
+  min-height: 100px;
 }
-
+@media screen and (min-width: 300px) {
+  #ordering2 {
+    width:20em;
+    margin-left:3%;
+    margin-right:3%;
+  }
+  .tabs2{
+    width:20em;
+  }
+  .tabs2 button {
+    width: 13.3em;
+    font-size: 0.5em;
+  }
+}
+@media screen and (min-width: 700px) {
+  #ordering2 {
+    width:40em;
+    margin:auto;
+  }
+  .tabs2{
+    width:40em;
+  }
+  .tabs2 button {
+    width: 11.1em;
+    font-size: 1.2em;
+  }
+}
 .tabs2 {
   overflow: hidden;
   position: fixed;
   top: 1;
   padding-top: 2.5em;
   background-color: black;
-  width: 40em;
   height: 6em;
 }
 .tabs2 button {
@@ -202,8 +228,6 @@ export default {
   padding: 0.7em 0.5em;
   /* padding:  14px 16px; */
   text-decoration: none;
-  font-size: 1.2em;
-  width: 11.1em;
 }
 .tabs2 button:hover {
   background-color:#ddd;

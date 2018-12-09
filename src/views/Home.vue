@@ -59,36 +59,47 @@
 </script>
 
 <style scoped>
-  #home {
-    margin: auto;
-    width: 40em;
-    background-color: black;
+  @media screen and (min-width: 300px) {
+    #home {
+      /* margin: auto; */
+      width: 20em;
+      background-color: black;
+    }
   }
-  .aaa {
-    width: 100%;
-  }
-  .buttonHome {
-    color: black;
-  }
-  .buttonHome button {
-    width: 16em;
-    margin: 3%;
-    background-color: #4CAF50;
-    border: 0.1em solid black;
-    color: black;
-    padding: 4%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 2em;
-    cursor: pointer;
-    border-radius: 1.5em;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  }
-  .createBurgerButton {
-    margin-top: 7%;
-  }
-  .buttonHome button:hover {
-    background-color:#ddd;
-  }
+  @media screen and (min-width: 700px) {
+     #home {
+        width:40em;
+        margin: auto;
+        padding:0.8em;
+     }
+   }
+     .aaa {
+       width: 100%;
+     }
+     .buttonHome {
+       color: black;
+     }
+     .buttonHome button {
+       width: 100%;
+       margin: 3%;
+       background-color: #4CAF50;
+       border: 0.1em solid black;
+       color: black;
+       padding: 4%;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       font-size: 2em;
+       cursor: pointer;
+       border-radius: 1.5em;
+       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+     }
+     .createBurgerButton {
+       margin-top: 7%;
+     }
+     .buttonHome button:hover {
+       background-color:#ddd;
+     }
+
+
 </style>
