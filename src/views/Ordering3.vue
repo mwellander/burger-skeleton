@@ -161,7 +161,7 @@ export default {
   }
 }
 @media screen and (min-width: 700px) {
-  #ordering2 {
+  #ordering3 {
     width:40em;
     margin:auto;
   }
