@@ -40,5 +40,6 @@
   "start": "Påbörja Beställning",
   "welcome": "Väkommen till NoKetchup",
   "readyBurger": "Favoritburgare",
-  "yourOrder": "Din beställning"
+  "yourOrder": "Din beställning",
+  "lang": "sv"
 }
