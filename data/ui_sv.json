@@ -41,7 +41,11 @@
   "welcome": "Väkommen till NoKetchup",
   "readyBurger": "Favoritburgare",
   "yourOrder": "Din beställning",
+<<<<<<< HEAD
   "add": "Lägg till",
   "inStock": "I lager",
   "pcs": "st"
+=======
+  "lang": "sv"
+>>>>>>> 89016935d6962454ae9a440bb52fcdbfe99cc9b4
 }

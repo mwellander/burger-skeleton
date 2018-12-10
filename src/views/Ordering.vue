@@ -37,7 +37,7 @@
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
     :item="item"
-    :lang="lang"
+    :lang="uiLabels.lang"
     :key="item.ingredient_id">
   </Ingredient>
   </div>
@@ -157,7 +157,7 @@
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
   <div style="text-align:right">
-    <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+    <a href="#/home"><button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button></a>
     <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
@@ -185,7 +185,7 @@ import OrderItem from '@/components/OrderItem.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
-
+import store from '@/store.js'
 /* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
@@ -194,11 +194,10 @@ export default {
     Ingredient,
     OrderItem
   },
-  mixins: [sharedVueStuff], // include stuff that is used in both
+  mixins: [sharedVueStuff,store], // include stuff that is used in both
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
-
       chosenIngredients:[],
       chosenIngredientsBurger: [],
       chosenIngredientsSides: [],
@@ -249,7 +248,9 @@ export default {
   },
   methods: {
     sendOrderHome: function() {
-      this.nrBurgerOrder++;
+      this.nrBurgerOrder+=1;
+      console.log(store.getters.getChosenIngredients4)
+      // console.log(this.chosenIngredients)
     },
     startOrder: function(){
       this.started=true;
@@ -523,6 +524,7 @@ export default {
       buttonPanelBeverage.style.display = "grid";
     },
     addToOrder: function (item) {
+      store.commit('addToOrder2',item);
       this.chosenIngredients.push(item);
       if(item.category===5 || item.category===6){
         this.chosenIngredientsSides.push(item);
@@ -572,7 +574,7 @@ export default {
       var i,
       //Wrap the order in an object
       order = {
-        ingredients: this.chosenIngredients,
+        ingredients: store.getters.getChosenIngredients4,
         price: this.price
       };
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
@@ -619,7 +621,7 @@ export default {
       this.sides3=false;
       this.beverage3=false;
     }
-  },
+  }
 }
 </script>
 <style>
@@ -752,13 +754,13 @@ export default {
      font-size:1em;
    }
    .orderButtonO{
-     font-size:1;
+     font-size:1em;
    }
    .cancelButton{
-     font-size:1;
+     font-size:1em;
    }
    .totalText{
-     font-size:1em;
+     font-size:1.1em;
      margin-bottom: 4em;
    }
    .column{
