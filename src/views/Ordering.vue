@@ -37,7 +37,7 @@
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
     :item="item"
-    :lang="lang"
+    :lang="uiLabels.lang"
     :key="item.ingredient_id">
   </Ingredient>
   </div>

@@ -39,5 +39,6 @@
   "readyBurger":"Favourite Burgers",
   "start": "Start Order",
   "welcome": "Welcome to NoKetchup",
-  "yourOrder": "Your order"
+  "yourOrder": "Your order",
+  "lang": "en"
 }
