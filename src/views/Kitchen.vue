@@ -1,49 +1,52 @@
 <template>
   <section class="orders">
 
-  <div class="box a">{{ uiLabels.staffView }}
-      <button v-on:click="switchLang()" class="LanguageButton">{{ uiLabels.language }}</button>
-      <button v-on:click="stockView()" class="OrderButton" id="OrderButton">{{ uiLabels.ordersToView }}</button>
-      <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
-</div>
-
-<div id="currentStock">
-  <div class="tabs">
-    <button class="tabButton" v-on:click="toBurger()">{{uiLabels.burger}}</button>
-    <button class="tabButton" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
-    <button class="tabButton" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
-    <button class="tabButton" v-on:click="toBread()">{{uiLabels.bread}}</button>
-    <button class="tabButton" v-on:click="toSides()">{{uiLabels.sides}}</button>
-    <button class="tabButton" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+  <div class="box a">
+    {{ uiLabels.staffView }}
+    <button v-on:click="switchLang()" class="LanguageButtonK">{{ uiLabels.language }}</button>
+    <button v-on:click="stockView()" class="OrderButtonK" id="OrderButton">{{ uiLabels.ordersToView }}</button>
+    <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
   </div>
+  <div id="currentStock">
+    <div class="tabsKitchen">
+      <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
+      <button v-on:click="toToppings()">{{uiLabels.toppings}}</button>
+      <button v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+      <button v-on:click="toBread()">{{uiLabels.bread}}</button>
+      <button v-on:click="toSides()">{{uiLabels.sides}}</button>
+      <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+    </div>
+
+    <br>
+    <br>
+    <br>
 
   <!-- kom ihåg att ändra addToOrder-funktionen (ska vara en funktion som antingen
   minskar eller ökar saldot) -->
+    <IngredientKitchen
+      ref="ingredientKitchen"
+      v-show="state === 'burger'"
+      v-if="item.category===1"
+      v-for="item in ingredients"
+      v-on:updateStock="updateStock(item, $event)"
+      :item="item"
+      :lang="lang"
+      :key="item.ingredient_id">
+    </IngredientKitchen>
 
-    <Ingredient
-        ref="ingredient"
-        v-show="state === 'burger'"
-        v-if="item.category===1"
-        v-for="item in ingredients"
-        v-on:updateStock="updateStock(item, $event)"
-        :item="item"
-        :lang="lang"
-        :key="item.ingredient_id">
-      </Ingredient>
+    <IngredientKitchen
+      ref="ingredientKitchen"
+      v-show="state === 'toppings'"
+      v-if="item.category===2"
+      v-for="item in ingredients"
+      v-on:increment="addToOrder(item)"
+      :item="item"
+      :lang="lang"
+      :key="item.ingredient_id">
+    </IngredientKitchen>
 
-      <Ingredient
-        ref="ingredient"
-        v-show="state === 'toppings'"
-        v-if="item.category===2"
-        v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
-        :item="item"
-        :lang="lang"
-        :key="item.ingredient_id">
-      </Ingredient>
-
-      <Ingredient
-        ref="ingredient"
+      <IngredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'dressing'"
         v-if="item.category===3"
         v-for="item in ingredients"
@@ -51,10 +54,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
-      <Ingredient
-        ref="ingredient"
+      <IngredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'bread'"
         v-if="item.category===4"
         v-for="item in ingredients"
@@ -62,10 +65,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
-      <Ingredient
-        ref="ingredient"
+      <IngredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'sides'"
         v-if="item.category===5"
         v-for="item in ingredients"
@@ -73,10 +76,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
-      <Ingredient
-        ref="ingredient"
+      <IngredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'beverage'"
         v-if="item.category===6"
         v-for="item in ingredients"
@@ -84,9 +87,9 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
-</div>
+  </div>
 
   <div class="box b" id="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
   <div class="box c" id="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
@@ -116,17 +119,17 @@
       :key="key">
     </OrderItemStarted>
   </div>
-   <div class="box g" id="box g">
-     <OrderItem
-       v-for="(order, key) in orders"
-       v-if="order.status === 'done'"
-       :order-id="key"
-       :order="order"
-       :lang="lang"
-       :ui-labels="uiLabels"
+  <div class="box g" id="box g">
+    <OrderItem
+      v-for="(order, key) in orders"
+      v-if="order.status === 'done'"
+      :order-id="key"
+      :order="order"
+      :lang="lang"
+      :ui-labels="uiLabels"
        :key="key">
-     </OrderItem>
-</div>
+    </OrderItem>
+  </div>
 </section>
 
 </template>
@@ -135,6 +138,7 @@ import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemStarted from '@/components/OrderItemStarted.vue'
 import Ingredient from '@/components/Ingredient.vue'
+import IngredientKitchen from '@/components/IngredientKitchen.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -145,7 +149,8 @@ export default {
     OrderItem,
     OrderItemToPrepare,
     OrderItemStarted,
-    Ingredient
+    Ingredient,
+    IngredientKitchen
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -324,15 +329,14 @@ export default {
 }
 
 .a {
-display: grid;
-grid-template-columns: 20% 60% 20%;
- grid-column: 1 / span 3;
- grid-row: 1;
- top: 0;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  top: 0;
   background-color: black;
   color: white;
   text-align: center;
-
 }
 
 .StockButton {
@@ -350,7 +354,7 @@ grid-template-columns: 20% 60% 20%;
   grid-row: 1;
 }
 
-.OrderButton {
+.OrderButtonK {
   background-color: #000000;
   border: 2px solid #fff;
   color: white;
@@ -365,7 +369,7 @@ grid-template-columns: 20% 60% 20%;
   grid-row: 1;
 }
 
-.LanguageButton {
+.LanguageButtonK {
   background-color: #000000;
   border: 2px solid #fff;
   color: white;
@@ -379,31 +383,34 @@ grid-template-columns: 20% 60% 20%;
   grid-column: 1;
   grid-row: 1;
 }
-
-.tabButton{
+.tabsKitchen {
   background-color: #000000;
+  overflow: hidden;
+  position: fixed;
+  top: 1;
+  margin-top: 0em;
+  z-index: 20;
+}
+
+.tabsKitchen button{
   border: 2px solid #fff;
   color: white;
   padding: 15px 32px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 100%;
   margin: 4px 2px;
   cursor: pointer;
 }
-
+.tabsKitchen button:hover {
+  background-color:#ddd;
+}
 .b {
-
   grid-column: 1 ;
   grid-row: 2 / span 1;
   height: 3,5em;
   text-align: center;
   font-size: 100%;
-
-
-
-
 }
 .c {
     grid-column: 2 ;
@@ -411,9 +418,6 @@ grid-template-columns: 20% 60% 20%;
     height: 3,5em;
     text-align: center;
     font-size: 100%;
-
-
-
 }
 .d {
     grid-column: 3 ;
@@ -421,9 +425,6 @@ grid-template-columns: 20% 60% 20%;
     height: 3,5em;
     text-align: center;
     font-size: 100%;
-
-
-
 }
 .e {
   overflow: scroll;

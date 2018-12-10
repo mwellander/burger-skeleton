@@ -1,23 +1,29 @@
 <template>
   <div class="ingredientKitchen">
     <label>
-      {{item["ingredient_"+ lang]}}, {{item.stock}}
-      <label for="addStock"></label>
-      <input type="number" v-model="stock">
-      <button type="submit" v-on:click="updateStock">add</button>
+      {{item["ingredient_"+ lang]}}, {{uiLabels.inStock}}: {{item.stock}}{{uiLabels.pcs}}
+      <!-- <label for="addStock"></label> -->
+      <br>
+      <form id="stockInput">
+        <input type="number">
+      </form>
+      <button type="submit" v-on:click="updateStock()">{{uiLabels.add}}</button>
     </label>
   </div>
 </template>
 <script>
+import sharedVueStuff from '@/components/sharedVueStuff.js'
 export default {
   name: 'IngredientKitchen',
   props: {
     item: Object,
     lang: String
   },
+  mixins: [sharedVueStuff],
+
     data: function () {
     return {
-      stock: this.item.stock
+      stock: this.item.stock,
     };
   },
   // computed: {
@@ -27,7 +33,9 @@ export default {
     updateStock: function () {
       // sending 'increment' message to parent component or view so that it
       // can catch it with v-on:increment in the component declaration
-      this.$emit('updateStock', this.stock);
+      //this.stockAdd = document.getElementById("stockInput").value;
+      //this.$emit('updateStock', this.stock);
+      document.getElementById("stockInput").reset();
     },
     resetCounter: function () {
       this.counter = 0;}
