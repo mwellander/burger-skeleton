@@ -66,7 +66,7 @@
 
   <div style="text-align:right">
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 
 </div>
@@ -109,6 +109,9 @@ export default {
     }.bind(this));
   },
   methods:{
+    sendOrderHome3: function() {
+      store.commit('addNoBurger',this.path);
+    },
     addToOrder3: function(item){
       this.chosenIngredients.push(item);
       if(item.category===5 || item.category===6){

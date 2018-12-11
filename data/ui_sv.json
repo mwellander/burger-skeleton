@@ -44,5 +44,8 @@
   "add": "Lägg till",
   "inStock": "I lager",
   "pcs": "st",
-  "lang": "sv"
+  "lang": "sv",
+  "change":"Ändra",
+  "saveChange":"Spara Ändring",
+  "cancelChange":"Avbryt Ändring"
 }

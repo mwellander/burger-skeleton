@@ -83,7 +83,7 @@
 
   <div style="text-align:right">
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 
 </div>
@@ -128,12 +128,16 @@ export default {
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
+
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
       this.orderNumber = data;
     }.bind(this));
   },
   methods: {
+    sendOrderHome2: function() {
+      store.commit('addNoBurger',this.path);
+    },
     addToOrder2: function(item){
       this.chosenIngredients.push(item);
       if(item.category===5 || item.category===6){

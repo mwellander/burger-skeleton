@@ -18,8 +18,11 @@
         <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
-            <p>{{noBurger}}</p>
-            <li v-bind:key="(noB,path)" v-for="(noB,path) in noBurger"> {{uiLabels.burger}} {{ noB }}</li>
+            <li v-bind:key="(key.noB)" v-for="key in noBurger">
+              {{uiLabels.burger}} {{ key.noB }} {{key.ingredients.ingredient_sv}}
+              <a :href="key.path">
+                <button v-on:click="changeOrder(key.noB,key.ingredients)" class="changeButton">{{uiLabels.change}}
+                </button></a></li>
           </ul>
 
           <!-- <ul style="list-style-type:none">
@@ -63,7 +66,9 @@
     }
   },
   methods: {
-
+    changeOrder: function(key,ingredients){
+      store.commit('changeOrder',key,ingredients);
+    }
   }
 }
 </script>

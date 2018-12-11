@@ -27,11 +27,6 @@ export default {
     OrderItem
   },
   mixins: [sharedVueStuff],
-  data: function() {
-    return {
-      //lang: "en"
-    }
-  },
   methods: {
   }
 

@@ -30,7 +30,7 @@
       v-for="item in ingredients"
       v-on:updateStock="updateStock(item, $event)"
       :item="item"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :key="item.ingredient_id">
     </IngredientKitchen>
 
@@ -41,9 +41,32 @@
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
       :item="item"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :key="item.ingredient_id">
     </IngredientKitchen>
+
+    <ingredientKitchen
+        ref="ingredientKitchen"
+        v-show="state === 'burger'"
+        v-if="item.category===1"
+        v-for="item in ingredients"
+        v-on:updateStock="updateStock(item, $event)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </IngredientKitchen>
+
+      <IngredientKitchen
+        ref="ingredientKitchen"
+        v-show="state === 'toppings'"
+        v-if="item.category===2"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </IngredientKitchen>
+
 
       <IngredientKitchen
         ref="ingredientKitchen"
@@ -52,7 +75,7 @@
         v-for="item in ingredients"
         v-on:increment="addToOrder(item)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -63,7 +86,7 @@
         v-for="item in ingredients"
         v-on:increment="addToOrder(item)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -74,7 +97,7 @@
         v-for="item in ingredients"
         v-on:increment="addToOrder(item)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -85,7 +108,7 @@
         v-for="item in ingredients"
         v-on:increment="addToOrder(item)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -103,7 +126,7 @@
       :order-id="key"
       :order="order"
       :ui-labels="uiLabels"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :key="key">
     </OrderItemToPrepare>
   </div>
@@ -114,7 +137,7 @@
       v-on:done="markDone(key)"
       :order-id="key"
       :order="order"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :ui-labels="uiLabels"
       :key="key">
     </OrderItemStarted>
@@ -125,7 +148,7 @@
       v-if="order.status === 'done'"
       :order-id="key"
       :order="order"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :ui-labels="uiLabels"
        :key="key">
     </OrderItem>
@@ -171,6 +194,7 @@ export default {
   methods: {
     updateStock: function(item, payload){
       this.$store.state.socket.emit("updateStock", {item,payload});
+
     },
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
@@ -462,6 +486,11 @@ export default {
 }
 
 .ingredient {
+  border: 1px solid #ccd;
+  padding: 1em;
+  color: black;
+}
+.ingredientKitchen {
   border: 1px solid #ccd;
   padding: 1em;
   color: black;

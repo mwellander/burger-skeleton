@@ -36,6 +36,7 @@
     v-if="item.category===4"
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
+    v-on:decrement="decreaseBread(item)"
     :item="item"
     :lang="uiLabels.lang"
     :key="item.ingredient_id">
@@ -53,7 +54,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -71,7 +72,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -89,7 +90,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -107,7 +108,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -124,7 +125,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -139,16 +140,16 @@
     <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
     </div>
     <div class="column dd" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
       <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
     </div>
@@ -158,7 +159,7 @@
 
   <div style="text-align:right">
     <a href="#/home"><button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button></a>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
@@ -198,6 +199,7 @@ export default {
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
+      chosenIngredients5:[],
       chosenIngredients:[],
       chosenIngredientsBurger: [],
       chosenIngredientsSides: [],
@@ -225,9 +227,14 @@ export default {
       beverage:false,
       started:false,
       nrBurgerOrder: 0,
-      path:"customburger"
+      path:"#/customburger",
+      change:false
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
+  },
+  mounted:function(){
+        this.makeArray();
+        this.addChangeOrder(this.chosenIngredients5);
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
@@ -235,8 +242,18 @@ export default {
     }.bind(this));
   },
   methods: {
-    sendOrderHome: function(path) {
-      store.commit('addNoBurger',path);
+    decreaseBread: function(item){
+      this.bread = this.bread.filter(function (item) {
+          return bread != item.ingredient_id;
+      });
+
+    //this.Bread.splice('ingredient_id',1)
+    //this.delete(this.bread,'ingredient_id')
+
+
+    },
+    sendOrderHome: function() {
+      store.commit('addNoBurger',this.path);
     },
     startOrder: function(){
       this.started=true;
@@ -543,6 +560,50 @@ export default {
       }
       this.price += +item.selling_price;
       store.commit('addToOrder4',item);
+    },
+    makeArray: function(){
+      this.chosenIngredients=store.getters.getChangeIngredients;
+    },
+    addChangeOrder: function(chosenIngredients5) {
+      if(chosenIngredients5.length>0){
+        change=false;
+      }
+      var i;
+      for(i=0;i<chosenIngredients5.length;i++){
+      chosenIngredients5.push(chosenIngredients5[i]);
+      if(chosenIngredients5[i].category===5 || chosenIngredients5[i].category===6){
+        this.chosenIngredientsSides.push(chosenIngredients5[i]);
+        if(chosenIngredients5[i].category===5){
+          this.Sides.push(chosenIngredients5[i]);
+          this.sidesOrder=true;
+        }
+        else{
+          this.Beverage.push(chosenIngredients5[i]);
+          this.beverageOrder=true;
+        }
+      }
+      else{
+        this.chosenIngredientsBurger.push(chosenIngredients5[i]);
+        if(chosenIngredients5[i].category===1){
+          this.Burger.push(chosenIngredients5[i]);
+          this.burgerOrder=true;
+        }
+        if(chosenIngredients5[i].category===2){
+          this.Toppings.push(chosenIngredients5[i]);
+          this.toppingsOrder=true;
+        }
+        if(chosenIngredients5[i].category===3){
+          this.Dressing.push(chosenIngredients5[i]);
+          this.dressingOrder=true;
+        }
+        if(chosenIngredients5[i].category===4){
+          this.Bread.push(chosenIngredients5[i]);
+          this.breadOrder=true;
+        }
+      }
+      this.price += +chosenIngredients5[i].selling_price;
+      store.commit('addToOrder4',this.chosenIngredients5[i]);
+    }
     },
     placeOrder: function () {
       var i,
