@@ -136,12 +136,16 @@ export default {
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
+
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
       this.orderNumber = data;
     }.bind(this));
   },
   methods: {
+    sendOrderHome2: function() {
+      store.commit('addNoBurger',this.path);
+    },
     addToOrder2: function(item){
       this.chosenIngredients.push(item);
       if(item.category===5 || item.category===6){

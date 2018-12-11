@@ -450,7 +450,6 @@ export default {
     height: 3,5em;
     text-align: center;
     font-size: 100%;
-
 }
 .d {
     grid-column: 3 ;

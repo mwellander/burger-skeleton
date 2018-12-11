@@ -207,6 +207,7 @@ export default {
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
+      chosenIngredients5:[],
       chosenIngredients:[],
       chosenIngredientsBurger: [],
       chosenIngredientsSides: [],
@@ -234,10 +235,15 @@ export default {
       beverage:false,
       started:false,
       nrBurgerOrder: 0,
-      path:"customburger",
+      path:"#/customburger",
+      change:false,
       alert: false
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
+  },
+  mounted:function(){
+        this.makeArray();
+        this.addChangeOrder(this.chosenIngredients5);
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
@@ -245,11 +251,9 @@ export default {
     }.bind(this));
   },
   methods: {
-
-
     decreaseBread: function(item){
       this.bread = this.bread.filter(function (item) {
-          return bread != ingredient_id;
+          return bread != item.ingredient_id;
       });
 
     //this.Bread.splice('ingredient_id',1)
@@ -566,6 +570,50 @@ export default {
       }
       this.price += +item.selling_price;
       store.commit('addToOrder4',item);
+    },
+    makeArray: function(){
+      this.chosenIngredients=store.getters.getChangeIngredients;
+    },
+    addChangeOrder: function(chosenIngredients5) {
+      if(chosenIngredients5.length>0){
+        this.change=false;
+      }
+      var i;
+      for(i=0;i<chosenIngredients5.length;i++){
+      chosenIngredients5.push(chosenIngredients5[i]);
+      if(chosenIngredients5[i].category===5 || chosenIngredients5[i].category===6){
+        this.chosenIngredientsSides.push(chosenIngredients5[i]);
+        if(chosenIngredients5[i].category===5){
+          this.Sides.push(chosenIngredients5[i]);
+          this.sidesOrder=true;
+        }
+        else{
+          this.Beverage.push(chosenIngredients5[i]);
+          this.beverageOrder=true;
+        }
+      }
+      else{
+        this.chosenIngredientsBurger.push(chosenIngredients5[i]);
+        if(chosenIngredients5[i].category===1){
+          this.Burger.push(chosenIngredients5[i]);
+          this.burgerOrder=true;
+        }
+        if(chosenIngredients5[i].category===2){
+          this.Toppings.push(chosenIngredients5[i]);
+          this.toppingsOrder=true;
+        }
+        if(chosenIngredients5[i].category===3){
+          this.Dressing.push(chosenIngredients5[i]);
+          this.dressingOrder=true;
+        }
+        if(chosenIngredients5[i].category===4){
+          this.Bread.push(chosenIngredients5[i]);
+          this.breadOrder=true;
+        }
+      }
+      this.price += +chosenIngredients5[i].selling_price;
+      store.commit('addToOrder4',this.chosenIngredients5[i]);
+    }
     },
     placeOrder: function () {
       var i,

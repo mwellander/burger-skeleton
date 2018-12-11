@@ -115,6 +115,9 @@ export default {
     }.bind(this));
   },
   methods:{
+    sendOrderHome3: function() {
+      store.commit('addNoBurger',this.path);
+    },
     addToOrder3: function(item){
       this.chosenIngredients.push(item);
       if(item.category===5 || item.category===6){
