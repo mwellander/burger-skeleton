@@ -47,5 +47,8 @@
   "lang": "sv",
   "change":"Ändra",
   "saveChange":"Spara Ändring",
-  "cancelChange":"Avbryt Ändring"
+  "cancelChange":"Avbryt Ändring",
+  "confirmMess": "Är du säker på att du vill avbryta din order?",
+  "yes": "Ja!",
+  "no": "Nej!"
 }

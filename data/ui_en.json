@@ -46,5 +46,8 @@
   "lang": "en",
   "change":"change",
   "saveChange":"Save Change",
-  "cancelChange":"Cancel Change"
+  "cancelChange":"Cancel Change",
+  "confirmMess": "Are you sure you want to cancel your order?",
+  "yes": "Yes!",
+  "no": "No!"
 }
