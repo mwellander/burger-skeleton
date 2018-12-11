@@ -45,7 +45,6 @@
       :key="item.ingredient_id">
     </IngredientKitchen>
 
-<<<<<<< HEAD
     <ingredientKitchen
         ref="ingredientKitchen"
         v-show="state === 'burger'"
@@ -53,7 +52,7 @@
         v-for="item in ingredients"
         v-on:updateStock="updateStock(item, $event)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -64,12 +63,10 @@
         v-for="item in ingredients"
         v-on:increment="addToOrder(item)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
-=======
->>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
       <IngredientKitchen
         ref="ingredientKitchen"
         v-show="state === 'dressing'"
@@ -435,32 +432,23 @@ export default {
 .b {
   grid-column: 1 ;
   grid-row: 2 / span 1;
-<<<<<<< HEAD
-=======
   height: 3,5em;
   text-align: center;
   font-size: 100%;
->>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
 }
 .c {
     grid-column: 2 ;
     grid-row: 2 / span 1;
-<<<<<<< HEAD
-=======
     height: 3,5em;
     text-align: center;
     font-size: 100%;
->>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
 }
 .d {
     grid-column: 3 ;
     grid-row: 2 / span 1;
-<<<<<<< HEAD
-=======
     height: 3,5em;
     text-align: center;
     font-size: 100%;
->>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
 }
 .e {
   overflow: scroll;

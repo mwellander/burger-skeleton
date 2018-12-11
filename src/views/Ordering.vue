@@ -158,8 +158,8 @@
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
   <div style="text-align:right">
-    <a href="#/home"><button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button></a>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
+    <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
@@ -186,7 +186,7 @@ import OrderItem from '@/components/OrderItem.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
-import store from '@/store.js'
+
 /* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
@@ -195,10 +195,11 @@ export default {
     Ingredient,
     OrderItem
   },
-  mixins: [sharedVueStuff,store], // include stuff that is used in both
+  mixins: [sharedVueStuff], // include stuff that is used in both
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
+
       chosenIngredients:[],
       chosenIngredientsBurger: [],
       chosenIngredientsSides: [],
@@ -226,7 +227,19 @@ export default {
       beverage:false,
       started:false,
       nrBurgerOrder: 0,
-      path:"customburger"
+
+      chosenIngredients2:[],
+      chosenIngredientsBurger2: [],
+      chosenIngredientsSides2: [],
+      Sides2: [],
+      Beverage2: [],
+      ReadyBurger: [],
+
+
+      chosenIngredients3:[],
+      chosenIngredientsSides3: [],
+      Sides3: [],
+      Beverage3: []
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -236,24 +249,41 @@ export default {
     }.bind(this));
   },
   methods: {
-<<<<<<< HEAD
+
+    indexFinder: function(Bread){
+      return Bread.ingredient_id != item.ingredient_id;
+
+    },
 
     decreaseBread: function(item){
-      this.bread = this.bread.filter(function (item) {
-          return bread != ingredient_id;
-      });
+      //this.Bread.ingredient_id = item.ingredient_id
+      //var  i = this.Bread.indexOf(this.Bread.ingredient_id)
 
-    //this.Bread.splice('ingredient_id',1)
+
+       //var i = this.Bread.findindex(indexFinder);
+       //this.Bread.splice(i,1)
+
+      //console.log(this.Bread)
+      //console.log(this.Bread.ingredient_id)
+      console.log(i)
+
+ //for (var i = 0; i = this.Bread.length-1; i--){
+         //console.log(this.Bread[i])
+          //if ( this.Bread.ingredient_id === item.ingredient_id){
+           //this.Bread.splice([i],1);}}
+
+       var i = this.Bread.findIndex(function(Bread){
+       return Bread.ingredient_id === item.ingredient_id;
+     });
+     console.log(i)
+
+     if (i != -1 ){
+     this.Bread.splice(i,1)}
+    //this.Bread.splice('item.ingredient_id',1)
     //this.delete(this.bread,'ingredient_id')
-
-
     },
     sendOrderHome: function() {
       this.nrBurgerOrder++;
-=======
-    sendOrderHome: function(path) {
-      store.commit('addNoBurger',this.path);
->>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
     },
     startOrder: function(){
       this.started=true;
@@ -533,11 +563,23 @@ export default {
         if(item.category===5){
           this.Sides.push(item);
           this.sidesOrder=true;
+          this.Sides2.push(item);
+          this.sidesOrder2=true;
+          this.Sides3.push(item);
+          this.sidesOrder3=true;
         }
         else{
           this.Beverage.push(item);
           this.beverageOrder=true;
+          this.Beverage2.push(item);
+          this.beverageOrder2=true;
+          this.Beverage3.push(item);
+          this.beverageOrder3=true;
         }
+      }
+      else if(item.category===7){
+        this.ReadyBurger.push(item);
+        this.readyBurgerOrder=true;
       }
       else{
         this.chosenIngredientsBurger.push(item);
@@ -559,13 +601,12 @@ export default {
         }
       }
       this.price += +item.selling_price;
-      store.commit('addToOrder4',item);
     },
     placeOrder: function () {
       var i,
       //Wrap the order in an object
       order = {
-        ingredients: store.getters.getChosenIngredients4,
+        ingredients: this.chosenIngredients,
         price: this.price
       };
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
@@ -612,7 +653,7 @@ export default {
       this.sides3=false;
       this.beverage3=false;
     }
-  }
+  },
 }
 </script>
 <style>
@@ -745,13 +786,13 @@ export default {
      font-size:1em;
    }
    .orderButtonO{
-     font-size:1em;
+     font-size:1;
    }
    .cancelButton{
-     font-size:1em;
+     font-size:1;
    }
    .totalText{
-     font-size:1.1em;
+     font-size:1em;
      margin-bottom: 4em;
    }
    .column{
