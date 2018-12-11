@@ -20,8 +20,8 @@
   <!-- kom ihåg att ändra addToOrder-funktionen (ska vara en funktion som antingen
   minskar eller ökar saldot) -->
 
-    <Ingredient
-        ref="ingredient"
+    <ingredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'burger'"
         v-if="item.category===1"
         v-for="item in ingredients"
@@ -29,10 +29,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
-      <Ingredient
-        ref="ingredient"
+      <IngredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'toppings'"
         v-if="item.category===2"
         v-for="item in ingredients"
@@ -40,10 +40,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
-      <Ingredient
-        ref="ingredient"
+      <IngredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'dressing'"
         v-if="item.category===3"
         v-for="item in ingredients"
@@ -51,10 +51,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
-      <Ingredient
-        ref="ingredient"
+      <IngredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'bread'"
         v-if="item.category===4"
         v-for="item in ingredients"
@@ -62,10 +62,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
-      <Ingredient
-        ref="ingredient"
+      <IngredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'sides'"
         v-if="item.category===5"
         v-for="item in ingredients"
@@ -73,10 +73,10 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
-      <Ingredient
-        ref="ingredient"
+      <IngredientKitchen
+        ref="ingredientKitchen"
         v-show="state === 'beverage'"
         v-if="item.category===6"
         v-for="item in ingredients"
@@ -84,7 +84,7 @@
         :item="item"
         :lang="lang"
         :key="item.ingredient_id">
-      </Ingredient>
+      </IngredientKitchen>
 
 </div>
 
@@ -135,6 +135,7 @@ import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemStarted from '@/components/OrderItemStarted.vue'
 import Ingredient from '@/components/Ingredient.vue'
+import IngredientKitchen from '@/components/IngredientKitchen.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -145,7 +146,8 @@ export default {
     OrderItem,
     OrderItemToPrepare,
     OrderItemStarted,
-    Ingredient
+    Ingredient,
+    IngredientKitchen
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -165,7 +167,9 @@ export default {
   },
   methods: {
     updateStock: function(item, payload){
+      console.log(item, payload )
       this.$store.state.socket.emit("updateStock", {item,payload});
+
     },
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
@@ -332,7 +336,6 @@ grid-template-columns: 20% 60% 20%;
   background-color: black;
   color: white;
   text-align: center;
-
 }
 
 .StockButton {
@@ -397,33 +400,14 @@ grid-template-columns: 20% 60% 20%;
 
   grid-column: 1 ;
   grid-row: 2 / span 1;
-  height: 3,5em;
-  text-align: center;
-  font-size: 100%;
-
-
-
-
 }
 .c {
     grid-column: 2 ;
     grid-row: 2 / span 1;
-    height: 3,5em;
-    text-align: center;
-    font-size: 100%;
-
-
-
 }
 .d {
     grid-column: 3 ;
     grid-row: 2 / span 1;
-    height: 3,5em;
-    text-align: center;
-    font-size: 100%;
-
-
-
 }
 .e {
   overflow: scroll;
@@ -461,6 +445,11 @@ grid-template-columns: 20% 60% 20%;
 }
 
 .ingredient {
+  border: 1px solid #ccd;
+  padding: 1em;
+  color: black;
+}
+.ingredientKitchen {
   border: 1px solid #ccd;
   padding: 1em;
   color: black;

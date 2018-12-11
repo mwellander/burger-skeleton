@@ -36,6 +36,7 @@
     v-if="item.category===4"
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
+    v-on:decrement="decreaseBread(item)"
     :item="item"
     :lang="lang"
     :key="item.ingredient_id">
@@ -248,6 +249,17 @@ export default {
     }.bind(this));
   },
   methods: {
+
+    decreaseBread: function(item){
+      this.bread = this.bread.filter(function (item) {
+          return bread != ingredient_id;
+      });
+
+    //this.Bread.splice('ingredient_id',1)
+    //this.delete(this.bread,'ingredient_id')
+
+
+    },
     sendOrderHome: function() {
       this.nrBurgerOrder++;
     },
