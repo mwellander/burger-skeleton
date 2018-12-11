@@ -566,7 +566,7 @@ export default {
     },
     addChangeOrder: function(chosenIngredients5) {
       if(chosenIngredients5.length>0){
-        change=false;
+        this.change=false;
       }
       var i;
       for(i=0;i<chosenIngredients5.length;i++){
