@@ -30,7 +30,7 @@
       v-for="item in ingredients"
       v-on:updateStock="updateStock(item, $event)"
       :item="item"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :key="item.ingredient_id">
     </IngredientKitchen>
 
@@ -41,7 +41,7 @@
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
       :item="item"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :key="item.ingredient_id">
     </IngredientKitchen>
 
@@ -77,7 +77,7 @@
         v-for="item in ingredients"
         v-on:increment="addToOrder(item)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -88,7 +88,7 @@
         v-for="item in ingredients"
         v-on:increment="addToOrder(item)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -99,7 +99,7 @@
         v-for="item in ingredients"
         v-on:increment="addToOrder(item)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -110,7 +110,7 @@
         v-for="item in ingredients"
         v-on:increment="addToOrder(item)"
         :item="item"
-        :lang="lang"
+        :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -128,7 +128,7 @@
       :order-id="key"
       :order="order"
       :ui-labels="uiLabels"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :key="key">
     </OrderItemToPrepare>
   </div>
@@ -139,7 +139,7 @@
       v-on:done="markDone(key)"
       :order-id="key"
       :order="order"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :ui-labels="uiLabels"
       :key="key">
     </OrderItemStarted>
@@ -150,7 +150,7 @@
       v-if="order.status === 'done'"
       :order-id="key"
       :order="order"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :ui-labels="uiLabels"
        :key="key">
     </OrderItem>
