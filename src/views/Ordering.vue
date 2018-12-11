@@ -157,9 +157,13 @@
 
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
-  <div style="text-align:right">
-      <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
+  <div v-show="change" style="text-align:right">
+                   <button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button>
+  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.placeOrder }}</button></a>
+  </div>
+  <div v-show="!change" style="text-align:right">
+                   <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.saveChange }}</button>
+  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
 </div>
@@ -242,8 +246,8 @@ export default {
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
   mounted:function(){
-        this.makeArray();
-        this.addChangeOrder(this.chosenIngredients5);
+    this.makeArray();
+    // this.addChangeOrder();
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
@@ -251,18 +255,21 @@ export default {
     }.bind(this));
   },
   methods: {
-    decreaseBread: function(item){
-      this.bread = this.bread.filter(function (item) {
-          return bread != item.ingredient_id;
-      });
+    // decreaseBread: function(item){
+    //   this.bread = this.bread.filter(function (item) {
+    //       return bread != item.ingredient_id;
+    //   });
 
     //this.Bread.splice('ingredient_id',1)
     //this.delete(this.bread,'ingredient_id')
-
+    sendOrderHome: function() {
+      store.commit('addNoBurger', this.path);
+    },
+    saveChanges: function(){
 
     },
-    sendOrderHome: function(path) {
-      store.commit('addNoBurger', path);
+    cancelChanges: function(){
+
     },
     startOrder: function(){
       this.started=true;
@@ -572,48 +579,13 @@ export default {
       store.commit('addToOrder4',item);
     },
     makeArray: function(){
-      this.chosenIngredients=store.getters.getChangeIngredients;
-    },
-    addChangeOrder: function(chosenIngredients5) {
-      if(chosenIngredients5.length>0){
-        this.change=false;
-      }
-      var i;
-      for(i=0;i<chosenIngredients5.length;i++){
-      chosenIngredients5.push(chosenIngredients5[i]);
-      if(chosenIngredients5[i].category===5 || chosenIngredients5[i].category===6){
-        this.chosenIngredientsSides.push(chosenIngredients5[i]);
-        if(chosenIngredients5[i].category===5){
-          this.Sides.push(chosenIngredients5[i]);
-          this.sidesOrder=true;
-        }
-        else{
-          this.Beverage.push(chosenIngredients5[i]);
-          this.beverageOrder=true;
+      this.chosenIngredients5=store.getters.getChangeIngredients;
+      if(this.chosenIngredients5.length>0){
+        for(var i=0;i<this.chosenIngredients5.length;i++){
+          this.addToOrder(this.chosenIngredients5[i]);
+          this.change=true;
         }
       }
-      else{
-        this.chosenIngredientsBurger.push(chosenIngredients5[i]);
-        if(chosenIngredients5[i].category===1){
-          this.Burger.push(chosenIngredients5[i]);
-          this.burgerOrder=true;
-        }
-        if(chosenIngredients5[i].category===2){
-          this.Toppings.push(chosenIngredients5[i]);
-          this.toppingsOrder=true;
-        }
-        if(chosenIngredients5[i].category===3){
-          this.Dressing.push(chosenIngredients5[i]);
-          this.dressingOrder=true;
-        }
-        if(chosenIngredients5[i].category===4){
-          this.Bread.push(chosenIngredients5[i]);
-          this.breadOrder=true;
-        }
-      }
-      this.price += +chosenIngredients5[i].selling_price;
-      store.commit('addToOrder4',this.chosenIngredients5[i]);
-    }
     },
     placeOrder: function () {
       var i,

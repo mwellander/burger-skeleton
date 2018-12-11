@@ -19,9 +19,9 @@
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="key in noBurger">
-              {{uiLabels.burger}} {{ key.noB }} {{key.ingredients.ingredient_sv}}
+              {{uiLabels.burger}} {{ key.noB }}
               <a :href="key.path">
-                <button v-on:click="changeOrder(key.noB,key.ingredients)" class="changeButton">{{uiLabels.change}}
+                <button v-on:click="changeOrder(key.ingredients)" class="changeButton">{{uiLabels.change}}
                 </button></a></li>
           </ul>
 
@@ -66,8 +66,8 @@
     }
   },
   methods: {
-    changeOrder: function(key,ingredients){
-      store.commit('changeOrder',key,ingredients);
+    changeOrder: function(ingredients){
+      store.commit('changeOrder',ingredients);
     }
   }
 }
