@@ -139,16 +139,16 @@
     <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
     </div>
     <div class="column dd" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
       <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
     </div>
