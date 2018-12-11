@@ -1,9 +1,9 @@
 <template>
   <div class="ingredientKitchen">
     <label>
-      <form id="stockInput">
-        {{item["ingredient_"+ lang]}}, {{uiLabels.inStock}}: {{item.stock}}{{uiLabels.pcs}},
-        <input type="number">
+      <form :id="stock+item.ingredient_id">
+        {{item["ingredient_"+ uiLabels.lang]}}, {{uiLabels.inStock}}: {{item.stock}}{{uiLabels.pcs}},
+        <input type="number" :id="item.ingredient_id">
         <button type="submit" v-on:click="updateStock()">{{uiLabels.add}}</button>
       </form>
       <!-- <label for="addStock"></label> -->
@@ -38,7 +38,14 @@ export default {
       // can catch it with v-on:increment in the component declaration
       //this.stockAdd = document.getElementById("stockInput").value;
       //this.$emit('updateStock', this.stock);
-      document.getElementById("stockInput").reset();
+      var id = this.item.ingredient_id;
+      console.log("id " + id);
+      var numberToUpdate = document.getElementById(id).value;
+      console.log(Number(numberToUpdate))
+      console.log("stock " + this.item.stock);
+      this.item.stock = Number(this.item.stock) + Number(numberToUpdate);
+      console.log("stock " + this.item.stock);
+      document.getElementById(id).value = "";
     },
     resetCounter: function () {
       this.counter = 0;}

@@ -238,4 +238,14 @@ export default {
   opacity: 1;
 }
 
+#buttonPanelSides3{
+  width: 40em;
+  grid-template-columns: 20% 60% 20%;
+  height: 3.5em;
+  bottom: 16.3em;
+  z-index: 3;
+  display: grid;
+  position: fixed;
+}
+
 </style>

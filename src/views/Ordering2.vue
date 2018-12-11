@@ -180,6 +180,14 @@ export default {
       ReadyBurgerPage.style.display = "grid";
       SidesPage2.style.display = "none";
       BeveragePage2.style.display = "none";
+
+      var buttonPanelBurger = document.getElementById("buttonPanelReadyBurger");
+      var buttonPanelSides = document.getElementById("buttonPanelSides2");
+      var buttonPanelBeverage = document.getElementById("buttonPanelBeverage2");
+
+      buttonPanelBurger.style.display = "grid";
+      buttonPanelSides.style.display = "none";
+      buttonPanelBeverage.style.display = "none";
     },
     toSides2: function(){
       this.state2="sides2";
@@ -194,6 +202,14 @@ export default {
       ReadyBurgerPage.style.display = "none";
       SidesPage2.style.display = "grid";
       BeveragePage2.style.display = "none";
+
+      var buttonPanelBurger = document.getElementById("buttonPanelReadyBurger");
+      var buttonPanelSides = document.getElementById("buttonPanelSides2");
+      var buttonPanelBeverage = document.getElementById("buttonPanelBeverage2");
+
+      buttonPanelBurger.style.display = "none";
+      buttonPanelSides.style.display = "grid";
+      buttonPanelBeverage.style.display = "none";
     },
     toBeverage2:function(){
       this.state2="beverage2";
@@ -208,6 +224,14 @@ export default {
       ReadyBurgerPage.style.display = "none";
       SidesPage2.style.display = "none";
       BeveragePage2.style.display = "grid";
+
+      var buttonPanelBurger = document.getElementById("buttonPanelReadyBurger");
+      var buttonPanelSides = document.getElementById("buttonPanelSides2");
+      var buttonPanelBeverage = document.getElementById("buttonPanelBeverage2");
+
+      buttonPanelBurger.style.display = "none";
+      buttonPanelSides.style.display = "none";
+      buttonPanelBeverage.style.display = "grid";
     },
     cancelAlert2: function() {
       var background = document.getElementById("toChangeBackground2");
@@ -282,6 +306,16 @@ export default {
 
 #toChangeBackground2 {
   opacity: 1;
+}
+
+#buttonPanelReadyBurger{
+  width:40em;
+  grid-template-columns: 20% 60% 20%;
+  height: 3.5em;
+  bottom: 16.3em;
+  z-index: 3;
+  display: grid;
+  position: fixed;
 }
 
 </style>
