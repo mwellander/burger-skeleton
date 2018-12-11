@@ -40,11 +40,8 @@
   "start": "Start Order",
   "welcome": "Welcome to NoKetchup",
   "yourOrder": "Your order",
-<<<<<<< HEAD
   "add": "Add",
   "inStock": "In stock",
-  "pcs": "pcs"
-=======
+  "pcs": "pcs",
   "lang": "en"
->>>>>>> 89016935d6962454ae9a440bb52fcdbfe99cc9b4
 }

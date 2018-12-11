@@ -19,7 +19,7 @@
   v-show="state3 === 'sides3'"
   v-if="item.category===5"
   v-for="item in ingredients"
-  v-on:increment="addToOrder(item)"
+  v-on:increment="addToOrder3(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
@@ -35,7 +35,7 @@
   v-show="state3 === 'beverage3'"
   v-if="item.category===6"
   v-for="item in ingredients"
-  v-on:increment="addToOrder(item)"
+  v-on:increment="addToOrder3(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
@@ -66,7 +66,7 @@
 
   <div style="text-align:right">
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
   </div>
 
 </div>
@@ -78,6 +78,7 @@ import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 import ordering from '@/views/Ordering.vue'
+import store from '@/store.js'
 
 
 export default {
@@ -86,7 +87,7 @@ export default {
     Ingredient,
     OrderItem
   },
-  mixins: [sharedVueStuff,ordering],
+  mixins: [sharedVueStuff,ordering,store],
   data: function() { //Not that data is a function!
     return {
             start:true,
@@ -94,7 +95,12 @@ export default {
             beverageOrder3:false,
             state3:"sides3",
             sides3:true,
-            beverage3:false
+            beverage3:false,
+            chosenIngredients3:[],
+            chosenIngredientsSides3: [],
+            Sides3: [],
+            Beverage3: [],
+            path:"#/sidesandbeverage"
     }
   },
   created: function () {
@@ -103,6 +109,22 @@ export default {
     }.bind(this));
   },
   methods:{
+    addToOrder3: function(item){
+      this.chosenIngredients.push(item);
+      if(item.category===5 || item.category===6){
+        this.chosenIngredientsSides.push(item);
+        if(item.category===5){
+          this.Sides3.push(item);
+          this.sidesOrder3=true;
+        }
+        else{
+          this.Beverage3.push(item);
+          this.beverageOrder3=true;
+        }
+      }
+      this.price += +item.selling_price;
+      store.commit('addToOrder4',item);
+    },
   toSides3: function(){
     this.state3="sides3";
     this.sides3=true;
