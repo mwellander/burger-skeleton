@@ -337,6 +337,8 @@ export default {
   background-color: black;
   color: white;
   text-align: center;
+
+
 }
 
 .StockButton {
@@ -383,13 +385,16 @@ export default {
   grid-column: 1;
   grid-row: 1;
 }
-.tabsKitchen {
+.tabsKitchen align center{
   background-color: #000000;
   overflow: hidden;
   position: fixed;
   top: 1;
   margin-top: 0em;
   z-index: 20;
+
+
+
 }
 
 .tabsKitchen button{
@@ -401,6 +406,7 @@ export default {
   font-size: 100%;
   margin: 4px 2px;
   cursor: pointer;
+
 }
 .tabsKitchen button:hover {
   background-color:#ddd;
@@ -459,6 +465,8 @@ export default {
     padding: 50px 0;
     display: none;
     font-size: 100%;
+
+
 }
 
 .ingredient {

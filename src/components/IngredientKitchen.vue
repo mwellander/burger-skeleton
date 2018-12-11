@@ -1,13 +1,16 @@
 <template>
   <div class="ingredientKitchen">
     <label>
-      {{item["ingredient_"+ lang]}}, {{uiLabels.inStock}}: {{item.stock}}{{uiLabels.pcs}}
+      <form id="stockInput">
+        {{item["ingredient_"+ lang]}}, {{uiLabels.inStock}}: {{item.stock}}{{uiLabels.pcs}},
+        <input type="number">
+        <button type="submit" v-on:click="updateStock()">{{uiLabels.add}}</button>
+      </form>
       <!-- <label for="addStock"></label> -->
       <br>
-      <form id="stockInput">
-        <input type="number">
-      </form>
-      <button type="submit" v-on:click="updateStock()">{{uiLabels.add}}</button>
+      <br>
+
+
     </label>
   </div>
 </template>
