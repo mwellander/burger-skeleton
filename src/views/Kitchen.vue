@@ -45,6 +45,30 @@
       :key="item.ingredient_id">
     </IngredientKitchen>
 
+
+    <ingredientKitchen
+        ref="ingredientKitchen"
+        v-show="state === 'burger'"
+        v-if="item.category===1"
+        v-for="item in ingredients"
+        v-on:updateStock="updateStock(item, $event)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </IngredientKitchen>
+
+      <IngredientKitchen
+        ref="ingredientKitchen"
+        v-show="state === 'toppings'"
+        v-if="item.category===2"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </IngredientKitchen>
+
+
       <IngredientKitchen
         ref="ingredientKitchen"
         v-show="state === 'dressing'"
@@ -170,7 +194,9 @@ export default {
   },
   methods: {
     updateStock: function(item, payload){
+      console.log(item, payload )
       this.$store.state.socket.emit("updateStock", {item,payload});
+
     },
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
@@ -337,6 +363,8 @@ export default {
   background-color: black;
   color: white;
   text-align: center;
+
+
 }
 
 .StockButton {
@@ -383,13 +411,16 @@ export default {
   grid-column: 1;
   grid-row: 1;
 }
-.tabsKitchen {
+.tabsKitchen align center{
   background-color: #000000;
   overflow: hidden;
   position: fixed;
   top: 1;
   margin-top: 0em;
   z-index: 20;
+
+
+
 }
 
 .tabsKitchen button{
@@ -401,6 +432,7 @@ export default {
   font-size: 100%;
   margin: 4px 2px;
   cursor: pointer;
+
 }
 .tabsKitchen button:hover {
   background-color:#ddd;
@@ -418,6 +450,7 @@ export default {
     height: 3,5em;
     text-align: center;
     font-size: 100%;
+
 }
 .d {
     grid-column: 3 ;
@@ -459,9 +492,16 @@ export default {
     padding: 50px 0;
     display: none;
     font-size: 100%;
+
+
 }
 
 .ingredient {
+  border: 1px solid #ccd;
+  padding: 1em;
+  color: black;
+}
+.ingredientKitchen {
   border: 1px solid #ccd;
   padding: 1em;
   color: black;
