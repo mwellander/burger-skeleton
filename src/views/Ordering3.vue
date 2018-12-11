@@ -2,7 +2,7 @@
   <div id="ordering3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="Ordering.vue">
-
+<div id="toChangeBackground3">
         <div class="tabs3">
           <button v-on:click="toSides3()">{{uiLabels.sides}}</button>
           <button v-on:click="toBeverage3()">{{uiLabels.beverage}}</button>
@@ -21,7 +21,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -37,7 +37,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -51,12 +51,12 @@
     <div class="column aa"><h3>{{ uiLabels.beverage }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li>{{ Sides3.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li>{{ Sides3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
     </div>
     <div class="column dd" style="text-align:left">
       <ul style="list-style-type:none">
-        <li>{{ Beverage3.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li>{{ Beverage3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
       <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
     </div>
@@ -65,10 +65,15 @@
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
   <div style="text-align:right">
-    <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+    <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
     <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
   </div>
-
+</div>
+</div>
+<div class="alert" v-show="alert">
+  <div class="confirmText">{{uiLabels.confirmMess}}</div>
+<a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
+<button class="confirmNoCancel" v-on:click="cancelAlert3()">{{uiLabels.no}}</button>
 </div>
 </div>
 </template>
@@ -100,7 +105,8 @@ export default {
             chosenIngredientsSides3: [],
             Sides3: [],
             Beverage3: [],
-            path:"#/sidesandbeverage"
+            path:"#/sidesandbeverage",
+            alert: false
     }
   },
   created: function () {
@@ -158,6 +164,17 @@ export default {
 
     buttonPanelSides3.style.display = "none";
     buttonPanelBeverage3.style.display = "grid";
+  },
+  cancelAlert3: function() {
+    var background = document.getElementById("toChangeBackground3");
+    if (this.alert===false){
+      this.alert=true;
+      background.style.opacity = 0.5;
+    }
+    else {
+      this.alert=false;
+      background.style.opacity = 1;
+    }
   }
 }}
 </script>
@@ -216,6 +233,9 @@ export default {
 }
 .tabs3 button:hover {
   background-color:#ddd;
+}
+#toChangeBackground3 {
+  opacity: 1;
 }
 
 </style>

@@ -10,7 +10,7 @@
     <a href="#beverage">{{ uiLabels.beverage }}</a>
   </div> -->
   <!-- <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button> -->
-
+<div id="toChangeBackground">
   <div class="tabs">
     <button v-on:click="toBread()">{{uiLabels.bread}}</button>
     <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
@@ -157,10 +157,18 @@
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
   <div style="text-align:right">
-    <a href="#/home"><button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button></a>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
+      <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
+</div>
+
+<div class="alert" v-show="alert">
+  <div class="confirmText">{{uiLabels.confirmMess}}</div>
+<a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
+<button class="confirmNoCancel" v-on:click="cancelAlert()">{{uiLabels.no}}</button>
+</div>
+
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
   <div>
   <OrderItem
@@ -225,7 +233,8 @@ export default {
       beverage:false,
       started:false,
       nrBurgerOrder: 0,
-      path:"customburger"
+      path:"customburger",
+      alert: false
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -236,7 +245,7 @@ export default {
   },
   methods: {
     sendOrderHome: function(path) {
-      store.commit('addNoBurger',this.path);
+      store.commit('addNoBurger', path);
     },
     startOrder: function(){
       this.started=true;
@@ -285,6 +294,7 @@ export default {
       this.beverage2=false;
       this.sides3=false;
       this.beverage3=false;
+      this.alert=false;
     },
     toBurger: function(){
       this.state="burger";
@@ -594,6 +604,17 @@ export default {
       this.beverage2=false;
       this.sides3=false;
       this.beverage3=false;
+    },
+    cancelAlert: function() {
+      var background = document.getElementById("toChangeBackground");
+      if (this.alert===false){
+        this.alert=true;
+        background.style.opacity = 0.5;
+      }
+      else {
+        this.alert=false;
+        background.style.opacity = 1;
+      }
     }
   }
 }
@@ -795,100 +816,6 @@ export default {
   display: grid;
   position: fixed;
 }
-/* #buttonPanelBurger {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-} */
-/*
-#buttonPanelDressing {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-}
-
-#buttonPanelToppings {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-}
-
-#buttonPanelSides {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-}
-
-#buttonPanelBeverage {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-} */
-/* #buttonPanelReadyBurger {
-  z-index: 3;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-}
-#buttonPanelSides2 {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-}
-#buttonPanelBeverage2 {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-}
-#buttonPanelSides3 {
-  z-index: 3;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-}
-#buttonPanelBeverage3 {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-} */
 
 #nextButton {
   grid-column: 3;
@@ -1020,33 +947,6 @@ export default {
     grid-row: 1;
     text-align: center;
 }
-/* .burgerPage {
-  overflow: scroll;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
-}
-.toppingPage {
-  overflow: scroll;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
-}
-.dressingPage {
-  overflow: scroll;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
-} */
 .breadPage {
   z-index: 10;
   overflow: scroll;
@@ -1057,87 +957,67 @@ export default {
   grid-row: 1;
   text-align: center;
 }
-/* .sidesPage {
-  overflow: scroll;
-  position: absolute;
+
+.alert {
+  z-index: 100;
+  position: relative;
+  background-color: grey;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
+  width: 25em;
+  grid-template-columns: 25% 50% 25%;
+  height: 15em;
+  margin: auto;
+  padding: 1em 2em;
+  border: 0.5em solid black;
   text-align: center;
 }
-.beveragePage {
-  overflow: scroll;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
+
+.confirmText {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 2em;
+  grid-column: 1/ span 3;
   grid-row: 1;
-  text-align: center;
-} */
-/* .readyBurgerPage {
-  z-index: -1;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
 }
-.sidesPage2 {
-  z-index: -100;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+
+.confirmCancel {
+font-family: "Comic Sans MS", cursive, sans-serif;
+font-size: 1em;
+grid-column: 3;
+grid-row: 2;
+background-color: green;
+border: 0.1em solid black;
+color: black;
+padding: 1em 2em;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+cursor: pointer;
+border-radius: 1em;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+vertical-align: middle;
+margin: auto;
 }
-.beveragePage2 {
-  z-index: -100;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+
+.confirmNoCancel {
+font-family: "Comic Sans MS", cursive, sans-serif;
+font-size: 1em;
+grid-column: 1;
+grid-row: 2;
+background-color: red;
+border: 0.1em solid black;
+color: black;
+padding: 1em 2em;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+cursor: pointer;
+border-radius: 1em;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+margin: auto;
 }
-.sidesPage3 {
-  z-index: -1;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+
+#toChangeBackground {
+  opacity: 1;
 }
-.beveragePage3 {
-  z-index: -100;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
-} */
+
 </style>

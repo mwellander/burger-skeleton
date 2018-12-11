@@ -44,5 +44,8 @@
   "add": "Lägg till",
   "inStock": "I lager",
   "pcs": "st",
-  "lang": "sv"
+  "lang": "sv",
+  "confirmMess": "Är du säker på att du vill avbryta din order?",
+  "yes": "Ja!",
+  "no": "Nej!"
 }

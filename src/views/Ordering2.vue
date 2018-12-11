@@ -2,6 +2,7 @@
   <div id="ordering2">
     <link rel="stylesheet" href="Ordering.vue">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div id="toChangeBackground2">
     <div class="tabs2">
       <button v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
       <button v-on:click="toSides2()">{{uiLabels.sides}}</button>
@@ -20,7 +21,7 @@
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       :item="item"
-      :lang="lang"
+      :lang="uiLabels.lang"
       :key="item.ingredient_id">
     </Ingredient>
   </div>
@@ -36,7 +37,7 @@
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
     :item="item"
-    :lang="lang"
+    :lang="uiLabels.lang"
     :key="item.ingredient_id">
   </Ingredient>
 </div>
@@ -53,7 +54,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder2(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -67,13 +68,13 @@
     <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="readyBurgerOrder">{{ ReadyBurger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="readyBurgerOrder">{{ ReadyBurger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
     </div>
     <div class="column dd" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="sidesOrder2">{{uiLabels.sides}}: {{ Sides2.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="beverageOrder2">{{uiLabels.beverage}}: {{ Beverage2.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="sidesOrder2">{{uiLabels.sides}}: {{ Sides2.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="beverageOrder2">{{uiLabels.beverage}}: {{ Beverage2.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
       <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
     </div>
@@ -82,11 +83,17 @@
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
   <div style="text-align:right">
-    <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+    <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
     <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
   </div>
-
 </div>
+</div>
+<div class="alert" v-show="alert">
+  <div class="confirmText">{{uiLabels.confirmMess}}</div>
+<a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
+<button class="confirmNoCancel" v-on:click="cancelAlert2()">{{uiLabels.no}}</button>
+</div>
+
 </div>
 </template>
 <script>
@@ -124,7 +131,8 @@ export default {
             Sides2: [],
             Beverage2: [],
             ReadyBurger: [],
-            path:"#/favouriteburger"
+            path:"#/favouriteburger",
+            alert: false
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -200,6 +208,17 @@ export default {
       ReadyBurgerPage.style.display = "none";
       SidesPage2.style.display = "none";
       BeveragePage2.style.display = "grid";
+    },
+    cancelAlert2: function() {
+      var background = document.getElementById("toChangeBackground2");
+      if (this.alert===false){
+        this.alert=true;
+        background.style.opacity = 0.5;
+      }
+      else {
+        this.alert=false;
+        background.style.opacity = 1;
+      }
     }
   }
 }
@@ -259,6 +278,10 @@ export default {
 }
 .tabs2 button:hover {
   background-color:#ddd;
+}
+
+#toChangeBackground2 {
+  opacity: 1;
 }
 
 </style>
