@@ -257,19 +257,8 @@ export default {
 
 
     },
-    sendOrderHome: function() {
-      this.nrBurgerOrder++;
-},
     sendOrderHome: function(path) {
-<<<<<<< HEAD
       store.commit('addNoBurger', path);
-=======
-
-      store.commit('addNoBurger',path);
-
-      store.commit('addNoBurger',this.path);
-
->>>>>>> 01538ea1a85f61b2baf01123a56dd3a5a224618f
     },
     startOrder: function(){
       this.started=true;
