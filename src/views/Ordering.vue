@@ -236,7 +236,7 @@ export default {
   },
   methods: {
     sendOrderHome: function(path) {
-      store.commit('addNoBurger',this.path);
+      store.commit('addNoBurger',path);
     },
     startOrder: function(){
       this.started=true;
