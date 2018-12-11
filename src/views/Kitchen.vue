@@ -7,6 +7,7 @@
     <button v-on:click="stockView()" class="OrderButtonK" id="OrderButton">{{ uiLabels.ordersToView }}</button>
     <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
   </div>
+
   <div id="currentStock">
     <div class="tabsKitchen">
       <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
@@ -16,11 +17,11 @@
       <button v-on:click="toSides()">{{uiLabels.sides}}</button>
       <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
     </div>
-
+<!--
     <br>
     <br>
-    <br>
-
+    <br> -->
+<div id="itemInStock">
   <!-- kom ihåg att ändra addToOrder-funktionen (ska vara en funktion som antingen
   minskar eller ökar saldot) -->
     <IngredientKitchen
@@ -44,29 +45,6 @@
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
     </IngredientKitchen>
-
-    <IngredientKitchen
-        ref="ingredientKitchen"
-        v-show="state === 'burger'"
-        v-if="item.category===1"
-        v-for="item in ingredients"
-        v-on:updateStock="updateStock(item, $event)"
-        :item="item"
-        :lang="lang"
-        :key="item.ingredient_id">
-      </IngredientKitchen>
-
-      <IngredientKitchen
-        ref="ingredientKitchen"
-        v-show="state === 'toppings'"
-        v-if="item.category===2"
-        v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
-        :item="item"
-        :lang="lang"
-        :key="item.ingredient_id">
-      </IngredientKitchen>
-
 
       <IngredientKitchen
         ref="ingredientKitchen"
@@ -113,6 +91,7 @@
       </IngredientKitchen>
 
   </div>
+</div>
 
   <div class="box b" id="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
   <div class="box c" id="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
@@ -192,10 +171,11 @@ export default {
     }
   },
   methods: {
-    updateStock: function(item, payload){
-      this.$store.state.socket.emit("updateStock", {item,payload});
-
-    },
+    // updateStock: function(item, payload){
+    //   console.log(item, payload)
+    //   this.$store.state.socket.emit("updateStock", {item,payload});
+    //
+    // },
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
     },
@@ -409,16 +389,38 @@ export default {
   grid-column: 1;
   grid-row: 1;
 }
+
+#currentStock {
+    /* overflow: scroll; */
+    z-index: 2;
+    grid-column: 1 / span 3;
+    /* grid-row: 2 / span 2; */
+    width: 100%;
+    height: 40em;
+    text-align: center;
+    background-color: lightblue;
+    /* padding: 50px 0; */
+    display: none;
+    font-size: 100%;
+}
+
+#itemInStock {
+  overflow: scroll;
+  height: 30em;
+  width: 40em;
+  margin: auto;
+  text-align: left;
+}
+
 .tabsKitchen align center{
-  background-color: #000000;
+  /* background-color: #000000; */
+  /* background-color: green; */
   overflow: hidden;
-  position: fixed;
-  top: 1;
+  position: sticky;
+  top: 0;
   margin-top: 0em;
   z-index: 20;
-
-
-
+  width: 100%;
 }
 
 .tabsKitchen button{
@@ -475,22 +477,6 @@ export default {
   height: 17em;
   grid-column: 3 ;
   grid-row: 3 / span 1;
-}
-
-#currentStock {
-    overflow: scroll;
-    z-index: 2;
-    grid-column: 1 / span 3;
-    grid-row: 2 / span 2;
-    width: 100%;
-    height: 30em;
-    text-align: center;
-    background-color: lightblue;
-    padding: 50px 0;
-    display: none;
-    font-size: 100%;
-
-
 }
 
 .ingredient {
