@@ -18,7 +18,8 @@
         <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
-            <li>{{ $store.getters.getChosenIngredients4.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <p>{{noBurger}}</p>
+            <li v-bind:key="(noB,path)" v-for="(noB,path) in noBurger"> {{uiLabels.burger}} {{ noB }}</li>
           </ul>
 
           <!-- <ul style="list-style-type:none">
@@ -57,6 +58,8 @@
   mixins: [sharedVueStuff,ordering,store],
   data: function(){
     return{
+      burgers:store.getters.getChosenIngredients4,
+      noBurger:store.getters.getNoBurger,
     }
   },
   methods: {

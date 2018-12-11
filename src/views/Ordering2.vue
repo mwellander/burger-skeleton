@@ -18,7 +18,7 @@
       v-show="state2 === 'readyBurger'"
       v-if="item.category===7"
       v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"
+      v-on:increment="addToOrder2(item)"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
@@ -34,7 +34,7 @@
     v-show="state2 === 'sides2'"
     v-if="item.category===5"
     v-for="item in ingredients"
-    v-on:increment="addToOrder(item)"
+    v-on:increment="addToOrder2(item)"
     :item="item"
     :lang="lang"
     :key="item.ingredient_id">
@@ -51,7 +51,7 @@
   v-show="state2 === 'beverage2'"
   v-if="item.category===6"
   v-for="item in ingredients"
-  v-on:increment="addToOrder(item)"
+  v-on:increment="addToOrder2(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
@@ -83,7 +83,7 @@
 
   <div style="text-align:right">
     <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
   </div>
 
 </div>
@@ -97,6 +97,7 @@ import OrderItem from '@/components/OrderItem.vue'
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 import ordering from '@/views/Ordering.vue'
+import store from '@/store.js'
 
 export default {
   name: 'Ordering2',
@@ -104,7 +105,7 @@ export default {
     Ingredient,
     OrderItem
   },
-  mixins: [sharedVueStuff,ordering],
+  mixins: [sharedVueStuff,ordering,store],
  // include stuff that is used in both
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
@@ -116,7 +117,14 @@ export default {
             state2:"readyBurger",
             readyBurger:true,
             sides2:false,
-            beverage2:false
+            beverage2:false,
+            chosenIngredients2:[],
+            chosenIngredientsBurger2: [],
+            chosenIngredientsSides2: [],
+            Sides2: [],
+            Beverage2: [],
+            ReadyBurger: [],
+            path:"#/favouriteburger"
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -126,6 +134,26 @@ export default {
     }.bind(this));
   },
   methods: {
+    addToOrder2: function(item){
+      this.chosenIngredients.push(item);
+      if(item.category===5 || item.category===6){
+        this.chosenIngredientsSides.push(item);
+        if(item.category===5){
+          this.Sides2.push(item);
+          this.sidesOrder2=true;
+        }
+        else{
+          this.Beverage2.push(item);
+          this.beverageOrder2=true;
+        }
+      }
+      else if(item.category===7){
+        this.ReadyBurger.push(item);
+        this.readyBurgerOrder=true;
+      }
+      this.price += +item.selling_price;
+      store.commit('addToOrder4',item);
+    },
     startOrder2: function(){
       this.started2=true;
       this.state2="readyBurger";

@@ -158,7 +158,7 @@
 
   <div style="text-align:right">
     <a href="#/home"><button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button></a>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
@@ -225,19 +225,7 @@ export default {
       beverage:false,
       started:false,
       nrBurgerOrder: 0,
-
-      chosenIngredients2:[],
-      chosenIngredientsBurger2: [],
-      chosenIngredientsSides2: [],
-      Sides2: [],
-      Beverage2: [],
-      ReadyBurger: [],
-
-
-      chosenIngredients3:[],
-      chosenIngredientsSides3: [],
-      Sides3: [],
-      Beverage3: []
+      path:"customburger"
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -247,10 +235,8 @@ export default {
     }.bind(this));
   },
   methods: {
-    sendOrderHome: function() {
-      this.nrBurgerOrder+=1;
-      console.log(store.getters.getChosenIngredients4)
-      // console.log(this.chosenIngredients)
+    sendOrderHome: function(path) {
+      store.commit('addNoBurger',this.path);
     },
     startOrder: function(){
       this.started=true;
@@ -524,30 +510,17 @@ export default {
       buttonPanelBeverage.style.display = "grid";
     },
     addToOrder: function (item) {
-      store.commit('addToOrder2',item);
       this.chosenIngredients.push(item);
       if(item.category===5 || item.category===6){
         this.chosenIngredientsSides.push(item);
         if(item.category===5){
           this.Sides.push(item);
           this.sidesOrder=true;
-          this.Sides2.push(item);
-          this.sidesOrder2=true;
-          this.Sides3.push(item);
-          this.sidesOrder3=true;
         }
         else{
           this.Beverage.push(item);
           this.beverageOrder=true;
-          this.Beverage2.push(item);
-          this.beverageOrder2=true;
-          this.Beverage3.push(item);
-          this.beverageOrder3=true;
         }
-      }
-      else if(item.category===7){
-        this.ReadyBurger.push(item);
-        this.readyBurgerOrder=true;
       }
       else{
         this.chosenIngredientsBurger.push(item);
@@ -569,6 +542,7 @@ export default {
         }
       }
       this.price += +item.selling_price;
+      store.commit('addToOrder4',item);
     },
     placeOrder: function () {
       var i,
