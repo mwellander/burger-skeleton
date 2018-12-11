@@ -33,7 +33,7 @@
   "flag" : "Flag_of_Britain.svg.png",
   "total" : "Totalt",
   "ordersToView": "Beställningar",
-  "createBurger": "Skapa din egna burgare",
+  "createBurger": "Skapa din egen burgare",
   "favouriteBurger": "Favoritburgarna",
   "sidesDrink": "Tillbehör/Dryck",
   "readyBurger":"Favoritburgare",
@@ -44,5 +44,11 @@
   "add": "Lägg till",
   "inStock": "I lager",
   "pcs": "st",
-  "lang": "sv"
+  "lang": "sv",
+  "change":"Ändra",
+  "saveChange":"Spara Ändring",
+  "cancelChange":"Avbryt Ändring",
+  "confirmMess": "Är du säker på att du vill avbryta din order?",
+  "yes": "Ja!",
+  "no": "Nej!"
 }

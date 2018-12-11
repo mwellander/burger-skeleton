@@ -250,37 +250,19 @@ export default {
   },
   methods: {
 
-    indexFinder: function(Bread){
-      return Bread.ingredient_id != item.ingredient_id;
 
-    },
 
     decreaseBread: function(item){
-      //this.Bread.ingredient_id = item.ingredient_id
-      //var  i = this.Bread.indexOf(this.Bread.ingredient_id)
-
-
-       //var i = this.Bread.findindex(indexFinder);
-       //this.Bread.splice(i,1)
-
-      //console.log(this.Bread)
-      //console.log(this.Bread.ingredient_id)
-      console.log(i)
-
- //for (var i = 0; i = this.Bread.length-1; i--){
-         //console.log(this.Bread[i])
-          //if ( this.Bread.ingredient_id === item.ingredient_id){
-           //this.Bread.splice([i],1);}}
 
        var i = this.Bread.findIndex(function(Bread){
        return Bread.ingredient_id === item.ingredient_id;
      });
+
      console.log(i)
 
      if (i != -1 ){
      this.Bread.splice(i,1)}
-    //this.Bread.splice('item.ingredient_id',1)
-    //this.delete(this.bread,'ingredient_id')
+
     },
     sendOrderHome: function() {
       this.nrBurgerOrder++;

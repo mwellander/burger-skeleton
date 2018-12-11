@@ -43,5 +43,11 @@
   "add": "Add",
   "inStock": "In stock",
   "pcs": "pcs",
-  "lang": "en"
+  "lang": "en",
+  "change":"Change",
+  "saveChange":"Save Change",
+  "cancelChange":"Cancel Change",
+  "confirmMess": "Are you sure you want to cancel your order?",
+  "yes": "Yes!",
+  "no": "No!"
 }
