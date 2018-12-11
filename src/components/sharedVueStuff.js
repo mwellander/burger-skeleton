@@ -7,7 +7,6 @@ var sharedVueStuff = {
       orders: {},
       uiLabels: {},
       ingredients: {},
-      lang: "en"
     }
   },
   created: function () {
@@ -31,12 +30,12 @@ var sharedVueStuff = {
   },
   methods: {
     switchLang: function () {
-      if (this.lang === "en") {
-        this.lang = "sv";
+      if (this.uiLabels.lang === "en") {
+        this.uiLabels.lang = "sv";
       } else {
-        this.lang = "en";
+        this.uiLabels.lang = "en";
       }
-      this.$store.state.socket.emit('switchLang', this.lang);
+      this.$store.state.socket.emit('switchLang', this.uiLabels.lang);
     }
   }
 };

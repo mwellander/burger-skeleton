@@ -4,7 +4,7 @@ let csv = require("csvtojson");
 
 let ingredientsDataName = "ingredients";
 let transactionsDataName = "transactions";
-let defaultLanguage = "en";
+let defaultLanguage = "sv";
 
 // Store data in an object to keep the global namespace clean
 function Data() {
@@ -14,7 +14,14 @@ function Data() {
 }
 
 Data.prototype.getUILabels = function (lang) {
-  var ui = require("./data/ui_" + (lang || defaultLanguage) + ".json");
+  if (typeof lang === 'undefined'){
+    var ui = require("./data/ui_" + (defaultLanguage) + ".json")
+    lang = defaultLanguage;
+  }
+  else {
+    defaultLanguage = lang;
+    var ui = require("./data/ui_" + (defaultLanguage) + ".json");
+  }
   return ui;
 };
 

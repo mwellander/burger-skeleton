@@ -1,25 +1,51 @@
 <template>
   <section class="orders">
 
-  <div class="box a">{{ uiLabels.staffView }}
-      <button v-on:click="switchLang()" class="LanguageButton">{{ uiLabels.language }}</button>
-      <button v-on:click="stockView()" class="OrderButton" id="OrderButton">{{ uiLabels.ordersToView }}</button>
-      <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
-</div>
-
-<div id="currentStock">
-  <div class="tabs">
-    <button class="tabButton" v-on:click="toBurger()">{{uiLabels.burger}}</button>
-    <button class="tabButton" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
-    <button class="tabButton" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
-    <button class="tabButton" v-on:click="toBread()">{{uiLabels.bread}}</button>
-    <button class="tabButton" v-on:click="toSides()">{{uiLabels.sides}}</button>
-    <button class="tabButton" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+  <div class="box a">
+    {{ uiLabels.staffView }}
+    <button v-on:click="switchLang()" class="LanguageButtonK">{{ uiLabels.language }}</button>
+    <button v-on:click="stockView()" class="OrderButtonK" id="OrderButton">{{ uiLabels.ordersToView }}</button>
+    <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
   </div>
+  <div id="currentStock">
+    <div class="tabsKitchen">
+      <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
+      <button v-on:click="toToppings()">{{uiLabels.toppings}}</button>
+      <button v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+      <button v-on:click="toBread()">{{uiLabels.bread}}</button>
+      <button v-on:click="toSides()">{{uiLabels.sides}}</button>
+      <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+    </div>
+
+    <br>
+    <br>
+    <br>
 
   <!-- kom ihåg att ändra addToOrder-funktionen (ska vara en funktion som antingen
   minskar eller ökar saldot) -->
+    <IngredientKitchen
+      ref="ingredientKitchen"
+      v-show="state === 'burger'"
+      v-if="item.category===1"
+      v-for="item in ingredients"
+      v-on:updateStock="updateStock(item, $event)"
+      :item="item"
+      :lang="lang"
+      :key="item.ingredient_id">
+    </IngredientKitchen>
 
+    <IngredientKitchen
+      ref="ingredientKitchen"
+      v-show="state === 'toppings'"
+      v-if="item.category===2"
+      v-for="item in ingredients"
+      v-on:increment="addToOrder(item)"
+      :item="item"
+      :lang="lang"
+      :key="item.ingredient_id">
+    </IngredientKitchen>
+
+<<<<<<< HEAD
     <ingredientKitchen
         ref="ingredientKitchen"
         v-show="state === 'burger'"
@@ -42,6 +68,8 @@
         :key="item.ingredient_id">
       </IngredientKitchen>
 
+=======
+>>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
       <IngredientKitchen
         ref="ingredientKitchen"
         v-show="state === 'dressing'"
@@ -86,7 +114,7 @@
         :key="item.ingredient_id">
       </IngredientKitchen>
 
-</div>
+  </div>
 
   <div class="box b" id="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
   <div class="box c" id="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
@@ -116,17 +144,17 @@
       :key="key">
     </OrderItemStarted>
   </div>
-   <div class="box g" id="box g">
-     <OrderItem
-       v-for="(order, key) in orders"
-       v-if="order.status === 'done'"
-       :order-id="key"
-       :order="order"
-       :lang="lang"
-       :ui-labels="uiLabels"
+  <div class="box g" id="box g">
+    <OrderItem
+      v-for="(order, key) in orders"
+      v-if="order.status === 'done'"
+      :order-id="key"
+      :order="order"
+      :lang="lang"
+      :ui-labels="uiLabels"
        :key="key">
-     </OrderItem>
-</div>
+    </OrderItem>
+  </div>
 </section>
 
 </template>
@@ -328,11 +356,11 @@ export default {
 }
 
 .a {
-display: grid;
-grid-template-columns: 20% 60% 20%;
- grid-column: 1 / span 3;
- grid-row: 1;
- top: 0;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  top: 0;
   background-color: black;
   color: white;
   text-align: center;
@@ -353,7 +381,7 @@ grid-template-columns: 20% 60% 20%;
   grid-row: 1;
 }
 
-.OrderButton {
+.OrderButtonK {
   background-color: #000000;
   border: 2px solid #fff;
   color: white;
@@ -368,7 +396,7 @@ grid-template-columns: 20% 60% 20%;
   grid-row: 1;
 }
 
-.LanguageButton {
+.LanguageButtonK {
   background-color: #000000;
   border: 2px solid #fff;
   color: white;
@@ -382,32 +410,57 @@ grid-template-columns: 20% 60% 20%;
   grid-column: 1;
   grid-row: 1;
 }
-
-.tabButton{
+.tabsKitchen {
   background-color: #000000;
+  overflow: hidden;
+  position: fixed;
+  top: 1;
+  margin-top: 0em;
+  z-index: 20;
+}
+
+.tabsKitchen button{
   border: 2px solid #fff;
   color: white;
   padding: 15px 32px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 100%;
   margin: 4px 2px;
   cursor: pointer;
 }
-
+.tabsKitchen button:hover {
+  background-color:#ddd;
+}
 .b {
-
   grid-column: 1 ;
   grid-row: 2 / span 1;
+<<<<<<< HEAD
+=======
+  height: 3,5em;
+  text-align: center;
+  font-size: 100%;
+>>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
 }
 .c {
     grid-column: 2 ;
     grid-row: 2 / span 1;
+<<<<<<< HEAD
+=======
+    height: 3,5em;
+    text-align: center;
+    font-size: 100%;
+>>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
 }
 .d {
     grid-column: 3 ;
     grid-row: 2 / span 1;
+<<<<<<< HEAD
+=======
+    height: 3,5em;
+    text-align: center;
+    font-size: 100%;
+>>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
 }
 .e {
   overflow: scroll;

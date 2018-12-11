@@ -38,7 +38,7 @@
     v-on:increment="addToOrder(item)"
     v-on:decrement="decreaseBread(item)"
     :item="item"
-    :lang="lang"
+    :lang="uiLabels.lang"
     :key="item.ingredient_id">
   </Ingredient>
   </div>
@@ -54,7 +54,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -72,7 +72,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -90,7 +90,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -108,7 +108,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -125,7 +125,7 @@
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
-  :lang="lang"
+  :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -140,16 +140,16 @@
     <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
     </div>
     <div class="column dd" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-        <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
       <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
     </div>
@@ -158,8 +158,8 @@
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
   <div style="text-align:right">
-    <button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
+    <a href="#/home"><button class="cancelButton" v-on:click="cancelOrder()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button></a>
+    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
@@ -186,7 +186,7 @@ import OrderItem from '@/components/OrderItem.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
-
+import store from '@/store.js'
 /* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
@@ -195,11 +195,10 @@ export default {
     Ingredient,
     OrderItem
   },
-  mixins: [sharedVueStuff], // include stuff that is used in both
+  mixins: [sharedVueStuff,store], // include stuff that is used in both
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
-
       chosenIngredients:[],
       chosenIngredientsBurger: [],
       chosenIngredientsSides: [],
@@ -227,19 +226,7 @@ export default {
       beverage:false,
       started:false,
       nrBurgerOrder: 0,
-
-      chosenIngredients2:[],
-      chosenIngredientsBurger2: [],
-      chosenIngredientsSides2: [],
-      Sides2: [],
-      Beverage2: [],
-      ReadyBurger: [],
-
-
-      chosenIngredients3:[],
-      chosenIngredientsSides3: [],
-      Sides3: [],
-      Beverage3: []
+      path:"customburger"
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -249,6 +236,7 @@ export default {
     }.bind(this));
   },
   methods: {
+<<<<<<< HEAD
 
     decreaseBread: function(item){
       this.bread = this.bread.filter(function (item) {
@@ -262,6 +250,10 @@ export default {
     },
     sendOrderHome: function() {
       this.nrBurgerOrder++;
+=======
+    sendOrderHome: function(path) {
+      store.commit('addNoBurger',this.path);
+>>>>>>> 0052ebf692546c7225b04c0a78565de7687fc77f
     },
     startOrder: function(){
       this.started=true;
@@ -541,23 +533,11 @@ export default {
         if(item.category===5){
           this.Sides.push(item);
           this.sidesOrder=true;
-          this.Sides2.push(item);
-          this.sidesOrder2=true;
-          this.Sides3.push(item);
-          this.sidesOrder3=true;
         }
         else{
           this.Beverage.push(item);
           this.beverageOrder=true;
-          this.Beverage2.push(item);
-          this.beverageOrder2=true;
-          this.Beverage3.push(item);
-          this.beverageOrder3=true;
         }
-      }
-      else if(item.category===7){
-        this.ReadyBurger.push(item);
-        this.readyBurgerOrder=true;
       }
       else{
         this.chosenIngredientsBurger.push(item);
@@ -579,12 +559,13 @@ export default {
         }
       }
       this.price += +item.selling_price;
+      store.commit('addToOrder4',item);
     },
     placeOrder: function () {
       var i,
       //Wrap the order in an object
       order = {
-        ingredients: this.chosenIngredients,
+        ingredients: store.getters.getChosenIngredients4,
         price: this.price
       };
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
@@ -631,7 +612,7 @@ export default {
       this.sides3=false;
       this.beverage3=false;
     }
-  },
+  }
 }
 </script>
 <style>
@@ -764,13 +745,13 @@ export default {
      font-size:1em;
    }
    .orderButtonO{
-     font-size:1;
+     font-size:1em;
    }
    .cancelButton{
-     font-size:1;
+     font-size:1em;
    }
    .totalText{
-     font-size:1em;
+     font-size:1.1em;
      margin-bottom: 4em;
    }
    .column{

@@ -17,7 +17,10 @@
         <div class="column aa aaa"><h3>{{ uiLabels.yourOrder }}</h3></div>
         <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
         <div class="column cc" style="text-align:left">
-          <p>Hej</p>
+          <ul style="list-style-type:none">
+            <p>{{noBurger}}</p>
+            <li v-bind:key="(noB,path)" v-for="(noB,path) in noBurger"> {{uiLabels.burger}} {{ noB }}</li>
+          </ul>
 
           <!-- <ul style="list-style-type:none">
             <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
@@ -43,18 +46,25 @@
   import OrderItem from '@/components/OrderItem.vue'
   import sharedVueStuff from '@/components/sharedVueStuff.js'
   import ordering from '@/views/Ordering.vue'
+  import store from '@/store.js'
 
   export default {
     name: 'Home' ,
     components: {
       Ingredient,
-      OrderItem
+      OrderItem,
+      ordering
   },
-  mixins: [sharedVueStuff,ordering],
+  mixins: [sharedVueStuff,ordering,store],
+  data: function(){
+    return{
+      burgers:store.getters.getChosenIngredients4,
+      noBurger:store.getters.getNoBurger,
+    }
+  },
   methods: {
 
   }
-
 }
 </script>
 

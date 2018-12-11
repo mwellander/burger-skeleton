@@ -10,9 +10,9 @@
       <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
     </div>
     <a href="#/home">
-    <button class="startButton">{{uiLabels.start}}</button>
-  </a>
-</div>
+      <button class="startButton">{{uiLabels.start}}</button>
+    </a>
+  </div>
 </template>
 
 <script>
@@ -25,18 +25,16 @@ export default {
   components: {
     Ingredient,
     OrderItem
-},
-mixins: [sharedVueStuff],
-methods: {
-
-}
+  },
+  mixins: [sharedVueStuff],
+  methods: {
+  }
 
 }
 
 </script>
 
 <style scoped>
-
 #start {
   height: 100%;
   min-width: 100px;
