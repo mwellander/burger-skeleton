@@ -45,6 +45,30 @@
       :key="item.ingredient_id">
     </IngredientKitchen>
 
+
+    <ingredientKitchen
+        ref="ingredientKitchen"
+        v-show="state === 'burger'"
+        v-if="item.category===1"
+        v-for="item in ingredients"
+        v-on:updateStock="updateStock(item, $event)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </IngredientKitchen>
+
+      <IngredientKitchen
+        ref="ingredientKitchen"
+        v-show="state === 'toppings'"
+        v-if="item.category===2"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder(item)"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </IngredientKitchen>
+
+
       <IngredientKitchen
         ref="ingredientKitchen"
         v-show="state === 'dressing'"
@@ -170,7 +194,9 @@ export default {
   },
   methods: {
     updateStock: function(item, payload){
+      console.log(item, payload )
       this.$store.state.socket.emit("updateStock", {item,payload});
+
     },
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
@@ -424,6 +450,7 @@ export default {
     height: 3,5em;
     text-align: center;
     font-size: 100%;
+
 }
 .d {
     grid-column: 3 ;
@@ -470,6 +497,11 @@ export default {
 }
 
 .ingredient {
+  border: 1px solid #ccd;
+  padding: 1em;
+  color: black;
+}
+.ingredientKitchen {
   border: 1px solid #ccd;
   padding: 1em;
   color: black;

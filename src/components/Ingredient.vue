@@ -5,6 +5,7 @@
         <br>{{item["ingredient_"+ lang]}},
         {{item.selling_price}}:-
         <br><button id="incrementButton" v-on:click="incrementCounter">{{ counter }}</button>
+        <br><button id="decrementButton" v-on:click="decrementCounter">{{ counter }}</button>
       </label>
   </div>
 </template>
@@ -21,6 +22,10 @@ export default {
     };
   },
   methods: {
+    decrementCounter: function() {
+      this.counter-=1;
+      this.$emit('decrement');
+    },
     incrementCounter: function () {
       this.counter += 1;
       // sending 'increment' message to parent component or view so that it
@@ -48,6 +53,6 @@ export default {
   height:2em;
 }}
 #incrementButton{
-  border-radius:50%;  
+  border-radius:50%;
 }
 </style>
