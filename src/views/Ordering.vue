@@ -140,8 +140,6 @@
     <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li>{{changeKey}}</li>
-        <li>{{chosenIngredients}}</li>
         <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
         <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
         <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
@@ -212,7 +210,6 @@ export default {
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
-      changeKey:store.getters.getChangeKey,
       chosenIngredients5:[],
       chosenIngredients:[],
       chosenIngredientsBurger: [],
@@ -257,7 +254,12 @@ export default {
   },
   methods: {
     decreaseBread: function(item){
-
+      var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+      return chosenIngredients.ingredient_id === item.ingredient_id;
+    });
+    if (i != -1 ){
+    this.chosenIngredients.splice(i,1);
+  }
      var i = this.Bread.findIndex(function(Bread){
      return Bread.ingredient_id === item.ingredient_id;
    });
@@ -265,8 +267,10 @@ export default {
    this.Bread.splice(i,1);
    this.price = this.price - item.selling_price;
    if (this.Bread.length === 0){
-   this.breadOrder=false}
- }},
+   this.breadOrder=false
+    }
+  }
+},
     ifChange: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){

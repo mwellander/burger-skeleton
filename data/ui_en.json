@@ -50,5 +50,6 @@
   "confirmMess": "Are you sure you want to cancel your order?",
   "yes": "Yes!",
   "no": "No!",
-  "finished": "Not in Stock"
+  "finished": "Not in Stock",
+  "erase": "Remove"
 }

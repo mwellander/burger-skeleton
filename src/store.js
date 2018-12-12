@@ -40,7 +40,7 @@ export default new Vuex.Store({
       state.changeIngredients=[]
     },
     saveChange(state,ingredients){
-      state.chosenIngredients4[state.changeKey].ingredients=ingredients
+      state.noBurger[state.changeKey].ingredients=ingredients
     },
     changePrice(state,price){
       state.totalPrice+=price
