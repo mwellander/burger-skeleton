@@ -68,6 +68,7 @@
     <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
+        <li>{{chosenIngredients2}}</li>
         <li v-show="readyBurgerOrder">{{ ReadyBurger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
     </div>
@@ -82,9 +83,13 @@
 
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
-  <div style="text-align:right">
-    <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
+  <div v-show="change" style="text-align:right">
+  <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
+  </div>
+  <div v-show="!change" style="text-align:right">
+                   <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
 </div>
@@ -126,17 +131,21 @@ export default {
             sides2:false,
             beverage2:false,
             chosenIngredients2:[],
+            chosenIngredients5:[],
             chosenIngredientsBurger2: [],
             chosenIngredientsSides2: [],
             Sides2: [],
             Beverage2: [],
             ReadyBurger: [],
             path:"#/favouriteburger",
-            alert: false
+            alert: false,
+            change:false
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
-
+  mounted: function(){
+    this.ifChange2();
+  },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
       this.orderNumber = data;
@@ -144,12 +153,27 @@ export default {
   },
   methods: {
     sendOrderHome2: function() {
-      store.commit('addNoBurger',this.path);
+      store.commit('addToOrder4',this.chosenIngredients2);
+      store.commit('addNoBurger', this.path);
+      store.commit('emptyChangeIngrediens');
+    },
+    ifChange3: function(){
+      this.chosenIngredients5=store.getters.getChangeIngredients;
+      if(this.chosenIngredients5.length>0){
+        this.change=true;
+        for(var i=0;i<this.chosenIngredients5.length;i++){
+          this.addToOrder2(this.chosenIngredients5[i]);
+        }
+      }
+    },
+    saveChanges2: function(){
+      store.commit('saveChange',this.chosenIngredients2);
+      store.commit('emptyChangeIngrediens');
     },
     addToOrder2: function(item){
-      this.chosenIngredients.push(item);
+      this.chosenIngredients2.push(item);
       if(item.category===5 || item.category===6){
-        this.chosenIngredientsSides.push(item);
+        this.chosenIngredientsSides2.push(item);
         if(item.category===5){
           this.Sides2.push(item);
           this.sidesOrder2=true;
@@ -164,7 +188,6 @@ export default {
         this.readyBurgerOrder=true;
       }
       this.price += +item.selling_price;
-      store.commit('addToOrder4',item);
     },
     startOrder2: function(){
       this.started2=true;
