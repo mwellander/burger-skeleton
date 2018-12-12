@@ -282,6 +282,7 @@ export default {
     },
     sendOrderHome: function() {
       store.commit('addToOrder4',this.chosenIngredients);
+      store.commit('addPrice',this.price);
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
     },
@@ -593,6 +594,7 @@ export default {
     },
     saveChanges: function(){
       store.commit('saveChange',this.chosenIngredients);
+      store.commit('savePrice',this.price);
       store.commit('emptyChangeIngrediens');
     },
     cancelChanges: function(){

@@ -18,11 +18,14 @@
         <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
-            <li v-bind:key="(key.noB)" v-for="key in noBurger">
-              {{uiLabels.burger}} {{ key.noB }} {{noBurger}}
+            <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
+              {{uiLabels.burger}} {{ key.noB }}
               <a :href="key.path">
-                <button v-on:click="changeOrder(key)" class="changeButton">{{uiLabels.change}}
-                </button></a></li>
+                <button v-on:click="changeOrder(key,index)" class="changeButton">{{uiLabels.change}}
+                    </button></a>
+                  <button v-on:click="deleteBurger(index)" class="deleteButton">{{uiLabels.erase}}
+                </button>
+              {{key.price}}:-</li>
           </ul>
 
           <!-- <ul style="list-style-type:none">
@@ -32,7 +35,7 @@
             <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
           </ul> -->
         </div>
-        <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+        <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }}:-</u></h3>
       </div>
 
       <div style="text-align:right">
@@ -62,10 +65,26 @@
     return{
       burgers:store.getters.getChosenIngredients4,
       noBurger:store.getters.getNoBurger,
+      price:0
     }
   },
+  mounted: function(){
+    this.getPrice();
+  },
   methods: {
-    changeOrder: function(key){
+    getPrice: function(){
+      this.price=0;
+      for(var i=0;i<this.noBurger.length;i++){
+        this.price+=this.noBurger[i].price;
+      }
+    },
+    deleteBurger: function(key){
+      store.commit('deleteBurger',key);
+      this.noBurger=store.getters.getNoBurger;
+      this.getPrice();
+    },
+    changeOrder: function(key,index){
+      key.index=index;
       store.commit('changeOrder',key);
     },
     placeOrder: function () {
@@ -118,5 +137,14 @@
      }
      .buttonHome button:hover {
        background-color:#ddd;
+
+     }
+     .changeButton{
+       background-color:lightblue;
+       font-family: "Comic Sans MS", cursive, sans-serif;
+     }
+     .deleteButton{
+       background-color:#f44336;
+       font-family: "Comic Sans MS", cursive, sans-serif;
      }
 </style>

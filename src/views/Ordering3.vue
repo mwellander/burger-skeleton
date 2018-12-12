@@ -70,7 +70,7 @@
   </div>
   <div v-show="!change" style="text-align:right">
                    <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
+  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
 </div>
