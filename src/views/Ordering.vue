@@ -31,16 +31,16 @@
 
   <div class="breadPage" id="breadPage">
     <Ingredient
-    ref="ingredient"
-    v-show="state === 'bread'"
-    v-if="item.category===4"
-    v-for="item in ingredients"
-    v-on:increment="addToOrder(item)"
-    v-on:decrement="decreaseBread(item)"
-    :item="item"
-    :lang="uiLabels.lang"
-    :key="item.ingredient_id">
-  </Ingredient>
+      ref="ingredient"
+      v-show="state === 'bread'"
+      v-if="item.category===4"
+      v-for="item in ingredients"
+      v-on:increment="addToOrder(item)"
+      v-on:decrement="decreaseBread(item)"
+      :item="item"
+      :lang="uiLabels.lang"
+      :key="item.ingredient_id">
+    </Ingredient>
   </div>
   <div id="buttonPanelBread">
   <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
@@ -254,12 +254,23 @@ export default {
   },
   methods: {
     decreaseBread: function(item){
-       var i = this.Bread.findIndex(function(Bread){
-       return Bread.ingredient_id === item.ingredient_id;
-     });
-     if (i != -1 ){
-     this.Bread.splice(i,1)}
-    },
+      var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+      return chosenIngredients.ingredient_id === item.ingredient_id;
+    });
+    if (i != -1 ){
+    this.chosenIngredients.splice(i,1);
+  }
+     var i = this.Bread.findIndex(function(Bread){
+     return Bread.ingredient_id === item.ingredient_id;
+   });
+   if (i != -1 ){
+   this.Bread.splice(i,1);
+   this.price = this.price - item.selling_price;
+   if (this.Bread.length === 0){
+   this.breadOrder=false
+    }
+  }
+},
     ifChange: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){

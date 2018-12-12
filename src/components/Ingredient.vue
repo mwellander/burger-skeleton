@@ -3,9 +3,12 @@
       <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" width="100">
       <label>
         <br>{{item["ingredient_"+ lang]}},
-        {{item.selling_price}}:-
-        <br><button id="incrementButton" v-on:click="incrementCounter">{{ counter }}</button>
-        <br><button id="decrementButton" v-on:click="decrementCounter">{{ counter }}</button>
+        {{item.selling_price}}:-, {{ item.stock }}
+        <br>
+        <div class = "btn-group">
+        <br><button class="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
+        <button class="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
+        </div>
       </label>
   </div>
 </template>
@@ -23,36 +26,56 @@ export default {
   },
   methods: {
     decrementCounter: function() {
-      this.counter-=1;
+      //this.counter-=1;
       this.$emit('decrement');
     },
     incrementCounter: function () {
-      this.counter += 1;
+      //this.counter += 1;
       // sending 'increment' message to parent component or view so that it
       // can catch it with v-on:increment in the component declaration
       this.$emit('increment');
     },
     resetCounter: function () {
-      this.counter = 0;
+      //this.counter = 0;
     }
   }
 }
 </script>
 <style scoped>
 @media screen and (min-width: 300px){
-  #incrementButton{
+  .incrementButton{
     padding:0.2em;
     width:1.5em;
     height:1.5em;
   }
-
+  .decrementButton{
+    padding:0.2em;
+    width:1.5em;
+    height:1.5em;
+  }
 }
 @media screen and (min-width: 700px){
-  #incrementButton{
+  .incrementButton{
   width:2em;
   height:2em;
-}}
-#incrementButton{
-  border-radius:50%;
+
 }
+.decrementButton{
+  width:2em;
+  height:2em;
+}
+}
+.decrementButton, .incrementButton{
+
+}
+.incrementButton{
+
+}
+.btn-group button{
+   background-color: #808080;
+   border: 1px solid black; /* Green border */
+   color: black;
+   font-size: 1em;
+}
+
 </style>
