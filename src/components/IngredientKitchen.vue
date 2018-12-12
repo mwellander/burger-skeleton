@@ -44,12 +44,15 @@ export default {
       //this.$emit('updateStock', this.stock);
       var id = this.item.ingredient_en + this.item.ingredient_id;
       var numberToUpdate = document.getElementById(id).value;
+      var currentStock;
       if (e.target.className === "positive") {
-      this.item.stock = Number(this.item.stock) + Number(numberToUpdate);
+      currentStock = Number(this.item.stock) + Number(numberToUpdate);
+
       }
       else if (e.target.className === "negative"){
-      this.item.stock = Number(this.item.stock) - Number(numberToUpdate);
+      currentStock = Number(this.item.stock) - Number(numberToUpdate);
       }
+      this.$store.state.socket.emit('updateStock', {"ingredient":this.item}, currentStock);
       document.getElementById(id).value = "";
 
     },

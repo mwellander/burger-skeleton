@@ -8,7 +8,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 7,Grillad Aubergine,Grilled Eggplant,1,1,1,1,30,eggplant.png
 8,Hummer,Lobster,1,1,1,0,80,lobster.jpg
 9,Pulled Jackfruit,Pulled Jackfruit,1,1,1,1,40,jackfruit.png
-10,Pulled Pork,Pulled Pork,1,1,1,0,40,pulledporkA.png
+10,Pulled Pork,Pulled Pork,1,1,1,0,40,mango.png
 11,Avocado,Avocado,2,1,1,1,10,avocado.png
 12,Bacon,Bacon,2,1,1,0,10,bacon.png
 13,Banan,Banana,2,1,1,1,5,banan.png
@@ -35,11 +35,11 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 34,Vegansk Ost,Vegan Cheese,2,1,1,1,10,cheese.png
 35,Aioli,Aioli,3,1,1,0,5,mango.png
 36,Ajvar,Ajvar,3,1,1,1,5,ajvar.png
-37,Barbecuesås,Barbecue Sauce,3,1,1,1,0,barbecueA.png
-38,Klassisk Hamburgarsås,Classic Hamburger Dressing,3,1,1,0,5,hamburger_dressingA.png
-39,Dijonsås,Dijon Sauce,3,1,1,0,5,dijonA.png
-40,Guacamole,Guacamole,3,1,1,1,10,guacamoleA.png
-41,Hot Salsa,Hot Salsa,3,1,1,1,5,salsaA.jpg
+37,Barbecuesås,Barbecue Sauce,3,1,1,1,0,mango.png
+38,Klassisk Hamburgarsås,Classic Hamburger Dressing,3,1,1,0,5,mango.png
+39,Dijonsås,Dijon Sauce,3,1,1,0,5,mango.png
+40,Guacamole,Guacamole,3,1,1,1,10,mango.png
+41,Hot Salsa,Hot Salsa,3,1,1,1,5,mango.png
 42,Hummus,Hummus,3,1,1,1,10,hummus.jpg
 43,Ketchup,Ketchup,3,1,1,1,0,ketchup.jpg
 44,Majonnäs,Mayonnaise,3,1,1,0,5,moyonnaise.jpg
@@ -48,12 +48,12 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 47,Teriyakisås,Teriyaki sauce,3,1,1,1,5,teriyaki.jpg
 48,Tryffelmajonnäs,Truffle Mayonnaise,3,1,1,0,5,moyonnaise.jpg
 49,Tzatziki,Tzatziki,3,0,1,0,5,tzatziki.png
-50,Brioche,Brioche,4,0,0,0,10,BriocheA.png
+50,Brioche,Brioche,4,0,0,0,10,mango.png
 51,Glutenfritt Bröd,Gluten Free Bread,4,1,1,1,10,bread_white.png
 52,Veganskt Bröd,Vegan Bun,4,0,0,1,10,bread_white.png
-53,Fullkornsbrioche,Whole Wheat Brioche,4,0,0,0,10,wholewheatA.jpg
-54,Nachochips,Nachos,5,1,0,1,20,NachosA.png
-55,Potatisstrips,Potato Fries,5,1,1,1,20,friesA.png
+53,Fullkornsbrioche,Whole Wheat Brioche,4,0,0,0,10,mango.png
+54,Nachochips,Nachos,5,1,0,1,20,mango.png
+55,Potatisstrips,Potato Fries,5,1,1,1,20,mango.png
 56,Sötpotatisstrips,Sweet Potato Fries,5,1,1,1,30,sweetpotato.jpg
 57,Chokladmilkshake,Chocolate Milk Shake,6,0,1,0,40,ChocolateMilkshake.png
 58,Pucko,Pucko,6,0,1,0,25,mango.png

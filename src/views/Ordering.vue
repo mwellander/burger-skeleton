@@ -31,16 +31,16 @@
 
   <div class="breadPage" id="breadPage">
     <Ingredient
-    ref="ingredient"
-    v-show="state === 'bread'"
-    v-if="item.category===4"
-    v-for="item in ingredients"
-    v-on:increment="addToOrder(item)"
-    v-on:decrement="decreaseBread(item)"
-    :item="item"
-    :lang="uiLabels.lang"
-    :key="item.ingredient_id">
-  </Ingredient>
+      ref="ingredient"
+      v-show="state === 'bread'"
+      v-if="item.category===4"
+      v-for="item in ingredients"
+      v-on:increment="addToOrder(item)"
+      v-on:decrement="decreaseBread(item)"
+      :item="item"
+      :lang="uiLabels.lang"
+      :key="item.ingredient_id">
+    </Ingredient>
   </div>
   <div id="buttonPanelBread">
   <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
@@ -140,7 +140,8 @@
     <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li>{{chosenIngredients5}}</li>
+        <li>{{changeKey}}</li>
+        <li>{{chosenIngredients}}</li>
         <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
         <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
         <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
@@ -158,11 +159,11 @@
 
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
-  <!-- <div v-show="change" style="text-align:right">
-                   <button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button>
-  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.placeOrder }}</button></a>
-  </div> -->
-  <div  style="text-align:right">
+  <div v-show="change" style="text-align:right">
+  <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button></a>
+  </div>
+  <div v-show="!change" style="text-align:right">
                    <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
   <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
@@ -211,6 +212,7 @@ export default {
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
+      changeKey:store.getters.getChangeKey,
       chosenIngredients5:[],
       chosenIngredients:[],
       chosenIngredientsBurger: [],
@@ -242,24 +244,11 @@ export default {
       path:"#/customburger",
       change:false,
       alert: false,
-
-      chosenIngredients2:[],
-      chosenIngredientsBurger2: [],
-      chosenIngredientsSides2: [],
-      Sides2: [],
-      Beverage2: [],
-      ReadyBurger: [],
-
-
-      chosenIngredients3:[],
-      chosenIngredientsSides3: [],
-      Sides3: [],
-      Beverage3: []
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
   mounted: function(){
-    this.makeArray();
+    this.ifChange();
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
@@ -268,23 +257,29 @@ export default {
   },
   methods: {
     decreaseBread: function(item){
-       var i = this.Bread.findIndex(function(Bread){
-       return Bread.ingredient_id === item.ingredient_id;
-     });
-     if (i != -1 ){
-     this.Bread.splice(i,1)}
-    },
-    makeArray: function(){
+
+     var i = this.Bread.findIndex(function(Bread){
+     return Bread.ingredient_id === item.ingredient_id;
+   });
+   if (i != -1 ){
+   this.Bread.splice(i,1);
+   this.price = this.price - item.selling_price;
+   if (this.Bread.length === 0){
+   this.breadOrder=false}
+ }},
+    ifChange: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){
+        this.change=true;
         for(var i=0;i<this.chosenIngredients5.length;i++){
           this.addToOrder(this.chosenIngredients5[i]);
-          this.change=true;
         }
       }
     },
     sendOrderHome: function() {
+      store.commit('addToOrder4',this.chosenIngredients);
       store.commit('addNoBurger', this.path);
+      store.commit('emptyChangeIngrediens');
     },
     startOrder: function(){
       this.started=true;
@@ -565,23 +560,11 @@ export default {
         if(item.category===5){
           this.Sides.push(item);
           this.sidesOrder=true;
-          this.Sides2.push(item);
-          this.sidesOrder2=true;
-          this.Sides3.push(item);
-          this.sidesOrder3=true;
         }
         else{
           this.Beverage.push(item);
           this.beverageOrder=true;
-          this.Beverage2.push(item);
-          this.beverageOrder2=true;
-          this.Beverage3.push(item);
-          this.beverageOrder3=true;
         }
-      }
-      else if(item.category===7){
-        this.ReadyBurger.push(item);
-        this.readyBurgerOrder=true;
       }
       else{
         this.chosenIngredientsBurger.push(item);
@@ -604,60 +587,12 @@ export default {
       }
       this.price += +item.selling_price;
     },
-    placeOrder: function () {
-      var i,
-      //Wrap the order in an object
-      order = {
-        ingredients: this.chosenIngredients,
-        price: this.price
-      };
-      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      this.$store.state.socket.emit('order', {order: order});
-      //set all counters to 0. Notice the use of $refs
-      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
-      }
-      this.price = 0;
-      this.chosenIngredients = [];
-      this.chosenIngredientsBurger= [];
-      this.chosenIngredientsSides= [];
-      this.Burger= [];
-      this.Toppings= [];
-      this.Dressing= [];
-      this.Bread= [];
-      this.Sides= [];
-      this.Beverage= [];
-      this.ReadyBurger=[];
-      this.readyBurgerOrder=false;
-      this.burgerOrder=false;
-      this.toppingsOrder=false;
-      this.dressingOrder=false;
-      this.breadOrder=false;
-      this.sidesOrder=false;
-      this.beverageOrder=false;
-      this.readyBurgerOrder=false;
-      this.sidesOrder2=false;
-      this.beverageOrder2=false;
-      this.sidesOrder3=false;
-      this.beverageOrder3=false;
-      this.price= 0;
-      //this.orderNumber= "";
-      //this.state="burger";
-      this.burger=true;
-      this.toppings=false;
-      this.dressing=false;
-      this.bread=false;
-      this.sides=false;
-      this.beverage=false;
-      this.readyBurger=true;
-      this.sides2=false;
-      this.beverage2=false;
-      this.sides3=false;
-      this.beverage3=false;
-    },
     saveChanges: function(){
+      store.commit('saveChange',this.chosenIngredients);
+      store.commit('emptyChangeIngrediens');
     },
     cancelChanges: function(){
+      store.commit('emptyChangeIngrediens');
     },
     cancelAlert: function() {
   var background = document.getElementById("toChangeBackground");
@@ -809,7 +744,7 @@ export default {
    }
    .totalText{
      font-size:1em;
-     margin-bottom: 4em;
+     margin-bottom: 5em;
    }
    .column{
      font-size: 1em;
