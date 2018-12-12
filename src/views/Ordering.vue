@@ -33,7 +33,7 @@
     <Ingredient
       ref="ingredient"
       v-show="state === 'bread'"
-      v-if="item.category===4"
+      v-if="item.category===4 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
       v-on:decrement="decreaseBread(item)"
@@ -50,7 +50,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'burger'"
-  v-if="item.category===1"
+  v-if="item.category===1 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
@@ -68,7 +68,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'dressing'"
-  v-if="item.category===3"
+  v-if="item.category===3 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
@@ -86,7 +86,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'toppings'"
-  v-if="item.category===2"
+  v-if="item.category===2 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
@@ -104,7 +104,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'sides'"
-  v-if="item.category===5"
+  v-if="item.category===5 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
@@ -121,7 +121,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'beverage'"
-  v-if="item.category===6"
+  v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   :item="item"
@@ -599,10 +599,12 @@ export default {
   if (this.alert===false){
     this.alert=true;
     background.style.opacity = 0.5;
+    background.style['pointer-events'] = "none";
   }
   else {
     this.alert=false;
     background.style.opacity = 1;
+    background.style['pointer-events'] = "auto";
   }
 }}
 }
@@ -1152,6 +1154,7 @@ export default {
 
 #toChangeBackground {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .alert {
@@ -1180,7 +1183,7 @@ font-family: "Comic Sans MS", cursive, sans-serif;
 font-size: 1em;
 grid-column: 3;
 grid-row: 2;
-background-color: green;
+background-color: #6495ED;
 border: 0.1em solid black;
 color: black;
 padding: 1em 2em;
@@ -1198,7 +1201,7 @@ font-family: "Comic Sans MS", cursive, sans-serif;
 font-size: 1em;
 grid-column: 1;
 grid-row: 2;
-background-color: red;
+background-color: #ADD8E6;
 border: 0.1em solid black;
 color: black;
 padding: 1em 2em;

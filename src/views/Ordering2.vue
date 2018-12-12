@@ -17,7 +17,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'readyBurger'"
-      v-if="item.category===7"
+      v-if="item.category===7 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       :item="item"
@@ -33,7 +33,7 @@
     <Ingredient
     ref="ingredient"
     v-show="state2 === 'sides2'"
-    v-if="item.category===5"
+    v-if="item.category===5 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
     :item="item"
@@ -50,7 +50,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state2 === 'beverage2'"
-  v-if="item.category===6"
+  v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder2(item)"
   :item="item"
@@ -242,10 +242,12 @@ export default {
       if (this.alert===false){
         this.alert=true;
         background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
       }
       else {
         this.alert=false;
         background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
       }
     }
   }
@@ -310,6 +312,7 @@ export default {
 
 #toChangeBackground2 {
   opacity: 1;
+  pointer-events: auto;
 }
 
 #buttonPanelReadyBurger{

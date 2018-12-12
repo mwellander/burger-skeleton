@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <div id="toChangeBackground4">
     <link rel="stylesheet" href="Ordering.vue">
     <div style="text-align:left">
       <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
@@ -36,9 +37,16 @@
       </div>
 
       <div style="text-align:right">
-        <button class="cancelButton"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+        <button class="cancelButton" v-on:click="cancelAlert4()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
         <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
       </div>
+    </div>
+  </div>
+
+    <div class="alert" v-show="alert">
+      <div class="confirmText">{{uiLabels.confirmMess}}</div>
+    <a href="#/start" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
+    <button class="confirmNoCancel" v-on:click="cancelAlert4()">{{uiLabels.no}}</button>
     </div>
 
   </div>
@@ -69,10 +77,28 @@
       store.commit('changeOrder',key);
     },
     placeOrder: function () {
+      if (typeof this.noBurger[0] === 'undefined') {
+        this.cancelAlert4();
+      }
+      else {
       var order = {ingredients:this.noBurger[0].ingredients,price:this.price};
-
       this.$store.state.socket.emit('order', {order: order});
+      window.location.replace("#/payment");
+    }
     },
+    cancelAlert4: function() {
+  var background = document.getElementById("toChangeBackground4");
+  if (this.alert===false){
+    this.alert=true;
+    background.style.opacity = 0.5;
+    background.style['pointer-events'] = "none";
+  }
+  else {
+    this.alert=false;
+    background.style.opacity = 1;
+    background.style['pointer-events'] = "auto";
+  }
+}
   }
 }
 </script>
@@ -118,5 +144,10 @@
      }
      .buttonHome button:hover {
        background-color:#ddd;
+     }
+
+     #toChangeBackground4 {
+       opacity: 1;
+       pointer-events: auto;
      }
 </style>
