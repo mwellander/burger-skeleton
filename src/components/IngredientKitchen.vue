@@ -38,9 +38,13 @@ export default {
       // can catch it with v-on:increment in the component declaration
       //this.stockAdd = document.getElementById("stockInput").value;
       //this.$emit('updateStock', this.stock);
+
       var id = this.item.ingredient_id;
       var numberToUpdate = document.getElementById(id).value;
-      this.item.stock = Number(this.item.stock) + Number(numberToUpdate);
+      var hej = Number(this.item.stock) + Number(numberToUpdate);
+      this.$store.state.socket.emit('updateStock', {"ingredient":this.item}, hej);
+      //this.item.stock = hej;
+
       document.getElementById(id).value = "";
     },
     resetCounter: function () {

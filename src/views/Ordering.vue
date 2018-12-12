@@ -31,16 +31,16 @@
 
   <div class="breadPage" id="breadPage">
     <Ingredient
-    ref="ingredient"
-    v-show="state === 'bread'"
-    v-if="item.category===4"
-    v-for="item in ingredients"
-    v-on:increment="addToOrder(item)"
-    v-on:decrement="decreaseBread(item)"
-    :item="item"
-    :lang="uiLabels.lang"
-    :key="item.ingredient_id">
-  </Ingredient>
+      ref="ingredient"
+      v-show="state === 'bread'"
+      v-if="item.category===4"
+      v-for="item in ingredients"
+      v-on:increment="addToOrder(item)"
+      v-on:decrement="decreaseBread(item)"
+      :item="item"
+      :lang="uiLabels.lang"
+      :key="item.ingredient_id">
+    </Ingredient>
   </div>
   <div id="buttonPanelBread">
   <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>

@@ -71,6 +71,7 @@ io.on('connection', function (socket) {
   });
 
   socket.on('updateStock', function (item, saldo) {
+    console.log(item + " " + saldo);
     data.changeStock(item, saldo);
     io.emit('currentQueue', {ingredients: data.getIngredients() });
   });
