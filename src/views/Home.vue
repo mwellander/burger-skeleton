@@ -20,7 +20,7 @@
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="key in noBurger">
-              {{uiLabels.burger}} {{ key.noB }} {{key.ingredients}}
+              {{uiLabels.burger}} {{ key.noB }} {{noBurger}}
               <a :href="key.path">
                 <button v-on:click="changeOrder(key)" class="changeButton">{{uiLabels.change}}
                 </button></a></li>
@@ -82,6 +82,11 @@
       }
       else {
       var order = {ingredients:this.noBurger[0].ingredients,price:this.price};
+      // for (var i=0; i<this.noBurger.length; i++) {
+      //   var order = {ingredients:this.noBurger[0].ingredients,price:this.price};
+      //
+      //   this.$store.state.socket.emit('order', {order: order});
+      // }
       this.$store.state.socket.emit('order', {order: order});
       window.location.replace("#/payment");
     }

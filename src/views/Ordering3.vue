@@ -64,9 +64,13 @@
 
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
-  <div style="text-align:right">
-    <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome(this.path)">{{ uiLabels.placeOrder }}</button></a>
+  <div v-show="change" style="text-align:right">
+  <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button></a>
+  </div>
+  <div v-show="!change" style="text-align:right">
+                   <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
 </div>
@@ -101,13 +105,22 @@ export default {
             state3:"sides3",
             sides3:true,
             beverage3:false,
+            chosenIngredients5:[],
             chosenIngredients3:[],
             chosenIngredientsSides3: [],
             Sides3: [],
             Beverage3: [],
             path:"#/sidesandbeverage",
-            alert: false
+            alert: false,
+            change:false
     }
+  },
+  mounted: function(){
+    this.ifChange3();
+  },
+  saveChanges: function(){
+    store.commit('saveChange',this.chosenIngredients3);
+    store.commit('emptyChangeIngrediens');
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
@@ -116,12 +129,27 @@ export default {
   },
   methods:{
     sendOrderHome3: function() {
-      store.commit('addNoBurger',this.path);
+      store.commit('addToOrder4',this.chosenIngredients3);
+      store.commit('addNoBurger', this.path);
+      store.commit('emptyChangeIngrediens');
+    },
+    ifChange3: function(){
+      this.chosenIngredients5=store.getters.getChangeIngredients;
+      if(this.chosenIngredients5.length>0){
+        this.change=true;
+        for(var i=0;i<this.chosenIngredients5.length;i++){
+          this.addToOrder3(this.chosenIngredients5[i]);
+        }
+      }
+    },
+    saveChanges3: function(){
+      store.commit('saveChange',this.chosenIngredients3);
+      store.commit('emptyChangeIngrediens');
     },
     addToOrder3: function(item){
-      this.chosenIngredients.push(item);
+      this.chosenIngredients3.push(item);
       if(item.category===5 || item.category===6){
-        this.chosenIngredientsSides.push(item);
+        this.chosenIngredientsSides3.push(item);
         if(item.category===5){
           this.Sides3.push(item);
           this.sidesOrder3=true;
@@ -132,7 +160,6 @@ export default {
         }
       }
       this.price += +item.selling_price;
-      store.commit('addToOrder4',item);
     },
   toSides3: function(){
     this.state3="sides3";
