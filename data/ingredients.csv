@@ -6,7 +6,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 5,Friterad halloumi,Deep-fried Halloumi,1,0,0,0,40,halloumi.png
 6,Fiskfilé,Fish Filet,1,1,0,0,40,fish.jpg
 7,Grillad Aubergine,Grilled Eggplant,1,1,1,1,30,eggplant.png
-8,Hummer,Lobster,1,1,1,0,80,lobster.jpg
+8,Hummer,Lobster,1,1,1,0,80,hummerNy.png
 9,Pulled Jackfruit,Pulled Jackfruit,1,1,1,1,40,jackfruit.png
 10,Pulled Pork,Pulled Pork,1,1,1,0,40,mango.png
 11,Avocado,Avocado,2,1,1,1,10,avocado.png
@@ -14,22 +14,22 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 13,Banan,Banana,2,1,1,1,5,banan.png
 14,Löjrom,Bleak Kaviar,2,1,1,0,50,caviar.png
 15,Karamelliserad Lök,Candied Onions,2,1,1,1,5,onionyellow.png
-16,Cheddar,Cheddar Cheese,2,0,1,0,10,cheddar.jpg
-17,Koriander,Cilantro,2,1,1,1,5,koriander.jpg
+16,Cheddar,Cheddar Cheese,2,0,1,0,10,cheese.png
+17,Koriander,Cilantro,2,1,1,1,5,korianderNy.png
 18,Coleslaw,Coleslaw,2,1,1,0,5,coleslaw.jpg
 19,Friterade Lökringar,Deep-fried Onion Rings,2,1,0,1,15,onion_rings.png
 20,Stekt Ägg,Fried Egg,2,1,1,0,10,fried_egg.png
-21,Chèvre,Goat Cheese,2,0,1,0,10,cheese.png
-22,Jalapeño,Jalapeño,2,1,1,1,5,jalapeno.jpg
+21,Chèvre,Goat Cheese,2,0,1,0,10,mango.png
+22,Jalapeño,Jalapeño,2,1,1,1,5,jalapenoNy.png
 23,Kimchi,Kimchi,2,1,1,1,10,mango.png
-24,Krispsallad,Lettuce,2,1,1,1,5,lettuce.jpg
+24,Krispsallad,Lettuce,2,1,1,1,5,salladNy.png
 25,Svampstuvning,Mushroom Stew,2,0,1,0,15,mushroom_stew.jpg
 26,Pepper Jack-ost,Pepper Jack Cheese,2,0,1,0,10,pepper_jack.jpg
-27,Inlagd Gurka,Pickled Cucumber,2,1,1,1,5,pickled_cucumber.jpg
+27,Inlagd Gurka,Pickled Cucumber,2,1,1,1,5,picklesNy.png
 28,Inlagd Rödlök,Pickled Red Onion,2,1,1,1,5,onion_red.jpg
-29,Rå Rödlök,Raw Red Onion,2,1,1,1,5,onion_red.jpg
-30,Rå Gul Lök,Raw Yellow Onion,2,1,1,1,5,onionyellow.png
-31,Salami,Salami,2,1,1,0,10,Salami.jpg
+29,Rödlök,Raw Red Onion,2,1,1,1,5,rodlokNy.png
+30,Gul Lök,Raw Yellow Onion,2,1,1,1,5,onionyellow.png
+31,Salami,Salami,2,1,1,0,10,salamiNy.png
 32,Surkål,Sauerkraut,2,1,1,1,5,mango.png
 33,Tomat,Tomato,2,1,1,1,5,tomato.png
 34,Vegansk Ost,Vegan Cheese,2,1,1,1,10,cheese.png
@@ -39,9 +39,9 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 38,Klassisk Hamburgarsås,Classic Hamburger Dressing,3,1,1,0,5,mango.png
 39,Dijonsås,Dijon Sauce,3,1,1,0,5,mango.png
 40,Guacamole,Guacamole,3,1,1,1,10,mango.png
-41,Hot Salsa,Hot Salsa,3,1,1,1,5,mango.png
+41,Hot Salsa,Hot Salsa,3,1,1,1,5,hotsalsaNy.png
 42,Hummus,Hummus,3,1,1,1,10,hummus.jpg
-43,Ketchup,Ketchup,3,1,1,1,0,ketchup.jpg
+43,Ketchup,Ketchup,3,1,1,1,0,ketchupNy.png
 44,Majonnäs,Mayonnaise,3,1,1,0,5,moyonnaise.jpg
 45,Senap,Mustard,3,1,1,1,0,mustard.jpg
 46,Sriracha,Sriracha,3,1,1,1,0,sriracha.jpg
@@ -53,11 +53,11 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 52,Veganskt Bröd,Vegan Bun,4,0,0,1,10,bread_white.png
 53,Fullkornsbrioche,Whole Wheat Brioche,4,0,0,0,10,mango.png
 54,Nachochips,Nachos,5,1,0,1,20,mango.png
-55,Potatisstrips,Potato Fries,5,1,1,1,20,mango.png
+55,Potatisstrips,Potato Fries,5,1,1,1,20,pommesNy.png
 56,Sötpotatisstrips,Sweet Potato Fries,5,1,1,1,30,sweetpotato.jpg
 57,Chokladmilkshake,Chocolate Milk Shake,6,0,1,0,40,ChocolateMilkshake.png
 58,Pucko,Pucko,6,0,1,0,25,mango.png
-59,Läsk,Soda,6,1,1,1,20,cola.png
+59,Läsk,Soda,6,1,1,1,20,laskNy.png
 60,Jordgubbsmilkshake,Strawberry Milk Shake,6,0,1,0,40,stawberry_milkshake.png
 61,Vegansk Mango Lassi,Vegan Mango Lassi,6,1,1,1,40,mango.png
 62,NoKetchups Favorit,NoKetchup's Favourite,7,0,0,0,70,sweetpotato.jpg
