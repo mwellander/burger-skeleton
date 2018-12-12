@@ -51,5 +51,6 @@
   "confirmMess": "Är du säker på att du vill avbryta din order?",
   "yes": "Ja!",
   "no": "Nej!",
-  "finished": "Slut i lager"
+  "finished": "Slut i lager",
+  "erase": "Ta bort"
 }
