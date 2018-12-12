@@ -12,8 +12,17 @@
 			<slot name="knapp"></slot>
 			<hr>
 		</div> -->
-
-	<div>
+		<div>
+				{{orderId}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
+			</div>
+<!-- <div>
+			<ul>
+				<li v-bind:key="key" v-for="key in order">
+					{{ key.ingredient.map(item=>item["ingredient_"+ lang]).join(", ") }}
+				</li>
+			</ul>
+		</div> -->
+	<!-- <div>
 			{{orderId}} {{order.type}}
 			{{uiLabels.bread}}: {{ getCategoryItems(2)}}<br>
 			{{uiLabels.burger}}: {{ getCategoryItems(1)}}<br>
@@ -24,8 +33,7 @@
 			<br>
 			<slot name="knapp"></slot>
 			<hr>
-		</div>
-
+		</div> -->
 
 </template>
 <script>

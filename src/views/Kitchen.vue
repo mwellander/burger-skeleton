@@ -16,6 +16,7 @@
       <button v-on:click="toBread()">{{uiLabels.bread}}</button>
       <button v-on:click="toSides()">{{uiLabels.sides}}</button>
       <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+      <button v-on:click="toReadyMadeBurger()">{{uiLabels.favouriteBurger}}</button>
     </div>
 <!--
     <br>
@@ -29,7 +30,7 @@
       v-show="state === 'burger'"
       v-if="item.category===1"
       v-for="item in ingredients"
-      v-on:updateStock="updateStock(item, $event)"
+      v-on:updateStock="updateStock()"
       :item="item"
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
@@ -40,7 +41,7 @@
       v-show="state === 'toppings'"
       v-if="item.category===2"
       v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"
+      v-on:updateStock="updateStock()"
       :item="item"
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
@@ -51,7 +52,7 @@
         v-show="state === 'dressing'"
         v-if="item.category===3"
         v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
+        v-on:updateStock="updateStock()"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
@@ -62,7 +63,7 @@
         v-show="state === 'bread'"
         v-if="item.category===4"
         v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
+        v-on:updateStock="updateStock()"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
@@ -73,7 +74,7 @@
         v-show="state === 'sides'"
         v-if="item.category===5"
         v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
+        v-on:updateStock="updateStock()"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
@@ -84,12 +85,22 @@
         v-show="state === 'beverage'"
         v-if="item.category===6"
         v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
+        v-on:updateStock="updateStock()"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
+      <IngredientKitchen
+        ref="ingredientKitchen"
+        v-show="state === 'favouriteBurger'"
+        v-if="item.category===7"
+        v-for="item in ingredients"
+        v-on:updateStock="updateStock()"
+        :item="item"
+        :lang="uiLabels.lang"
+        :key="item.ingredient_id">
+      </IngredientKitchen>
   </div>
 </div>
 
@@ -167,7 +178,8 @@ export default {
       bread:false,
       sides:false,
       beverages:false,
-      orderingvue:false
+      orderingvue:false,
+      readyBurger: false
     }
   },
   methods: {
@@ -179,47 +191,6 @@ export default {
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
     },
-    placeOrder: function () {
-      var i,
-      //Wrap the order in an object
-      order = {
-        ingredients: this.chosenIngredients,
-        price: this.price
-      };  // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-        this.$store.state.socket.emit('order', {order: order});
-        //set all counters to 0. Notice the use of $refs
-        for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-          this.$refs.ingredient[i].resetCounter();
-        }
-        this.price = 0;
-        this.chosenIngredients = [];
-        this.chosenIngredientsBurger= [];
-        this.chosenIngredientsSides= [];
-        this.Burger= [];
-        this.Toppings= [];
-        this.Dressing= [];
-        this.Bread= [];
-        this.Sides= [];
-        this.Beverage= [];
-        this.ReadyBurger=[];
-        this.readyBurgerOrder=false;
-        this.burgerOrder=false;
-        this.toppingsOrder=false;
-        this.dressingOrder=false;
-        this.breadOrder=false;
-        this.sidesOrder=false;
-        this.beverageOrder=false;
-        this.price= 0;
-        //this.orderNumber= "";
-        //this.state="burger";
-        this.burger=true;
-        this.toppings=false;
-        this.dressing=false;
-        this.bread=false;
-        this.sides=false;
-        this.beverages=false;
-        this.readyBurger=false;
-      },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid);
     },
@@ -263,6 +234,7 @@ export default {
     this.bread=false;
     this.sides=false;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toToppings: function(){
     this.state="toppings";
@@ -272,6 +244,7 @@ export default {
     this.bread=false;
     this.sides=false;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toDressing: function(){
     this.state="dressing";
@@ -281,6 +254,7 @@ export default {
     this.bread=false;
     this.sides=false;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toBread: function(){
     this.state="bread";
@@ -290,6 +264,7 @@ export default {
     this.bread=true;
     this.sides=false;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toSides: function(){
     this.state="sides";
@@ -299,6 +274,7 @@ export default {
     this.bread=false;
     this.sides=true;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toBeverage: function(){
     this.state="beverage";
@@ -308,6 +284,17 @@ export default {
     this.bread=false;
     this.sides=false;
     this.beverage=true;
+    this.ReadyBurger=false;
+  },
+  toReadyMadeBurger: function() {
+    this.state="favouriteBurger";
+    this.burger=false;
+    this.toppings=false;
+    this.dressing=false;
+    this.bread=false;
+    this.sides=false;
+    this.beverage=false;
+    this.ReadyBurger=true;
   }
   }
 }
@@ -341,8 +328,6 @@ export default {
   background-color: black;
   color: white;
   text-align: center;
-
-
 }
 
 .StockButton {

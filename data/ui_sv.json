@@ -50,5 +50,6 @@
   "cancelChange":"Avbryt Ändring",
   "confirmMess": "Är du säker på att du vill avbryta din order?",
   "yes": "Ja!",
-  "no": "Nej!"
+  "no": "Nej!",
+  "finished": "Slut i lager"
 }
