@@ -52,5 +52,7 @@
   "yes": "Ja!",
   "no": "Nej!",
   "finished": "Slut i lager",
-  "erase": "Ta bort"
+  "erase": "Ta bort",
+  "thankPayment": "Tack för din betalning!",
+  "goToStart": "Gå till startsidan"
 }

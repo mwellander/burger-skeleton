@@ -17,7 +17,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'readyBurger'"
-      v-if="item.category===7"
+      v-if="item.category===7 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       :item="item"
@@ -33,7 +33,7 @@
     <Ingredient
     ref="ingredient"
     v-show="state2 === 'sides2'"
-    v-if="item.category===5"
+    v-if="item.category===5 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
     :item="item"
@@ -50,7 +50,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state2 === 'beverage2'"
-  v-if="item.category===6"
+  v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder2(item)"
   :item="item"
@@ -68,7 +68,6 @@
     <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li>{{chosenIngredients2}}</li>
         <li v-show="readyBurgerOrder">{{ ReadyBurger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
     </div>
@@ -89,7 +88,7 @@
   </div>
   <div v-show="!change" style="text-align:right">
                    <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
+  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
 </div>
@@ -157,7 +156,7 @@ export default {
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
     },
-    ifChange3: function(){
+    ifChange2: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){
         this.change=true;
@@ -265,10 +264,12 @@ export default {
       if (this.alert===false){
         this.alert=true;
         background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
       }
       else {
         this.alert=false;
         background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
       }
     }
   }
@@ -333,6 +334,7 @@ export default {
 
 #toChangeBackground2 {
   opacity: 1;
+  pointer-events: auto;
 }
 
 #buttonPanelReadyBurger{

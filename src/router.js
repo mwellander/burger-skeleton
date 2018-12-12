@@ -5,6 +5,7 @@ import Home from './views/Home.vue'
 import Ordering2 from './views/Ordering2.vue'
 import Ordering3 from './views/Ordering3.vue'
 import Start from './views/Start.vue'
+import Payment from './views/Payment.vue'
 
 Vue.use(Router)
 
@@ -60,6 +61,14 @@ let router = new Router({
     },
     name: 'start',
     component: Start
+  },
+  {
+    path: '/payment',
+    meta: {
+      title: 'Payment',
+    },
+    name: 'payment',
+    component: Payment
   }
   ]
 })
