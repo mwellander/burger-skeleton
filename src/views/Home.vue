@@ -69,7 +69,10 @@
       store.commit('changeOrder',key);
     },
     placeOrder: function () {
-      var order = {ingredients:this.noBurger[0].ingredients,price:this.price};
+      var order = {
+        ingredients:this.noBurger[0].ingredients, //ändrad från this.chosenIngredients
+        price:this.price
+      };
 
       this.$store.state.socket.emit('order', {order: order});
     },
