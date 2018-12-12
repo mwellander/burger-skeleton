@@ -39,12 +39,8 @@ export default {
       //this.stockAdd = document.getElementById("stockInput").value;
       //this.$emit('updateStock', this.stock);
       var id = this.item.ingredient_id;
-      console.log("id " + id);
       var numberToUpdate = document.getElementById(id).value;
-      console.log(Number(numberToUpdate))
-      console.log("stock " + this.item.stock);
       this.item.stock = Number(this.item.stock) + Number(numberToUpdate);
-      console.log("stock " + this.item.stock);
       document.getElementById(id).value = "";
     },
     resetCounter: function () {

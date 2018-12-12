@@ -50,7 +50,6 @@
   import sharedVueStuff from '@/components/sharedVueStuff.js'
   import ordering from '@/views/Ordering.vue'
   import store from '@/store.js'
-
   export default {
     name: 'Home' ,
     components: {
@@ -115,6 +114,4 @@
      .buttonHome button:hover {
        background-color:#ddd;
      }
-
-
 </style>
