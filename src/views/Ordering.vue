@@ -257,7 +257,12 @@ export default {
   },
   methods: {
     decreaseBread: function(item){
-
+      var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+      return chosenIngredients.ingredient_id === item.ingredient_id;
+    });
+    if (i != -1 ){
+    this.chosenIngredients.splice(i,1);
+  }
      var i = this.Bread.findIndex(function(Bread){
      return Bread.ingredient_id === item.ingredient_id;
    });
@@ -265,8 +270,10 @@ export default {
    this.Bread.splice(i,1);
    this.price = this.price - item.selling_price;
    if (this.Bread.length === 0){
-   this.breadOrder=false}
- }},
+   this.breadOrder=false
+    }
+  }
+},
     ifChange: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){
