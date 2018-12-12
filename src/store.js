@@ -10,7 +10,7 @@ export default new Vuex.Store({
     chosenIngredients4:[],
     noBurger:[],
     no:0,
-    changeIngredients:["hej"],
+    changeIngredients:[],
     changeKey:0,
     totalPrice:0
   },
@@ -20,23 +20,27 @@ export default new Vuex.Store({
     getNoBurger: state => state.noBurger,
     getNo: state => state.no,
     getChangeIngredients: state => state.changeIngredients,
-    getPrice: state => state.totalPrice
+    getPrice: state => state.totalPrice,
+    getChangeKey: state => state.changeKey
   },
   mutations: {
     addToOrder4(state,item){
-      state.chosenIngredients4.push(item)
+      state.chosenIngredients4 = item
     },
     addNoBurger(state,path){
       state.no+=1,
       state.noBurger.push({noB:state.no,path:path,ingredients:state.chosenIngredients4}),
       state.chosenIngredients4=[]
     },
-    changeOrder(state,ingredients){
-      state.changeIngredients=ingredients
-      // state.changeKey=key
+    changeOrder(state,key){
+      state.changeIngredients=key.ingredients
+      state.changeKey=key.noB-1
     },
     emptyChangeIngrediens(state){
       state.changeIngredients=[]
+    },
+    saveChange(state,ingredients){
+      state.chosenIngredients4[state.changeKey].ingredients=ingredients
     },
     changePrice(state,price){
       state.totalPrice+=price

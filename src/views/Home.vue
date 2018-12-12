@@ -19,9 +19,9 @@
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="key in noBurger">
-              {{uiLabels.burger}} {{ key.noB }}
+              {{uiLabels.burger}} {{ key.noB }} {{key.ingredients}}
               <a :href="key.path">
-                <button v-on:click="changeOrder(key.ingredients)" class="changeButton">{{uiLabels.change}}
+                <button v-on:click="changeOrder(key)" class="changeButton">{{uiLabels.change}}
                 </button></a></li>
           </ul>
 
@@ -50,7 +50,6 @@
   import sharedVueStuff from '@/components/sharedVueStuff.js'
   import ordering from '@/views/Ordering.vue'
   import store from '@/store.js'
-
   export default {
     name: 'Home' ,
     components: {
@@ -66,9 +65,14 @@
     }
   },
   methods: {
-    changeOrder: function(ingredients){
-      store.commit('changeOrder',ingredients);
-    }
+    changeOrder: function(key){
+      store.commit('changeOrder',key);
+    },
+    placeOrder: function () {
+      var order = {ingredients:this.noBurger[0].ingredients,price:this.price};
+
+      this.$store.state.socket.emit('order', {order: order});
+    },
   }
 }
 </script>
@@ -115,6 +119,4 @@
      .buttonHome button:hover {
        background-color:#ddd;
      }
-
-
 </style>
