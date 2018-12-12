@@ -10,7 +10,7 @@
     <a href="#beverage">{{ uiLabels.beverage }}</a>
   </div> -->
   <!-- <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button> -->
-
+<div id="toChangeBackground">
   <div class="tabs">
     <button v-on:click="toBread()">{{uiLabels.bread}}</button>
     <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
@@ -168,6 +168,12 @@
   <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
+</div>
+<div class="alert" v-show="alert">
+  <div class="confirmText">{{uiLabels.confirmMess}}</div>
+<a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
+<button class="confirmNoCancel" v-on:click="cancelAlert()">{{uiLabels.no}}</button>
+</div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
   <div>
   <OrderItem
@@ -275,6 +281,7 @@ export default {
       this.started=true;
       this.state="bread";
       this.bread=true;
+      this.alert=false;
     },
     cancelOrder: function () {
       this.chosenIngredients=[];
@@ -656,10 +663,10 @@ export default {
     font-size:0.7em;
   }
   .orderButtonO{
-    font-size:0.7;
+    font-size:0.7em;
   }
   .cancelButton{
-    font-size:0.7;
+    font-size:0.7em;
   }
   .totalText{
     font-size:0.7em;
@@ -1138,4 +1145,66 @@ export default {
   grid-row: 1;
   text-align: center;
 } */
+
+#toChangeBackground {
+  opacity: 1;
+}
+
+.alert {
+  z-index: 100;
+  position: relative;
+  background-color: grey;
+  width: 25em;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  height: 15em;
+  margin: auto;
+  padding: 1em 2em;
+  border: 0.5em solid black;
+  text-align: center;
+}
+
+.confirmText {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 2em;
+  grid-column: 1/ span 3;
+  grid-row: 1;
+  }
+
+  .confirmCancel {
+font-family: "Comic Sans MS", cursive, sans-serif;
+font-size: 1em;
+grid-column: 3;
+grid-row: 2;
+background-color: green;
+border: 0.1em solid black;
+color: black;
+padding: 1em 2em;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+cursor: pointer;
+border-radius: 1em;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+vertical-align: middle;
+margin: auto;
+}
+.confirmNoCancel {
+font-family: "Comic Sans MS", cursive, sans-serif;
+font-size: 1em;
+grid-column: 1;
+grid-row: 2;
+background-color: red;
+border: 0.1em solid black;
+color: black;
+padding: 1em 2em;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+cursor: pointer;
+border-radius: 1em;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+margin: auto;
+}
+
 </style>

@@ -16,6 +16,7 @@
       <button v-on:click="toBread()">{{uiLabels.bread}}</button>
       <button v-on:click="toSides()">{{uiLabels.sides}}</button>
       <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+      <button v-on:click="toReadyMadeBurger()">{{uiLabels.favouriteBurger}}</button>
     </div>
 <!--
     <br>
@@ -29,7 +30,7 @@
       v-show="state === 'burger'"
       v-if="item.category===1"
       v-for="item in ingredients"
-      v-on:updateStock="updateStock(item, $event)"
+      v-on:updateStock="updateStock()"
       :item="item"
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
@@ -40,7 +41,7 @@
       v-show="state === 'toppings'"
       v-if="item.category===2"
       v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"
+      v-on:updateStock="updateStock()"
       :item="item"
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
@@ -51,7 +52,7 @@
         v-show="state === 'dressing'"
         v-if="item.category===3"
         v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
+        v-on:updateStock="updateStock()"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
@@ -62,7 +63,7 @@
         v-show="state === 'bread'"
         v-if="item.category===4"
         v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
+        v-on:updateStock="updateStock()"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
@@ -73,7 +74,7 @@
         v-show="state === 'sides'"
         v-if="item.category===5"
         v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
+        v-on:updateStock="updateStock()"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
@@ -84,12 +85,22 @@
         v-show="state === 'beverage'"
         v-if="item.category===6"
         v-for="item in ingredients"
-        v-on:increment="addToOrder(item)"
+        v-on:updateStock="updateStock()"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
+      <IngredientKitchen
+        ref="ingredientKitchen"
+        v-show="state === 'favouriteBurger'"
+        v-if="item.category===7"
+        v-for="item in ingredients"
+        v-on:updateStock="updateStock()"
+        :item="item"
+        :lang="uiLabels.lang"
+        :key="item.ingredient_id">
+      </IngredientKitchen>
   </div>
 </div>
 
@@ -167,7 +178,8 @@ export default {
       bread:false,
       sides:false,
       beverages:false,
-      orderingvue:false
+      orderingvue:false,
+      readyBurger: false
     }
   },
   methods: {
@@ -222,6 +234,7 @@ export default {
     this.bread=false;
     this.sides=false;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toToppings: function(){
     this.state="toppings";
@@ -231,6 +244,7 @@ export default {
     this.bread=false;
     this.sides=false;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toDressing: function(){
     this.state="dressing";
@@ -240,6 +254,7 @@ export default {
     this.bread=false;
     this.sides=false;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toBread: function(){
     this.state="bread";
@@ -249,6 +264,7 @@ export default {
     this.bread=true;
     this.sides=false;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toSides: function(){
     this.state="sides";
@@ -258,6 +274,7 @@ export default {
     this.bread=false;
     this.sides=true;
     this.beverage=false;
+    this.ReadyBurger=false;
   },
   toBeverage: function(){
     this.state="beverage";
@@ -267,6 +284,17 @@ export default {
     this.bread=false;
     this.sides=false;
     this.beverage=true;
+    this.ReadyBurger=false;
+  },
+  toReadyMadeBurger: function() {
+    this.state="favouriteBurger";
+    this.burger=false;
+    this.toppings=false;
+    this.dressing=false;
+    this.bread=false;
+    this.sides=false;
+    this.beverage=false;
+    this.ReadyBurger=true;
   }
   }
 }
@@ -300,8 +328,6 @@ export default {
   background-color: black;
   color: white;
   text-align: center;
-
-
 }
 
 .StockButton {
