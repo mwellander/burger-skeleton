@@ -256,35 +256,17 @@ export default {
     }.bind(this));
   },
   methods: {
-<<<<<<< HEAD
-
     decreaseBread: function(item){
 
-      //console.log(this.price)
-       var i = this.Bread.findIndex(function(Bread){
-       return Bread.ingredient_id === item.ingredient_id;
-
-     });
-
-     if (i != -1 ){
-       //console.log(i)
-     this.Bread.splice(i,1);
-     this.price = this.price - item.selling_price;
-     //console.log(this.Bread.length)
-
-     if (this.Bread.length === 0){
-     this.breadOrder=false}
-     }
-
-
-=======
-    decreaseBread: function(item){
-       var i = this.Bread.findIndex(function(Bread){
-       return Bread.ingredient_id === item.ingredient_id;
-     });
-     if (i != -1 ){
-     this.Bread.splice(i,1)}
-    },
+     var i = this.Bread.findIndex(function(Bread){
+     return Bread.ingredient_id === item.ingredient_id;
+   });
+   if (i != -1 ){
+   this.Bread.splice(i,1);
+   this.price = this.price - item.selling_price;
+   if (this.Bread.length === 0){
+   this.breadOrder=false}
+ }},
     ifChange: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){
@@ -293,7 +275,6 @@ export default {
           this.addToOrder(this.chosenIngredients5[i]);
         }
       }
->>>>>>> ed0fb0f532211f29a454bdb3d4265107eff95fd2
     },
     sendOrderHome: function() {
       store.commit('addToOrder4',this.chosenIngredients);
