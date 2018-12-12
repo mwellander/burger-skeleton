@@ -250,18 +250,24 @@ export default {
   },
   methods: {
 
-
-
     decreaseBread: function(item){
 
+      //console.log(this.price)
        var i = this.Bread.findIndex(function(Bread){
        return Bread.ingredient_id === item.ingredient_id;
+
      });
 
-     console.log(i)
-
      if (i != -1 ){
-     this.Bread.splice(i,1)}
+       //console.log(i)
+     this.Bread.splice(i,1);
+     this.price = this.price - item.selling_price;
+     //console.log(this.Bread.length)
+
+     if (this.Bread.length === 0){
+     this.breadOrder=false}
+     }
+
 
     },
     sendOrderHome: function() {
