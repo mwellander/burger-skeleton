@@ -51,5 +51,7 @@
   "yes": "Yes!",
   "no": "No!",
   "finished": "Not in Stock",
-  "erase": "Remove"
+  "erase": "Remove",
+  "thankPayment": "Thank you for your payment!",
+  "goToStart": "Go to start page"
 }
