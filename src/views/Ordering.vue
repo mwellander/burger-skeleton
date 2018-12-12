@@ -33,7 +33,7 @@
     <Ingredient
       ref="ingredient"
       v-show="state === 'bread'"
-      v-if="item.category===4"
+      v-if="item.category===4 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
       v-on:decrement="decreaseBread(item)"
@@ -50,9 +50,10 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'burger'"
-  v-if="item.category===1"
+  v-if="item.category===1 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
+  v-on:decrement="decreaseBurger(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -68,9 +69,10 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'dressing'"
-  v-if="item.category===3"
+  v-if="item.category===3 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
+  v-on:decrement="decreaseDressing(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -86,9 +88,10 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'toppings'"
-  v-if="item.category===2"
+  v-if="item.category===2 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
+  v-on:decrement="decreaseToppings(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -104,9 +107,10 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'sides'"
-  v-if="item.category===5"
+  v-if="item.category===5 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
+  v-on:decrement="decreaseSides(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -121,9 +125,10 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'beverage'"
-  v-if="item.category===6"
+  v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
+  v-on:decrement="decreaseBeverage(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -257,19 +262,115 @@ export default {
       var i = this.chosenIngredients.findIndex(function(chosenIngredients){
       return chosenIngredients.ingredient_id === item.ingredient_id;
     });
-    if (i != -1 ){
+    if (a1 != -1 ){
     this.chosenIngredients.splice(i,1);
   }
      var i = this.Bread.findIndex(function(Bread){
      return Bread.ingredient_id === item.ingredient_id;
    });
-   if (i != -1 ){
+   if (a2 != -1 ){
    this.Bread.splice(i,1);
    this.price = this.price - item.selling_price;
    if (this.Bread.length === 0){
    this.breadOrder=false
     }
   }
+},
+decreaseBurger: function(item){
+  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+  return chosenIngredients.ingredient_id === item.ingredient_id;
+});
+if (b1 != -1 ){
+this.chosenIngredients.splice(i,1);
+}
+ var i = this.Burger.findIndex(function(Burger){
+ return Burger.ingredient_id === item.ingredient_id;
+});
+if (b2 != -1 ){
+this.Burger.splice(i,1);
+this.price = this.price - item.selling_price;
+if (this.Burger.length === 0){
+this.burgerOrder=false
+}
+}
+},
+decreaseDressing: function(item){
+  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+  return chosenIngredients.ingredient_id === item.ingredient_id;
+});
+if (c1 != -1 ){
+this.chosenIngredients.splice(i,1);
+}
+ var i = this.Dressing.findIndex(function(Dressing){
+ return Dressing.ingredient_id === item.ingredient_id;
+});
+if (c2 != -1 ){
+this.Dressing.splice(i,1);
+this.price = this.price - item.selling_price;
+if (this.Dressing.length === 0){
+this.dressingOrder=false
+}
+}
+},
+decreaseToppings: function(item){
+  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+  return chosenIngredients.ingredient_id === item.ingredient_id;
+});
+if (d1 != -1 ){
+this.chosenIngredients.splice(i,1);
+}
+ var i = this.Toppings.findIndex(function(Toppings){
+ return Toppings.ingredient_id === item.ingredient_id;
+});
+if (d2 != -1 ){
+this.Toppings.splice(i,1);
+this.price = this.price - item.selling_price;
+if (this.Toppings.length === 0){
+this.toppingsOrder=false
+}
+}
+},
+decreaseSides: function(item){
+  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+  return chosenIngredients.ingredient_id === item.ingredient_id;
+});
+if (e1 != -1 ){
+this.chosenIngredients.splice(i,1);
+}
+ var i = this.Sides.findIndex(function(Sides){
+ return Sides.ingredient_id === item.ingredient_id;
+});
+if (e2 != -1 ){
+this.Sides.splice(i,1);
+this.price = this.price - item.selling_price;
+if (this.Sides.length === 0){
+this.sidesOrder=false
+}
+}
+},
+decreaseBeverage: function(item){
+  var i = this.chosenIngredients  .findIndex(function(chosenIngredients){
+  return chosenIngredients.ingredient_id === item.ingredient_id;
+});
+if (f1 != -1 ){
+this.chosenIngredients.splice(i,1);
+}
+var i = this.chosenIngredientsSides  .findIndex(function(chosenIngredientsSides){
+return chosenIngredientsSides.ingredient_id === item.ingredient_id;
+});
+if (f2 != -1 ){
+this.chosenIngredientsSides.splice(i,1);
+}
+ var i = this.Beverage.findIndex(function(Beverage){
+ return Beverage.ingredient_id === item.ingredient_id;
+});
+if (i != -1 ){
+this.Beverage.splice(i,1);
+this.price = this.price - item.selling_price;
+if (this.Beverage.length === 0){
+this.beverageOrder=false
+}
+}
 },
     ifChange: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
@@ -282,6 +383,7 @@ export default {
     },
     sendOrderHome: function() {
       store.commit('addToOrder4',this.chosenIngredients);
+      store.commit('addPrice',this.price);
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
     },
@@ -593,6 +695,7 @@ export default {
     },
     saveChanges: function(){
       store.commit('saveChange',this.chosenIngredients);
+      store.commit('savePrice',this.price);
       store.commit('emptyChangeIngrediens');
     },
     cancelChanges: function(){
@@ -603,10 +706,12 @@ export default {
   if (this.alert===false){
     this.alert=true;
     background.style.opacity = 0.5;
+    background.style['pointer-events'] = "none";
   }
   else {
     this.alert=false;
     background.style.opacity = 1;
+    background.style['pointer-events'] = "auto";
   }
 }}
 }
@@ -1156,6 +1261,7 @@ export default {
 
 #toChangeBackground {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .alert {
@@ -1184,7 +1290,7 @@ font-family: "Comic Sans MS", cursive, sans-serif;
 font-size: 1em;
 grid-column: 3;
 grid-row: 2;
-background-color: green;
+background-color: #6495ED;
 border: 0.1em solid black;
 color: black;
 padding: 1em 2em;
@@ -1202,7 +1308,7 @@ font-family: "Comic Sans MS", cursive, sans-serif;
 font-size: 1em;
 grid-column: 1;
 grid-row: 2;
-background-color: red;
+background-color: #ADD8E6;
 border: 0.1em solid black;
 color: black;
 padding: 1em 2em;
