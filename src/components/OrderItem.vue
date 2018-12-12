@@ -12,7 +12,7 @@
 			<slot name="knapp"></slot>
 			<hr>
 		</div> -->
-		<div>
+			<div>
 				{{orderId}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
 			</div>
 <!-- <div>
