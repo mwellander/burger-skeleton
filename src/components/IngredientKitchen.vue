@@ -1,17 +1,15 @@
 <template>
   <div class="ingredientKitchen">
-    <label>
+    <!-- <label> -->
       <form :id="stock+item.ingredient_id">
-        {{item["ingredient_"+ uiLabels.lang]}}, {{uiLabels.inStock}}: {{item.stock}}{{uiLabels.pcs}},
-        <input type="number" :id="item.ingredient_id">
+        {{item["ingredient_"+ uiLabels.lang]}},
+        <br>
+        {{uiLabels.inStock}}: {{item.stock}}{{uiLabels.pcs}},
+        <br>
+        <input type="number" :id="item.ingredient_en + item.ingredient_id">
         <button type="submit" v-on:click="updateStock()">{{uiLabels.add}}</button>
       </form>
-      <!-- <label for="addStock"></label> -->
-      <br>
-      <br>
-
-
-    </label>
+    <!-- </label> -->
   </div>
 </template>
 <script>
@@ -20,7 +18,7 @@ export default {
   name: 'IngredientKitchen',
   props: {
     item: Object,
-    lang: String
+    lang: String,
   },
   mixins: [sharedVueStuff],
 
@@ -38,14 +36,11 @@ export default {
       // can catch it with v-on:increment in the component declaration
       //this.stockAdd = document.getElementById("stockInput").value;
       //this.$emit('updateStock', this.stock);
-      var id = this.item.ingredient_id;
-      console.log("id " + id);
+      var id = this.item.ingredient_en + this.item.ingredient_id;
       var numberToUpdate = document.getElementById(id).value;
-      console.log(Number(numberToUpdate))
-      console.log("stock " + this.item.stock);
       this.item.stock = Number(this.item.stock) + Number(numberToUpdate);
-      console.log("stock " + this.item.stock);
       document.getElementById(id).value = "";
+
     },
     resetCounter: function () {
       this.counter = 0;}
