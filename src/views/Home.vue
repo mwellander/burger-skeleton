@@ -69,19 +69,12 @@
       store.commit('changeOrder',key);
     },
     placeOrder: function () {
-<<<<<<< HEAD
-      var order = {
-        ingredients:this.noBurger[0].ingredients, //ändrad från this.chosenIngredients
-        price:this.price
-      };
-=======
       // for (var i=0; i<this.noBurger.length; i++) {
       //   var order = {ingredients:this.noBurger[0].ingredients,price:this.price};
       //
       //   this.$store.state.socket.emit('order', {order: order});
       // }
       var order = {ingredients:this.noBurger[1].ingredients,price:this.price};
->>>>>>> 6684c98cdde1bedb1a81b501d005107621419313
 
       this.$store.state.socket.emit('order', {order: order});
     },
