@@ -17,13 +17,14 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'readyBurger'"
-      v-if="item.category===7"
+      v-if="item.category===7 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       :item="item"
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
     </Ingredient>
+  <!-- <div class="StockEmpty">{{uiLabels.showNotInStock}}</div> -->
   </div>
   <div class="buttonPanelBread" id="buttonPanelReadyBurger">
   <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
@@ -416,6 +417,10 @@ export default {
 
 #tabBeverage2 {
   background-color: grey;
+}
+
+.StockEmpty {
+  color: white;
 }
 
 </style>

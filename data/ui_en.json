@@ -60,5 +60,6 @@
   "missingBread": "You forgot the bread!",
   "missingBurger": "You you forgor the burger!",
   "ok": "OK!",
-  "nothingInCart": "You have not put anything in your cart!"
+  "nothingInCart": "You have not put anything in your cart!",
+  "showNotInStock": "Unfortunately these products are unavalible"
 }
