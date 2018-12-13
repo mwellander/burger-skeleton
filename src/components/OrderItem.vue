@@ -9,6 +9,8 @@
 			{{uiLabels.sides}}:{{ this.Sides.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
 			{{uiLabels.beverage}}:{{ this.Beverage.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
 			{{order.orderInLine}}
+			{{order.burgerArrayLength}}
+			{{order.noInOrder}}
 		<br>
 		<slot name="knapp"></slot>
 		<hr>
@@ -40,13 +42,14 @@ export default {
 		sidesLabel: false,
 		beverageLabel: false
 
+
 	}
 	},
 
 methods: {
 
 	getIngredientArray: function(){
-		console.log("hej")
+		//console.log("hej")
 		this.Bread = this.getCategoryItems(4)
 		this.Burger = this.getCategoryItems(1)
 		this.Dressing = this.getCategoryItems(3)
