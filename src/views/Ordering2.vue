@@ -8,27 +8,24 @@
         <button id="tabSides2" v-on:click="toSides2()">{{uiLabels.sides}}</button>
         <button id="tabBeverage2" v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
       </div>
+
       <div style="text-align:left">
-        <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+        <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
       </div>
       <br>
-      <br>
+      <!-- <br> -->
       <div class="breadPage" id="readyBurgerPage">
         <Ingredient
         ref="ingredient"
         v-show="state2 === 'readyBurger'"
-        v-if="item.category===7"
+        v-if="item.category===7 && item.stock > 0"
         v-for="item in ingredients"
         v-on:increment="addToOrder2(item)"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </Ingredient>
-    <!-- <div class="tabs2">
-      <button id="tabFavoriteBurger" v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
-      <button id="tabSides2" v-on:click="toSides2()">{{uiLabels.sides}}</button>
-      <button id="tabBeverage2" v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
-    </div> -->
+    </div>
     <div class="buttonPanelBread" id="buttonPanelReadyBurger">
       <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
     </div>
@@ -45,6 +42,7 @@
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
     </Ingredient>
+  <!-- <div class="StockEmpty">{{uiLabels.showNotInStock}}</div> -->
   </div>
   <div class="buttonPanel" id="buttonPanelSides2">
     <button id="previousButton" v-show="sides2" v-on:click="toReadyBurger()">{{uiLabels.previous}}</button>
@@ -63,24 +61,6 @@
     :lang="uiLabels.lang"
     :key="item.ingredient_id">
   </Ingredient>
-</div>
-<div class="buttonPanel" id="buttonPanelSides2">
-<button id="previousButton" v-show="sides2" v-on:click="toReadyBurger()">{{uiLabels.previous}}</button>
-<button id="nextButton" v-show="sides2" v-on:click='toBeverage2()'>{{uiLabels.next}}</button>
-</div>
-
-<div class="Page" id="beveragePage2">
-  <Ingredient
-  ref="ingredient"
-  v-show="state2 === 'beverage2'"
-  v-if="item.category===6 && item.stock > 0"
-  v-for="item in ingredients"
-  v-on:increment="addToOrder2(item)"
-  v-on:decrement="decreaseBeverage2(item)"
-  :item="item"
-  :lang="uiLabels.lang"
-  :key="item.ingredient_id">
-</Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBeverage2">
   <button id="previousButton" v-show="beverage2" v-on:click="toSides2()">{{uiLabels.previous}}</button>
@@ -103,24 +83,18 @@
       <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
     </div>
   </div>
-  <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+
   <div v-show="change" style="text-align:right">
     <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-    <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
+    <a><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
   </div>
 
   <div v-show="!change" style="text-align:right">
     <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <a href="#/home"><button class="orderButtonO" v-if="readyBurgerOrder==true || sidesOrder2==true || beverageOrder2==true" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
-    <a href="#/home"><button class="orderButtonO graknapp" v-if="readyBurgerOrder==false && sidesOrder2==false && beverageOrder2==false"v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
-  <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-  <button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button>
+    <a><button class="orderButtonO" v-if="readyBurgerOrder==true||sidesOrder2==true||beverageOrder2==true" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
+    <a><button class="orderButtonO graknapp" v-if="readyBurgerOrder==false&&sidesOrder2==false&&beverageOrder2==false" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 
-  <!-- <div v-show="!change" style="text-align:right">
-                   <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-                   <button class="orderButtonO" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button>
-  </div> -->
 </div>
 </div>
 
@@ -134,7 +108,6 @@
   <div class="confirmText">{{uiLabels.nothingInCart}}</div>
   <button class="confirmOK" v-on:click="nothingAlert()">{{uiLabels.ok}}</button>
 </div>
-
 </div>
 </template>
 <script>
@@ -203,7 +176,7 @@ export default {
         this.ReadyBurger.splice(g2,1);
         this.price = this.price - item.selling_price;
         if (this.ReadyBurger.length === 0){
-          this.readyBurger=false
+          this.readyBurgerOrder=false
         }
       }
     },
@@ -501,6 +474,10 @@ export default {
 
 #tabBeverage2 {
   background-color: grey;
+}
+
+.StockEmpty {
+  color: white;
 }
 
 </style>

@@ -20,14 +20,14 @@
       <button id="tabBeverage" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
     </div>
 
-    <div style="text-align:left">
-      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
-    </div>
+  <div style="text-align:left">
+    <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
+  </div>
 
     <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
     <br>
     <!-- <br> -->
-    <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
+    <!-- <h1 v-show="started">{{ uiLabels.ingredients }}</h1> -->
 
     <div class="breadPage" id="breadPage">
       <Ingredient
@@ -170,19 +170,7 @@
       <button class="orderButtonO graknapp" v-if="breadOrder==false || burgerOrder==false" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
     </div>
   </div>
-
-  <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
-
-  <div v-show="change" style="text-align:right">
-    <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-    <button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
   </div>
-  <div v-show="!change" style="text-align:right">
-    <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-    <button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
-  </div>
-</div>
-</div>
 
 <div class="alert" v-show="alert">
   <div class="confirmText">{{uiLabels.confirmMess}}</div>
@@ -286,6 +274,9 @@ export default {
     }.bind(this));
   },
   methods: {
+    getFlag: function () {
+      return require('@/assets/' + this.flag[this.lang]);
+    },
     decreaseBread: function(item){
       var a1 = this.chosenIngredients.findIndex(function(chosenIngredients){
         return chosenIngredients.ingredient_id === item.ingredient_id;
@@ -1284,6 +1275,7 @@ bottom: 16.3em;
   position: fixed;
   top: 0;
   margin-top: 0.5em;
+  height:3em;
 }
 .orderButtonO {
   background-color: #4CAF50;
