@@ -3,21 +3,37 @@
     <link rel="stylesheet" href="Ordering.vue">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="toChangeBackground2">
-    <div class="tabs2">
-      <button v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
-      <button v-on:click="toSides2()">{{uiLabels.sides}}</button>
-      <button v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
+      <div class="tabs2">
+        <button v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
+        <button v-on:click="toSides2()">{{uiLabels.sides}}</button>
+        <button v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
+      </div>
+      <div style="text-align:left">
+        <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+      </div>
+      <br>
+      <br>
+      <div class="breadPage" id="readyBurgerPage">
+        <Ingredient
+        ref="ingredient"
+        v-show="state2 === 'readyBurger'"
+        v-if="item.category===7"
+        v-for="item in ingredients"
+        v-on:increment="addToOrder2(item)"
+        :item="item"
+        :lang="uiLabels.lang"
+        :key="item.ingredient_id">
+      </Ingredient>
     </div>
-    <div style="text-align:left">
-      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+    <div class="buttonPanelBread" id="buttonPanelReadyBurger">
+      <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
     </div>
-    <br>
-    <br>
-    <div class="breadPage" id="readyBurgerPage">
+
+    <div class="Page" id="sidesPage2">
       <Ingredient
       ref="ingredient"
-      v-show="state2 === 'readyBurger'"
-      v-if="item.category===7"
+      v-show="state2 === 'sides2'"
+      v-if="item.category===5 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       :item="item"
@@ -25,15 +41,16 @@
       :key="item.ingredient_id">
     </Ingredient>
   </div>
-  <div class="buttonPanelBread" id="buttonPanelReadyBurger">
-  <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
-</div>
+  <div class="buttonPanel" id="buttonPanelSides2">
+    <button id="previousButton" v-show="sides2" v-on:click="toReadyBurger()">{{uiLabels.previous}}</button>
+    <button id="nextButton" v-show="sides2" v-on:click='toBeverage2()'>{{uiLabels.next}}</button>
+  </div>
 
-  <div class="Page" id="sidesPage2">
+  <div class="Page" id="beveragePage2">
     <Ingredient
     ref="ingredient"
-    v-show="state2 === 'sides2'"
-    v-if="item.category===5 && item.stock > 0"
+    v-show="state2 === 'beverage2'"
+    v-if="item.category===6 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
     :item="item"
@@ -41,25 +58,8 @@
     :key="item.ingredient_id">
   </Ingredient>
 </div>
-<div class="buttonPanel" id="buttonPanelSides2">
-<button id="previousButton" v-show="sides2" v-on:click="toReadyBurger()">{{uiLabels.previous}}</button>
-<button id="nextButton" v-show="sides2" v-on:click='toBeverage2()'>{{uiLabels.next}}</button>
-</div>
-
-<div class="Page" id="beveragePage2">
-  <Ingredient
-  ref="ingredient"
-  v-show="state2 === 'beverage2'"
-  v-if="item.category===6 && item.stock > 0"
-  v-for="item in ingredients"
-  v-on:increment="addToOrder2(item)"
-  :item="item"
-  :lang="uiLabels.lang"
-  :key="item.ingredient_id">
-</Ingredient>
-</div>
 <div class="buttonPanel" id="buttonPanelBeverage2">
-<button id="previousButton" v-show="beverage2" v-on:click="toSides2()">{{uiLabels.previous}}</button>
+  <button id="previousButton" v-show="beverage2" v-on:click="toSides2()">{{uiLabels.previous}}</button>
 </div>
 
 <div class="receipt">
@@ -79,23 +79,22 @@
       <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
     </div>
   </div>
-
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
-
   <div v-show="change" style="text-align:right">
-  <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
+    <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+    <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
   </div>
   <div v-show="!change" style="text-align:right">
-                   <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
+    <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+    <a href="#/home"><button class="orderButtonO" v-if="readyBurgerOrder==true || sidesOrder2==true || beverageOrder2==true" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
+    <a href="#/home"><button class="orderButtonO graknapp" v-if="readyBurgerOrder==false && sidesOrder2==false && beverageOrder2==false"v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
   </div>
 </div>
 </div>
 <div class="alert" v-show="alert">
   <div class="confirmText">{{uiLabels.confirmMess}}</div>
-<a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
-<button class="confirmNoCancel" v-on:click="cancelAlert2()">{{uiLabels.no}}</button>
+  <a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
+  <button class="confirmNoCancel" v-on:click="cancelAlert2()">{{uiLabels.no}}</button>
 </div>
 
 </div>
@@ -117,28 +116,28 @@ export default {
     OrderItem
   },
   mixins: [sharedVueStuff,ordering,store],
- // include stuff that is used in both
+  // include stuff that is used in both
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
-            start:true,
-            readyBurgerOrder:false,
-            sidesOrder2:false,
-            beverageOrder2:false,
-            state2:"readyBurger",
-            readyBurger:true,
-            sides2:false,
-            beverage2:false,
-            chosenIngredients2:[],
-            chosenIngredients5:[],
-            chosenIngredientsBurger2: [],
-            chosenIngredientsSides2: [],
-            Sides2: [],
-            Beverage2: [],
-            ReadyBurger: [],
-            path:"#/favouriteburger",
-            alert: false,
-            change:false
+      start:true,
+      readyBurgerOrder:false,
+      sidesOrder2:false,
+      beverageOrder2:false,
+      state2:"readyBurger",
+      readyBurger:true,
+      sides2:false,
+      beverage2:false,
+      chosenIngredients2:[],
+      chosenIngredients5:[],
+      chosenIngredientsBurger2: [],
+      chosenIngredientsSides2: [],
+      Sides2: [],
+      Beverage2: [],
+      ReadyBurger: [],
+      path:"#/favouriteburger",
+      alert: false,
+      change:false
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -278,7 +277,7 @@ export default {
 }
 
 </script>
-<style>
+<style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering2 {
   height: 100%;
