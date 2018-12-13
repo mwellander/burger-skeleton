@@ -59,11 +59,11 @@
   "continue": "Fortsätt beställa",
   "missingBreadAndBurger": "Du glömde brödet och burgaren!",
   "missingBread": "Du glömde brödet!",
-  "missingBurger": "Du glömde burgare!",
+  "missingBurger": "Du glömde burgaren!",
   "ok": "OK!",
   "nothingInCart": "Du har inte lagt något i varukorgen!",
   "showNotInStock": "Tyvärr är dessa produkter slut",
   "orderKitchen": "Beställning",
-  "nothingInCart": "Du har inte lagt något i varukorgen!"
+  "nothingInCart": "Din varukorg är tom!"
 
 }

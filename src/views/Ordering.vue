@@ -156,7 +156,6 @@
           <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
           <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
         </ul>
-        <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
       </div>
     </div>
     <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
@@ -170,7 +169,7 @@
       <button class="orderButtonO graknapp" v-if="breadOrder==false || burgerOrder==false" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
     </div>
   </div>
-  </div>
+</div>
 
 <div class="alert" v-show="alert">
   <div class="confirmText">{{uiLabels.confirmMess}}</div>
@@ -1079,10 +1078,10 @@ export default {
                   font-size: 1em;
                 }
                 .cc{
-                  height: 8em;
+                  height: 6em;
                 }
                 .dd{
-                  height: 6em;
+                  height: 8em;
                 }
               }
               * {
@@ -1105,12 +1104,6 @@ export default {
                 background-color: white;
                 border-bottom: 0.1em solid black;
               }
-              /* .bb {
-              height:3em;
-              overflow:hidden;
-              background-color: white;
-              border-bottom: 0.1em solid black;
-              } */
               .cc {
                 overflow:scroll;
                 background-color: white;
@@ -1120,7 +1113,6 @@ export default {
                 overflow:scroll;
                 background-color: white;
                 text-align:left;
-                /* z-index: 1; */
               }
 
               #buttonPanelBread {
@@ -1283,9 +1275,7 @@ bottom: 16.3em;
   color: black;
   padding: 1em 2em;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
-  /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -1299,9 +1289,7 @@ bottom: 16.3em;
   color: black;
   padding: 1em 2em;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
-  /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);

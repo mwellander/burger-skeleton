@@ -1,13 +1,13 @@
 <template>
   <!-- Note in this component that it is using another component -->
-<div>
-  <OrderItem
+  <div>
+    <OrderItem
     :ui-labels="uiLabels"
     :lang="uiLabels.lang"
     :order-id="orderId"
     :order="order">
     <button class = "OrderStartedButton" slot="knapp" v-on:click="orderStarted">
-    {{uiLabels.started}}
+      {{uiLabels.started}}
     </button>
   </OrderItem>
 </div>
@@ -39,7 +39,7 @@ export default {
 </script>
 <style scoped>
 .OrderStartedButton{
-  background-color: #339966;
+  background-color: #f9d755;
   border: 0.1em solid black;
   color: black;
   padding: 1em 2em;
@@ -51,7 +51,6 @@ export default {
   cursor: pointer;
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
 }
 
 </style>

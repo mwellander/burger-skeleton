@@ -1,8 +1,8 @@
 <template>
   <div class="ingredientKitchen">
     <!-- <label> -->
-      <form :id="stock+item.ingredient_id">
-        <div class="ingredientName">
+    <form :id="stock+item.ingredient_id">
+      <div class="ingredientName">
         {{item["ingredient_"+ uiLabels.lang]}}
       </div>
       <div class="ingredientAddStock">
@@ -14,9 +14,9 @@
         <button class="positive" type="submit" v-on:click="updateStock($event)">{{uiLabels.add}}</button>
       </div>
       <h1 v-if="item.stock<=0">{{uiLabels.finished}}</h1>
-      </form>
+    </form>
     <!-- </label> -->
-</div>
+  </div>
 </template>
 <script>
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -28,7 +28,7 @@ export default {
   },
   mixins: [sharedVueStuff],
 
-    data: function () {
+  data: function () {
     return {
       stock: this.item.stock,
     };
@@ -46,11 +46,11 @@ export default {
       var numberToUpdate = document.getElementById(id).value;
       var currentStock;
       if (e.target.className === "positive") {
-      currentStock = Number(this.item.stock) + Number(numberToUpdate);
+        currentStock = Number(this.item.stock) + Number(numberToUpdate);
 
       }
       else if (e.target.className === "negative"){
-      currentStock = Number(this.item.stock) - Number(numberToUpdate);
+        currentStock = Number(this.item.stock) - Number(numberToUpdate);
       }
       this.$store.state.socket.emit('updateStock', {"ingredient":this.item}, currentStock);
       document.getElementById(id).value = "";
@@ -58,38 +58,38 @@ export default {
     },
     resetCounter: function () {
       this.counter = 0;}
-    // ,
-    // addStocks: function(){
-    //   increaseBy = document.getElementById("addStock").value;
-    //   this.stock += increaseBy;
-    //   console.log("increaseBy",increaseBy);
-    // }
+      // ,
+      // addStocks: function(){
+      //   increaseBy = document.getElementById("addStock").value;
+      //   this.stock += increaseBy;
+      //   console.log("increaseBy",increaseBy);
+      // }
+    }
   }
-}
-</script>
-<style scoped>
+  </script>
+  <style scoped>
 
-form {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 33% 33% 33%
-}
+  form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%
+  }
 
-.ingredientName {
-  font-size: 1.5em;
-  grid-column: 1;
-}
+  .ingredientName {
+    font-size: 1.5em;
+    grid-column: 1;
+  }
 
-.ingredientAddStock {
-  grid-column: 2;
-  text-align: center;
-}
+  .ingredientAddStock {
+    grid-column: 2;
+    text-align: center;
+  }
 
-.notInStock {
-  grid-column: 3;
-  text-align: center;
-  vertical-align: middle;
-  display: none;
-}
+  .notInStock {
+    grid-column: 3;
+    text-align: center;
+    vertical-align: middle;
+    display: none;
+  }
 
-</style>
+  </style>

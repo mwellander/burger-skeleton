@@ -1,42 +1,42 @@
 <template>
   <section class="orders">
 
-  <div class="box a">
-    {{ uiLabels.staffView }}
-    <button v-on:click="switchLang()" class="LanguageButtonK">{{ uiLabels.language }}</button>
-    <button v-on:click="stockView()" class="OrderButtonK" id="OrderButton">{{ uiLabels.ordersToView }}</button>
-    <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
-  </div>
-
-  <div id="currentStock">
-    <div class="tabsKitchen">
-      <button id="tabKitchenBread" v-on:click="toBread()">{{uiLabels.bread}}</button>
-      <button id="tabKitchenBurger" v-on:click="toBurger()">{{uiLabels.burger}}</button>
-      <button id="tabKitchenDressing" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
-      <button id="tabKitchenToppings" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
-      <button id="tabKitchenSides" v-on:click="toSides()">{{uiLabels.sides}}</button>
-      <button id="tabKitchenBeverage" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
-      <button id="tabKitchenFavoriteBurger" v-on:click="toReadyMadeBurger()">{{uiLabels.favouriteBurger}}</button>
+    <div class="box a">
+      {{ uiLabels.staffView }}
+      <button v-on:click="switchLang()" class="LanguageButtonK">{{ uiLabels.language }}</button>
+      <button v-on:click="stockView()" class="OrderButtonK" id="OrderButton">{{ uiLabels.ordersToView }}</button>
+      <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
     </div>
-<!--
-    <br>
-    <br>
-    <br> -->
-<div id="itemInStock">
-  <!-- kom ihåg att ändra addToOrder-funktionen (ska vara en funktion som antingen
-  minskar eller ökar saldot) -->
-    <IngredientKitchen
-      ref="ingredientKitchen"
-      v-show="state === 'burger'"
-      v-if="item.category===1"
-      v-for="item in ingredients"
-      v-on:updateStock="updateStock()"
-      :item="item"
-      :lang="uiLabels.lang"
-      :key="item.ingredient_id">
-    </IngredientKitchen>
 
-    <IngredientKitchen
+    <div id="currentStock">
+      <div class="tabsKitchen">
+        <button id="tabKitchenBread" v-on:click="toBread()">{{uiLabels.bread}}</button>
+        <button id="tabKitchenBurger" v-on:click="toBurger()">{{uiLabels.burger}}</button>
+        <button id="tabKitchenDressing" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+        <button id="tabKitchenToppings" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
+        <button id="tabKitchenSides" v-on:click="toSides()">{{uiLabels.sides}}</button>
+        <button id="tabKitchenBeverage" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+        <button id="tabKitchenFavoriteBurger" v-on:click="toReadyMadeBurger()">{{uiLabels.favouriteBurger}}</button>
+      </div>
+      <!--
+      <br>
+      <br>
+      <br> -->
+      <div id="itemInStock">
+        <!-- kom ihåg att ändra addToOrder-funktionen (ska vara en funktion som antingen
+        minskar eller ökar saldot) -->
+        <IngredientKitchen
+        ref="ingredientKitchen"
+        v-show="state === 'burger'"
+        v-if="item.category===1"
+        v-for="item in ingredients"
+        v-on:updateStock="updateStock()"
+        :item="item"
+        :lang="uiLabels.lang"
+        :key="item.ingredient_id">
+      </IngredientKitchen>
+
+      <IngredientKitchen
       ref="ingredientKitchen"
       v-show="state === 'toppings'"
       v-if="item.category===2"
@@ -47,102 +47,102 @@
       :key="item.ingredient_id">
     </IngredientKitchen>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
-        v-show="state === 'dressing'"
-        v-if="item.category===3"
-        v-for="item in ingredients"
-        v-on:updateStock="updateStock()"
-        :item="item"
-        :lang="uiLabels.lang"
-        :key="item.ingredient_id">
-      </IngredientKitchen>
+    <IngredientKitchen
+    ref="ingredientKitchen"
+    v-show="state === 'dressing'"
+    v-if="item.category===3"
+    v-for="item in ingredients"
+    v-on:updateStock="updateStock()"
+    :item="item"
+    :lang="uiLabels.lang"
+    :key="item.ingredient_id">
+  </IngredientKitchen>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
-        v-show="state === 'bread'"
-        v-if="item.category===4"
-        v-for="item in ingredients"
-        v-on:updateStock="updateStock()"
-        :item="item"
-        :lang="uiLabels.lang"
-        :key="item.ingredient_id">
-      </IngredientKitchen>
+  <IngredientKitchen
+  ref="ingredientKitchen"
+  v-show="state === 'bread'"
+  v-if="item.category===4"
+  v-for="item in ingredients"
+  v-on:updateStock="updateStock()"
+  :item="item"
+  :lang="uiLabels.lang"
+  :key="item.ingredient_id">
+</IngredientKitchen>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
-        v-show="state === 'sides'"
-        v-if="item.category===5"
-        v-for="item in ingredients"
-        v-on:updateStock="updateStock()"
-        :item="item"
-        :lang="uiLabels.lang"
-        :key="item.ingredient_id">
-      </IngredientKitchen>
+<IngredientKitchen
+ref="ingredientKitchen"
+v-show="state === 'sides'"
+v-if="item.category===5"
+v-for="item in ingredients"
+v-on:updateStock="updateStock()"
+:item="item"
+:lang="uiLabels.lang"
+:key="item.ingredient_id">
+</IngredientKitchen>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
-        v-show="state === 'beverage'"
-        v-if="item.category===6"
-        v-for="item in ingredients"
-        v-on:updateStock="updateStock()"
-        :item="item"
-        :lang="uiLabels.lang"
-        :key="item.ingredient_id">
-      </IngredientKitchen>
+<IngredientKitchen
+ref="ingredientKitchen"
+v-show="state === 'beverage'"
+v-if="item.category===6"
+v-for="item in ingredients"
+v-on:updateStock="updateStock()"
+:item="item"
+:lang="uiLabels.lang"
+:key="item.ingredient_id">
+</IngredientKitchen>
 
-      <IngredientKitchen
-        ref="ingredientKitchen"
-        v-show="state === 'favouriteBurger'"
-        v-if="item.category===7"
-        v-for="item in ingredients"
-        v-on:updateStock="updateStock()"
-        :item="item"
-        :lang="uiLabels.lang"
-        :key="item.ingredient_id">
-      </IngredientKitchen>
-  </div>
+<IngredientKitchen
+ref="ingredientKitchen"
+v-show="state === 'favouriteBurger'"
+v-if="item.category===7"
+v-for="item in ingredients"
+v-on:updateStock="updateStock()"
+:item="item"
+:lang="uiLabels.lang"
+:key="item.ingredient_id">
+</IngredientKitchen>
+</div>
 </div>
 
-  <div class="box b" id="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
-  <div class="box c" id="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
-  <div class="box d" id="box d"><h1>{{ uiLabels.ordersFinished }}</h1></div>
+<div class="box b" id="box b"><h1>{{ uiLabels.ordersInQueue }}</h1></div>
+<div class="box c" id="box c"><h1>{{ uiLabels.ordersStarted }}</h1></div>
+<div class="box d" id="box d"><h1>{{ uiLabels.ordersFinished }}</h1></div>
 
-  <div class="box e" id="box e">
-    <OrderItemToPrepare
-      v-for="(order, key) in orders"
-      v-if="order.status !== 'started' && order.status !== 'done'"
-      v-on:done="markStarted(key)"
-      :order-id="key"
-      :order="order"
-      :ui-labels="uiLabels"
-      :lang="uiLabels.lang"
-      :key="key">
-    </OrderItemToPrepare>
-  </div>
-  <div class="box f" id="box f">
-    <OrderItemStarted
-      v-for="(order, key) in orders"
-      v-if="order.status === 'started'"
-      v-on:done="markDone(key)"
-      :order-id="key"
-      :order="order"
-      :lang="uiLabels.lang"
-      :ui-labels="uiLabels"
-      :key="key">
-    </OrderItemStarted>
-  </div>
-  <div class="box g" id="box g">
-    <OrderItem
-      v-for="(order, key) in orders"
-      v-if="order.status === 'done'"
-      :order-id="key"
-      :order="order"
-      :lang="uiLabels.lang"
-      :ui-labels="uiLabels"
-       :key="key">
-    </OrderItem>
-  </div>
+<div class="box e" id="box e">
+  <OrderItemToPrepare
+  v-for="(order, key) in orders"
+  v-if="order.status !== 'started' && order.status !== 'done'"
+  v-on:done="markStarted(key)"
+  :order-id="key"
+  :order="order"
+  :ui-labels="uiLabels"
+  :lang="uiLabels.lang"
+  :key="key">
+</OrderItemToPrepare>
+</div>
+<div class="box f" id="box f">
+  <OrderItemStarted
+  v-for="(order, key) in orders"
+  v-if="order.status === 'started'"
+  v-on:done="markDone(key)"
+  :order-id="key"
+  :order="order"
+  :lang="uiLabels.lang"
+  :ui-labels="uiLabels"
+  :key="key">
+</OrderItemStarted>
+</div>
+<div class="box g" id="box g">
+  <OrderItem
+  v-for="(order, key) in orders"
+  v-if="order.status === 'done'"
+  :order-id="key"
+  :order="order"
+  :lang="uiLabels.lang"
+  :ui-labels="uiLabels"
+  :key="key">
+</OrderItem>
+</div>
 </section>
 
 </template>
@@ -166,7 +166,7 @@ export default {
     IngredientKitchen
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
-                            //the ordering system and the kitchen
+  //the ordering system and the kitchen
   data: function(){
     return {
       chosenIngredients: [],
@@ -195,16 +195,16 @@ export default {
       this.$store.state.socket.emit("orderStarted", orderid);
     },
     stockView: function(){
-     var stock = document.getElementById("currentStock");
-     var b = document.getElementById("box b");
-     var c = document.getElementById("box c");
-     var d = document.getElementById("box d");
-     var e = document.getElementById("box e");
-     var f = document.getElementById("box f");
-     var g = document.getElementById("box g");
-     var stockButt = document.getElementById("StockButton");
-     var orderButt = document.getElementById("OrderButton");
-     if (stock.style.display === "none" || stock.style.display === "") {
+      var stock = document.getElementById("currentStock");
+      var b = document.getElementById("box b");
+      var c = document.getElementById("box c");
+      var d = document.getElementById("box d");
+      var e = document.getElementById("box e");
+      var f = document.getElementById("box f");
+      var g = document.getElementById("box g");
+      var stockButt = document.getElementById("StockButton");
+      var orderButt = document.getElementById("OrderButton");
+      if (stock.style.display === "none" || stock.style.display === "") {
         stock.style.display = "block";
         b.style.display = "none";
         c.style.display = "none";
@@ -214,7 +214,7 @@ export default {
         g.style.display = "none";
         orderButt.style.display = "block";
         stockButt.style.display = "none";
-    } else {
+      } else {
         stock.style.display = "none";
         b.style.display = "block";
         c.style.display = "block";
@@ -224,211 +224,211 @@ export default {
         g.style.display = "block";
         orderButt.style.display = "none";
         stockButt.style.display = "block";
+      }
+    },
+    toBurger: function(){
+      this.state="burger";
+      this.burger=true;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=false;
+      this.beverage=false;
+      this.ReadyBurger=false;
+
+      var tabForKitchenBread = document.getElementById("tabKitchenBread");
+      var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+      var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+      var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+      var tabForKitchenSides = document.getElementById("tabKitchenSides");
+      var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+      var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+      tabForKitchenBread.style.backgroundColor = "grey";
+      tabForKitchenBurger.style.backgroundColor = "#D3D3D3";
+      tabForKitchenDressing.style.backgroundColor = "grey";
+      tabForKitchenToppings.style.backgroundColor = "grey";
+      tabForKitchenSides.style.backgroundColor = "grey";
+      tabForKitchenBeverage.style.backgroundColor = "grey";
+      tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
+    },
+    toToppings: function(){
+      this.state="toppings";
+      this.burger=false;
+      this.toppings=true;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=false;
+      this.beverage=false;
+      this.ReadyBurger=false;
+
+      var tabForKitchenBread = document.getElementById("tabKitchenBread");
+      var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+      var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+      var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+      var tabForKitchenSides = document.getElementById("tabKitchenSides");
+      var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+      var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+      tabForKitchenBread.style.backgroundColor = "grey";
+      tabForKitchenBurger.style.backgroundColor = "grey";
+      tabForKitchenDressing.style.backgroundColor = "grey";
+      tabForKitchenToppings.style.backgroundColor = "#D3D3D3";
+      tabForKitchenSides.style.backgroundColor = "grey";
+      tabForKitchenBeverage.style.backgroundColor = "grey";
+      tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
+    },
+    toDressing: function(){
+      this.state="dressing";
+      this.burger=false;
+      this.toppings=false;
+      this.dressing=true;
+      this.bread=false;
+      this.sides=false;
+      this.beverage=false;
+      this.ReadyBurger=false;
+
+      var tabForKitchenBread = document.getElementById("tabKitchenBread");
+      var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+      var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+      var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+      var tabForKitchenSides = document.getElementById("tabKitchenSides");
+      var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+      var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+      tabForKitchenBread.style.backgroundColor = "grey";
+      tabForKitchenBurger.style.backgroundColor = "grey";
+      tabForKitchenDressing.style.backgroundColor = "#D3D3D3";
+      tabForKitchenToppings.style.backgroundColor = "grey";
+      tabForKitchenSides.style.backgroundColor = "grey";
+      tabForKitchenBeverage.style.backgroundColor = "grey";
+      tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
+    },
+    toBread: function(){
+      this.state="bread";
+      this.burger=false;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=true;
+      this.sides=false;
+      this.beverage=false;
+      this.ReadyBurger=false;
+
+      var tabForKitchenBread = document.getElementById("tabKitchenBread");
+      var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+      var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+      var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+      var tabForKitchenSides = document.getElementById("tabKitchenSides");
+      var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+      var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+      tabForKitchenBread.style.backgroundColor = "#D3D3D3";
+      tabForKitchenBurger.style.backgroundColor = "grey";
+      tabForKitchenDressing.style.backgroundColor = "grey";
+      tabForKitchenToppings.style.backgroundColor = "grey";
+      tabForKitchenSides.style.backgroundColor = "grey";
+      tabForKitchenBeverage.style.backgroundColor = "grey";
+      tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
+    },
+    toSides: function(){
+      this.state="sides";
+      this.burger=false;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=true;
+      this.beverage=false;
+      this.ReadyBurger=false;
+
+      var tabForKitchenBread = document.getElementById("tabKitchenBread");
+      var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+      var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+      var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+      var tabForKitchenSides = document.getElementById("tabKitchenSides");
+      var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+      var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+      tabForKitchenBread.style.backgroundColor = "grey";
+      tabForKitchenBurger.style.backgroundColor = "grey";
+      tabForKitchenDressing.style.backgroundColor = "grey";
+      tabForKitchenToppings.style.backgroundColor = "grey";
+      tabForKitchenSides.style.backgroundColor = "#D3D3D3";
+      tabForKitchenBeverage.style.backgroundColor = "grey";
+      tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
+    },
+    toBeverage: function(){
+      this.state="beverage";
+      this.burger=false;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=false;
+      this.beverage=true;
+      this.ReadyBurger=false;
+
+      var tabForKitchenBread = document.getElementById("tabKitchenBread");
+      var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+      var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+      var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+      var tabForKitchenSides = document.getElementById("tabKitchenSides");
+      var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+      var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+      tabForKitchenBread.style.backgroundColor = "grey";
+      tabForKitchenBurger.style.backgroundColor = "grey";
+      tabForKitchenDressing.style.backgroundColor = "grey";
+      tabForKitchenToppings.style.backgroundColor = "grey";
+      tabForKitchenSides.style.backgroundColor = "grey";
+      tabForKitchenBeverage.style.backgroundColor = "#D3D3D3";
+      tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
+    },
+    toReadyMadeBurger: function() {
+      this.state="favouriteBurger";
+      this.burger=false;
+      this.toppings=false;
+      this.dressing=false;
+      this.bread=false;
+      this.sides=false;
+      this.beverage=false;
+      this.ReadyBurger=true;
+
+      var tabForKitchenBread = document.getElementById("tabKitchenBread");
+      var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+      var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+      var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+      var tabForKitchenSides = document.getElementById("tabKitchenSides");
+      var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+      var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+      tabForKitchenBread.style.backgroundColor = "grey";
+      tabForKitchenBurger.style.backgroundColor = "grey";
+      tabForKitchenDressing.style.backgroundColor = "grey";
+      tabForKitchenToppings.style.backgroundColor = "grey";
+      tabForKitchenSides.style.backgroundColor = "grey";
+      tabForKitchenBeverage.style.backgroundColor = "grey";
+      tabForKitchenFavoriteBurger.style.backgroundColor = "#D3D3D3";
     }
-  },
-  toBurger: function(){
-    this.state="burger";
-    this.burger=true;
-    this.toppings=false;
-    this.dressing=false;
-    this.bread=false;
-    this.sides=false;
-    this.beverage=false;
-    this.ReadyBurger=false;
-
-    var tabForKitchenBread = document.getElementById("tabKitchenBread");
-    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
-    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
-    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
-    var tabForKitchenSides = document.getElementById("tabKitchenSides");
-    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
-    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
-
-    tabForKitchenBread.style.backgroundColor = "grey";
-    tabForKitchenBurger.style.backgroundColor = "#D3D3D3";
-    tabForKitchenDressing.style.backgroundColor = "grey";
-    tabForKitchenToppings.style.backgroundColor = "grey";
-    tabForKitchenSides.style.backgroundColor = "grey";
-    tabForKitchenBeverage.style.backgroundColor = "grey";
-    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
-  },
-  toToppings: function(){
-    this.state="toppings";
-    this.burger=false;
-    this.toppings=true;
-    this.dressing=false;
-    this.bread=false;
-    this.sides=false;
-    this.beverage=false;
-    this.ReadyBurger=false;
-
-    var tabForKitchenBread = document.getElementById("tabKitchenBread");
-    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
-    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
-    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
-    var tabForKitchenSides = document.getElementById("tabKitchenSides");
-    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
-    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
-
-    tabForKitchenBread.style.backgroundColor = "grey";
-    tabForKitchenBurger.style.backgroundColor = "grey";
-    tabForKitchenDressing.style.backgroundColor = "grey";
-    tabForKitchenToppings.style.backgroundColor = "#D3D3D3";
-    tabForKitchenSides.style.backgroundColor = "grey";
-    tabForKitchenBeverage.style.backgroundColor = "grey";
-    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
-  },
-  toDressing: function(){
-    this.state="dressing";
-    this.burger=false;
-    this.toppings=false;
-    this.dressing=true;
-    this.bread=false;
-    this.sides=false;
-    this.beverage=false;
-    this.ReadyBurger=false;
-
-    var tabForKitchenBread = document.getElementById("tabKitchenBread");
-    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
-    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
-    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
-    var tabForKitchenSides = document.getElementById("tabKitchenSides");
-    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
-    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
-
-    tabForKitchenBread.style.backgroundColor = "grey";
-    tabForKitchenBurger.style.backgroundColor = "grey";
-    tabForKitchenDressing.style.backgroundColor = "#D3D3D3";
-    tabForKitchenToppings.style.backgroundColor = "grey";
-    tabForKitchenSides.style.backgroundColor = "grey";
-    tabForKitchenBeverage.style.backgroundColor = "grey";
-    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
-  },
-  toBread: function(){
-    this.state="bread";
-    this.burger=false;
-    this.toppings=false;
-    this.dressing=false;
-    this.bread=true;
-    this.sides=false;
-    this.beverage=false;
-    this.ReadyBurger=false;
-
-    var tabForKitchenBread = document.getElementById("tabKitchenBread");
-    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
-    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
-    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
-    var tabForKitchenSides = document.getElementById("tabKitchenSides");
-    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
-    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
-
-    tabForKitchenBread.style.backgroundColor = "#D3D3D3";
-    tabForKitchenBurger.style.backgroundColor = "grey";
-    tabForKitchenDressing.style.backgroundColor = "grey";
-    tabForKitchenToppings.style.backgroundColor = "grey";
-    tabForKitchenSides.style.backgroundColor = "grey";
-    tabForKitchenBeverage.style.backgroundColor = "grey";
-    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
-  },
-  toSides: function(){
-    this.state="sides";
-    this.burger=false;
-    this.toppings=false;
-    this.dressing=false;
-    this.bread=false;
-    this.sides=true;
-    this.beverage=false;
-    this.ReadyBurger=false;
-
-    var tabForKitchenBread = document.getElementById("tabKitchenBread");
-    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
-    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
-    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
-    var tabForKitchenSides = document.getElementById("tabKitchenSides");
-    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
-    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
-
-    tabForKitchenBread.style.backgroundColor = "grey";
-    tabForKitchenBurger.style.backgroundColor = "grey";
-    tabForKitchenDressing.style.backgroundColor = "grey";
-    tabForKitchenToppings.style.backgroundColor = "grey";
-    tabForKitchenSides.style.backgroundColor = "#D3D3D3";
-    tabForKitchenBeverage.style.backgroundColor = "grey";
-    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
-  },
-  toBeverage: function(){
-    this.state="beverage";
-    this.burger=false;
-    this.toppings=false;
-    this.dressing=false;
-    this.bread=false;
-    this.sides=false;
-    this.beverage=true;
-    this.ReadyBurger=false;
-
-    var tabForKitchenBread = document.getElementById("tabKitchenBread");
-    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
-    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
-    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
-    var tabForKitchenSides = document.getElementById("tabKitchenSides");
-    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
-    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
-
-    tabForKitchenBread.style.backgroundColor = "grey";
-    tabForKitchenBurger.style.backgroundColor = "grey";
-    tabForKitchenDressing.style.backgroundColor = "grey";
-    tabForKitchenToppings.style.backgroundColor = "grey";
-    tabForKitchenSides.style.backgroundColor = "grey";
-    tabForKitchenBeverage.style.backgroundColor = "#D3D3D3";
-    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
-  },
-  toReadyMadeBurger: function() {
-    this.state="favouriteBurger";
-    this.burger=false;
-    this.toppings=false;
-    this.dressing=false;
-    this.bread=false;
-    this.sides=false;
-    this.beverage=false;
-    this.ReadyBurger=true;
-
-    var tabForKitchenBread = document.getElementById("tabKitchenBread");
-    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
-    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
-    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
-    var tabForKitchenSides = document.getElementById("tabKitchenSides");
-    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
-    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
-
-    tabForKitchenBread.style.backgroundColor = "grey";
-    tabForKitchenBurger.style.backgroundColor = "grey";
-    tabForKitchenDressing.style.backgroundColor = "grey";
-    tabForKitchenToppings.style.backgroundColor = "grey";
-    tabForKitchenSides.style.backgroundColor = "grey";
-    tabForKitchenBeverage.style.backgroundColor = "grey";
-    tabForKitchenFavoriteBurger.style.backgroundColor = "#D3D3D3";
-  }
   }
 }
 </script>
 <style scoped>
-	.orders {
-    font-size:15pt;
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: 33% 33% 33%;
-    background-color: #fff;
-    color: #444;
-    position: sticky;
-    top: 0;
-  }
+.orders {
+  font-size:15pt;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 33% 33% 33%;
+  background-color: #fff;
+  color: #444;
+  position: sticky;
+  top: 0;
+}
 
- .box {
-    background-color: #444;
-    color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    font-size: 150%;
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
 }
 
 .a {
@@ -488,17 +488,17 @@ export default {
 }
 
 #currentStock {
-    /* overflow: scroll; */
-    z-index: 2;
-    grid-column: 1 / span 3;
-    /* grid-row: 2 / span 2; */
-    width: 100%;
-    height: 40em;
-    text-align: center;
-    background-color: lightblue;
-    /* padding: 50px 0; */
-    display: none;
-    font-size: 100%;
+  /* overflow: scroll; */
+  z-index: 2;
+  grid-column: 1 / span 3;
+  /* grid-row: 2 / span 2; */
+  width: 100%;
+  height: 40em;
+  text-align: center;
+  background-color: lightblue;
+  /* padding: 50px 0; */
+  display: none;
+  font-size: 100%;
 }
 
 #itemInStock {
@@ -570,18 +570,18 @@ export default {
   font-size: 100%;
 }
 .c {
-    grid-column: 2 ;
-    grid-row: 2 / span 1;
-    height: 3,5em;
-    text-align: center;
-    font-size: 100%;
+  grid-column: 2 ;
+  grid-row: 2 / span 1;
+  height: 3,5em;
+  text-align: center;
+  font-size: 100%;
 }
 .d {
-    grid-column: 3 ;
-    grid-row: 2 / span 1;
-    height: 3,5em;
-    text-align: center;
-    font-size: 100%;
+  grid-column: 3 ;
+  grid-row: 2 / span 1;
+  height: 3,5em;
+  text-align: center;
+  font-size: 100%;
 }
 .e {
   overflow: scroll;
@@ -614,8 +614,8 @@ export default {
   padding: 1em;
   color: black;
 }
-  h1 {
-    text-transform: uppercase;
-    font-size: 1.4em;
-  }
+h1 {
+  text-transform: uppercase;
+  font-size: 1.4em;
+}
 </style>
