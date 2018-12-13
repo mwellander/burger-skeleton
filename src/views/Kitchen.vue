@@ -10,10 +10,10 @@
 
   <div id="currentStock">
     <div class="tabsKitchen">
-      <button id="tabKitchenBurger" v-on:click="toBurger()">{{uiLabels.burger}}</button>
-      <button id="tabKitchenToppings" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
-      <button id="tabKitchenDressing" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
       <button id="tabKitchenBread" v-on:click="toBread()">{{uiLabels.bread}}</button>
+      <button id="tabKitchenBurger" v-on:click="toBurger()">{{uiLabels.burger}}</button>
+      <button id="tabKitchenDressing" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+      <button id="tabKitchenToppings" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
       <button id="tabKitchenSides" v-on:click="toSides()">{{uiLabels.sides}}</button>
       <button id="tabKitchenBeverage" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
       <button id="tabKitchenFavoriteBurger" v-on:click="toReadyMadeBurger()">{{uiLabels.favouriteBurger}}</button>
@@ -171,11 +171,11 @@ export default {
     return {
       chosenIngredients: [],
       price: 0,
-      state: "burger",
-      burger:true,
+      state: "bread",
+      burger:false,
       toppings:false,
       dressing:false,
-      bread:false,
+      bread:true,
       sides:false,
       beverages:false,
       orderingvue:false,
@@ -536,11 +536,11 @@ export default {
 }
 
 #tabKitchenBread{
-  background-color: grey;
+  background-color: #D3D3D3;
 }
 
 #tabKitchenBurger {
-  background-color: #D3D3D3;
+  background-color: grey;
 }
 
 #tabKitchenDressing {

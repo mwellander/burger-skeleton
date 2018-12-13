@@ -84,7 +84,7 @@
 
   <div v-show="change" style="text-align:right">
   <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
+  <button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button>
   </div>
   <div v-show="!change" style="text-align:right">
                    <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
@@ -164,7 +164,7 @@ export default {
       }
       else {
       store.commit('addToOrder4',this.chosenIngredients2);
-      store.commit('savePrice',this.price);
+      store.commit('addPrice',this.price);
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
       window.location.replace("#/home");
@@ -180,9 +180,15 @@ export default {
       }
     },
     saveChanges2: function(){
+      if (this.readyBurgerOrder === false && this.sidesOrder2 === false && this.beverageOrder2 === false) {
+        this.nothingAlert();
+      }
+      else {
       store.commit('saveChange',this.chosenIngredients2);
       store.commit('savePrice',this.price);
       store.commit('emptyChangeIngrediens');
+      window.location.replace("#/home");
+    }
     },
     addToOrder2: function(item){
       this.chosenIngredients2.push(item);

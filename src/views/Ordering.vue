@@ -901,6 +901,7 @@ export default {
                     this.breadburgeralert=false;
                     background.style.opacity = 1;
                     background.style['pointer-events'] = "auto";
+                    this.toBread();
                   }
                 },
                 breadAlert: function() {
@@ -914,6 +915,7 @@ export default {
                     this.breadalert=false;
                     background.style.opacity = 1;
                     background.style['pointer-events'] = "auto";
+                    this.toBread();
                   }
                 },
                 burgerAlert: function() {
@@ -927,6 +929,7 @@ export default {
                     this.burgeralert=false;
                     background.style.opacity = 1;
                     background.style['pointer-events'] = "auto";
+                    this.toBurger();
                   }
                 }
               }}
