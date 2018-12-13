@@ -259,17 +259,17 @@ export default {
   },
   methods: {
     decreaseBread: function(item){
-      var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+      var a1 = this.chosenIngredients.findIndex(function(chosenIngredients){
       return chosenIngredients.ingredient_id === item.ingredient_id;
     });
     if (a1 != -1 ){
-    this.chosenIngredients.splice(i,1);
+    this.chosenIngredients.splice(a1,1);
   }
-     var i = this.Bread.findIndex(function(Bread){
+     var a2 = this.Bread.findIndex(function(Bread){
      return Bread.ingredient_id === item.ingredient_id;
    });
    if (a2 != -1 ){
-   this.Bread.splice(i,1);
+   this.Bread.splice(a2,1);
    this.price = this.price - item.selling_price;
    if (this.Bread.length === 0){
    this.breadOrder=false
@@ -277,17 +277,17 @@ export default {
   }
 },
 decreaseBurger: function(item){
-  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+  var b1 = this.chosenIngredients.findIndex(function(chosenIngredients){
   return chosenIngredients.ingredient_id === item.ingredient_id;
 });
 if (b1 != -1 ){
-this.chosenIngredients.splice(i,1);
+this.chosenIngredients.splice(b1,1);
 }
- var i = this.Burger.findIndex(function(Burger){
+ var b2 = this.Burger.findIndex(function(Burger){
  return Burger.ingredient_id === item.ingredient_id;
 });
 if (b2 != -1 ){
-this.Burger.splice(i,1);
+this.Burger.splice(b2,1);
 this.price = this.price - item.selling_price;
 if (this.Burger.length === 0){
 this.burgerOrder=false
@@ -295,17 +295,17 @@ this.burgerOrder=false
 }
 },
 decreaseDressing: function(item){
-  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+  var c1 = this.chosenIngredients.findIndex(function(chosenIngredients){
   return chosenIngredients.ingredient_id === item.ingredient_id;
 });
 if (c1 != -1 ){
-this.chosenIngredients.splice(i,1);
+this.chosenIngredients.splice(c1,1);
 }
- var i = this.Dressing.findIndex(function(Dressing){
+ var c2 = this.Dressing.findIndex(function(Dressing){
  return Dressing.ingredient_id === item.ingredient_id;
 });
 if (c2 != -1 ){
-this.Dressing.splice(i,1);
+this.Dressing.splice(c2,1);
 this.price = this.price - item.selling_price;
 if (this.Dressing.length === 0){
 this.dressingOrder=false
@@ -313,17 +313,17 @@ this.dressingOrder=false
 }
 },
 decreaseToppings: function(item){
-  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+  var d1 = this.chosenIngredients.findIndex(function(chosenIngredients){
   return chosenIngredients.ingredient_id === item.ingredient_id;
 });
 if (d1 != -1 ){
-this.chosenIngredients.splice(i,1);
+this.chosenIngredients.splice(d1,1);
 }
- var i = this.Toppings.findIndex(function(Toppings){
+ var d2 = this.Toppings.findIndex(function(Toppings){
  return Toppings.ingredient_id === item.ingredient_id;
 });
 if (d2 != -1 ){
-this.Toppings.splice(i,1);
+this.Toppings.splice(d2,1);
 this.price = this.price - item.selling_price;
 if (this.Toppings.length === 0){
 this.toppingsOrder=false
@@ -331,17 +331,17 @@ this.toppingsOrder=false
 }
 },
 decreaseSides: function(item){
-  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+  var e1 = this.chosenIngredients.findIndex(function(chosenIngredients){
   return chosenIngredients.ingredient_id === item.ingredient_id;
 });
 if (e1 != -1 ){
-this.chosenIngredients.splice(i,1);
+this.chosenIngredients.splice(e1,1);
 }
- var i = this.Sides.findIndex(function(Sides){
+ var e2 = this.Sides.findIndex(function(Sides){
  return Sides.ingredient_id === item.ingredient_id;
 });
 if (e2 != -1 ){
-this.Sides.splice(i,1);
+this.Sides.splice(e2,1);
 this.price = this.price - item.selling_price;
 if (this.Sides.length === 0){
 this.sidesOrder=false
@@ -349,23 +349,23 @@ this.sidesOrder=false
 }
 },
 decreaseBeverage: function(item){
-  var i = this.chosenIngredients  .findIndex(function(chosenIngredients){
+  var f1 = this.chosenIngredients  .findIndex(function(chosenIngredients){
   return chosenIngredients.ingredient_id === item.ingredient_id;
 });
 if (f1 != -1 ){
-this.chosenIngredients.splice(i,1);
+this.chosenIngredients.splice(f1,1);
 }
-var i = this.chosenIngredientsSides  .findIndex(function(chosenIngredientsSides){
+var f2 = this.chosenIngredientsSides  .findIndex(function(chosenIngredientsSides){
 return chosenIngredientsSides.ingredient_id === item.ingredient_id;
 });
 if (f2 != -1 ){
-this.chosenIngredientsSides.splice(i,1);
+this.chosenIngredientsSides.splice(f2,1);
 }
- var i = this.Beverage.findIndex(function(Beverage){
+ var f3 = this.Beverage.findIndex(function(Beverage){
  return Beverage.ingredient_id === item.ingredient_id;
 });
-if (i != -1 ){
-this.Beverage.splice(i,1);
+if (f3 != -1 ){
+this.Beverage.splice(f3,1);
 this.price = this.price - item.selling_price;
 if (this.Beverage.length === 0){
 this.beverageOrder=false
