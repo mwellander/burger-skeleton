@@ -20,7 +20,7 @@
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
-              {{uiLabels.burger}} {{ key.noB }}
+              Order {{ key.noB }}
               <a :href="key.path">
                 <button v-on:click="changeOrder(key,index)" class="changeButton">{{uiLabels.change}}
                     </button></a>
@@ -79,10 +79,12 @@
     return{
       burgers:store.getters.getChosenIngredients4,
       noBurger:store.getters.getNoBurger,
-      orderInLine: 0,
+      //orderInLine: store.getters.orderInLine,
       price:0,
       alert: false,
-      alert2: false
+      alert2: false,
+      burgerArrayLength:0,
+      noInOrder:0
     }
   },
   mounted: function(){
@@ -112,18 +114,22 @@
         this.cancelAlert4b();
       }
       else {
-        this.orderInLine += 1;
-        for (var i=0; i<this.noBurger.length; i++) {
+        var lengthBurger = this.noBurger.length;
+        store.commit("orderInLine");
+        for (var i=0; i<lengthBurger; i++) {
           var order = {
             ingredients:this.noBurger[i].ingredients,
             price:this.price,
-            orderInLine: this.orderInLine,
+            orderInLine: store.getters.orderInLine,
+            burgerArrayLength: lengthBurger,
+            noInOrder: i+1,
           };
 
           this.$store.state.socket.emit('order', {order: order});
           store.commit('cancelOrder');
           window.location.replace("#/payment");
         }
+        store.commit('cancelOrder');
     }
     },
     cancelOrder: function(){

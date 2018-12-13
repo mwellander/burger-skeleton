@@ -4,9 +4,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="toChangeBackground2">
     <div class="tabs2">
-      <button v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
-      <button v-on:click="toSides2()">{{uiLabels.sides}}</button>
-      <button v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
+      <button id="tabFavoriteBurger" v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
+      <button id="tabSides2" v-on:click="toSides2()">{{uiLabels.sides}}</button>
+      <button id="tabBeverage2" v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
     </div>
     <div style="text-align:left">
       <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
@@ -87,18 +87,24 @@
 
   <div v-show="change" style="text-align:right">
   <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
+  <button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button>
   </div>
   <div v-show="!change" style="text-align:right">
                    <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
+                   <button class="orderButtonO" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button>
   </div>
 </div>
 </div>
+
 <div class="alert" v-show="alert">
   <div class="confirmText">{{uiLabels.confirmMess}}</div>
 <a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
 <button class="confirmNoCancel" v-on:click="cancelAlert2()">{{uiLabels.no}}</button>
+</div>
+
+<div class="alert" v-show="nothingalert">
+  <div class="confirmText">{{uiLabels.nothingInCart}}</div>
+  <button class="confirmOK" v-on:click="nothingAlert()">{{uiLabels.ok}}</button>
 </div>
 
 </div>
@@ -141,7 +147,8 @@ export default {
             ReadyBurger: [],
             path:"#/favouriteburger",
             alert: false,
-            change:false
+            change:false,
+            nothingalert: false,
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -209,10 +216,16 @@ export default {
       }
     },
     sendOrderHome2: function() {
+      if (this.readyBurgerOrder === false && this.sidesOrder2 === false && this.beverageOrder2 === false) {
+        this.nothingAlert();
+      }
+      else {
       store.commit('addToOrder4',this.chosenIngredients2);
-      store.commit('savePrice',this.price);
+      store.commit('addPrice',this.price);
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
+      window.location.replace("#/home");
+      }
     },
     ifChange2: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
@@ -224,9 +237,15 @@ export default {
       }
     },
     saveChanges2: function(){
+      if (this.readyBurgerOrder === false && this.sidesOrder2 === false && this.beverageOrder2 === false) {
+        this.nothingAlert();
+      }
+      else {
       store.commit('saveChange',this.chosenIngredients2);
       store.commit('savePrice',this.price);
       store.commit('emptyChangeIngrediens');
+      window.location.replace("#/home");
+    }
     },
     addToOrder2: function(item){
       this.chosenIngredients2.push(item);
@@ -273,6 +292,15 @@ export default {
       buttonPanelBurger.style.display = "grid";
       buttonPanelSides.style.display = "none";
       buttonPanelBeverage.style.display = "none";
+
+      var tabForFavoriteBurger = document.getElementById("tabFavoriteBurger");
+      var tabForSides2 = document.getElementById("tabSides2");
+      var tabForBeverage2 = document.getElementById("tabBeverage2");
+
+      tabForFavoriteBurger.style.backgroundColor = "#D3D3D3";
+      tabForSides2.style.backgroundColor = "grey";
+      tabForBeverage2.style.backgroundColor = "grey";
+
     },
     toSides2: function(){
       this.state2="sides2";
@@ -295,6 +323,14 @@ export default {
       buttonPanelBurger.style.display = "none";
       buttonPanelSides.style.display = "grid";
       buttonPanelBeverage.style.display = "none";
+
+      var tabForFavoriteBurger = document.getElementById("tabFavoriteBurger");
+      var tabForSides2 = document.getElementById("tabSides2");
+      var tabForBeverage2 = document.getElementById("tabBeverage2");
+
+      tabForFavoriteBurger.style.backgroundColor = "grey";
+      tabForSides2.style.backgroundColor = "#D3D3D3";
+      tabForBeverage2.style.backgroundColor = "grey";
     },
     toBeverage2:function(){
       this.state2="beverage2";
@@ -317,6 +353,14 @@ export default {
       buttonPanelBurger.style.display = "none";
       buttonPanelSides.style.display = "none";
       buttonPanelBeverage.style.display = "grid";
+
+      var tabForFavoriteBurger = document.getElementById("tabFavoriteBurger");
+      var tabForSides2 = document.getElementById("tabSides2");
+      var tabForBeverage2 = document.getElementById("tabBeverage2");
+
+      tabForFavoriteBurger.style.backgroundColor = "grey";
+      tabForSides2.style.backgroundColor = "grey";
+      tabForBeverage2.style.backgroundColor = "#D3D3D3";
     },
     cancelAlert2: function() {
       var background = document.getElementById("toChangeBackground2");
@@ -327,6 +371,19 @@ export default {
       }
       else {
         this.alert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    },
+    nothingAlert() {
+      var background = document.getElementById("toChangeBackground2");
+      if (this.nothingalert===false){
+        this.nothingalert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.nothingalert=false;
         background.style.opacity = 1;
         background.style['pointer-events'] = "auto";
       }
@@ -404,6 +461,18 @@ export default {
   z-index: 3;
   display: grid;
   position: fixed;
+}
+
+#tabFavoriteBurger{
+  background-color: #D3D3D3;
+}
+
+#tabSides2 {
+  background-color: grey;
+}
+
+#tabBeverage2 {
+  background-color: grey;
 }
 
 </style>

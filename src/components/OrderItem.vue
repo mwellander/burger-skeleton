@@ -1,41 +1,21 @@
 <template>
 
-		<!-- <div>
-			{{orderId}} {{order.type}}
-			{{uiLabels.bread}}: {{ getCategoryItems(2)}} {{order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
-			{{uiLabels.burger}}: {{ getCategoryItems(1)}} {{order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} <br>
-			{{uiLabels.dressing}}: {{getCategoryItems(3)}} {{order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} <br>
-			{{uiLabels.toppings}}: {{getCategoryItems(4)}} {{order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} <br>
-			{{uiLabels.sides}}: {{getCategoryItems(5)}} {{order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} <br>
-			{{uiLabels.beverage}}:{{getCategoryItems(6)}} {{order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
-			<br>
-			<slot name="knapp"></slot>
-			<hr>
-		</div> -->
-			<div>
-				{{orderId}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
-			</div>
-<!-- <div>
-			<ul>
-				<li v-bind:key="key" v-for="key in order">
-					{{ key.ingredient.map(item=>item["ingredient_"+ lang]).join(", ") }}
-				</li>
-			</ul>
-		</div> -->
-	<!-- <div>
-			{{orderId}} {{order.type}}
-			{{uiLabels.bread}}: {{ getCategoryItems(2)}}<br>
-			{{uiLabels.burger}}: {{ getCategoryItems(1)}}<br>
-			{{uiLabels.dressing}}: {{getCategoryItems(3)}}<br>
-			{{uiLabels.toppings}}: {{getCategoryItems(4)}}<br>
-			{{uiLabels.sides}}: {{getCategoryItems(5)}}<br>
-			{{uiLabels.beverage}}: {{getCategoryItems(6)}}
-			<br>
-			<slot name="knapp"></slot>
-			<hr>
-		</div> -->
-
+	<div>
+		{{orderId}} <br> {{order.type}} {{getIngredientArray()}}
+			{{uiLabels.bread}}:{{ this.Bread.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
+			{{uiLabels.burger}}:{{ this.Burger.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
+			{{uiLabels.dressing}}:{{ this.Dressing.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
+			{{uiLabels.toppings}}:{{ this.Toppings.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
+			{{uiLabels.sides}}:{{ this.Sides.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
+			{{uiLabels.beverage}}:{{ this.Beverage.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
+			{{order.orderInLine}}
+		<br>
+		<slot name="knapp"></slot>
+		<hr>
+</div>
 </template>
+
+
 <script>
 export default {
   name: 'OrderItem',
@@ -45,19 +25,43 @@ export default {
     orderId: String,
     lang: String
   },
+	data: function(){
+		return{
+		Bread: [],
+		Burger:[],
+		Dressing:[],
+		Toppings:[],
+		Sides:[],
+		Beverage:[],
+		breadLabel: false,
+		burgerLabel: false,
+		dressingLabel: false,
+		toppingsLabel: false,
+		sidesLabel: false,
+
+	}
+	},
 
 methods: {
+
+	getIngredientArray: function(){
+		//console.log("hej")
+		this.Bread = this.getCategoryItems(4)
+		this.Burger = this.getCategoryItems(1)
+		this.Dressing = this.getCategoryItems(3)
+		this.Toppings = this.getCategoryItems(2)
+		this.Sides = this.getCategoryItems(5)
+		this.Beverage = this.getCategoryItems(6)
+	},
+
 	getCategoryItems: function (category) {
 		let orderArray = [];
-		for(let i = 0; i<this.order.ingredients.length; i=1){
+		for(let i = 0; i<this.order.ingredients.length; i++){
 			if(this.order.ingredients[i].category === category)
-			orderArray.push(this.order.ingredients[i].ingredient_sv)
+			orderArray.push(this.order.ingredients[i])
 		}
 			return orderArray;
-
 }}}
-
-
 
 </script>
 <style scoped>

@@ -59,5 +59,6 @@
   "missingBreadAndBurger": "You you forgot the bread and the burger!",
   "missingBread": "You forgot the bread!",
   "missingBurger": "You you forgor the burger!",
-  "ok": "OK!"
+  "ok": "OK!",
+  "nothingInCart": "You have not put anything in your cart!"
 }
