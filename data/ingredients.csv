@@ -26,7 +26,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 25,Svampstuvning,Mushroom Stew,2,0,1,0,15,mushroom_stew.jpg
 26,Pepper Jack-ost,Pepper Jack Cheese,2,0,1,0,10,spicyostNy3.jpg
 27,Inlagd Gurka,Pickled Cucumber,2,1,1,1,5,picklesNy.png
-28,Inlagd Lök,Pickled Onion,2,1,1,1,5,pickladlokNy3.jpg
+28,Inlagd Lök,Pickled Onion,2,1,1,1,5,pickledlok.png
 29,Rödlök,Raw Red Onion,2,1,1,1,5,rodlokNy.png
 30,Gul Lök,Raw Yellow Onion,2,1,1,1,5,onionyellow.png
 31,Salami,Salami,2,1,1,0,10,salamiNy.png

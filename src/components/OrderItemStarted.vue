@@ -3,7 +3,7 @@
 <div>
   <OrderItem
     :ui-labels="uiLabels"
-    :lang="lang"
+    :lang="uiLabels.lang"
     :order-id="orderId"
     :order="order">
     <button class="OrderDoneButton" slot="knapp" v-on:click="orderDone">

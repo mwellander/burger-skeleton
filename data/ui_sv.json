@@ -62,5 +62,8 @@
   "missingBurger": "Du glömde burgare!",
   "ok": "OK!",
   "nothingInCart": "Du har inte lagt något i varukorgen!",
-  "showNotInStock": "Tyvärr är dessa produkter slut"
+  "showNotInStock": "Tyvärr är dessa produkter slut",
+  "orderKitchen": "Beställning",
+  "nothingInCart": "Du har inte lagt något i varukorgen!"
+
 }

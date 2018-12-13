@@ -61,5 +61,8 @@
   "missingBurger": "You you forgor the burger!",
   "ok": "OK!",
   "nothingInCart": "You have not put anything in your cart!",
-  "showNotInStock": "Unfortunately these products are unavalible"
+  "showNotInStock": "Unfortunately these products are unavalible",
+  "orderKitchen": "Order",
+  "nothingInCart": "You have not put anything in your cart!"
+
 }

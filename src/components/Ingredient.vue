@@ -2,17 +2,18 @@
   <div class="ingredient">
       <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
       <label>
-        <br>{{item["ingredient_"+ lang]}},
-        {{item.selling_price}}:-, {{ item.stock }}
+        <br>{{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{ item.stock }}
+          </label>
         <br>
-        <div class = "btn-group">
-        <br><button class="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
-        <button class="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
-        </div>
-      </label>
+        <!-- <div class = "btn-group"> -->
+        <br><button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
+        <button id="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
+        <!-- </div> -->
   </div>
 </template>
 <script>
+
+
 export default {
   name: 'Ingredient',
   props: {
@@ -43,38 +44,64 @@ export default {
 </script>
 <style scoped>
 @media screen and (min-width: 300px){
-  .incrementButton{
+  #incrementButton{
     padding:0.2em;
     width:1.5em;
     height:1.5em;
+    font-size: 0.4em;
   }
-  .decrementButton{
+  #decrementButton{
     padding:0.2em;
     width:1.5em;
     height:1.5em;
+    font-size: 0.4em;
   }
 }
 @media screen and (min-width: 700px){
-  .incrementButton{
+  #incrementButton{
   width:2em;
   height:2em;
+  font-size: 1em;
 }
-  .decrementButton{
+  #decrementButton{
     width:2em;
     height:2em;
+  font-size: 1em;
   }
 }
-.decrementButton, .incrementButton{
-
+#decrementButton{
+background-color: #808080;
+border: 1px solid black;
+cursor: pointer;
 }
-.incrementButton{
-
-}
-.btn-group button{
+#incrementButton{
    background-color: #808080;
-   border: 1px solid black; /* Green border */
+   border: 1px solid black;
+   cursor: pointer;
+
+}
+#decrementButton:hover {
+  background-color: #f44336; /* Green */
+  color: black;
+  transition-duration: 0.8s;
+}
+#incrementButton:hover {
+  background-color: #4CAF50; /* Green */
+  color: black;
+  transition-duration: 0.8s;
+}
+#incrementButton:active{
+  background-color: green;
+  transition:1s;
+}
+#decrementButton:active{
+  background-color: red;
+}
+/* .btn-group button{
+   background-color: #808080;
+   border: 1px solid black;
    color: black;
    font-size: 1em;
-}
+} */
 
 </style>

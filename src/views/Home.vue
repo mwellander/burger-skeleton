@@ -3,7 +3,8 @@
     <div id="toChangeBackground4">
     <link rel="stylesheet" href="Ordering.vue">
     <div style="text-align:left">
-      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+      <button class="LanguageButtonO" v-on:click="switchLang()">
+        <img :src="getFlag()" height="30em"></button>
     </div>
     <div class="buttonHome" style="text-align:center">
       <div class="createBurgerButton">
@@ -20,13 +21,15 @@
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
-              Order {{ key.noB }}
+              Order {{ key.noB }} <button v-on:click="showOrder(index)" class="showButton">{{uiLabels.show}}
+              </button>
               <a :href="key.path">
                 <button v-on:click="changeOrder(key,index)" class="changeButton">{{uiLabels.change}}
                     </button></a>
                   <button v-on:click="deleteBurger(index)" class="deleteButton">{{uiLabels.erase}}
                 </button>
-              {{key.price}}:-</li>
+              {{key.price}}:-<br>
+            <span v-show="show && key.ingredients===showArray">{{ showArray.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</span></li>
           </ul>
 
           <!-- <ul style="list-style-type:none">
@@ -84,13 +87,25 @@
       alert: false,
       alert2: false,
       burgerArrayLength:0,
-      noInOrder:0
+      noInOrder:0,
+      show:false,
+      showArray:[],
     }
   },
   mounted: function(){
     this.getPrice();
   },
   methods: {
+    showOrder: function(index){
+      if(!this.show||this.showArray!==this.noBurger[index].ingredients){
+        this.showArray=this.noBurger[index].ingredients;
+        this.show=true;
+      }
+      else{
+        this.show=false;
+        this.showArray=[]
+      }
+    },
     getPrice: function(){
       this.price=0;
       for(var i=0;i<this.noBurger.length;i++){
@@ -200,23 +215,31 @@ if (this.alert2===false){
        cursor: pointer;
        border-radius: 1.5em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+       overflow:scroll;
      }
      .createBurgerButton {
        margin-top: 7%;
      }
      .buttonHome button:hover {
        background-color:#ddd;
-
      }
      .changeButton{
        background-color:lightblue;
        font-family: "Comic Sans MS", cursive, sans-serif;
+       font-size:0.7em;
+       padding:0.1em;
      }
      .deleteButton{
        background-color:#f44336;
        font-family: "Comic Sans MS", cursive, sans-serif;
+       font-size:0.7em;
+       padding:0.1em;
      }
-
+     .showButton{
+       font-family: "Comic Sans MS", cursive, sans-serif;
+       font-size:0.7em;
+       padding:0.1em;
+     }
      #toChangeBackground4 {
        opacity: 1;
        pointer-events: auto;
