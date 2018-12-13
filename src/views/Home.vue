@@ -82,7 +82,9 @@
       //orderInLine: store.getters.orderInLine,
       price:0,
       alert: false,
-      alert2: false
+      alert2: false,
+      burgerArrayLength:0,
+      noInOrder:0
     }
   },
   mounted: function(){
@@ -112,12 +114,15 @@
         this.cancelAlert4b();
       }
       else {
+        var lengthBurger = this.noBurger.length;
         store.commit("orderInLine");
-        for (var i=0; i<this.noBurger.length; i++) {
+        for (var i=0; i<lengthBurger; i++) {
           var order = {
             ingredients:this.noBurger[i].ingredients,
             price:this.price,
             orderInLine: store.getters.orderInLine,
+            burgerArrayLength: lengthBurger,
+            noInOrder: i+1,
           };
 
           this.$store.state.socket.emit('order', {order: order});
