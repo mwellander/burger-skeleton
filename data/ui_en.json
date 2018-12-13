@@ -1,5 +1,5 @@
 {
-  "cancelOrder" : "Cancel order",
+  "cancelThisOrder" : "Cancel order",
   "next" : "Next",
   "previous" : "Previous",
   "changeIng" : "Change ingredient",
@@ -53,5 +53,11 @@
   "finished": "Not in Stock",
   "erase": "Remove",
   "thankPayment": "Thank you for your payment!",
-  "goToStart": "Go to start page"
+  "goToStart": "Go to start page",
+  "nothingToOrder": "You have not in your cart!",
+  "continue": "Continue ordering",
+  "missingBreadAndBurger": "You you forgot the bread and the burger!",
+  "missingBread": "You forgot the bread!",
+  "missingBurger": "You you forgor the burger!",
+  "ok": "OK!"
 }

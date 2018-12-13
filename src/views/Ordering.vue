@@ -10,27 +10,27 @@
     <a href="#beverage">{{ uiLabels.beverage }}</a>
   </div> -->
   <!-- <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button> -->
-<div id="toChangeBackground">
-  <div class="tabs">
-    <button v-on:click="toBread()">{{uiLabels.bread}}</button>
-    <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
-    <button v-on:click="toDressing()">{{uiLabels.dressing}}</button>
-    <button v-on:click="toToppings()">{{uiLabels.toppings}}</button>
-    <button v-on:click="toSides()">{{uiLabels.sides}}</button>
-    <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
-  </div>
+  <div id="toChangeBackground">
+    <div class="tabs">
+      <button v-on:click="toBread()">{{uiLabels.bread}}</button>
+      <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
+      <button v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+      <button v-on:click="toToppings()">{{uiLabels.toppings}}</button>
+      <button v-on:click="toSides()">{{uiLabels.sides}}</button>
+      <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+    </div>
 
-  <div style="text-align:left">
-    <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
-  </div>
+    <div style="text-align:left">
+      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+    </div>
 
-  <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
-  <br>
-  <!-- <br> -->
-  <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
+    <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
+    <br>
+    <!-- <br> -->
+    <h1 v-show="started">{{ uiLabels.ingredients }}</h1>
 
-  <div class="breadPage" id="breadPage">
-    <Ingredient
+    <div class="breadPage" id="breadPage">
+      <Ingredient
       ref="ingredient"
       v-show="state === 'bread'"
       v-if="item.category===4 && item.stock > 0"
@@ -43,25 +43,25 @@
     </Ingredient>
   </div>
   <div id="buttonPanelBread">
-  <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
+    <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
   </div>
 
-<div class="Page" id="burgerPage">
-  <Ingredient
-  ref="ingredient"
-  v-show="state === 'burger'"
-  v-if="item.category===1 && item.stock > 0"
-  v-for="item in ingredients"
-  v-on:increment="addToOrder(item)"
-  v-on:decrement="decreaseBurger(item)"
-  :item="item"
-  :lang="uiLabels.lang"
-  :key="item.ingredient_id">
-</Ingredient>
+  <div class="Page" id="burgerPage">
+    <Ingredient
+    ref="ingredient"
+    v-show="state === 'burger'"
+    v-if="item.category===1 && item.stock > 0"
+    v-for="item in ingredients"
+    v-on:increment="addToOrder(item)"
+    v-on:decrement="decreaseBurger(item)"
+    :item="item"
+    :lang="uiLabels.lang"
+    :key="item.ingredient_id">
+  </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBurger">
-<button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
-<button id="nextButton" v-show="burger" v-on:click='toDressing()'>{{uiLabels.next}}</button>
+  <button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
+  <button id="nextButton" v-show="burger" v-on:click='toDressing()'>{{uiLabels.next}}</button>
 </div>
 
 
@@ -79,8 +79,8 @@
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelDressing">
-<button id="previousButton" v-show="dressing" v-on:click="toBurger()">{{uiLabels.previous}}</button>
-<button id="nextButton" v-show="dressing" v-on:click='toToppings()'>{{uiLabels.next}}</button>
+  <button id="previousButton" v-show="dressing" v-on:click="toBurger()">{{uiLabels.previous}}</button>
+  <button id="nextButton" v-show="dressing" v-on:click='toToppings()'>{{uiLabels.next}}</button>
 </div>
 
 
@@ -98,8 +98,8 @@
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelToppings">
-<button id="previousButton" v-show="toppings" v-on:click="toDressing()">{{uiLabels.previous}}</button>
-<button id="nextButton" v-show="toppings" v-on:click='toSides()'>{{uiLabels.next}}</button>
+  <button id="previousButton" v-show="toppings" v-on:click="toDressing()">{{uiLabels.previous}}</button>
+  <button id="nextButton" v-show="toppings" v-on:click='toSides()'>{{uiLabels.next}}</button>
 </div>
 
 
@@ -117,8 +117,8 @@
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelSides">
-<button id="previousButton" v-show="sides" v-on:click="toToppings()">{{uiLabels.previous}}</button>
-<button id="nextButton" v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
+  <button id="previousButton" v-show="sides" v-on:click="toToppings()">{{uiLabels.previous}}</button>
+  <button id="nextButton" v-show="sides" v-on:click='toBeverage()'>{{uiLabels.next}}</button>
 </div>
 
 <div class="Page" id="beveragePage">
@@ -135,7 +135,7 @@
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBeverage">
-<button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
+  <button id="previousButton" v-show="beverage" v-on:click="toSides()">{{uiLabels.previous}}</button>
 </div>
 
 
@@ -163,30 +163,46 @@
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
   <div v-show="change" style="text-align:right">
-  <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button></a>
+    <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+    <button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
   </div>
   <div v-show="!change" style="text-align:right">
-                   <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
+    <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+    <button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
   </div>
 </div>
 </div>
+
 <div class="alert" v-show="alert">
   <div class="confirmText">{{uiLabels.confirmMess}}</div>
-<a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
-<button class="confirmNoCancel" v-on:click="cancelAlert()">{{uiLabels.no}}</button>
+  <a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
+  <button class="confirmNoCancel" v-on:click="cancelAlert()">{{uiLabels.no}}</button>
 </div>
-  <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
-  <div>
-  <OrderItem
-  v-for="(order, key) in orders"
-  v-if="order.status !== 'done'"
-  :order-id="key"
-  :order="order"
-  :ui-labels="uiLabels"
-  :lang="lang"
-  :key="key">
+
+<div class="alert" v-show="breadburgeralert">
+  <div class="confirmText">{{uiLabels.missingBreadAndBurger}}</div>
+  <button class="confirmOK" v-on:click="breadAndBurgerAlert()">{{uiLabels.ok}}</button>
+</div>
+
+<div class="alert" v-show="breadalert">
+  <div class="confirmText">{{uiLabels.missingBread}}</div>
+  <button class="confirmOK" v-on:click="breadAlert()">{{uiLabels.ok}}</button>
+</div>
+
+<div class="alert" v-show="burgeralert">
+  <div class="confirmText">{{uiLabels.missingBurger}}</div>
+  <button class="confirmOK" v-on:click="burgerAlert()">{{uiLabels.ok}}</button>
+</div>
+<!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
+<div>
+<OrderItem
+v-for="(order, key) in orders"
+v-if="order.status !== 'done'"
+:order-id="key"
+:order="order"
+:ui-labels="uiLabels"
+:lang="lang"
+:key="key">
 </OrderItem>
 </div> -->
 </div>
@@ -246,6 +262,9 @@ export default {
       path:"#/customburger",
       change:false,
       alert: false,
+      breadburgeralert: false,
+      breadalert: false,
+      burgeralert: false,
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -260,118 +279,118 @@ export default {
   methods: {
     decreaseBread: function(item){
       var i = this.chosenIngredients.findIndex(function(chosenIngredients){
-      return chosenIngredients.ingredient_id === item.ingredient_id;
-    });
-    if (a1 != -1 ){
-    this.chosenIngredients.splice(i,1);
-  }
-     var i = this.Bread.findIndex(function(Bread){
-     return Bread.ingredient_id === item.ingredient_id;
-   });
-   if (a2 != -1 ){
-   this.Bread.splice(i,1);
-   this.price = this.price - item.selling_price;
-   if (this.Bread.length === 0){
-   this.breadOrder=false
-    }
-  }
-},
-decreaseBurger: function(item){
-  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
-  return chosenIngredients.ingredient_id === item.ingredient_id;
-});
-if (b1 != -1 ){
-this.chosenIngredients.splice(i,1);
-}
- var i = this.Burger.findIndex(function(Burger){
- return Burger.ingredient_id === item.ingredient_id;
-});
-if (b2 != -1 ){
-this.Burger.splice(i,1);
-this.price = this.price - item.selling_price;
-if (this.Burger.length === 0){
-this.burgerOrder=false
-}
-}
-},
-decreaseDressing: function(item){
-  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
-  return chosenIngredients.ingredient_id === item.ingredient_id;
-});
-if (c1 != -1 ){
-this.chosenIngredients.splice(i,1);
-}
- var i = this.Dressing.findIndex(function(Dressing){
- return Dressing.ingredient_id === item.ingredient_id;
-});
-if (c2 != -1 ){
-this.Dressing.splice(i,1);
-this.price = this.price - item.selling_price;
-if (this.Dressing.length === 0){
-this.dressingOrder=false
-}
-}
-},
-decreaseToppings: function(item){
-  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
-  return chosenIngredients.ingredient_id === item.ingredient_id;
-});
-if (d1 != -1 ){
-this.chosenIngredients.splice(i,1);
-}
- var i = this.Toppings.findIndex(function(Toppings){
- return Toppings.ingredient_id === item.ingredient_id;
-});
-if (d2 != -1 ){
-this.Toppings.splice(i,1);
-this.price = this.price - item.selling_price;
-if (this.Toppings.length === 0){
-this.toppingsOrder=false
-}
-}
-},
-decreaseSides: function(item){
-  var i = this.chosenIngredients.findIndex(function(chosenIngredients){
-  return chosenIngredients.ingredient_id === item.ingredient_id;
-});
-if (e1 != -1 ){
-this.chosenIngredients.splice(i,1);
-}
- var i = this.Sides.findIndex(function(Sides){
- return Sides.ingredient_id === item.ingredient_id;
-});
-if (e2 != -1 ){
-this.Sides.splice(i,1);
-this.price = this.price - item.selling_price;
-if (this.Sides.length === 0){
-this.sidesOrder=false
-}
-}
-},
-decreaseBeverage: function(item){
-  var i = this.chosenIngredients  .findIndex(function(chosenIngredients){
-  return chosenIngredients.ingredient_id === item.ingredient_id;
-});
-if (f1 != -1 ){
-this.chosenIngredients.splice(i,1);
-}
-var i = this.chosenIngredientsSides  .findIndex(function(chosenIngredientsSides){
-return chosenIngredientsSides.ingredient_id === item.ingredient_id;
-});
-if (f2 != -1 ){
-this.chosenIngredientsSides.splice(i,1);
-}
- var i = this.Beverage.findIndex(function(Beverage){
- return Beverage.ingredient_id === item.ingredient_id;
-});
-if (i != -1 ){
-this.Beverage.splice(i,1);
-this.price = this.price - item.selling_price;
-if (this.Beverage.length === 0){
-this.beverageOrder=false
-}
-}
-},
+        return chosenIngredients.ingredient_id === item.ingredient_id;
+      });
+      if (a1 != -1 ){
+        this.chosenIngredients.splice(i,1);
+      }
+      var i = this.Bread.findIndex(function(Bread){
+        return Bread.ingredient_id === item.ingredient_id;
+      });
+      if (a2 != -1 ){
+        this.Bread.splice(i,1);
+        this.price = this.price - item.selling_price;
+        if (this.Bread.length === 0){
+          this.breadOrder=false
+        }
+      }
+    },
+    decreaseBurger: function(item){
+      var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+        return chosenIngredients.ingredient_id === item.ingredient_id;
+      });
+      if (b1 != -1 ){
+        this.chosenIngredients.splice(i,1);
+      }
+      var i = this.Burger.findIndex(function(Burger){
+        return Burger.ingredient_id === item.ingredient_id;
+      });
+      if (b2 != -1 ){
+        this.Burger.splice(i,1);
+        this.price = this.price - item.selling_price;
+        if (this.Burger.length === 0){
+          this.burgerOrder=false
+        }
+      }
+    },
+    decreaseDressing: function(item){
+      var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+        return chosenIngredients.ingredient_id === item.ingredient_id;
+      });
+      if (c1 != -1 ){
+        this.chosenIngredients.splice(i,1);
+      }
+      var i = this.Dressing.findIndex(function(Dressing){
+        return Dressing.ingredient_id === item.ingredient_id;
+      });
+      if (c2 != -1 ){
+        this.Dressing.splice(i,1);
+        this.price = this.price - item.selling_price;
+        if (this.Dressing.length === 0){
+          this.dressingOrder=false
+        }
+      }
+    },
+    decreaseToppings: function(item){
+      var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+        return chosenIngredients.ingredient_id === item.ingredient_id;
+      });
+      if (d1 != -1 ){
+        this.chosenIngredients.splice(i,1);
+      }
+      var i = this.Toppings.findIndex(function(Toppings){
+        return Toppings.ingredient_id === item.ingredient_id;
+      });
+      if (d2 != -1 ){
+        this.Toppings.splice(i,1);
+        this.price = this.price - item.selling_price;
+        if (this.Toppings.length === 0){
+          this.toppingsOrder=false
+        }
+      }
+    },
+    decreaseSides: function(item){
+      var i = this.chosenIngredients.findIndex(function(chosenIngredients){
+        return chosenIngredients.ingredient_id === item.ingredient_id;
+      });
+      if (e1 != -1 ){
+        this.chosenIngredients.splice(i,1);
+      }
+      var i = this.Sides.findIndex(function(Sides){
+        return Sides.ingredient_id === item.ingredient_id;
+      });
+      if (e2 != -1 ){
+        this.Sides.splice(i,1);
+        this.price = this.price - item.selling_price;
+        if (this.Sides.length === 0){
+          this.sidesOrder=false
+        }
+      }
+    },
+    decreaseBeverage: function(item){
+      var i = this.chosenIngredients  .findIndex(function(chosenIngredients){
+        return chosenIngredients.ingredient_id === item.ingredient_id;
+      });
+      if (f1 != -1 ){
+        this.chosenIngredients.splice(i,1);
+      }
+      var i = this.chosenIngredientsSides  .findIndex(function(chosenIngredientsSides){
+        return chosenIngredientsSides.ingredient_id === item.ingredient_id;
+      });
+      if (f2 != -1 ){
+        this.chosenIngredientsSides.splice(i,1);
+      }
+      var i = this.Beverage.findIndex(function(Beverage){
+        return Beverage.ingredient_id === item.ingredient_id;
+      });
+      if (i != -1 ){
+        this.Beverage.splice(i,1);
+        this.price = this.price - item.selling_price;
+        if (this.Beverage.length === 0){
+          this.beverageOrder=false
+        }
+      }
+    },
     ifChange: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){
@@ -382,10 +401,49 @@ this.beverageOrder=false
       }
     },
     sendOrderHome: function() {
-      store.commit('addToOrder4',this.chosenIngredients);
-      store.commit('addPrice',this.price);
-      store.commit('addNoBurger', this.path);
-      store.commit('emptyChangeIngrediens');
+      if(this.beverageOrder === true && this.sidesOrder === true
+        && this.burgerOrder === false && this.breadOrder === false
+        && this.dressingOrder === false && this.toppingsOrder === false) {
+        store.commit('addToOrder4',this.chosenIngredients);
+        store.commit('addPrice',this.price);
+        store.commit('addNoBurger', this.path);
+        store.commit('emptyChangeIngrediens');
+        window.location.replace("#/home");
+      }
+      else if(this.beverageOrder === true && this.sidesOrder === false
+        && this.burgerOrder === false && this.breadOrder === false
+        && this.dressingOrder === false && this.toppingsOrder === false) {
+        store.commit('addToOrder4',this.chosenIngredients);
+        store.commit('addPrice',this.price);
+        store.commit('addNoBurger', this.path);
+        store.commit('emptyChangeIngrediens');
+        window.location.replace("#/home");
+      }
+      else if(this.beverageOrder === false && this.sidesOrder === true
+        && this.burgerOrder === false && this.breadOrder === false
+        && this.dressingOrder === false && this.toppingsOrder === false) {
+        store.commit('addToOrder4',this.chosenIngredients);
+        store.commit('addPrice',this.price);
+        store.commit('addNoBurger', this.path);
+        store.commit('emptyChangeIngrediens');
+        window.location.replace("#/home");
+      }
+      else if (this.burgerOrder === false && this.breadOrder === false) {
+        this.breadAndBurgerAlert();
+      }
+      else if (this.burgerOrder === false) {
+        this.burgerAlert();
+      }
+      else if (this.breadOrder === false) {
+        this.breadAlert();
+      }
+      else {
+        store.commit('addToOrder4',this.chosenIngredients);
+        store.commit('addPrice',this.price);
+        store.commit('addNoBurger', this.path);
+        store.commit('emptyChangeIngrediens');
+        window.location.replace("#/home");
+      }
     },
     startOrder: function(){
       this.started=true;
@@ -694,226 +752,301 @@ this.beverageOrder=false
       this.price += +item.selling_price;
     },
     saveChanges: function(){
-      store.commit('saveChange',this.chosenIngredients);
-      store.commit('savePrice',this.price);
-      store.commit('emptyChangeIngrediens');
+      if(this.beverageOrder === true && this.sidesOrder === true
+        && this.burgerOrder === false && this.breadOrder === false
+        && this.dressingOrder === false && this.toppingsOrder === false) {
+          store.commit('saveChange',this.chosenIngredients);
+          store.commit('savePrice',this.price);
+          store.commit('emptyChangeIngrediens');
+          window.location.replace("#/home");
+      }
+      else if(this.beverageOrder === true && this.sidesOrder === false
+        && this.burgerOrder === false && this.breadOrder === false
+        && this.dressingOrder === false && this.toppingsOrder === false) {
+          store.commit('saveChange',this.chosenIngredients);
+          store.commit('savePrice',this.price);
+          store.commit('emptyChangeIngrediens');
+          window.location.replace("#/home");
+      }
+      else if(this.beverageOrder === false && this.sidesOrder === true
+        && this.burgerOrder === false && this.breadOrder === false
+        && this.dressingOrder === false && this.toppingsOrder === false) {
+          store.commit('saveChange',this.chosenIngredients);
+          store.commit('savePrice',this.price);
+          store.commit('emptyChangeIngrediens');
+          window.location.replace("#/home");
+      }
+      else if (this.burgerOrder === false && this.breadOrder === false) {
+        this.breadAndBurgerAlert();
+      }
+      else if (this.burgerOrder === false) {
+        this.burgerAlert();
+      }
+      else if (this.breadOrder === false) {
+        this.breadAlert();
+      }
+      else {
+        store.commit('saveChange',this.chosenIngredients);
+        store.commit('savePrice',this.price);
+        store.commit('emptyChangeIngrediens');
+        window.location.replace("#/home");
+      }
     },
     cancelChanges: function(){
       store.commit('emptyChangeIngrediens');
     },
     cancelAlert: function() {
-  var background = document.getElementById("toChangeBackground");
-  if (this.alert===false){
-    this.alert=true;
-    background.style.opacity = 0.5;
-    background.style['pointer-events'] = "none";
+      var background = document.getElementById("toChangeBackground");
+      if (this.alert===false){
+        this.alert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.alert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    },
+    breadAndBurgerAlert: function() {
+      var background = document.getElementById("toChangeBackground");
+      if (this.breadburgeralert===false){
+        this.breadburgeralert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.breadburgeralert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    },
+    breadAlert: function() {
+      var background = document.getElementById("toChangeBackground");
+      if (this.breadalert===false){
+        this.breadalert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.breadalert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    },
+    burgerAlert: function() {
+      var background = document.getElementById("toChangeBackground");
+      if (this.burgeralert===false){
+        this.burgeralert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.burgeralert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    }
+  }}
+  </script>
+  <style>
+  /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
+  #ordering {
+    height: 100%;
+    min-width: 100px;
+    min-height: 100px;
   }
-  else {
-    this.alert=false;
-    background.style.opacity = 1;
-    background.style['pointer-events'] = "auto";
-  }
-}}
-}
-</script>
-<style>
-/* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
-#ordering {
-  height: 100%;
-  min-width: 100px;
-  min-height: 100px;
-}
-@media screen and (min-width: 300px) {
-  #ordering{
-    width:20em;
-    margin-left:3%;
-    margin-right:3%;
-  }
-  .receipt {
-    width: 20em;
-  }
-  .tabs{
-    width:20em;
-  }
-  .tabs button {
-    width: 6.66em;
-    font-size: 0.5em;
-  }
-  .Page{
-    bottom: 18.5em;
-    top: 4.5em;
-    width: 20em;
-  }
+  @media screen and (min-width: 300px) {
+    #ordering{
+      width:20em;
+      margin-left:3%;
+      margin-right:3%;
+    }
+    .receipt {
+      width: 20em;
+    }
+    .tabs{
+      width:20em;
+    }
+    .tabs button {
+      width: 6.66em;
+      font-size: 0.5em;
+    }
+    .Page{
+      bottom: 18.5em;
+      top: 4.5em;
+      width: 20em;
+    }
 
-  .breadPage{
-    bottom: 18.5em;
-    top: 4.5em;
-    width: 20em;
+    .breadPage{
+      bottom: 18.5em;
+      top: 4.5em;
+      width: 20em;
+    }
+    #buttonPanelBread{
+      width:20em;
+      grid-template-columns: 30% 40% 30%;
+      height: 3.5em;
+      bottom: 14.7em;
+    }
+    .buttonPanel{
+      width:20em;
+      grid-template-columns: 30% 40% 30%;
+      height: 3.5em;
+      bottom: 14.7em;
+    }
+    #previousButton{
+      padding: 1em 1em;
+    }
+    .ingredient{
+      font-size:0.5em;
+      padding: 0.2em;
+    }
+    #myBurger{
+      font-size:0.7em;
+    }
+    #sidesAndBeverage{
+      font-size:0.7em;
+    }
+    .orderButtonO{
+      font-size:0.7em;
+    }
+    .cancelButton{
+      font-size:0.7em;
+    }
+    .totalText{
+      font-size:0.7em;
+      margin-bottom: 6em;
+    }
+    .column{
+      font-size: 0.6em;
+    }
+    .cc{
+      height: 13em;
+    }
+    .dd{
+      height: 10em;
+    }
   }
-  #buttonPanelBread{
-    width:20em;
-    grid-template-columns: 30% 40% 30%;
-    height: 3.5em;
-    bottom: 14.7em;
-  }
-  .buttonPanel{
-    width:20em;
-    grid-template-columns: 30% 40% 30%;
-    height: 3.5em;
-    bottom: 14.7em;
-  }
-  #previousButton{
-    padding: 1em 1em;
-  }
-  .ingredient{
-    font-size:0.5em;
-    padding: 0.2em;
-  }
-  #myBurger{
-    font-size:0.7em;
-  }
-  #sidesAndBeverage{
-    font-size:0.7em;
-  }
-  .orderButtonO{
-    font-size:0.7em;
-  }
-  .cancelButton{
-    font-size:0.7em;
-  }
-  .totalText{
-    font-size:0.7em;
-    margin-bottom: 6em;
-  }
-  .column{
-    font-size: 0.6em;
-  }
-  .cc{
-    height: 13em;
-  }
-  .dd{
-    height: 10em;
-  }
-}
-@media screen and (min-width: 700px) {
-  #ordering{
-    width:40em;
-    margin: auto;
-  }
-  .tabs{
-    width:40em;
-  }
-  .tabs button {
-    width: 5.55em;
-    font-size: 1.2em;
-  }
-   .receipt {
+  @media screen and (min-width: 700px) {
+    #ordering{
       width:40em;
-   }
-   .Page {
-     bottom:20em;
-     top: 7em;
-     width: 40em;
-   }
-   .breadPage {
-     bottom:20em;
-     top: 7em;
-     width: 40em;
-   }
-   #buttonPanelBread{
-     width:40em;
-     grid-template-columns: 20% 60% 20%;
-     height: 3.5em;
-     bottom: 16.3em;
-   }
-   .buttonPanel{
-     width:40em;
-     grid-template-columns: 20% 60% 20%;
-     height: 3.5em;
-     bottom: 16.3em;
-   }
-   .previousButton{
-     padding: 1em 2em;
-   }
-   .ingredient{
-     font-size:1em;
-     padding: 1em;
-   }
-   #myBurger{
-     font-size:1em;
-   }
-   #sidesAndBeverage{
-     font-size:1em;
-   }
-   .orderButtonO{
-     font-size:1em;
-   }
-   .cancelButton{
-     font-size:1em;
-   }
-   .totalText{
-     font-size:1em;
-     margin-bottom: 5em;
-   }
-   .column{
-     font-size: 1em;
-   }
-   .cc{
-     height: 8em;
-   }
-   .dd{
-     height: 6em;
-   }
-}
-* {
-  box-sizing: border-box;
-}
+      margin: auto;
+    }
+    .tabs{
+      width:40em;
+    }
+    .tabs button {
+      width: 5.55em;
+      font-size: 1.2em;
+    }
+    .receipt {
+      width:40em;
+    }
+    .Page {
+      bottom:20em;
+      top: 7em;
+      width: 40em;
+    }
+    .breadPage {
+      bottom:20em;
+      top: 7em;
+      width: 40em;
+    }
+    #buttonPanelBread{
+      width:40em;
+      grid-template-columns: 20% 60% 20%;
+      height: 3.5em;
+      bottom: 16.3em;
+    }
+    .buttonPanel{
+      width:40em;
+      grid-template-columns: 20% 60% 20%;
+      height: 3.5em;
+      bottom: 16.3em;
+    }
+    .previousButton{
+      padding: 1em 2em;
+    }
+    .ingredient{
+      font-size:1em;
+      padding: 1em;
+    }
+    #myBurger{
+      font-size:1em;
+    }
+    #sidesAndBeverage{
+      font-size:1em;
+    }
+    .orderButtonO{
+      font-size:1em;
+    }
+    .cancelButton{
+      font-size:1em;
+    }
+    .totalText{
+      font-size:1em;
+      margin-bottom: 5em;
+    }
+    .column{
+      font-size: 1em;
+    }
+    .cc{
+      height: 8em;
+    }
+    .dd{
+      height: 6em;
+    }
+  }
+  * {
+    box-sizing: border-box;
+  }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.column {
-  float: left;
-  width: 50%;
-  padding: 0em;
-}
-.aa {
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .column {
+    float: left;
+    width: 50%;
+    padding: 0em;
+  }
+  .aa {
+    height:3em;
+    overflow:hidden;
+    background-color: white;
+    border-bottom: 0.1em solid black;
+  }
+  /* .bb {
   height:3em;
   overflow:hidden;
   background-color: white;
   border-bottom: 0.1em solid black;
-}
-/* .bb {
-  height:3em;
-  overflow:hidden;
-  background-color: white;
-  border-bottom: 0.1em solid black;
-} */
-.cc {
-  overflow:scroll;
-  background-color: white;
-  text-align:left;
-}
-.dd {
-  overflow:scroll;
-  background-color: white;
-  text-align:left;
-  /* z-index: 1; */
-}
+  } */
+  .cc {
+    overflow:scroll;
+    background-color: white;
+    text-align:left;
+  }
+  .dd {
+    overflow:scroll;
+    background-color: white;
+    text-align:left;
+    /* z-index: 1; */
+  }
 
-#buttonPanelBread {
-  z-index: 3;
-  display: grid;
-  position: fixed;
-}
-.buttonPanel {
-  background-color: black;
-  display: grid;
-  position: fixed;
-}
-/* #buttonPanelBurger {
+  #buttonPanelBread {
+    z-index: 3;
+    display: grid;
+    position: fixed;
+  }
+  .buttonPanel {
+    background-color: black;
+    display: grid;
+    position: fixed;
+  }
+  /* #buttonPanelBurger {
   background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -921,9 +1054,9 @@ this.beverageOrder=false
   width: 40em;
   height: 3.5em;
   bottom: 16.3em;
-} */
-/*
-#buttonPanelDressing {
+  } */
+  /*
+  #buttonPanelDressing {
   background-color: black;
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -934,78 +1067,78 @@ this.beverageOrder=false
 }
 
 #buttonPanelToppings {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
+background-color: black;
+display: grid;
+grid-template-columns: 20% 60% 20%;
+position: fixed;
+width: 40em;
+height: 3.5em;
+bottom: 16.3em;
 }
 
 #buttonPanelSides {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
+background-color: black;
+display: grid;
+grid-template-columns: 20% 60% 20%;
+position: fixed;
+width: 40em;
+height: 3.5em;
+bottom: 16.3em;
 }
 
 #buttonPanelBeverage {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
+background-color: black;
+display: grid;
+grid-template-columns: 20% 60% 20%;
+position: fixed;
+width: 40em;
+height: 3.5em;
+bottom: 16.3em;
 } */
 /* #buttonPanelReadyBurger {
-  z-index: 3;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
+z-index: 3;
+display: grid;
+grid-template-columns: 20% 60% 20%;
+position: fixed;
+width: 40em;
+height: 3.5em;
+bottom: 16.3em;
 }
 #buttonPanelSides2 {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
+background-color: black;
+display: grid;
+grid-template-columns: 20% 60% 20%;
+position: fixed;
+width: 40em;
+height: 3.5em;
+bottom: 16.3em;
 }
 #buttonPanelBeverage2 {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
+background-color: black;
+display: grid;
+grid-template-columns: 20% 60% 20%;
+position: fixed;
+width: 40em;
+height: 3.5em;
+bottom: 16.3em;
 }
 #buttonPanelSides3 {
-  z-index: 3;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
+z-index: 3;
+display: grid;
+grid-template-columns: 20% 60% 20%;
+position: fixed;
+width: 40em;
+height: 3.5em;
+bottom: 16.3em;
 }
 #buttonPanelBeverage3 {
-  background-color: black;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
+background-color: black;
+display: grid;
+grid-template-columns: 20% 60% 20%;
+position: fixed;
+width: 40em;
+height: 3.5em;
+bottom: 16.3em;
 } */
 
 #nextButton {
@@ -1105,9 +1238,9 @@ this.beverageOrder=false
   background-color:#ddd;
 }
 /* .main {
-  padding: 1px;
-  margin-top: 3px;
-  height: 15px; /* Used in this example to enable scrolling
+padding: 1px;
+margin-top: 3px;
+height: 15px; /* Used in this example to enable scrolling
 } */
 .example-panel {
   position: fixed;
@@ -1130,40 +1263,40 @@ this.beverageOrder=false
 }
 
 .Page{
-    overflow: scroll;
-    position: absolute;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column: 1 / span 3;
-    grid-row: 1;
-    text-align: center;
+  overflow: scroll;
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  text-align: center;
 }
 /* .burgerPage {
-  overflow: scroll;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+overflow: scroll;
+position: absolute;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 }
 .toppingPage {
-  overflow: scroll;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+overflow: scroll;
+position: absolute;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 }
 .dressingPage {
-  overflow: scroll;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+overflow: scroll;
+position: absolute;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 } */
 .breadPage {
   z-index: 10;
@@ -1176,87 +1309,87 @@ this.beverageOrder=false
   text-align: center;
 }
 /* .sidesPage {
-  overflow: scroll;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+overflow: scroll;
+position: absolute;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 }
 .beveragePage {
-  overflow: scroll;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+overflow: scroll;
+position: absolute;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 } */
 /* .readyBurgerPage {
-  z-index: -1;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+z-index: -1;
+overflow: scroll;
+position: absolute;
+bottom: 20em;
+top: 7em;
+width: 40em;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 }
 .sidesPage2 {
-  z-index: -100;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+z-index: -100;
+overflow: scroll;
+position: absolute;
+bottom: 20em;
+top: 7em;
+width: 40em;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 }
 .beveragePage2 {
-  z-index: -100;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+z-index: -100;
+overflow: scroll;
+position: absolute;
+bottom: 20em;
+top: 7em;
+width: 40em;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 }
 .sidesPage3 {
-  z-index: -1;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+z-index: -1;
+overflow: scroll;
+position: absolute;
+bottom: 20em;
+top: 7em;
+width: 40em;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 }
 .beveragePage3 {
-  z-index: -100;
-  overflow: scroll;
-  position: absolute;
-  bottom: 20em;
-  top: 7em;
-  width: 40em;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
-  grid-row: 1;
-  text-align: center;
+z-index: -100;
+overflow: scroll;
+position: absolute;
+bottom: 20em;
+top: 7em;
+width: 40em;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-column: 1 / span 3;
+grid-row: 1;
+text-align: center;
 } */
 
 #toChangeBackground {
@@ -1270,7 +1403,7 @@ this.beverageOrder=false
   background-color: grey;
   width: 25em;
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 30% 40% 30%;
   height: 15em;
   margin: auto;
   padding: 1em 2em;
@@ -1283,42 +1416,60 @@ this.beverageOrder=false
   font-size: 2em;
   grid-column: 1/ span 3;
   grid-row: 1;
-  }
+}
 
-  .confirmCancel {
-font-family: "Comic Sans MS", cursive, sans-serif;
-font-size: 1em;
-grid-column: 3;
-grid-row: 2;
-background-color: #6495ED;
-border: 0.1em solid black;
-color: black;
-padding: 1em 2em;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-cursor: pointer;
-border-radius: 1em;
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-vertical-align: middle;
-margin: auto;
+.confirmCancel {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 1em;
+  grid-column: 3;
+  grid-row: 2;
+  background-color: #6495ED;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 1em;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  vertical-align: middle;
+  margin: auto;
 }
 .confirmNoCancel {
-font-family: "Comic Sans MS", cursive, sans-serif;
-font-size: 1em;
-grid-column: 1;
-grid-row: 2;
-background-color: #ADD8E6;
-border: 0.1em solid black;
-color: black;
-padding: 1em 2em;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-cursor: pointer;
-border-radius: 1em;
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-margin: auto;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 1em;
+  grid-column: 1;
+  grid-row: 2;
+  background-color: #ADD8E6;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 1em;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin: auto;
+}
+
+.confirmOK {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 1em;
+  grid-column:2;
+  grid-row: 2;
+  background-color: #ADD8E6;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 1em;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin: auto;
 }
 
 </style>

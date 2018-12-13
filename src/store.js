@@ -56,6 +56,7 @@ export default new Vuex.Store({
     cancelOrder(state){
       state.noBurger=[],
       state.totalPrice=0
+      // Numret på burgarna börjar ej om på 1
     },
     savePrice(state,price){
       state.noBurger[state.changeKey].price=price

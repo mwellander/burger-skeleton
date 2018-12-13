@@ -1,5 +1,5 @@
 {
-  "cancelOrder" : "Avbryt köp",
+  "cancelThisOrder" : "Avbryt beställning",
   "next" : "Nästa",
   "previous" :"Tillbaka",
   "changeIng" : "Byt ut ingrediens",
@@ -54,5 +54,11 @@
   "finished": "Slut i lager",
   "erase": "Ta bort",
   "thankPayment": "Tack för din betalning!",
-  "goToStart": "Gå till startsidan"
+  "goToStart": "Gå till startsidan",
+  "nothingToOrder": "Du har inget i din varukorg!",
+  "continue": "Fortsätt beställa",
+  "missingBreadAndBurger": "Du glömde brödet och burgaren!",
+  "missingBread": "Du glömde brödet!",
+  "missingBurger": "Du glömde burgare!",
+  "ok": "OK!"
 }

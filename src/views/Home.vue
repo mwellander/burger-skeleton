@@ -40,7 +40,7 @@
       </div>
 
       <div style="text-align:right">
-        <button class="cancelButton" v-on:click="cancelAlert4()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+        <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
         <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
       </div>
     </div>
@@ -49,7 +49,13 @@
     <div class="alert" v-show="alert">
       <div class="confirmText">{{uiLabels.confirmMess}}</div>
     <a href="#/start" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
-    <button class="confirmNoCancel" v-on:click="cancelAlert4()">{{uiLabels.no}}</button>
+    <button class="confirmNoCancel" v-on:click="cancelAlert4a()">{{uiLabels.no}}</button>
+    </div>
+
+    <div class="alert" v-show="alert2">
+      <div class="confirmText">{{uiLabels.nothingToOrder}}</div>
+      <button class="confirmCancel" v-on:click="cancelAlert4b()">{{uiLabels.continue}}</button>
+    <a href="#/start" class="confirmNoCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.cancelThisOrder}}</a>
     </div>
 
   </div>
@@ -74,7 +80,9 @@
       burgers:store.getters.getChosenIngredients4,
       noBurger:store.getters.getNoBurger,
       orderInLine: 0,
-      price:0
+      price:0,
+      alert: false,
+      alert2: false
     }
   },
   mounted: function(){
@@ -97,21 +105,8 @@
       store.commit('changeOrder',key);
     },
     placeOrder: function () {
-      // this.orderInLine += 1;
-      // for (var i=0; i<this.noBurger.length; i++) {
-      //   var order = {
-      //     ingredients:this.noBurger[i].ingredients,
-      //     price:this.price,
-      //     orderInLine: this.orderInLine,
-      //   };
-      //
-      //   this.$store.state.socket.emit('order', {order: order});
-      // }
-      // // var order = {ingredients:this.noBurger[1].ingredients,price:this.price};
-      // //
-      // // this.$store.state.socket.emit('order', {order: order});
       if (typeof this.noBurger[0] === 'undefined') {
-        this.cancelAlert4();
+        this.cancelAlert4b();
       }
       else {
         this.orderInLine += 1;
@@ -123,21 +118,15 @@
           };
 
           this.$store.state.socket.emit('order', {order: order});
+          store.commit('cancelOrder');
+          window.location.replace("#/payment");
         }
-        // var order = {ingredients:this.noBurger[1].ingredients,price:this.price};
-        //
-        // this.$store.state.socket.emit('order', {order: order});
-      // var order = {ingredients:this.noBurger[0].ingredients,price:this.price};
-      // // for (var i=0; i<this.noBurger.length; i++) {
-      // //   var order = {ingredients:this.noBurger[0].ingredients,price:this.price};
-      // //
-      // //   this.$store.state.socket.emit('order', {order: order});
-      // // }
-      // this.$store.state.socket.emit('order', {order: order});
-      window.location.replace("#/payment");
     }
     },
-    cancelAlert4: function() {
+    cancelOrder: function(){
+      store.commit('cancelOrder');
+    },
+    cancelAlert4a: function() {
   var background = document.getElementById("toChangeBackground4");
   if (this.alert===false){
     this.alert=true;
@@ -149,8 +138,21 @@
     background.style.opacity = 1;
     background.style['pointer-events'] = "auto";
   }
-}
+},
+cancelAlert4b: function() {
+    var background = document.getElementById("toChangeBackground4");
+if (this.alert2===false){
+    this.alert2=true;
+    background.style.opacity = 0.5;
+    background.style['pointer-events'] = "none";
   }
+  else {
+    this.alert2=false;
+    background.style.opacity = 1;
+    background.style['pointer-events'] = "auto";
+  }
+  }
+}
 }
 </script>
 
@@ -210,4 +212,5 @@
        opacity: 1;
        pointer-events: auto;
      }
+
 </style>
