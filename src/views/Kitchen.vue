@@ -10,13 +10,13 @@
 
   <div id="currentStock">
     <div class="tabsKitchen">
-      <button v-on:click="toBurger()">{{uiLabels.burger}}</button>
-      <button v-on:click="toToppings()">{{uiLabels.toppings}}</button>
-      <button v-on:click="toDressing()">{{uiLabels.dressing}}</button>
-      <button v-on:click="toBread()">{{uiLabels.bread}}</button>
-      <button v-on:click="toSides()">{{uiLabels.sides}}</button>
-      <button v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
-      <button v-on:click="toReadyMadeBurger()">{{uiLabels.favouriteBurger}}</button>
+      <button id="tabKitchenBurger" v-on:click="toBurger()">{{uiLabels.burger}}</button>
+      <button id="tabKitchenToppings" v-on:click="toToppings()">{{uiLabels.toppings}}</button>
+      <button id="tabKitchenDressing" v-on:click="toDressing()">{{uiLabels.dressing}}</button>
+      <button id="tabKitchenBread" v-on:click="toBread()">{{uiLabels.bread}}</button>
+      <button id="tabKitchenSides" v-on:click="toSides()">{{uiLabels.sides}}</button>
+      <button id="tabKitchenBeverage" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
+      <button id="tabKitchenFavoriteBurger" v-on:click="toReadyMadeBurger()">{{uiLabels.favouriteBurger}}</button>
     </div>
 <!--
     <br>
@@ -235,6 +235,22 @@ export default {
     this.sides=false;
     this.beverage=false;
     this.ReadyBurger=false;
+
+    var tabForKitchenBread = document.getElementById("tabKitchenBread");
+    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+    var tabForKitchenSides = document.getElementById("tabKitchenSides");
+    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+    tabForKitchenBread.style.backgroundColor = "grey";
+    tabForKitchenBurger.style.backgroundColor = "#D3D3D3";
+    tabForKitchenDressing.style.backgroundColor = "grey";
+    tabForKitchenToppings.style.backgroundColor = "grey";
+    tabForKitchenSides.style.backgroundColor = "grey";
+    tabForKitchenBeverage.style.backgroundColor = "grey";
+    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
   },
   toToppings: function(){
     this.state="toppings";
@@ -245,6 +261,22 @@ export default {
     this.sides=false;
     this.beverage=false;
     this.ReadyBurger=false;
+
+    var tabForKitchenBread = document.getElementById("tabKitchenBread");
+    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+    var tabForKitchenSides = document.getElementById("tabKitchenSides");
+    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+    tabForKitchenBread.style.backgroundColor = "grey";
+    tabForKitchenBurger.style.backgroundColor = "grey";
+    tabForKitchenDressing.style.backgroundColor = "grey";
+    tabForKitchenToppings.style.backgroundColor = "#D3D3D3";
+    tabForKitchenSides.style.backgroundColor = "grey";
+    tabForKitchenBeverage.style.backgroundColor = "grey";
+    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
   },
   toDressing: function(){
     this.state="dressing";
@@ -255,6 +287,22 @@ export default {
     this.sides=false;
     this.beverage=false;
     this.ReadyBurger=false;
+
+    var tabForKitchenBread = document.getElementById("tabKitchenBread");
+    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+    var tabForKitchenSides = document.getElementById("tabKitchenSides");
+    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+    tabForKitchenBread.style.backgroundColor = "grey";
+    tabForKitchenBurger.style.backgroundColor = "grey";
+    tabForKitchenDressing.style.backgroundColor = "#D3D3D3";
+    tabForKitchenToppings.style.backgroundColor = "grey";
+    tabForKitchenSides.style.backgroundColor = "grey";
+    tabForKitchenBeverage.style.backgroundColor = "grey";
+    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
   },
   toBread: function(){
     this.state="bread";
@@ -265,6 +313,22 @@ export default {
     this.sides=false;
     this.beverage=false;
     this.ReadyBurger=false;
+
+    var tabForKitchenBread = document.getElementById("tabKitchenBread");
+    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+    var tabForKitchenSides = document.getElementById("tabKitchenSides");
+    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+    tabForKitchenBread.style.backgroundColor = "#D3D3D3";
+    tabForKitchenBurger.style.backgroundColor = "grey";
+    tabForKitchenDressing.style.backgroundColor = "grey";
+    tabForKitchenToppings.style.backgroundColor = "grey";
+    tabForKitchenSides.style.backgroundColor = "grey";
+    tabForKitchenBeverage.style.backgroundColor = "grey";
+    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
   },
   toSides: function(){
     this.state="sides";
@@ -275,6 +339,22 @@ export default {
     this.sides=true;
     this.beverage=false;
     this.ReadyBurger=false;
+
+    var tabForKitchenBread = document.getElementById("tabKitchenBread");
+    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+    var tabForKitchenSides = document.getElementById("tabKitchenSides");
+    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+    tabForKitchenBread.style.backgroundColor = "grey";
+    tabForKitchenBurger.style.backgroundColor = "grey";
+    tabForKitchenDressing.style.backgroundColor = "grey";
+    tabForKitchenToppings.style.backgroundColor = "grey";
+    tabForKitchenSides.style.backgroundColor = "#D3D3D3";
+    tabForKitchenBeverage.style.backgroundColor = "grey";
+    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
   },
   toBeverage: function(){
     this.state="beverage";
@@ -285,6 +365,22 @@ export default {
     this.sides=false;
     this.beverage=true;
     this.ReadyBurger=false;
+
+    var tabForKitchenBread = document.getElementById("tabKitchenBread");
+    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+    var tabForKitchenSides = document.getElementById("tabKitchenSides");
+    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+    tabForKitchenBread.style.backgroundColor = "grey";
+    tabForKitchenBurger.style.backgroundColor = "grey";
+    tabForKitchenDressing.style.backgroundColor = "grey";
+    tabForKitchenToppings.style.backgroundColor = "grey";
+    tabForKitchenSides.style.backgroundColor = "grey";
+    tabForKitchenBeverage.style.backgroundColor = "#D3D3D3";
+    tabForKitchenFavoriteBurger.style.backgroundColor = "grey";
   },
   toReadyMadeBurger: function() {
     this.state="favouriteBurger";
@@ -295,6 +391,22 @@ export default {
     this.sides=false;
     this.beverage=false;
     this.ReadyBurger=true;
+
+    var tabForKitchenBread = document.getElementById("tabKitchenBread");
+    var tabForKitchenBurger = document.getElementById("tabKitchenBurger");
+    var tabForKitchenDressing = document.getElementById("tabKitchenDressing");
+    var tabForKitchenToppings = document.getElementById("tabKitchenToppings");
+    var tabForKitchenSides = document.getElementById("tabKitchenSides");
+    var tabForKitchenBeverage = document.getElementById("tabKitchenBeverage");
+    var tabForKitchenFavoriteBurger = document.getElementById("tabKitchenFavoriteBurger");
+
+    tabForKitchenBread.style.backgroundColor = "grey";
+    tabForKitchenBurger.style.backgroundColor = "grey";
+    tabForKitchenDressing.style.backgroundColor = "grey";
+    tabForKitchenToppings.style.backgroundColor = "grey";
+    tabForKitchenSides.style.backgroundColor = "grey";
+    tabForKitchenBeverage.style.backgroundColor = "grey";
+    tabForKitchenFavoriteBurger.style.backgroundColor = "#D3D3D3";
   }
   }
 }
@@ -421,6 +533,34 @@ export default {
 }
 .tabsKitchen button:hover {
   background-color:#ddd;
+}
+
+#tabKitchenBread{
+  background-color: grey;
+}
+
+#tabKitchenBurger {
+  background-color: #D3D3D3;
+}
+
+#tabKitchenDressing {
+  background-color: grey;
+}
+
+#tabKitchenToppings {
+  background-color: grey;
+}
+
+#tabKitchenSides {
+  background-color: grey;
+}
+
+#tabKitchenBeverage {
+  background-color: grey;
+}
+
+#tabKitchenFavoriteBurger {
+  background-color: grey;
 }
 .b {
   grid-column: 1 ;

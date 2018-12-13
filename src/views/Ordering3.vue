@@ -4,8 +4,8 @@
         <link rel="stylesheet" href="Ordering.vue">
 <div id="toChangeBackground3">
         <div class="tabs3">
-          <button v-on:click="toSides3()">{{uiLabels.sides}}</button>
-          <button v-on:click="toBeverage3()">{{uiLabels.beverage}}</button>
+          <button id="tabSides3" v-on:click="toSides3()">{{uiLabels.sides}}</button>
+          <button id="tabBeverage3" v-on:click="toBeverage3()">{{uiLabels.beverage}}</button>
         </div>
 
         <div style="text-align:left">
@@ -179,6 +179,12 @@ export default {
 
     buttonPanelSides3.style.display = "grid";
     buttonPanelBeverage3.style.display = "none";
+
+    var tabForSides3 = document.getElementById("tabSides3");
+    var tabForBeverage3 = document.getElementById("tabBeverage3");
+
+    tabForSides3.style.backgroundColor = "#D3D3D3";
+    tabForBeverage3.style.backgroundColor = "grey";
   },
   toBeverage3: function(){
     this.state3="beverage3";
@@ -196,6 +202,12 @@ export default {
 
     buttonPanelSides3.style.display = "none";
     buttonPanelBeverage3.style.display = "grid";
+
+    var tabForSides3 = document.getElementById("tabSides3");
+    var tabForBeverage3 = document.getElementById("tabBeverage3");
+
+    tabForSides3.style.backgroundColor = "grey";
+    tabForBeverage3.style.backgroundColor = "#D3D3D3";
   },
   cancelAlert3: function() {
     var background = document.getElementById("toChangeBackground3");
@@ -282,5 +294,11 @@ export default {
   display: grid;
   position: fixed;
 }
+#tabSides3{
+  background-color: #D3D3D3;
+}
 
+#tabBeverage3 {
+  background-color: grey;
+}
 </style>
