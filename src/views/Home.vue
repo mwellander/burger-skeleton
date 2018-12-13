@@ -20,7 +20,7 @@
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
-              {{uiLabels.burger}} {{ key.noB }}
+              Order {{ key.noB }}
               <a :href="key.path">
                 <button v-on:click="changeOrder(key,index)" class="changeButton">{{uiLabels.change}}
                     </button></a>
@@ -129,6 +129,7 @@
           store.commit('cancelOrder');
           window.location.replace("#/payment");
         }
+        store.commit('cancelOrder');
     }
     },
     cancelOrder: function(){

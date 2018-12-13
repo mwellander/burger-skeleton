@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="Ordering.vue">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="toChangeBackground2">
+<<<<<<< HEAD
       <div class="tabs2">
         <button v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
         <button v-on:click="toSides2()">{{uiLabels.sides}}</button>
@@ -24,6 +25,12 @@
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </Ingredient>
+=======
+    <div class="tabs2">
+      <button id="tabFavoriteBurger" v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
+      <button id="tabSides2" v-on:click="toSides2()">{{uiLabels.sides}}</button>
+      <button id="tabBeverage2" v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
+>>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
     </div>
     <div class="buttonPanelBread" id="buttonPanelReadyBurger">
       <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
@@ -36,6 +43,7 @@
       v-if="item.category===5 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
+      v-on:decrement="decreaseReadyBurger(item)"
       :item="item"
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
@@ -53,11 +61,33 @@
     v-if="item.category===6 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
+    v-on:decrement="decreaseSides2(item)"
     :item="item"
     :lang="uiLabels.lang"
     :key="item.ingredient_id">
   </Ingredient>
 </div>
+<<<<<<< HEAD
+=======
+<div class="buttonPanel" id="buttonPanelSides2">
+<button id="previousButton" v-show="sides2" v-on:click="toReadyBurger()">{{uiLabels.previous}}</button>
+<button id="nextButton" v-show="sides2" v-on:click='toBeverage2()'>{{uiLabels.next}}</button>
+</div>
+
+<div class="Page" id="beveragePage2">
+  <Ingredient
+  ref="ingredient"
+  v-show="state2 === 'beverage2'"
+  v-if="item.category===6 && item.stock > 0"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder2(item)"
+  v-on:decrement="decreaseBeverage2(item)"
+  :item="item"
+  :lang="uiLabels.lang"
+  :key="item.ingredient_id">
+</Ingredient>
+</div>
+>>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
 <div class="buttonPanel" id="buttonPanelBeverage2">
   <button id="previousButton" v-show="beverage2" v-on:click="toSides2()">{{uiLabels.previous}}</button>
 </div>
@@ -81,6 +111,7 @@
   </div>
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
   <div v-show="change" style="text-align:right">
+<<<<<<< HEAD
     <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
     <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
   </div>
@@ -88,13 +119,27 @@
     <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
     <a href="#/home"><button class="orderButtonO" v-if="readyBurgerOrder==true || sidesOrder2==true || beverageOrder2==true" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
     <a href="#/home"><button class="orderButtonO graknapp" v-if="readyBurgerOrder==false && sidesOrder2==false && beverageOrder2==false"v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
+=======
+  <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+  <button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button>
+  </div>
+  <div v-show="!change" style="text-align:right">
+                   <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+                   <button class="orderButtonO" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button>
+>>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
   </div>
 </div>
 </div>
+
 <div class="alert" v-show="alert">
   <div class="confirmText">{{uiLabels.confirmMess}}</div>
   <a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
   <button class="confirmNoCancel" v-on:click="cancelAlert2()">{{uiLabels.no}}</button>
+</div>
+
+<div class="alert" v-show="nothingalert">
+  <div class="confirmText">{{uiLabels.nothingInCart}}</div>
+  <button class="confirmOK" v-on:click="nothingAlert()">{{uiLabels.ok}}</button>
 </div>
 
 </div>
@@ -120,6 +165,7 @@ export default {
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
+<<<<<<< HEAD
       start:true,
       readyBurgerOrder:false,
       sidesOrder2:false,
@@ -138,6 +184,27 @@ export default {
       path:"#/favouriteburger",
       alert: false,
       change:false
+=======
+            start:true,
+            readyBurgerOrder:false,
+            sidesOrder2:false,
+            beverageOrder2:false,
+            state2:"readyBurger",
+            readyBurger:true,
+            sides2:false,
+            beverage2:false,
+            chosenIngredients2:[],
+            chosenIngredients5:[],
+            chosenIngredientsBurger2: [],
+            chosenIngredientsSides2: [],
+            Sides2: [],
+            Beverage2: [],
+            ReadyBurger: [],
+            path:"#/favouriteburger",
+            alert: false,
+            change:false,
+            nothingalert: false,
+>>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -150,11 +217,71 @@ export default {
     }.bind(this));
   },
   methods: {
+    decreaseReadyBurger: function(item){
+      var g1 = this.chosenIngredients2.findIndex(function(chosenIngredients2){
+        return chosenIngredients2.ingredient_id === item.ingredient_id;
+      });
+      if (g1 != -1 ){
+        this.chosenIngredients2.splice(g1,1);
+      }
+      var g2 = this.ReadyBurger.findIndex(function(ReadyBurger){
+        return ReadyBurger.ingredient_id === item.ingredient_id;
+      });
+      if (g2 != -1 ){
+        this.ReadyBurger.splice(g2,1);
+        this.price = this.price - item.selling_price;
+        if (this.ReadyBurger.length === 0){
+          this.readyBurger=false
+        }
+      }
+    },
+    decreaseSides2: function(item){
+      var h1 = this.chosenIngredients2.findIndex(function(chosenIngredients2){
+        return chosenIngredients2.ingredient_id === item.ingredient_id;
+      });
+      if (h1 != -1 ){
+        this.chosenIngredients2.splice(h1,1);
+      }
+      var h3 = this.Sides2.findIndex(function(Sides2){
+        return Sides2.ingredient_id === item.ingredient_id;
+      });
+      if (h3 != -1 ){
+        this.Sides2.splice(h3,1);
+        this.price = this.price - item.selling_price;
+        if (this.Sides2.length === 0){
+          this.sidesOrder2=false
+        }
+      }
+    },
+    decreaseBeverage2: function(item){
+      var i1 = this.chosenIngredients2.findIndex(function(chosenIngredients2){
+        return chosenIngredients2.ingredient_id === item.ingredient_id;
+      });
+      if (i1 != -1 ){
+        this.chosenIngredients2.splice(i1,1);
+      }
+      var i3 = this.Beverage2.findIndex(function(Beverage2){
+        return Beverage2.ingredient_id === item.ingredient_id;
+      });
+      if (i3 != -1 ){
+        this.Beverage2.splice(i3,1);
+        this.price = this.price - item.selling_price;
+        if (this.Beverage2.length === 0){
+          this.beverageOrder2=false
+        }
+      }
+    },
     sendOrderHome2: function() {
+      if (this.readyBurgerOrder === false && this.sidesOrder2 === false && this.beverageOrder2 === false) {
+        this.nothingAlert();
+      }
+      else {
       store.commit('addToOrder4',this.chosenIngredients2);
-      store.commit('savePrice',this.price);
+      store.commit('addPrice',this.price);
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
+      window.location.replace("#/home");
+      }
     },
     ifChange2: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
@@ -166,9 +293,15 @@ export default {
       }
     },
     saveChanges2: function(){
+      if (this.readyBurgerOrder === false && this.sidesOrder2 === false && this.beverageOrder2 === false) {
+        this.nothingAlert();
+      }
+      else {
       store.commit('saveChange',this.chosenIngredients2);
       store.commit('savePrice',this.price);
       store.commit('emptyChangeIngrediens');
+      window.location.replace("#/home");
+    }
     },
     addToOrder2: function(item){
       this.chosenIngredients2.push(item);
@@ -215,6 +348,15 @@ export default {
       buttonPanelBurger.style.display = "grid";
       buttonPanelSides.style.display = "none";
       buttonPanelBeverage.style.display = "none";
+
+      var tabForFavoriteBurger = document.getElementById("tabFavoriteBurger");
+      var tabForSides2 = document.getElementById("tabSides2");
+      var tabForBeverage2 = document.getElementById("tabBeverage2");
+
+      tabForFavoriteBurger.style.backgroundColor = "#D3D3D3";
+      tabForSides2.style.backgroundColor = "grey";
+      tabForBeverage2.style.backgroundColor = "grey";
+
     },
     toSides2: function(){
       this.state2="sides2";
@@ -237,6 +379,14 @@ export default {
       buttonPanelBurger.style.display = "none";
       buttonPanelSides.style.display = "grid";
       buttonPanelBeverage.style.display = "none";
+
+      var tabForFavoriteBurger = document.getElementById("tabFavoriteBurger");
+      var tabForSides2 = document.getElementById("tabSides2");
+      var tabForBeverage2 = document.getElementById("tabBeverage2");
+
+      tabForFavoriteBurger.style.backgroundColor = "grey";
+      tabForSides2.style.backgroundColor = "#D3D3D3";
+      tabForBeverage2.style.backgroundColor = "grey";
     },
     toBeverage2:function(){
       this.state2="beverage2";
@@ -259,6 +409,14 @@ export default {
       buttonPanelBurger.style.display = "none";
       buttonPanelSides.style.display = "none";
       buttonPanelBeverage.style.display = "grid";
+
+      var tabForFavoriteBurger = document.getElementById("tabFavoriteBurger");
+      var tabForSides2 = document.getElementById("tabSides2");
+      var tabForBeverage2 = document.getElementById("tabBeverage2");
+
+      tabForFavoriteBurger.style.backgroundColor = "grey";
+      tabForSides2.style.backgroundColor = "grey";
+      tabForBeverage2.style.backgroundColor = "#D3D3D3";
     },
     cancelAlert2: function() {
       var background = document.getElementById("toChangeBackground2");
@@ -269,6 +427,19 @@ export default {
       }
       else {
         this.alert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    },
+    nothingAlert() {
+      var background = document.getElementById("toChangeBackground2");
+      if (this.nothingalert===false){
+        this.nothingalert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.nothingalert=false;
         background.style.opacity = 1;
         background.style['pointer-events'] = "auto";
       }
@@ -346,6 +517,18 @@ export default {
   z-index: 3;
   display: grid;
   position: fixed;
+}
+
+#tabFavoriteBurger{
+  background-color: #D3D3D3;
+}
+
+#tabSides2 {
+  background-color: grey;
+}
+
+#tabBeverage2 {
+  background-color: grey;
 }
 
 </style>
