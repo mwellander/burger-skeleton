@@ -58,6 +58,7 @@
   "continue": "Continue ordering",
   "missingBreadAndBurger": "You you forgot the bread and the burger!",
   "missingBread": "You forgot the bread!",
-  "missingBurger": "You you forgor the burger!",
-  "ok": "OK!"
+  "missingBurger": "You you forgot the burger!",
+  "ok": "OK!",
+  "show":"Show"
 }

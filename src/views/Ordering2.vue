@@ -9,7 +9,7 @@
       <button v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
     </div>
     <div style="text-align:left">
-      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
     </div>
     <br>
     <br>

@@ -21,7 +21,7 @@
   </div>
 
   <div style="text-align:left">
-    <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
+    <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
   </div>
 
   <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
@@ -844,7 +844,10 @@ this.beverageOrder=false
         background.style.opacity = 1;
         background.style['pointer-events'] = "auto";
       }
-    }
+    },
+    getFlag: function () {
+      return require('@/assets/' + this.flag[this.lang]);
+    },
 }}
 </script>
 <style>
@@ -1187,6 +1190,7 @@ this.beverageOrder=false
   position: fixed;
   top: 0;
   margin-top: 0.5em;
+  height:3em;
 }
 .orderButtonO {
   background-color: #4CAF50;

@@ -6,7 +6,9 @@ var sharedVueStuff = {
     return {
       orders: {},
       uiLabels: {},
+      flag : {sv: "Flag_of_Britain.svg.png", en: "800px-Flag_of_Sweden.svg.png" },
       ingredients: {},
+      lang: "sv"
     }
   },
   created: function () {
@@ -30,12 +32,12 @@ var sharedVueStuff = {
   },
   methods: {
     switchLang: function () {
-      if (this.uiLabels.lang === "en") {
-        this.uiLabels.lang = "sv";
+      if (this.lang === "en") {
+        this.lang = "sv";
       } else {
-        this.uiLabels.lang = "en";
+        this.lang = "en";
       }
-      this.$store.state.socket.emit('switchLang', this.uiLabels.lang);
+      this.$store.state.socket.emit('switchLang', this.lang);
     }
   }
 };
