@@ -131,7 +131,7 @@ export default {
   methods:{
     sendOrderHome3: function() {
       store.commit('addToOrder4',this.chosenIngredients3);
-      store.commit('savePrice',this.price);
+      store.commit('addPrice',this.price);
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
     },

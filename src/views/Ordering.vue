@@ -1026,6 +1026,7 @@ this.beverageOrder=false
   overflow:scroll;
   background-color: white;
   text-align:left;
+  margin-bottom:0%;
 }
 .dd {
   overflow:scroll;

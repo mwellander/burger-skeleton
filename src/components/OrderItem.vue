@@ -38,14 +38,13 @@ export default {
 		dressingLabel: false,
 		toppingsLabel: false,
 		sidesLabel: false,
-		
+
 	}
 	},
 
 methods: {
 
 	getIngredientArray: function(){
-		console.log("hej")
 		this.Bread = this.getCategoryItems(4)
 		this.Burger = this.getCategoryItems(1)
 		this.Dressing = this.getCategoryItems(3)
