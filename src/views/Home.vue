@@ -82,7 +82,9 @@
       //orderInLine: store.getters.orderInLine,
       price:0,
       alert: false,
-      alert2: false
+      alert2: false,
+      burgerArrayLength:0,
+      noInOrder:0
     }
   },
   mounted: function(){
@@ -112,7 +114,7 @@
         this.cancelAlert4b();
       }
       else {
-        lengthBurger = this.noBurger.length;
+        var lengthBurger = this.noBurger.length;
         store.commit("orderInLine");
         for (var i=0; i<lengthBurger; i++) {
           var order = {
