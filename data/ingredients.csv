@@ -1,14 +1,14 @@
 ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,selling_price,image
-1,Bönburgare,Bean Patty,1,1,1,1,40,mango.png
-2,Nötfärsburgare 100g,Beef Patty 100g,1,1,1,0,40,beef.png
-3,Nötfärsburgare 200g,Beef Patty 200g,1,1,1,0,60,beef.png
-4,Kycklingburgare,Chicken Patty,1,1,0,0,40,chickenpatty.png
+1,Bönburgare,Bean Patty,1,1,1,1,40,beans.png
+2,Nötfärsburgare 100g,Beef Patty 100g,1,1,1,0,40,koNy2.png
+3,Nötfärsburgare 200g,Beef Patty 200g,1,1,1,0,60,koNy2.png
+4,Kycklingburgare,Chicken Patty,1,1,0,0,40,kycklingNy2.png
 5,Friterad halloumi,Deep-fried Halloumi,1,0,0,0,40,halloumi.png
-6,Fiskfilé,Fish Filet,1,1,0,0,40,fish.jpg
+6,Fiskfilé,Fish Filet,1,1,0,0,40,fiskNy2.png
 7,Grillad Aubergine,Grilled Eggplant,1,1,1,1,30,eggplant.png
 8,Hummer,Lobster,1,1,1,0,80,hummerNy.png
 9,Pulled Jackfruit,Pulled Jackfruit,1,1,1,1,40,jackfruit.png
-10,Pulled Pork,Pulled Pork,1,1,1,0,40,mango.png
+10,Pulled Pork,Pulled Pork,1,1,1,0,40,grisNy2.png
 11,Avocado,Avocado,2,1,1,1,10,avocado.png
 12,Bacon,Bacon,2,1,1,0,10,bacon.png
 13,Banan,Banana,2,1,1,1,5,banan.png
@@ -19,14 +19,14 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 18,Coleslaw,Coleslaw,2,1,1,0,5,coleslaw.jpg
 19,Friterade Lökringar,Deep-fried Onion Rings,2,1,0,1,15,onion_rings.png
 20,Stekt Ägg,Fried Egg,2,1,1,0,10,fried_egg.png
-21,Chèvre,Goat Cheese,2,0,1,0,10,mango.png
+21,Chèvre,Goat Cheese,2,0,1,0,10,chevreNy3.png
 22,Jalapeño,Jalapeño,2,1,1,1,5,jalapenoNy.png
-23,Kimchi,Kimchi,2,1,1,1,10,mango.png
+23,Kimchi,Kimchi,2,1,1,1,10,kimchiNy3.png
 24,Krispsallad,Lettuce,2,1,1,1,5,salladNy.png
 25,Svampstuvning,Mushroom Stew,2,0,1,0,15,mushroom_stew.jpg
-26,Pepper Jack-ost,Pepper Jack Cheese,2,0,1,0,10,pepper_jack.jpg
+26,Pepper Jack-ost,Pepper Jack Cheese,2,0,1,0,10,spicyostNy3.jpg
 27,Inlagd Gurka,Pickled Cucumber,2,1,1,1,5,picklesNy.png
-28,Inlagd Rödlök,Pickled Red Onion,2,1,1,1,5,onion_red.jpg
+28,Inlagd Lök,Pickled Onion,2,1,1,1,5,pickladlokNy3.jpg
 29,Rödlök,Raw Red Onion,2,1,1,1,5,rodlokNy.png
 30,Gul Lök,Raw Yellow Onion,2,1,1,1,5,onionyellow.png
 31,Salami,Salami,2,1,1,0,10,salamiNy.png
@@ -35,34 +35,34 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 34,Vegansk Ost,Vegan Cheese,2,1,1,1,10,cheese.png
 35,Aioli,Aioli,3,1,1,0,5,mango.png
 36,Ajvar,Ajvar,3,1,1,1,5,ajvar.png
-37,Barbecuesås,Barbecue Sauce,3,1,1,1,0,mango.png
+37,Barbecuesås,Barbecue Sauce,3,1,1,1,0,barbecuesasNy3.png
 38,Klassisk Hamburgarsås,Classic Hamburger Dressing,3,1,1,0,5,mango.png
-39,Dijonsås,Dijon Sauce,3,1,1,0,5,mango.png
-40,Guacamole,Guacamole,3,1,1,1,10,mango.png
+39,Dijonsås,Dijon Sauce,3,1,1,0,5,senap2Ny3.png
+40,Guacamole,Guacamole,3,1,1,1,10,avocado.png
 41,Hot Salsa,Hot Salsa,3,1,1,1,5,hotsalsaNy.png
 42,Hummus,Hummus,3,1,1,1,10,hummus.jpg
 43,Ketchup,Ketchup,3,1,1,1,0,ketchupNy.png
 44,Majonnäs,Mayonnaise,3,1,1,0,5,moyonnaise.jpg
-45,Senap,Mustard,3,1,1,1,0,mustard.jpg
-46,Sriracha,Sriracha,3,1,1,1,0,sriracha.jpg
-47,Teriyakisås,Teriyaki sauce,3,1,1,1,5,teriyaki.jpg
+45,Senap,Mustard,3,1,1,1,0,senap1Ny3.jpg
+46,Sriracha,Sriracha,3,1,1,1,0,srirachaNy3.png
+47,Teriyakisås,Teriyaki sauce,3,1,1,1,5,teriyakiNy3.png
 48,Tryffelmajonnäs,Truffle Mayonnaise,3,1,1,0,5,moyonnaise.jpg
 49,Tzatziki,Tzatziki,3,0,1,0,5,tzatziki.png
-50,Brioche,Brioche,4,0,0,0,10,mango.png
+50,Brioche,Brioche,4,0,0,0,10,briocheNy2.png
 51,Glutenfritt Bröd,Gluten Free Bread,4,1,1,1,10,bread_white.png
 52,Veganskt Bröd,Vegan Bun,4,0,0,1,10,bread_white.png
-53,Fullkornsbrioche,Whole Wheat Brioche,4,0,0,0,10,mango.png
-54,Nachochips,Nachos,5,1,0,1,20,mango.png
+53,Fullkornsbrioche,Whole Wheat Brioche,4,0,0,0,10,fullkornsbriocheNy2.png
+54,Nachochips,Nachos,5,1,0,1,20,nachos2.0.png
 55,Potatisstrips,Potato Fries,5,1,1,1,20,pommesNy.png
 56,Sötpotatisstrips,Sweet Potato Fries,5,1,1,1,30,sweetpotato.jpg
 57,Chokladmilkshake,Chocolate Milk Shake,6,0,1,0,40,ChocolateMilkshake.png
-58,Pucko,Pucko,6,0,1,0,25,mango.png
+58,Pucko,Pucko,6,0,1,0,25,puckoNy3.png
 59,Läsk,Soda,6,1,1,1,20,laskNy.png
 60,Jordgubbsmilkshake,Strawberry Milk Shake,6,0,1,0,40,stawberry_milkshake.png
-61,Vegansk Mango Lassi,Vegan Mango Lassi,6,1,1,1,40,mango.png
-62,NoKetchups Favorit,NoKetchup's Favourite,7,0,0,0,70,sweetpotato.jpg
-63,Kycklingburgare,Chicken Burger,7,1,0,0,70,sweetpotato.jpg
-64,Vegetarisk Bönburgare,Vegetarian Bean Burger,7,1,0,0,70,sweetpotato.jpg
-65,Vegansk Sojaburgare,Vegan Soy Burger,7,1,0,1,70,sweetpotato.jpg
-66,Glutenfri Kycklingburgare,Gluten Free Chicken Burger,7,1,1,0,70,sweetpotato.jpg
-67,Glutenfri Sojaburgare,Gluten Free Soy Burger,7,1,1,1,70,sweetpotato.jpg
+61,Vegansk Mango Lassi,Vegan Mango Lassi,6,1,1,1,40,mangodryckNy3.png
+62,NoKetchups Favorit,NoKetchup's Favourite,7,0,0,0,70,favoritburgareNy4.png
+63,Kycklingburgare,Chicken Burger,7,1,0,0,70,kycklingburgareNy4.png
+64,Vegetarisk Bönburgare,Vegetarian Bean Burger,7,1,0,0,70,bonburgareNy4.png
+65,Vegansk Sojaburgare,Vegan Soy Burger,7,1,0,1,70,sojaburgareNy4.png
+66,Glutenfri Kycklingburgare,Gluten Free Chicken Burger,7,1,1,0,70,kycklingburgareNy4.png
+67,Glutenfri Sojaburgare,Gluten Free Soy Burger,7,1,1,1,70,sojaburgareNy4.png

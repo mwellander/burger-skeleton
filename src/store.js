@@ -47,19 +47,22 @@ export default new Vuex.Store({
     saveChange(state,ingredients){
       state.noBurger[state.changeKey].ingredients=ingredients
     },
-    deleteBurger(state,key){
-      state.noBurger.splice([key.noB-1],1)
+    deleteBurger(state,index){
+      state.noBurger.splice([index],1)
     },
     changePrice(state,price){
       state.totalPrice+=price
     },
     cancelOrder(state){
       state.noBurger=[],
-      state.totalPrice=0
-      // Numret på burgarna börjar ej om på 1
+      state.totalPrice=0,
+      state.no=0
     },
     savePrice(state,price){
       state.noBurger[state.changeKey].price=price
+    },
+    startOver(state){
+      state.no=0
     }
   },
   actions: {

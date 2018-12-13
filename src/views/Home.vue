@@ -95,10 +95,13 @@
         this.price+=this.noBurger[i].price;
       }
     },
-    deleteBurger: function(key){
-      store.commit('deleteBurger',key);
+    deleteBurger: function(index){
+      store.commit('deleteBurger',index);
       this.noBurger=store.getters.getNoBurger;
       this.getPrice();
+      if(this.noBurger.length===0){
+        store.commit('startOver');
+      }
     },
     changeOrder: function(key,index){
       key.index=index;
