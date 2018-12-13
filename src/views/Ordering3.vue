@@ -120,6 +120,7 @@ export default {
   },
   saveChanges: function(){
     store.commit('saveChange',this.chosenIngredients3);
+    store.commit('savePrice',this.price);
     store.commit('emptyChangeIngrediens');
   },
   created: function () {
@@ -130,6 +131,7 @@ export default {
   methods:{
     sendOrderHome3: function() {
       store.commit('addToOrder4',this.chosenIngredients3);
+      store.commit('savePrice',this.price);
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
     },

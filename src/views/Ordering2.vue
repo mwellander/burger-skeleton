@@ -17,7 +17,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'readyBurger'"
-      v-if="item.category===7 && item.stock > 0"
+      v-if="item.category===7"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       :item="item"
@@ -153,6 +153,7 @@ export default {
   methods: {
     sendOrderHome2: function() {
       store.commit('addToOrder4',this.chosenIngredients2);
+      store.commit('savePrice',this.price);
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
     },
@@ -167,6 +168,7 @@ export default {
     },
     saveChanges2: function(){
       store.commit('saveChange',this.chosenIngredients2);
+      store.commit('savePrice',this.price);
       store.commit('emptyChangeIngrediens');
     },
     addToOrder2: function(item){

@@ -1,6 +1,6 @@
 <template>
   <div class="ingredient">
-      <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" width="100">
+      <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
       <label>
         <br>{{item["ingredient_"+ lang]}},
         {{item.selling_price}}:-, {{ item.stock }}
@@ -58,12 +58,11 @@ export default {
   .incrementButton{
   width:2em;
   height:2em;
-
 }
-.decrementButton{
-  width:2em;
-  height:2em;
-}
+  .decrementButton{
+    width:2em;
+    height:2em;
+  }
 }
 .decrementButton, .incrementButton{
 
