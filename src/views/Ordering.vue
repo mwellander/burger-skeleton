@@ -170,8 +170,6 @@
       <button class="orderButtonO graknapp" v-if="breadOrder==false || burgerOrder==false" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
     </div>
   </div>
-<<<<<<< HEAD
-=======
 
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
@@ -184,7 +182,6 @@
     <button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
   </div>
 </div>
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
 </div>
 
 <div class="alert" v-show="alert">

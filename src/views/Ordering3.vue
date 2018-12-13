@@ -1,31 +1,6 @@
 <template>
   <div id="ordering3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="Ordering.vue">
-    <div id="toChangeBackground3">
-      <div class="tabs3">
-        <button v-on:click="toSides3()">{{uiLabels.sides}}</button>
-        <button v-on:click="toBeverage3()">{{uiLabels.beverage}}</button>
-      </div>
-
-      <div style="text-align:left">
-        <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
-      </div>
-      <br>
-      <br>
-      <div class="breadPage" id="sidesPage3">
-        <Ingredient
-        ref="ingredient"
-        v-show="state3 === 'sides3'"
-        v-if="item.category===5 && item.stock > 0"
-        v-for="item in ingredients"
-        v-on:increment="addToOrder3(item)"
-        :item="item"
-        :lang="uiLabels.lang"
-        :key="item.ingredient_id">
-      </Ingredient>
-=======
         <link rel="stylesheet" href="Ordering.vue">
 <div id="toChangeBackground3">
         <div class="tabs3">
@@ -80,13 +55,12 @@
       <ul style="list-style-type:none">
         <li>{{ Sides3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
-    </div>
+    <!-- </div>
     <div class="buttonPanelBread" id="buttonPanelSides3">
       <button id="nextButton" v-show="sides3" v-on:click='toBeverage3()'>{{uiLabels.next}}</button>
-    </div>
+    </div> -->
 
-    <div class="Page" id="beveragePage3">
+    <!-- <div class="Page" id="beveragePage3">
       <Ingredient
       ref="ingredient"
       v-show="state3 === 'beverage3'"
@@ -100,16 +74,16 @@
   </div>
   <div class="buttonPanel" id="buttonPanelBeverage3">
     <button id="previousButton" v-show="beverage3" v-on:click="toSides3()">{{uiLabels.previous}}</button>
-  </div>
+  </div> -->
 
-  <div class="receipt">
+  <!-- <div class="receipt">
     <div class="row">
       <div class="column aa"><h3>{{ uiLabels.sides }}</h3></div>
       <div class="column aa"><h3>{{ uiLabels.beverage }}</h3></div>
       <div class="column cc" style="text-align:left">
         <ul style="list-style-type:none">
           <li>{{ Sides3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-        </ul>
+        </ul> -->
       </div>
       <div class="column dd" style="text-align:left">
         <ul style="list-style-type:none">
@@ -121,8 +95,7 @@
 
     <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
-<<<<<<< HEAD
-    <div v-show="change" style="text-align:right">
+    <!-- <div v-show="change" style="text-align:right">
       <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
       <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button></a>
     </div>
@@ -130,16 +103,16 @@
       <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
       <a href="#/home"><button class="orderButtonO" v-if="sidesOrder3==true || beverageOrder3==true" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
       <a href="#/home"><button class="orderButtonO graknapp" v-if="sidesOrder3==false && beverageOrder3==false" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
-    </div>
-=======
+    </div> -->
+
   <div v-show="change" style="text-align:right">
   <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
   <button class="orderButtonO" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button>
   </div>
   <div v-show="!change" style="text-align:right">
                    <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-                   <button class="orderButtonO" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button>
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
+                   <button class="orderButtonO graknapp" v-if="sidesOrder3==false && beverageOrder3==false" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button>
+                   <button class="orderButtonO" v-if="sidesOrder3==true || beverageOrder3==true" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button>
   </div>
 </div>
 <div class="alert" v-show="alert">
@@ -173,22 +146,6 @@ export default {
   mixins: [sharedVueStuff,ordering,store],
   data: function() { //Not that data is a function!
     return {
-<<<<<<< HEAD
-      start:true,
-      sidesOrder3:false,
-      beverageOrder3:false,
-      state3:"sides3",
-      sides3:true,
-      beverage3:false,
-      chosenIngredients5:[],
-      chosenIngredients3:[],
-      chosenIngredientsSides3: [],
-      Sides3: [],
-      Beverage3: [],
-      path:"#/sidesandbeverage",
-      alert: false,
-      change:false
-=======
             start:true,
             sidesOrder3:false,
             beverageOrder3:false,
@@ -204,7 +161,6 @@ export default {
             alert: false,
             change:false,
             nothingalert2: false,
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
     }
   },
   mounted: function(){
@@ -312,15 +268,6 @@ export default {
       var buttonPanelSides3 = document.getElementById("buttonPanelSides3");
       var buttonPanelBeverage3 = document.getElementById("buttonPanelBeverage3");
 
-<<<<<<< HEAD
-      buttonPanelSides3.style.display = "grid";
-      buttonPanelBeverage3.style.display = "none";
-    },
-    toBeverage3: function(){
-      this.state3="beverage3";
-      this.sides3=false;
-      this.beverage3=true;
-=======
     buttonPanelSides3.style.display = "grid";
     buttonPanelBeverage3.style.display = "none";
 
@@ -334,7 +281,6 @@ export default {
     this.state3="beverage3";
     this.sides3=false;
     this.beverage3=true;
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
 
       var SidesPage3 = document.getElementById("sidesPage3");
       var BeveragePage3 = document.getElementById("beveragePage3");
@@ -345,27 +291,6 @@ export default {
       var buttonPanelSides3 = document.getElementById("buttonPanelSides3");
       var buttonPanelBeverage3 = document.getElementById("buttonPanelBeverage3");
 
-<<<<<<< HEAD
-      buttonPanelSides3.style.display = "none";
-      buttonPanelBeverage3.style.display = "grid";
-    },
-    cancelAlert3: function() {
-      var background = document.getElementById("toChangeBackground3");
-      if (this.alert===false){
-        this.alert=true;
-        background.style.opacity = 0.5;
-        background.style['pointer-events'] = "none";
-      }
-      else {
-        this.alert=false;
-        background.style.opacity = 1;
-        background.style['pointer-events'] = "auto";
-      }
-    }
-  }}
-  </script>
-  <style>
-=======
     buttonPanelSides3.style.display = "none";
     buttonPanelBeverage3.style.display = "grid";
 
@@ -404,7 +329,6 @@ export default {
 }}
 </script>
 <style>
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
 
   #ordering3 {
     height: 100%;
@@ -465,19 +389,6 @@ export default {
     pointer-events: auto;
   }
 
-<<<<<<< HEAD
-  #buttonPanelSides3{
-    width: 40em;
-    grid-template-columns: 20% 60% 20%;
-    height: 3.5em;
-    bottom: 16.3em;
-    z-index: 3;
-    display: grid;
-    position: fixed;
-  }
-
-  </style>
-=======
 #buttonPanelSides3{
   width: 40em;
   grid-template-columns: 20% 60% 20%;
@@ -495,4 +406,3 @@ export default {
   background-color: grey;
 }
 </style>
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f

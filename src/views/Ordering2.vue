@@ -3,11 +3,10 @@
     <link rel="stylesheet" href="Ordering.vue">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="toChangeBackground2">
-<<<<<<< HEAD
       <div class="tabs2">
-        <button v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
-        <button v-on:click="toSides2()">{{uiLabels.sides}}</button>
-        <button v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
+        <button id="tabFavoriteBurger" v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
+        <button id="tabSides2" v-on:click="toSides2()">{{uiLabels.sides}}</button>
+        <button id="tabBeverage2" v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
       </div>
       <div style="text-align:left">
         <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="require('../assets/' + uiLabels.flag)" height="30em"></button>
@@ -25,13 +24,11 @@
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
       </Ingredient>
-=======
-    <div class="tabs2">
+    <!-- <div class="tabs2">
       <button id="tabFavoriteBurger" v-on:click="toReadyBurger()">{{uiLabels.readyBurger}}</button>
       <button id="tabSides2" v-on:click="toSides2()">{{uiLabels.sides}}</button>
       <button id="tabBeverage2" v-on:click="toBeverage2()">{{uiLabels.beverage}}</button>
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
-    </div>
+    </div> -->
     <div class="buttonPanelBread" id="buttonPanelReadyBurger">
       <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
     </div>
@@ -67,8 +64,6 @@
     :key="item.ingredient_id">
   </Ingredient>
 </div>
-<<<<<<< HEAD
-=======
 <div class="buttonPanel" id="buttonPanelSides2">
 <button id="previousButton" v-show="sides2" v-on:click="toReadyBurger()">{{uiLabels.previous}}</button>
 <button id="nextButton" v-show="sides2" v-on:click='toBeverage2()'>{{uiLabels.next}}</button>
@@ -87,7 +82,6 @@
   :key="item.ingredient_id">
 </Ingredient>
 </div>
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
 <div class="buttonPanel" id="buttonPanelBeverage2">
   <button id="previousButton" v-show="beverage2" v-on:click="toSides2()">{{uiLabels.previous}}</button>
 </div>
@@ -111,23 +105,22 @@
   </div>
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
   <div v-show="change" style="text-align:right">
-<<<<<<< HEAD
     <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
     <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
   </div>
+
   <div v-show="!change" style="text-align:right">
     <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
     <a href="#/home"><button class="orderButtonO" v-if="readyBurgerOrder==true || sidesOrder2==true || beverageOrder2==true" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
     <a href="#/home"><button class="orderButtonO graknapp" v-if="readyBurgerOrder==false && sidesOrder2==false && beverageOrder2==false"v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button></a>
-=======
   <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
   <button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button>
   </div>
-  <div v-show="!change" style="text-align:right">
+
+  <!-- <div v-show="!change" style="text-align:right">
                    <button class="cancelButton" v-on:click="cancelAlert2()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
                    <button class="orderButtonO" v-on:click="sendOrderHome2()">{{ uiLabels.placeOrder }}</button>
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
-  </div>
+  </div> -->
 </div>
 </div>
 
@@ -165,26 +158,6 @@ export default {
   // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
-<<<<<<< HEAD
-      start:true,
-      readyBurgerOrder:false,
-      sidesOrder2:false,
-      beverageOrder2:false,
-      state2:"readyBurger",
-      readyBurger:true,
-      sides2:false,
-      beverage2:false,
-      chosenIngredients2:[],
-      chosenIngredients5:[],
-      chosenIngredientsBurger2: [],
-      chosenIngredientsSides2: [],
-      Sides2: [],
-      Beverage2: [],
-      ReadyBurger: [],
-      path:"#/favouriteburger",
-      alert: false,
-      change:false
-=======
             start:true,
             readyBurgerOrder:false,
             sidesOrder2:false,
@@ -204,7 +177,6 @@ export default {
             alert: false,
             change:false,
             nothingalert: false,
->>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
