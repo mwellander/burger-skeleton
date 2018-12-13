@@ -60,5 +60,6 @@
   "missingBreadAndBurger": "Du glömde brödet och burgaren!",
   "missingBread": "Du glömde brödet!",
   "missingBurger": "Du glömde burgare!",
-  "ok": "OK!"
+  "ok": "OK!",
+  "orderKitchen": "Beställning"
 }
