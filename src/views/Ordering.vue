@@ -139,26 +139,39 @@
 </div>
 
 
-<div class="receipt">
-  <div class="row">
-    <div class="column aa" id="myBurger"><h3>{{ uiLabels.order }}</h3></div>
-    <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
-    <div class="column cc" style="text-align:left">
-      <ul style="list-style-type:none">
-        <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-        <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-        <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-        <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-      </ul>
+  <div class="receipt">
+    <div class="row">
+      <div class="column aa" id="myBurger"><h3>{{ uiLabels.order }}</h3></div>
+      <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
+      <div class="column cc" style="text-align:left">
+        <ul style="list-style-type:none">
+          <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+          <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+          <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+          <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        </ul>
+      </div>
+      <div class="column dd" style="text-align:left">
+        <ul style="list-style-type:none">
+          <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+          <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        </ul>
+        <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
+      </div>
     </div>
-    <div class="column dd" style="text-align:left">
-      <ul style="list-style-type:none">
-        <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-        <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-      </ul>
-      <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3> -->
+    <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+    <div v-show="change" style="text-align:right">
+      <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+       <button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
+    </div>
+    <div v-show="!change" style="text-align:right">
+      <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+      <button class="orderButtonO" v-if="breadOrder==true && burgerOrder==true" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
+      <button class="orderButtonO graknapp" v-if="breadOrder==false || burgerOrder==false" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
     </div>
   </div>
+<<<<<<< HEAD
+=======
 
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
@@ -171,6 +184,7 @@
     <button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
   </div>
 </div>
+>>>>>>> ae12d2b96d2ea52e7c580f618d6ad92025d4436f
 </div>
 
 <div class="alert" v-show="alert">
@@ -1286,6 +1300,9 @@ bottom: 16.3em;
   cursor: pointer;
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.graknapp {
+  background-color: gray;
 }
 .cancelButton {
   background-color: #f44336;
