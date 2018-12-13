@@ -38,7 +38,8 @@ export default {
 		dressingLabel: false,
 		toppingsLabel: false,
 		sidesLabel: false,
-		
+		beverageLabel: false
+
 	}
 	},
 
