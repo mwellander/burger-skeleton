@@ -6,8 +6,8 @@
         {{item.selling_price}}:-, {{ item.stock }}
         <br>
         <div class = "btn-group">
-        <br><button class="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
-        <button class="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
+        <br><button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
+        <button id="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
         </div>
       </label>
   </div>
@@ -43,38 +43,39 @@ export default {
 </script>
 <style scoped>
 @media screen and (min-width: 300px){
-  .incrementButton{
+  #incrementButton{
     padding:0.2em;
     width:1.5em;
     height:1.5em;
   }
-  .decrementButton{
+  #decrementButton{
     padding:0.2em;
     width:1.5em;
     height:1.5em;
   }
 }
 @media screen and (min-width: 700px){
-  .incrementButton{
+  #incrementButton{
   width:2em;
   height:2em;
 }
-  .decrementButton{
+  #decrementButton{
     width:2em;
     height:2em;
+    background-color: #4CAF50;
   }
 }
-.decrementButton, .incrementButton{
+#decrementButton{
+background-color: #4CAF50;
+}
+#incrementButton{
 
 }
-.incrementButton{
-
-}
-.btn-group button{
+/* .btn-group button{
    background-color: #808080;
-   border: 1px solid black; /* Green border */
+   border: 1px solid black;
    color: black;
    font-size: 1em;
-}
+} */
 
 </style>
