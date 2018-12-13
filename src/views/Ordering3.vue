@@ -4,8 +4,8 @@
         <link rel="stylesheet" href="Ordering.vue">
 <div id="toChangeBackground3">
         <div class="tabs3">
-          <button v-on:click="toSides3()">{{uiLabels.sides}}</button>
-          <button v-on:click="toBeverage3()">{{uiLabels.beverage}}</button>
+          <button id="tabSides3" v-on:click="toSides3()">{{uiLabels.sides}}</button>
+          <button id="tabBeverage3" v-on:click="toBeverage3()">{{uiLabels.beverage}}</button>
         </div>
 
         <div style="text-align:left">
@@ -20,6 +20,7 @@
   v-if="item.category===5 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
+  v-on:decrement="decreaseSides3(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -36,6 +37,7 @@
   v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
+  v-on:decrement="decreaseBeverage3(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -66,11 +68,11 @@
 
   <div v-show="change" style="text-align:right">
   <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button></a>
+  <button class="orderButtonO" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button>
   </div>
   <div v-show="!change" style="text-align:right">
                    <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
+                   <button class="orderButtonO" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button>
   </div>
 </div>
 </div>
@@ -79,6 +81,12 @@
 <a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
 <button class="confirmNoCancel" v-on:click="cancelAlert3()">{{uiLabels.no}}</button>
 </div>
+
+<div class="alert" v-show="nothingalert2">
+  <div class="confirmText">{{uiLabels.nothingInCart}}</div>
+  <button class="confirmOK" v-on:click="nothingAlert2()">{{uiLabels.ok}}</button>
+</div>
+
 </div>
 </template>
 <script>
@@ -112,16 +120,12 @@ export default {
             Beverage3: [],
             path:"#/sidesandbeverage",
             alert: false,
-            change:false
+            change:false,
+            nothingalert2: false,
     }
   },
   mounted: function(){
     this.ifChange3();
-  },
-  saveChanges: function(){
-    store.commit('saveChange',this.chosenIngredients3);
-    store.commit('savePrice',this.price);
-    store.commit('emptyChangeIngrediens');
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
@@ -129,11 +133,53 @@ export default {
     }.bind(this));
   },
   methods:{
+    decreaseSides3: function(item){
+      var j1 = this.chosenIngredients3.findIndex(function(chosenIngredients3){
+        return chosenIngredients3.ingredient_id === item.ingredient_id;
+      });
+      if (j1 != -1 ){
+        this.chosenIngredients3.splice(j1,1);
+      }
+      var j3 = this.Sides3.findIndex(function(Sides3){
+        return Sides3.ingredient_id === item.ingredient_id;
+      });
+      if (j3 != -1 ){
+        this.Sides3.splice(j3,1);
+        this.price = this.price - item.selling_price;
+        if (this.Sides3.length === 0){
+          this.sidesOrder3=false
+        }
+      }
+    },
+    decreaseBeverage3: function(item){
+      var k1 = this.chosenIngredients3.findIndex(function(chosenIngredients3){
+        return chosenIngredients3.ingredient_id === item.ingredient_id;
+      });
+      if (k1 != -1 ){
+        this.chosenIngredients3.splice(k1,1);
+      }
+      var k3 = this.Beverage3.findIndex(function(Beverage3){
+        return Beverage3.ingredient_id === item.ingredient_id;
+      });
+      if (k3 != -1 ){
+        this.Beverage3.splice(k3,1);
+        this.price = this.price - item.selling_price;
+        if (this.Beverage3.length === 0){
+          this.beverageOrder3=false
+        }
+      }
+    },
     sendOrderHome3: function() {
+      if (this.sidesOrder3===false && this.beverageOrder3 === false) {
+        this.nothingAlert2();
+      }
+      else {
       store.commit('addToOrder4',this.chosenIngredients3);
-      store.commit('savePrice',this.price);
+      store.commit('addPrice',this.price);
       store.commit('addNoBurger', this.path);
       store.commit('emptyChangeIngrediens');
+      window.location.replace("#/home");
+    }
     },
     ifChange3: function(){
       this.chosenIngredients5=store.getters.getChangeIngredients;
@@ -145,8 +191,14 @@ export default {
       }
     },
     saveChanges3: function(){
+      if (this.sidesOrder3===false && this.beverageOrder3 === false) {
+        this.nothingAlert2();
+      }
+      else {
       store.commit('saveChange',this.chosenIngredients3);
       store.commit('emptyChangeIngrediens');
+      window.location.replace("#/home");
+    }
     },
     addToOrder3: function(item){
       this.chosenIngredients3.push(item);
@@ -179,6 +231,12 @@ export default {
 
     buttonPanelSides3.style.display = "grid";
     buttonPanelBeverage3.style.display = "none";
+
+    var tabForSides3 = document.getElementById("tabSides3");
+    var tabForBeverage3 = document.getElementById("tabBeverage3");
+
+    tabForSides3.style.backgroundColor = "#D3D3D3";
+    tabForBeverage3.style.backgroundColor = "grey";
   },
   toBeverage3: function(){
     this.state3="beverage3";
@@ -196,6 +254,12 @@ export default {
 
     buttonPanelSides3.style.display = "none";
     buttonPanelBeverage3.style.display = "grid";
+
+    var tabForSides3 = document.getElementById("tabSides3");
+    var tabForBeverage3 = document.getElementById("tabBeverage3");
+
+    tabForSides3.style.backgroundColor = "grey";
+    tabForBeverage3.style.backgroundColor = "#D3D3D3";
   },
   cancelAlert3: function() {
     var background = document.getElementById("toChangeBackground3");
@@ -206,6 +270,19 @@ export default {
     }
     else {
       this.alert=false;
+      background.style.opacity = 1;
+      background.style['pointer-events'] = "auto";
+    }
+  },
+  nothingAlert2: function() {
+    var background = document.getElementById("toChangeBackground2");
+    if (this.nothingalert2===false){
+      this.nothingalert2=true;
+      background.style.opacity = 0.5;
+      background.style['pointer-events'] = "none";
+    }
+    else {
+      this.nothingalert2=false;
       background.style.opacity = 1;
       background.style['pointer-events'] = "auto";
     }
@@ -282,5 +359,11 @@ export default {
   display: grid;
   position: fixed;
 }
+#tabSides3{
+  background-color: #D3D3D3;
+}
 
+#tabBeverage3 {
+  background-color: grey;
+}
 </style>

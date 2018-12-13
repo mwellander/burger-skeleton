@@ -61,5 +61,7 @@
   "missingBread": "Du glömde brödet!",
   "missingBurger": "Du glömde burgare!",
   "ok": "OK!",
-  "orderKitchen": "Beställning"
+  "orderKitchen": "Beställning",
+  "nothingInCart": "Du har inte lagt något i varukorgen!"
+
 }

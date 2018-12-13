@@ -60,5 +60,7 @@
   "missingBread": "You forgot the bread!",
   "missingBurger": "You you forgor the burger!",
   "ok": "OK!",
-  "orderKitchen": "Order"
+  "orderKitchen": "Order",
+  "nothingInCart": "You have not put anything in your cart!"
+
 }
