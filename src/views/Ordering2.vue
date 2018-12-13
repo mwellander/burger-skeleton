@@ -17,7 +17,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'readyBurger'"
-      v-if="item.category===7 && item.stock > 0"
+      v-if="item.category===7"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       :item="item"
