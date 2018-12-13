@@ -13,7 +13,8 @@ export default new Vuex.Store({
     changeIngredients:[],
     changeKey:0,
     totalPrice:0,
-    price:0
+    price:0,
+    orderInLine:0
   },
   getters: {
     getSocket: state => state.socket,
@@ -22,9 +23,13 @@ export default new Vuex.Store({
     getNo: state => state.no,
     getChangeIngredients: state => state.changeIngredients,
     getPrice: state => state.totalPrice,
-    getChangeKey: state => state.changeKey
+    getChangeKey: state => state.changeKey,
+    orderInLine: state => state.orderInLine
   },
   mutations: {
+    orderInLine(state) {
+      state.orderInLine += 1
+    },
     addToOrder4(state,item){
       state.chosenIngredients4 = item
     },

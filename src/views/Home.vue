@@ -79,7 +79,7 @@
     return{
       burgers:store.getters.getChosenIngredients4,
       noBurger:store.getters.getNoBurger,
-      orderInLine: 0,
+      //orderInLine: store.getters.orderInLine,
       price:0,
       alert: false,
       alert2: false
@@ -112,12 +112,12 @@
         this.cancelAlert4b();
       }
       else {
-        this.orderInLine += 1;
+        store.commit("orderInLine");
         for (var i=0; i<this.noBurger.length; i++) {
           var order = {
             ingredients:this.noBurger[i].ingredients,
             price:this.price,
-            orderInLine: this.orderInLine,
+            orderInLine: store.getters.orderInLine,
           };
 
           this.$store.state.socket.emit('order', {order: order});
