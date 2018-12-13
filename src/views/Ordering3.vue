@@ -20,6 +20,7 @@
   v-if="item.category===5 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
+  v-on:decrement="decreaseSides3(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -36,6 +37,7 @@
   v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
+  v-on:decrement="decreaseBeverage3(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -129,6 +131,42 @@ export default {
     }.bind(this));
   },
   methods:{
+    decreaseSides3: function(item){
+      var j1 = this.chosenIngredients3.findIndex(function(chosenIngredients3){
+        return chosenIngredients3.ingredient_id === item.ingredient_id;
+      });
+      if (j1 != -1 ){
+        this.chosenIngredients3.splice(j1,1);
+      }
+      var j3 = this.Sides3.findIndex(function(Sides3){
+        return Sides3.ingredient_id === item.ingredient_id;
+      });
+      if (j3 != -1 ){
+        this.Sides3.splice(j3,1);
+        this.price = this.price - item.selling_price;
+        if (this.Sides3.length === 0){
+          this.sidesOrder3=false
+        }
+      }
+    },
+    decreaseBeverage3: function(item){
+      var k1 = this.chosenIngredients3.findIndex(function(chosenIngredients3){
+        return chosenIngredients3.ingredient_id === item.ingredient_id;
+      });
+      if (k1 != -1 ){
+        this.chosenIngredients3.splice(k1,1);
+      }
+      var k3 = this.Beverage3.findIndex(function(Beverage3){
+        return Beverage3.ingredient_id === item.ingredient_id;
+      });
+      if (k3 != -1 ){
+        this.Beverage3.splice(k3,1);
+        this.price = this.price - item.selling_price;
+        if (this.Beverage3.length === 0){
+          this.beverageOrder3=false
+        }
+      }
+    },
     sendOrderHome3: function() {
       store.commit('addToOrder4',this.chosenIngredients3);
       store.commit('savePrice',this.price);

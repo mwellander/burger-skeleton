@@ -2,17 +2,18 @@
   <div class="ingredient">
       <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
       <label>
-        <br>{{item["ingredient_"+ lang]}},
-        {{item.selling_price}}:-, {{ item.stock }}
+        <br>{{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{ item.stock }}
+          </label>
         <br>
-        <div class = "btn-group">
+        <!-- <div class = "btn-group"> -->
         <br><button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
         <button id="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
-        </div>
-      </label>
+        <!-- </div> -->
   </div>
 </template>
 <script>
+
+
 export default {
   name: 'Ingredient',
   props: {
@@ -47,29 +48,52 @@ export default {
     padding:0.2em;
     width:1.5em;
     height:1.5em;
+    font-size: 0.4em;
   }
   #decrementButton{
     padding:0.2em;
     width:1.5em;
     height:1.5em;
+    font-size: 0.4em;
   }
 }
 @media screen and (min-width: 700px){
   #incrementButton{
   width:2em;
   height:2em;
+  font-size: 1em;
 }
   #decrementButton{
     width:2em;
     height:2em;
-    background-color: #4CAF50;
+  font-size: 1em;
   }
 }
 #decrementButton{
-background-color: #4CAF50;
+background-color: #808080;
+border: 1px solid black;
+cursor: pointer;
 }
 #incrementButton{
+   background-color: #808080;
+   border: 1px solid black;
+   cursor: pointer;
 
+}
+#decrementButton:hover {
+  background-color: #f44336; /* Green */
+  color: black;
+  transition-duration: 0.8s;
+}
+#incrementButton:hover {
+  background-color: #4CAF50; /* Green */
+  color: black;
+  transition-duration: 0.8s;
+}
+.#incrementbutton:after {
+  opacity: 1;
+  transition: 0.4s;
+  background-color: black;
 }
 /* .btn-group button{
    background-color: #808080;

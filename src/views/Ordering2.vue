@@ -20,6 +20,7 @@
       v-if="item.category===7"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
+      v-on:decrement="decreaseReadyBurger(item)"
       :item="item"
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
@@ -36,6 +37,7 @@
     v-if="item.category===5 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
+    v-on:decrement="decreaseSides2(item)"
     :item="item"
     :lang="uiLabels.lang"
     :key="item.ingredient_id">
@@ -53,6 +55,7 @@
   v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder2(item)"
+  v-on:decrement="decreaseBeverage2(item)"
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
@@ -151,6 +154,60 @@ export default {
     }.bind(this));
   },
   methods: {
+    decreaseReadyBurger: function(item){
+      var g1 = this.chosenIngredients2.findIndex(function(chosenIngredients2){
+        return chosenIngredients2.ingredient_id === item.ingredient_id;
+      });
+      if (g1 != -1 ){
+        this.chosenIngredients2.splice(g1,1);
+      }
+      var g2 = this.ReadyBurger.findIndex(function(ReadyBurger){
+        return ReadyBurger.ingredient_id === item.ingredient_id;
+      });
+      if (g2 != -1 ){
+        this.ReadyBurger.splice(g2,1);
+        this.price = this.price - item.selling_price;
+        if (this.ReadyBurger.length === 0){
+          this.readyBurger=false
+        }
+      }
+    },
+    decreaseSides2: function(item){
+      var h1 = this.chosenIngredients2.findIndex(function(chosenIngredients2){
+        return chosenIngredients2.ingredient_id === item.ingredient_id;
+      });
+      if (h1 != -1 ){
+        this.chosenIngredients2.splice(h1,1);
+      }
+      var h3 = this.Sides2.findIndex(function(Sides2){
+        return Sides2.ingredient_id === item.ingredient_id;
+      });
+      if (h3 != -1 ){
+        this.Sides2.splice(h3,1);
+        this.price = this.price - item.selling_price;
+        if (this.Sides2.length === 0){
+          this.sidesOrder2=false
+        }
+      }
+    },
+    decreaseBeverage2: function(item){
+      var i1 = this.chosenIngredients2.findIndex(function(chosenIngredients2){
+        return chosenIngredients2.ingredient_id === item.ingredient_id;
+      });
+      if (i1 != -1 ){
+        this.chosenIngredients2.splice(i1,1);
+      }
+      var i3 = this.Beverage2.findIndex(function(Beverage2){
+        return Beverage2.ingredient_id === item.ingredient_id;
+      });
+      if (i3 != -1 ){
+        this.Beverage2.splice(i3,1);
+        this.price = this.price - item.selling_price;
+        if (this.Beverage2.length === 0){
+          this.beverageOrder2=false
+        }
+      }
+    },
     sendOrderHome2: function() {
       store.commit('addToOrder4',this.chosenIngredients2);
       store.commit('savePrice',this.price);
