@@ -90,10 +90,12 @@ cursor: pointer;
   color: black;
   transition-duration: 0.8s;
 }
-.#incrementbutton:after {
-  opacity: 1;
-  transition: 0.4s;
-  background-color: black;
+#incrementButton:active{
+  background-color: green;
+  transition:1s;
+}
+#decrementButton:active{
+  background-color: red;
 }
 /* .btn-group button{
    background-color: #808080;

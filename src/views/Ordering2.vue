@@ -175,7 +175,7 @@ export default {
         this.ReadyBurger.splice(g2,1);
         this.price = this.price - item.selling_price;
         if (this.ReadyBurger.length === 0){
-          this.readyBurger=false
+          this.readyBurgerOrder=false
         }
       }
     },
