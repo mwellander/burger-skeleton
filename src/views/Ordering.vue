@@ -163,19 +163,33 @@
   <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
 
   <div v-show="change" style="text-align:right">
-  <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-  <a href="#/home"><button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button></a>
+    <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+     <button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
   </div>
   <div v-show="!change" style="text-align:right">
-                   <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-  <a href="#/home"><button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button></a>
+    <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+<button class="orderButtonO" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
   </div>
 </div>
 </div>
+
 <div class="alert" v-show="alert">
   <div class="confirmText">{{uiLabels.confirmMess}}</div>
-<a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
-<button class="confirmNoCancel" v-on:click="cancelAlert()">{{uiLabels.no}}</button>
+  <a href="#/home" class="confirmCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.yes}}</a>
+   <button class="confirmNoCancel" v-on:click="cancelAlert()">{{uiLabels.no}}</button>
+</div>
+
+<div class="alert" v-show="breadburgeralert">
+  <div class="confirmText">{{uiLabels.missingBreadAndBurger}}</div>
+  <button class="confirmOK" v-on:click="breadAndBurgerAlert()">{{uiLabels.ok}}</button>
+</div>
+<div class="alert" v-show="breadalert">
+  <div class="confirmText">{{uiLabels.missingBread}}</div>
+  <button class="confirmOK" v-on:click="breadAlert()">{{uiLabels.ok}}</button>
+</div>
+<div class="alert" v-show="burgeralert">
+  <div class="confirmText">{{uiLabels.missingBurger}}</div>
+  <button class="confirmOK" v-on:click="burgerAlert()">{{uiLabels.ok}}</button>
 </div>
   <!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
   <div>
@@ -246,6 +260,9 @@ export default {
       path:"#/customburger",
       change:false,
       alert: false,
+      breadburgeralert: false,
+     breadalert: false,
+     burgeralert: false,
     }
     //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
@@ -382,11 +399,50 @@ this.beverageOrder=false
       }
     },
     sendOrderHome: function() {
-      store.commit('addToOrder4',this.chosenIngredients);
-      store.commit('addPrice',this.price);
-      store.commit('addNoBurger', this.path);
-      store.commit('emptyChangeIngrediens');
-    },
+      if(this.beverageOrder === true && this.sidesOrder === true
+    && this.burgerOrder === false && this.breadOrder === false
+    && this.dressingOrder === false && this.toppingsOrder === false) {
+    store.commit('addToOrder4',this.chosenIngredients);
+    store.commit('addPrice',this.price);
+    store.commit('addNoBurger', this.path);
+    store.commit('emptyChangeIngrediens');
+    window.location.replace("#/home");
+  }
+  else if(this.beverageOrder === true && this.sidesOrder === false
+    && this.burgerOrder === false && this.breadOrder === false
+    && this.dressingOrder === false && this.toppingsOrder === false) {
+    store.commit('addToOrder4',this.chosenIngredients);
+    store.commit('addPrice',this.price);
+    store.commit('addNoBurger', this.path);
+    store.commit('emptyChangeIngrediens');
+    window.location.replace("#/home");
+  }
+  else if(this.beverageOrder === false && this.sidesOrder === true
+    && this.burgerOrder === false && this.breadOrder === false
+    && this.dressingOrder === false && this.toppingsOrder === false) {
+    store.commit('addToOrder4',this.chosenIngredients);
+    store.commit('addPrice',this.price);
+    store.commit('addNoBurger', this.path);
+    store.commit('emptyChangeIngrediens');
+    window.location.replace("#/home");
+  }
+  else if (this.burgerOrder === false && this.breadOrder === false) {
+    this.breadAndBurgerAlert();
+  }
+  else if (this.burgerOrder === false) {
+    this.burgerAlert();
+  }
+  else if (this.breadOrder === false) {
+    this.breadAlert();
+  }
+  else {
+    store.commit('addToOrder4',this.chosenIngredients);
+    store.commit('addPrice',this.price);
+    store.commit('addNoBurger', this.path);
+    store.commit('emptyChangeIngrediens');
+    window.location.replace("#/home");
+  }
+},
     startOrder: function(){
       this.started=true;
       this.state="bread";
@@ -694,10 +750,46 @@ this.beverageOrder=false
       this.price += +item.selling_price;
     },
     saveChanges: function(){
+      if(this.beverageOrder === true && this.sidesOrder === true
+    && this.burgerOrder === false && this.breadOrder === false
+    && this.dressingOrder === false && this.toppingsOrder === false) {
       store.commit('saveChange',this.chosenIngredients);
       store.commit('savePrice',this.price);
       store.commit('emptyChangeIngrediens');
-    },
+      window.location.replace("#/home");
+  }
+  else if(this.beverageOrder === true && this.sidesOrder === false
+    && this.burgerOrder === false && this.breadOrder === false
+    && this.dressingOrder === false && this.toppingsOrder === false) {
+      store.commit('saveChange',this.chosenIngredients);
+      store.commit('savePrice',this.price);
+      store.commit('emptyChangeIngrediens');
+      window.location.replace("#/home");
+  }
+  else if(this.beverageOrder === false && this.sidesOrder === true
+    && this.burgerOrder === false && this.breadOrder === false
+    && this.dressingOrder === false && this.toppingsOrder === false) {
+      store.commit('saveChange',this.chosenIngredients);
+      store.commit('savePrice',this.price);
+      store.commit('emptyChangeIngrediens');
+      window.location.replace("#/home");
+  }
+  else if (this.burgerOrder === false && this.breadOrder === false) {
+    this.breadAndBurgerAlert();
+  }
+  else if (this.burgerOrder === false) {
+    this.burgerAlert();
+  }
+  else if (this.breadOrder === false) {
+    this.breadAlert();
+  }
+  else {
+    store.commit('saveChange',this.chosenIngredients);
+    store.commit('savePrice',this.price);
+    store.commit('emptyChangeIngrediens');
+    window.location.replace("#/home");
+  }
+},
     cancelChanges: function(){
       store.commit('emptyChangeIngrediens');
     },
@@ -713,8 +805,47 @@ this.beverageOrder=false
     background.style.opacity = 1;
     background.style['pointer-events'] = "auto";
   }
+},
+    breadAndBurgerAlert: function() {
+      var background = document.getElementById("toChangeBackground");
+      if (this.breadburgeralert===false){
+        this.breadburgeralert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.breadburgeralert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    },
+    breadAlert: function() {
+      var background = document.getElementById("toChangeBackground");
+      if (this.breadalert===false){
+        this.breadalert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.breadalert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    },
+    burgerAlert: function() {
+      var background = document.getElementById("toChangeBackground");
+      if (this.burgeralert===false){
+        this.burgeralert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.burgeralert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    }
 }}
-}
 </script>
 <style>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
@@ -1293,7 +1424,7 @@ grid-row: 2;
 background-color: #6495ED;
 border: 0.1em solid black;
 color: black;
-padding: 1em 2em;
+padding: 1em 1em;
 text-align: center;
 text-decoration: none;
 display: inline-block;
@@ -1311,7 +1442,7 @@ grid-row: 2;
 background-color: #ADD8E6;
 border: 0.1em solid black;
 color: black;
-padding: 1em 2em;
+padding: 1em 1em;
 text-align: center;
 text-decoration: none;
 display: inline-block;
@@ -1319,6 +1450,23 @@ cursor: pointer;
 border-radius: 1em;
 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 margin: auto;
+}
+.confirmOK {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 1em;
+  grid-column:2;
+  grid-row: 2;
+  background-color: #ADD8E6;
+  border: 0.1em solid black;
+  color: black;
+  padding: 1em 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 1em;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin: auto;
 }
 
 </style>
