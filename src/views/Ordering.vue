@@ -234,12 +234,13 @@ v-on:decrement="decreaseBeverage(item)"
           <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></div>
           <div v-show="change" style="text-align:right">
             <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-             <button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
+             <button class="orderButtonO" v-if="breadOrder==true&&burgerOrder==true" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
+             <button class="orderButtonO graknapp" v-else-if="breadOrder==false||burgerOrder==false" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
           </div>
           <div v-show="!change" style="text-align:right">
             <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-            <button class="orderButtonO" v-if="breadOrder==true && burgerOrder==true" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
-            <button class="orderButtonO graknapp" v-else-if="breadOrder==false || burgerOrder==false" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
+            <button class="orderButtonO" v-if="breadOrder==true&&burgerOrder==true" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
+            <button class="orderButtonO graknapp" v-else-if="breadOrder==false||burgerOrder==false" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
           </div>
         </div>
       </div>

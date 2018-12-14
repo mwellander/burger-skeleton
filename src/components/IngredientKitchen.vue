@@ -8,10 +8,11 @@
       <div class="ingredientAddStock">
         {{uiLabels.inStock}}: {{item.stock}}{{uiLabels.pcs}},
         <br>
-        <input type="number" :id="item.ingredient_en + item.ingredient_id" min="0">
-        <br>
-        <button class="negative" type="submit" v-on:click="updateStock($event)">{{uiLabels.erase}}</button>
-        <button class="positive" type="submit" v-on:click="updateStock($event)">{{uiLabels.add}}</button>
+        <div class="inputNumberDiv">
+          <input type="number" :id="item.ingredient_en + item.ingredient_id" min="0">
+        </div>
+        <button class="negative buttonLayout" type="submit" v-on:click="updateStock($event)">{{uiLabels.erase}}</button>
+        <button class="positive buttonLayout" type="submit" v-on:click="updateStock($event)">{{uiLabels.add}}</button>
       </div>
       <h1 v-if="item.stock<=0">{{uiLabels.finished}}</h1>
     </form>
@@ -45,11 +46,11 @@ export default {
       var id = this.item.ingredient_en + this.item.ingredient_id;
       var numberToUpdate = document.getElementById(id).value;
       var currentStock;
-      if (e.target.className === "positive") {
+      if (e.target.className === "positive buttonLayout") {
         currentStock = Number(this.item.stock) + Number(numberToUpdate);
 
       }
-      else if (e.target.className === "negative"){
+      else if (e.target.className === "negative buttonLayout"){
         currentStock = Number(this.item.stock) - Number(numberToUpdate);
       }
       this.$store.state.socket.emit('updateStock', {"ingredient":this.item}, currentStock);
@@ -91,5 +92,23 @@ export default {
     vertical-align: middle;
     display: none;
   }
-
+  .buttonLayout {
+    border: 0.1em solid black;
+    color: black;
+    padding: 0.5em 1em;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 1em;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  .positive {
+    background-color: #91ff87;
+  }
+  .negative {
+    background-color: #d76d63;
+  }
+  .inputNumberDiv {
+    padding-bottom: 0.5em;
+  }
   </style>
