@@ -1,10 +1,21 @@
 <template>
   <div class="ingredient">
     <div v-if="item.stock > 0">
-      <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
-      <label>
+      <div class="allergies" style="text-align:left">
+        <span v-show="item.vegan===1" id="vegan">....</span>
+        <span v-show="item.milk_free===1" id="milk">....</span>
+        <span v-show="item.gluten_free===1" id="gluten">....</span>
+        <span v-show="item.gluten_free===0&&item.milk_free===0&&item.vegan===0"><br></span>
+      </div>
+      <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
+      <label><font face="helvetica">
         <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
-          </label>
+
+          
+
+
+      </font></label>
+        <br>
 
         <!-- <div class = "btn-group"> -->
         <br><button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
@@ -13,9 +24,9 @@
       <div v-if="item.stock <= 0">
         <div id="notInStockNow">{{uiLabels.showNotInStock}}</div>
         <br><div id="picture"><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
-        <label>
+        <label><span id="ingredientText">
           <br>{{item["ingredient_"+ uiLabels.lang]}}, {{item.selling_price}}:-, {{ item.stock }}
-            </label>
+        </span></label>
           <br>
           <br>
         </div>
@@ -140,4 +151,31 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   position: absolute;
 }
 
+#vegan{
+  background-color:green;
+  display:inline-block;
+  border-radius:50%;
+  color:green;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#milk{
+  background-color:yellow;
+  display:inline-block;
+  border-radius:50%;
+  color:yellow;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#gluten{
+  background-color:blue;
+  display:inline-block;
+  border-radius:50%;
+  color:blue;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#ingredientText{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
 </style>

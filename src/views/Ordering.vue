@@ -10,6 +10,12 @@
     <a href="#beverage">{{ uiLabels.beverage }}</a>
   </div> -->
   <!-- <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button> -->
+
+  <div class="headOfPage" style="text-align:right">
+  <span id="vegan2">....</span> {{uiLabels.vegan}}
+  <span id="milk2">....</span> {{uiLabels.dairy}}
+  <span id="gluten2">....</span> {{uiLabels.gluten}}
+</div>
   <div id="toChangeBackground">
     <div class="tabs">
       <button id="tabBread" v-on:click="toBread()">{{uiLabels.bread}}</button>
@@ -20,9 +26,9 @@
       <button id="tabBeverage" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
     </div>
 
-  <div style="text-align:left">
-    <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
-  </div>
+    <div style="text-align:left">
+      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
+    </div>
 
     <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
     <br>
@@ -218,13 +224,28 @@ v-on:decrement="decreaseBeverage(item)"
         </ul>
       </div>
       <div class="column dd" style="text-align:left">
-        <ul style="list-style-type:none">
-          <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-          <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-        </ul>
+        <div class="dd1" style="text-align:left">
+          <ul style="list-style-type:none">
+            <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+            <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+          </ul>
+        </div>
+        <div class="dd2" style="text-align:left">
+          <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></div>
+          <div v-show="change" style="text-align:right">
+            <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+             <button class="orderButtonO" v-if="breadOrder==true&&burgerOrder==true" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
+             <button class="orderButtonO graknapp" v-else-if="breadOrder==false||burgerOrder==false" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
+          </div>
+          <div v-show="!change" style="text-align:right">
+            <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+            <button class="orderButtonO" v-if="breadOrder==true&&burgerOrder==true" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
+            <button class="orderButtonO graknapp" v-else-if="breadOrder==false||burgerOrder==false" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+    <!-- <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+
     <div v-show="change" style="text-align:right">
       <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
        <button class="orderButtonO" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
@@ -233,8 +254,9 @@ v-on:decrement="decreaseBeverage(item)"
       <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
       <button class="orderButtonO" v-if="breadOrder==true && burgerOrder==true" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
       <button class="orderButtonO graknapp" v-if="breadOrder==false || burgerOrder==false" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
-    </div>
+    </div> -->
   </div>
+</div>
 </div>
 
 <div class="alert" v-show="alert">
@@ -1068,7 +1090,7 @@ export default {
                 }
                 .totalText{
                   font-size:0.7em;
-                  margin-bottom: 6em;
+                  /* margin-bottom: 6em; */
                 }
                 .column{
                   font-size: 0.6em;
@@ -1137,17 +1159,20 @@ export default {
                   font-size:1em;
                 }
                 .totalText{
-                  font-size:1em;
-                  margin-bottom: 5em;
+                  font-size:1.3em;
+                  /* margin-bottom: 5em; */
                 }
                 .column{
                   font-size: 1em;
                 }
                 .cc{
-                  height: 6em;
+                  height: 11.3em;
                 }
-                .dd{
-                  height: 8em;
+                /* .dd{
+                  height: 11.3em;
+                } */
+                .dd1 {
+                  height:6.8em;
                 }
               }
               * {
@@ -1176,9 +1201,15 @@ export default {
                 text-align:left;
               }
               .dd {
-                overflow:scroll;
+                /* overflow:scroll; */
                 background-color: white;
                 text-align:left;
+              }
+              .dd1 {
+                overflow:scroll;
+              }
+              .dd2 {
+
               }
 
               #buttonPanelBread {
@@ -1191,100 +1222,6 @@ export default {
                 display: grid;
                 position: fixed;
               }
-              /* #buttonPanelBurger {
-              background-color: black;
-              display: grid;
-              grid-template-columns: 20% 60% 20%;
-              position: fixed;
-              width: 40em;
-              height: 3.5em;
-              bottom: 16.3em;
-              } */
-              /*
-              #buttonPanelDressing {
-              background-color: black;
-              display: grid;
-              grid-template-columns: 20% 60% 20%;
-              position: fixed;
-              width: 40em;
-              height: 3.5em;
-              bottom: 16.3em;
-            }
-
-            #buttonPanelToppings {
-            background-color: black;
-            display: grid;
-            grid-template-columns: 20% 60% 20%;
-            position: fixed;
-            width: 40em;
-            height: 3.5em;
-            bottom: 16.3em;
-          }
-
-          #buttonPanelSides {
-          background-color: black;
-          display: grid;
-          grid-template-columns: 20% 60% 20%;
-          position: fixed;
-          width: 40em;
-          height: 3.5em;
-          bottom: 16.3em;
-        }
-
-        #buttonPanelBeverage {
-        background-color: black;
-        display: grid;
-        grid-template-columns: 20% 60% 20%;
-        position: fixed;
-        width: 40em;
-        height: 3.5em;
-        bottom: 16.3em;
-        } */
-        /* #buttonPanelReadyBurger {
-        z-index: 3;
-        display: grid;
-        grid-template-columns: 20% 60% 20%;
-        position: fixed;
-        width: 40em;
-        height: 3.5em;
-        bottom: 16.3em;
-      }
-      #buttonPanelSides2 {
-      background-color: black;
-      display: grid;
-      grid-template-columns: 20% 60% 20%;
-      position: fixed;
-      width: 40em;
-      height: 3.5em;
-      bottom: 16.3em;
-    }
-    #buttonPanelBeverage2 {
-    background-color: black;
-    display: grid;
-    grid-template-columns: 20% 60% 20%;
-    position: fixed;
-    width: 40em;
-    height: 3.5em;
-    bottom: 16.3em;
-  }
-  #buttonPanelSides3 {
-  z-index: 3;
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  position: fixed;
-  width: 40em;
-  height: 3.5em;
-  bottom: 16.3em;
-}
-#buttonPanelBeverage3 {
-background-color: black;
-display: grid;
-grid-template-columns: 20% 60% 20%;
-position: fixed;
-width: 40em;
-height: 3.5em;
-bottom: 16.3em;
-} */
 
 #nextButton {
   grid-column: 3;
@@ -1339,7 +1276,7 @@ bottom: 16.3em;
   background-color: #4CAF50;
   border: 0.1em solid black;
   color: black;
-  padding: 1em 2em;
+  padding: 1em 1.8em;
   text-align: center;
   display: inline-block;
   cursor: pointer;
@@ -1353,7 +1290,7 @@ bottom: 16.3em;
   background-color: #f44336;
   border: 0.1em solid black;
   color: black;
-  padding: 1em 2em;
+  padding: 1em 1.8em;
   text-align: center;
   display: inline-block;
   cursor: pointer;
@@ -1365,7 +1302,7 @@ bottom: 16.3em;
   overflow: hidden;
   position: fixed;
   top: 1;
-  padding-top: 2.5em;
+  padding-top: 1.8em;
   background-color: black;
   height: 6em;
 }
@@ -1407,11 +1344,7 @@ bottom: 16.3em;
 #tabBeverage {
   background-color: grey;
 }
-/* .main {
-padding: 1px;
-margin-top: 3px;
-height: 15px; /* Used in this example to enable scrolling
-} */
+
 .example-panel {
   position: fixed;
   left:0;
@@ -1425,11 +1358,8 @@ height: 15px; /* Used in this example to enable scrolling
   color: white;
 }
 .totalText {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  /* padding: 4em; */
   margin-right: 1em;
+  font-weight: bold;
 }
 
 .Page{
@@ -1441,33 +1371,6 @@ height: 15px; /* Used in this example to enable scrolling
   grid-row: 1;
   text-align: center;
 }
-/* .burgerPage {
-overflow: scroll;
-position: absolute;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-}
-.toppingPage {
-overflow: scroll;
-position: absolute;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-}
-.dressingPage {
-overflow: scroll;
-position: absolute;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-} */
 .breadPage {
   z-index: 10;
   overflow: scroll;
@@ -1478,89 +1381,6 @@ text-align: center;
   grid-row: 1;
   text-align: center;
 }
-/* .sidesPage {
-overflow: scroll;
-position: absolute;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-}
-.beveragePage {
-overflow: scroll;
-position: absolute;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-} */
-/* .readyBurgerPage {
-z-index: -1;
-overflow: scroll;
-position: absolute;
-bottom: 20em;
-top: 7em;
-width: 40em;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-}
-.sidesPage2 {
-z-index: -100;
-overflow: scroll;
-position: absolute;
-bottom: 20em;
-top: 7em;
-width: 40em;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-}
-.beveragePage2 {
-z-index: -100;
-overflow: scroll;
-position: absolute;
-bottom: 20em;
-top: 7em;
-width: 40em;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-}
-.sidesPage3 {
-z-index: -1;
-overflow: scroll;
-position: absolute;
-bottom: 20em;
-top: 7em;
-width: 40em;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-}
-.beveragePage3 {
-z-index: -100;
-overflow: scroll;
-position: absolute;
-bottom: 20em;
-top: 7em;
-width: 40em;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-column: 1 / span 3;
-grid-row: 1;
-text-align: center;
-} */
 
 #toChangeBackground {
   opacity: 1;
@@ -1639,6 +1459,37 @@ text-align: center;
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   margin: auto;
+}
+#vegan2{
+  background-color:green;
+  display:inline-block;
+  border-radius:50%;
+  color:green;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#milk2{
+  background-color:yellow;
+  display:inline-block;
+  border-radius:50%;
+  color:yellow;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#gluten2{
+  background-color:blue;
+  display:inline-block;
+  border-radius:50%;
+  color:blue;
+  font-size:0.5em;
+  margin:0.2em;
+}
+.headOfPage{
+  color:white;
+  top:0;
+  margin-top:0.4em;
+  font-size:1em;
+  font-family: "Helvetica", cursive, sans-serif;
 }
 
 </style>

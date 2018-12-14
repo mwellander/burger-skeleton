@@ -46,7 +46,7 @@
   "lang": "en",
   "change":"Change",
   "saveChange":"Save Change",
-  "cancelChange":"Cancel Change",
+  "cancelChange":"Cancel",
   "confirmMess": "Are you sure you want to cancel your order?",
   "yes": "Yes!",
   "no": "No!",
@@ -64,6 +64,8 @@
   "showNotInStock": "This product is unavalible",
   "orderKitchen": "Order",
   "nothingInCart": "Your cart is empty!",
-  "show":"Show"
-
+  "show":"Show",
+  "vegan":"Vegan",
+  "dairy":"Dairy Free",
+  "gluten":"Gluten Free"
 }
