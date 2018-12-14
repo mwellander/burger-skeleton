@@ -16,9 +16,9 @@
 
     <div class="receipt">
       <div class="row">
-        <div class="aa aaa"><h3>{{ uiLabels.yourOrder }}</h3></div>
+        <div class="aa"><h3>{{ uiLabels.yourOrder }}</h3></div>
         <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
-        <div class="cc" style="text-align:left">
+        <div class="column cc ccPlus" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
               Order {{ key.noB }}
@@ -41,10 +41,17 @@
             </span></li>
           </ul>
         </div>
-        <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }}:-</u></h3>
-        <div style="text-align:right">
-          <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-          <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
+        <div class="column dd ddPlus" style="text-align:left">
+          <div class="dd1">
+            <p></p>
+          </div>
+          <div class="dd2">
+            <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }}:-</u></div>
+            <div style="text-align:right">
+              <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+              <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -271,8 +278,11 @@ if (this.alert2===false){
         padding:0.8em;
      }
    }
-     .aaa {
-       width: 100%;
+     .ccPlus {
+       width: 65%;
+     }
+     .ddPlus {
+       width: 35%;
      }
      .buttonHome {
        color: black;
