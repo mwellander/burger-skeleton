@@ -63,6 +63,7 @@
   "nothingInCart": "You have not put anything in your cart!",
   "showNotInStock": "This product is unavalible",
   "orderKitchen": "Order",
-  "nothingInCart": "Your cart is empty!"
+  "nothingInCart": "Your cart is empty!",
+  "show":"Show"
 
 }

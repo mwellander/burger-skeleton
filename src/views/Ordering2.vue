@@ -21,6 +21,7 @@
         v-if="item.category===7 && item.stock > 0"
         v-for="item in ingredients"
         v-on:increment="addToOrder2(item)"
+        v-on:decrement="decreaseReadyBurger(item)"
         :item="item"
         :lang="uiLabels.lang"
         :key="item.ingredient_id">
@@ -47,7 +48,7 @@
       v-if="item.category===5 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
-      v-on:decrement="decreaseReadyBurger(item)"
+      v-on:decrement="decreaseSides2(item)"
       :item="item"
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
@@ -76,7 +77,7 @@
     v-if="item.category===6 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
-    v-on:decrement="decreaseSides2(item)"
+    v-on:decrement="decreaseBeverage2(item)"
     :item="item"
     :lang="uiLabels.lang"
     :key="item.ingredient_id">

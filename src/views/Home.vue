@@ -21,7 +21,8 @@
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
-              Order {{ key.noB }} <button v-on:click="showOrder(index)" class="showButton">{{uiLabels.show}}
+              Order {{ key.noB }}
+              <button v-on:click="showOrder(index)" class="showButton">{{uiLabels.show}}
               </button>
               <a :href="key.path">
                 <button v-on:click="changeOrder(key,index)" class="changeButton">{{uiLabels.change}}
@@ -29,7 +30,15 @@
                   <button v-on:click="deleteBurger(index)" class="deleteButton">{{uiLabels.erase}}
                 </button>
               {{key.price}}:-<br>
-            <span v-show="show && key.ingredients===showArray">{{ showArray.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</span></li>
+            <span v-show="show && key.ingredients===showArray" id="showOrder">
+                <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="readyBurgerOrder">{{uiLabels.burger}}: {{ ReadyBurger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+            </span></li>
           </ul>
 
           <!-- <ul style="list-style-type:none">
@@ -90,6 +99,20 @@
       noInOrder:0,
       show:false,
       showArray:[],
+      Bread:[],
+      Burger:[],
+      Dressing:[],
+      Toppings:[],
+      Sides:[],
+      Beverage:[],
+      ReadyBurger:[],
+      breadOrder:false,
+      burgerOrder:false,
+      dressingOrder:false,
+      toppingsOrder:false,
+      sidesOrder:false,
+      beverageOrder:false,
+      readyBurgerOrder:false
     }
   },
   mounted: function(){
@@ -98,12 +121,73 @@
   methods: {
     showOrder: function(index){
       if(!this.show||this.showArray!==this.noBurger[index].ingredients){
+        this.show=false;
+        this.showArray=[];
+        this.Bread=[];
+        this.Burger=[];
+        this.Dressing=[];
+        this.Toppings=[];
+        this.Sides=[];
+        this.Beverage=[];
+        this.ReadyBurger=[];
+        this.breadOrder=false;
+        this.burgerOrder=false;
+        this.dressingOrder=false;
+        this.toppingsOrder=false;
+        this.sidesOrder=false;
+        this.beverageOrder=false;
+        this.readyBurgerOrder=false;
         this.showArray=this.noBurger[index].ingredients;
         this.show=true;
+        for(var i=0;i<this.showArray.length;i++){
+          var item = this.showArray[i];
+          if(item.category===1){
+            this.Burger.push(item);
+            this.burgerOrder=true;
+          }
+          if(item.category===2){
+            this.Toppings.push(item);
+            this.toppingsOrder=true;
+          }
+          if(item.category===3){
+            this.Dressing.push(item);
+            this.dressingOrder=true;
+          }
+          if(item.category===4){
+            this.Bread.push(item);
+            this.breadOrder=true;
+          }
+          else if(item.category===5){
+            this.Sides.push(item);
+            this.sidesOrder=true;
+          }
+          else if(item.category===6){
+            this.Beverage.push(item);
+            this.beverageOrder=true;
+            }
+          else if(item.category===7){
+            this.ReadyBurger.push(item);
+            this.readyBurgerOrder=true;
+              }
+        }
       }
       else{
         this.show=false;
-        this.showArray=[]
+        this.showArray=[];
+        this.Bread=[];
+        this.Burger=[];
+        this.Dressing=[];
+        this.Toppings=[];
+        this.Sides=[];
+        this.Beverage=[];
+        this.ReadyBurger=[];
+        this.breadOrder=false;
+        this.burgerOrder=false;
+        this.dressingOrder=false;
+        this.toppingsOrder=false;
+        this.sidesOrder=false;
+        this.beverageOrder=false;
+        this.readyBurgerOrder=false;
       }
     },
     getPrice: function(){
@@ -215,7 +299,6 @@ if (this.alert2===false){
        cursor: pointer;
        border-radius: 1.5em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-       overflow:scroll;
      }
      .createBurgerButton {
        margin-top: 7%;
@@ -224,7 +307,7 @@ if (this.alert2===false){
        background-color:#ddd;
      }
      .changeButton{
-       background-color:lightblue;
+       background-color:#5dade2;
        font-family: "Comic Sans MS", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
@@ -236,6 +319,7 @@ if (this.alert2===false){
        padding:0.1em;
      }
      .showButton{
+       background-color:#aed6f1;
        font-family: "Comic Sans MS", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
