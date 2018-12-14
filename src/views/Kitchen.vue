@@ -2,8 +2,9 @@
   <section class="orders">
 
     <div class="box a">
-      {{ uiLabels.staffView }}
-      <button v-on:click="switchLang()" class="LanguageButtonK">{{ uiLabels.language }}</button>
+      <div id="staffText">{{ uiLabels.staffView }}</div>
+      <div id="noKetchupText"><img src="../assets/Images_ingedients/ketchupNy.png" height="100"/>{{uiLabels.noKetchup}}<img src="../assets/Images_ingedients/ketchupNy.png" height="100"/></div>
+      <!-- <button v-on:click="switchLang()" class="LanguageButtonK">{{ uiLabels.language }}</button> -->
       <button v-on:click="stockView()" class="OrderButtonK" id="OrderButton">{{ uiLabels.ordersToView }}</button>
       <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
     </div>
@@ -32,7 +33,7 @@
         v-for="item in ingredients"
         v-on:updateStock="updateStock()"
         :item="item"
-        :lang="uiLabels.lang"
+        :lang="lang"
         :key="item.ingredient_id">
       </IngredientKitchen>
 
@@ -43,7 +44,7 @@
       v-for="item in ingredients"
       v-on:updateStock="updateStock()"
       :item="item"
-      :lang="uiLabels.lang"
+      :lang="lang"
       :key="item.ingredient_id">
     </IngredientKitchen>
 
@@ -54,7 +55,7 @@
     v-for="item in ingredients"
     v-on:updateStock="updateStock()"
     :item="item"
-    :lang="uiLabels.lang"
+    :lang="lang"
     :key="item.ingredient_id">
   </IngredientKitchen>
 
@@ -65,7 +66,7 @@
   v-for="item in ingredients"
   v-on:updateStock="updateStock()"
   :item="item"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :key="item.ingredient_id">
 </IngredientKitchen>
 
@@ -76,7 +77,7 @@ v-if="item.category===5"
 v-for="item in ingredients"
 v-on:updateStock="updateStock()"
 :item="item"
-:lang="uiLabels.lang"
+:lang="lang"
 :key="item.ingredient_id">
 </IngredientKitchen>
 
@@ -87,7 +88,7 @@ v-if="item.category===6"
 v-for="item in ingredients"
 v-on:updateStock="updateStock()"
 :item="item"
-:lang="uiLabels.lang"
+:lang="lang"
 :key="item.ingredient_id">
 </IngredientKitchen>
 
@@ -98,7 +99,7 @@ v-if="item.category===7"
 v-for="item in ingredients"
 v-on:updateStock="updateStock()"
 :item="item"
-:lang="uiLabels.lang"
+:lang="lang"
 :key="item.ingredient_id">
 </IngredientKitchen>
 </div>
@@ -115,8 +116,8 @@ v-on:updateStock="updateStock()"
   v-on:done="markStarted(key)"
   :order-id="key"
   :order="order"
+  :lang="lang"
   :ui-labels="uiLabels"
-  :lang="uiLabels.lang"
   :key="key">
 </OrderItemToPrepare>
 </div>
@@ -127,7 +128,7 @@ v-on:updateStock="updateStock()"
   v-on:done="markDone(key)"
   :order-id="key"
   :order="order"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :ui-labels="uiLabels"
   :key="key">
 </OrderItemStarted>
@@ -138,7 +139,7 @@ v-on:updateStock="updateStock()"
   v-if="order.status === 'done'"
   :order-id="key"
   :order="order"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :ui-labels="uiLabels"
   :key="key">
 </OrderItem>
@@ -179,7 +180,7 @@ export default {
       sides:false,
       beverages:false,
       orderingvue:false,
-      readyBurger: false
+      readyBurger: false,
     }
   },
   methods: {
@@ -433,13 +434,26 @@ export default {
 
 .a {
   display: grid;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 30% 40% 30%;
   grid-column: 1 / span 3;
   grid-row: 1;
   top: 0;
   background-color: black;
   color: white;
   text-align: center;
+}
+
+#noKetchupText {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 2em;
+  grid-column: 2;
+}
+
+#staffText {
+  grid-column: 1;
+  font-size: 1.5em;
+  margin: auto;
+  left: 0em;
 }
 
 .StockButton {
@@ -455,6 +469,8 @@ export default {
   cursor: pointer;
   grid-column: 3;
   grid-row: 1;
+  width: 60%;
+  margin: auto;
 }
 
 .OrderButtonK {
@@ -470,9 +486,11 @@ export default {
   cursor: pointer;
   grid-column: 3;
   grid-row: 1;
+  width: 60%;
+  margin: auto;
 }
 
-.LanguageButtonK {
+/* .LanguageButtonK {
   background-color: #000000;
   border: 2px solid #fff;
   color: white;
@@ -485,7 +503,7 @@ export default {
   cursor: pointer;
   grid-column: 1;
   grid-row: 1;
-}
+} */
 
 #currentStock {
   /* overflow: scroll; */

@@ -3,7 +3,7 @@
     <!-- <label> -->
     <form :id="stock+item.ingredient_id">
       <div class="ingredientName">
-        {{item["ingredient_"+ uiLabels.lang]}}
+        {{item["ingredient_"+ lang]}}
       </div>
       <div class="ingredientAddStock">
         {{uiLabels.inStock}}: {{item.stock}}{{uiLabels.pcs}},

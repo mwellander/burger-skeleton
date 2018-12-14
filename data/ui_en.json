@@ -64,6 +64,6 @@
   "showNotInStock": "This product is unavalible",
   "orderKitchen": "Order",
   "nothingInCart": "Your cart is empty!",
-  "show":"Show"
-
+  "show":"Show",
+  "noKetchup": "NoKetchup"
 }

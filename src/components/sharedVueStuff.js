@@ -5,23 +5,41 @@ var sharedVueStuff = {
   data: function () {
     return {
       orders: {},
-      uiLabels: {},
+      // uiLabels: {},
       flag : {sv: "Flag_of_Britain.svg.png", en: "800px-Flag_of_Sweden.svg.png" },
       ingredients: {},
-      lang: "sv"
+      // lang: store.getters.lang,
+    }
+  },
+  computed: {
+    uiLabels: function () {
+      return this.$store.state.uiLabels;
+    },
+    lang: { get: function () {
+      return this.$store.state.lang;
+     },
+     set: function (lang) {
+      this.$store.commit('switchLang', lang);
+     }
     }
   },
   created: function () {
-    this.$store.state.socket.emit('pageReady');
+    this.$store.state.socket.emit('pageLoaded');
+
     this.$store.state.socket.on('initialize', function (data) {
       this.orders = data.orders;
-      this.uiLabels = data.uiLabels;
+      // this.uiLabels = data.uiLabels;
+      this.$store.commit('setUiLabels', data.uiLabels);
       this.ingredients = data.ingredients;
     }.bind(this));
 
     this.$store.state.socket.on('switchLang', function (data) {
-      this.uiLabels = data;
+      this.$store.commit('setUiLabels', data);
     }.bind(this));
+    //
+    // this.$store.state.socket.on('switchLang', function (data) {
+    //   this.uiLabels = data;
+    // }.bind(this));
 
     this.$store.state.socket.on('currentQueue', function (data) {
       this.orders = data.orders;

@@ -31,13 +31,13 @@
                 </button>
               {{key.price}}:-<br>
             <span v-show="show && key.ingredients===showArray" id="showOrder">
-                <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="readyBurgerOrder">{{uiLabels.burger}}: {{ ReadyBurger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+                <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+                <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+                <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+                <li v-show="readyBurgerOrder">{{uiLabels.burger}}: {{ ReadyBurger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+                <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+                <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
             </span></li>
           </ul>
 
@@ -112,7 +112,7 @@
       toppingsOrder:false,
       sidesOrder:false,
       beverageOrder:false,
-      readyBurgerOrder:false
+      readyBurgerOrder:false,
     }
   },
   mounted: function(){

@@ -3,7 +3,7 @@
     <div v-if="item.stock > 0">
       <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
       <label>
-        <br>{{item["ingredient_"+ uiLabels.lang]}}, {{item.selling_price}}:-
+        <br>{{item["ingredient_"+ lang]}}, {{item.selling_price}}:-
           </label>
         <br>
         <!-- <div class = "btn-group"> -->
@@ -14,7 +14,7 @@
         <div id="notInStockNow">{{uiLabels.showNotInStock}}</div>
         <br><div id="picture"><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
         <label>
-          <br>{{item["ingredient_"+ uiLabels.lang]}}, {{item.selling_price}}:-, {{ item.stock }}
+          <br>{{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{ item.stock }}
             </label>
           <br>
           <br>
@@ -30,7 +30,6 @@ export default {
   name: 'Ingredient',
   props: {
     item: Object,
-    lang: String
   },
   mixins: [sharedVueStuff],
     data: function () {

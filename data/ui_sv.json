@@ -65,6 +65,7 @@
   "showNotInStock": "Tyvärr är denna produkt slut",
   "orderKitchen": "Beställning",
   "nothingInCart": "Din varukorg är tom!",
-  "show":"Visa"
+  "show":"Visa",
+  "noKetchup": "NoKetchup"
 
 }
