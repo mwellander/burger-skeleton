@@ -4,13 +4,13 @@
 			{{order.type}} {{getIngredientArray()}}
 			<div id="infolabelBurger"> {{uiLabels.orderKitchen}} {{order.orderInLine}}, {{order.noInOrder}}/{{order.burgerArrayLength}}</div>
 			<ul id = "ingredientList" style="list-style-type:none">
-			<li v-show="breadLabel">{{uiLabels.bread}}: {{ this.Bread.map(item=>item["ingredient_"+ uiLabels.lang]).join(", ") }}</li>
-			<li v-show="burgerLabel">{{uiLabels.burger}}: {{ this.Burger.map(item=>item["ingredient_"+ uiLabels.lang]).join(", ") }}</li>
-			<li v-show="dressingLabel">{{uiLabels.dressing}}: {{ this.Dressing.map(item=>item["ingredient_"+ uiLabels.lang]).join(", ") }}</li>
-			<li v-show="toppingsLabel">{{uiLabels.toppings}}: {{ this.Toppings.map(item=>item["ingredient_"+ uiLabels.lang]).join(", ") }}</li>
-			<li v-show="sidesLabel">{{uiLabels.sides}}: {{ this.Sides.map(item=>item["ingredient_"+ uiLabels.lang]).join(", ") }}</li>
-			<li v-show="beverageLabel">{{uiLabels.beverage}}: {{ this.Beverage.map(item=>item["ingredient_"+ uiLabels.lang]).join(", ") }}</li>
-			<li v-show="readyBurgersLabel">{{uiLabels.readyBurger}}: {{ this.ReadyBurger.map(item=>item["ingredient_"+ uiLabels.lang]).join(", ") }}</li>
+			<li v-show="breadLabel">{{uiLabels.bread}}: {{ this.Bread.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
+			<li v-show="burgerLabel">{{uiLabels.burger}}: {{ this.Burger.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
+			<li v-show="dressingLabel">{{uiLabels.dressing}}: {{ this.Dressing.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
+			<li v-show="toppingsLabel">{{uiLabels.toppings}}: {{ this.Toppings.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
+			<li v-show="sidesLabel">{{uiLabels.sides}}: {{ this.Sides.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
+			<li v-show="beverageLabel">{{uiLabels.beverage}}: {{ this.Beverage.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
+			<li v-show="readyBurgersLabel">{{uiLabels.readyBurger}}: {{ this.ReadyBurger.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
 		</ul>
 		<slot name="knapp"></slot>
 		<hr>
@@ -25,7 +25,7 @@ export default {
     uiLabels: Object,
     order: Object,
     orderId: String,
-    lang: String
+    lang: String,
   },
 	mixins: [sharedVueStuff],
 	data: function(){

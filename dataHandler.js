@@ -4,7 +4,7 @@ let csv = require("csvtojson");
 
 let ingredientsDataName = "ingredients";
 let transactionsDataName = "transactions";
-let defaultLanguage = "sv";
+let defaultLanguage = "en";
 
 // Store data in an object to keep the global namespace clean
 function Data() {
@@ -14,15 +14,17 @@ function Data() {
 }
 
 Data.prototype.getUILabels = function (lang) {
-  if (typeof lang === 'undefined'){
-    var ui = require("./data/ui_" + (defaultLanguage) + ".json")
-    lang = defaultLanguage;
-  }
-  else {
-    defaultLanguage = lang;
-    var ui = require("./data/ui_" + (defaultLanguage) + ".json");
-  }
+  var ui = require("./data/ui_" + (lang || defaultLanguage) + ".json");
   return ui;
+  // if (typeof lang === 'undefined'){
+  //   var ui = require("./data/ui_" + (defaultLanguage) + ".json")
+  //   lang = defaultLanguage;
+  // }
+  // else {
+  //   defaultLanguage = lang;
+  //   var ui = require("./data/ui_" + (defaultLanguage) + ".json");
+  // }
+  // return ui;
 };
 
 /*

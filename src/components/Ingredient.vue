@@ -10,6 +10,13 @@
       <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
       <label><font face="helvetica">
         <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 01a7a73e86e7cd9a107aa4a2913de106b4cac787
       </font></label>
         <br>
         <!-- <div class = "btn-group"> -->
@@ -21,7 +28,7 @@
         <div id="notInStockNow">{{uiLabels.showNotInStock}}</div>
         <br><div id="picture"><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
         <label><span id="ingredientText">
-          <br>{{item["ingredient_"+ uiLabels.lang]}}, {{item.selling_price}}:-, {{ item.stock }}
+          <br>{{item["ingredient_"+ uiLabels.lang]}}, {{item.selling_price}}:-
         </span></label>
           <br>
           <br>
@@ -37,7 +44,6 @@ export default {
   name: 'Ingredient',
   props: {
     item: Object,
-    lang: String
   },
   mixins: [sharedVueStuff],
     data: function () {

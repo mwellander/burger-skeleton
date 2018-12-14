@@ -65,7 +65,9 @@
   "orderKitchen": "Order",
   "nothingInCart": "Your cart is empty!",
   "show":"Show",
-  "vegan":"Vegan",
+  "noKetchup": "NoKetchup",
+  "vegan": "Vegan",
   "dairy":"Dairy Free",
-  "gluten":"Gluten Free"
+  "gluten":"Gluten Free",
+  "hide":"Hide"
 }

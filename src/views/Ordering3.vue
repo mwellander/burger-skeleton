@@ -26,7 +26,7 @@
   v-on:increment="addToOrder3(item)"
   v-on:decrement="decreaseSides3(item)"
   :item="item"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :key="item.ingredient_id">
 </Ingredient>
 <Ingredient
@@ -37,7 +37,7 @@ v-for="item in ingredients"
 v-on:increment="addToOrder3(item)"
 v-on:decrement="decreaseSides3(item)"
 :item="item"
-:lang="uiLabels.lang"
+:lang="lang"
 :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -54,7 +54,7 @@ v-on:decrement="decreaseSides3(item)"
   v-on:increment="addToOrder3(item)"
   v-on:decrement="decreaseBeverage3(item)"
   :item="item"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :key="item.ingredient_id">
 </Ingredient>
 <Ingredient
@@ -65,7 +65,7 @@ v-for="item in ingredients"
 v-on:increment="addToOrder3(item)"
 v-on:decrement="decreaseBeverage3(item)"
 :item="item"
-:lang="uiLabels.lang"
+:lang="lang"
 :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -79,13 +79,13 @@ v-on:decrement="decreaseBeverage3(item)"
     <div class="column aa"><h3>{{ uiLabels.beverage }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li>{{ Sides3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+        <li>{{ Sides3.map(item => item["ingredient_"+lang]).join(", ") }}</li>
       </ul>
       </div>
       <div class="column dd" style="text-align:left">
         <div class="dd1" style="text-align:left">
           <ul style="list-style-type:none">
-            <li>{{ Beverage3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+            <li>{{ Beverage3.map(item => item["ingredient_"+lang]).join(", ") }}</li>
           </ul>
         </div>
         <div class="dd2" style="text-align:left">
@@ -390,6 +390,7 @@ export default {
   }
   .tabs3 button:hover {
     background-color:#ddd;
+    cursor:pointer;
   }
   #toChangeBackground3 {
     opacity: 1;

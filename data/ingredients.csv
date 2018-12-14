@@ -24,7 +24,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 23,Kimchi,Kimchi,2,1,1,1,10,kimchiNy3.png
 24,Krispsallad,Lettuce,2,1,1,1,5,salladNy.png
 25,Svampstuvning,Mushroom Stew,2,0,1,0,15,mushroom_stew.jpg
-26,Pepper Jack-ost,Pepper Jack Cheese,2,0,1,0,10,spicyostNy3.jpg
+26,Pepper Jack-ost,Pepper Jack Cheese,2,0,1,0,10,spicyostNy3.png
 27,Inlagd Gurka,Pickled Cucumber,2,1,1,1,5,picklesNy.png
 28,Inlagd Lök,Pickled Onion,2,1,1,1,5,pickledlok.png
 29,Rödlök,Raw Red Onion,2,1,1,1,5,rodlokNy.png
@@ -44,7 +44,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 43,Ketchup,Ketchup,3,1,1,1,0,ketchupNy.png
 44,Majonnäs,Mayonnaise,3,1,1,0,5,moyonnaise.jpg
 45,Senap,Mustard,3,1,1,1,0,senap1Ny3.png
-46,Sriracha,Sriracha,3,1,1,1,0,srirachaNy3.png
+46,Sriracha,Sriracha,3,1,1,1,0,sriratchaNy3.png
 47,Teriyakisås,Teriyaki sauce,3,1,1,1,5,teriyakiNy3.png
 48,Tryffelmajonnäs,Truffle Mayonnaise,3,1,1,0,5,moyonnaise.jpg
 49,Tzatziki,Tzatziki,3,0,1,0,5,cucumber.png

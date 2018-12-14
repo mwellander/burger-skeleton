@@ -68,5 +68,8 @@
   "show":"Visa",
   "vegan":"Vegansk",
   "dairy":"Mjölkfri",
-  "gluten":"Glutenfri"
+  "gluten":"Glutenfri",
+  "hide":"Göm",
+  "noKetchup": "NoKetchup"
+
 }

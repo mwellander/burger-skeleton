@@ -44,7 +44,7 @@
       v-on:increment="addToOrder(item)"
       v-on:decrement="decreaseBread(item)"
       :item="item"
-      :lang="uiLabels.lang"
+      :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
       <Ingredient
@@ -55,7 +55,7 @@
       v-on:increment="addToOrder(item)"
       v-on:decrement="decreaseBread(item)"
       :item="item"
-      :lang="uiLabels.lang"
+      :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
   </div>
@@ -72,7 +72,7 @@
     v-on:increment="addToOrder(item)"
     v-on:decrement="decreaseBurger(item)"
     :item="item"
-    :lang="uiLabels.lang"
+    :lang="lang"
     :key="item.ingredient_id">
   </Ingredient>
   <Ingredient
@@ -83,7 +83,7 @@
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseBurger(item)"
   :item="item"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -102,7 +102,7 @@
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseDressing(item)"
   :item="item"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :key="item.ingredient_id">
 </Ingredient>
 <Ingredient
@@ -113,7 +113,7 @@ v-for="item in ingredients"
 v-on:increment="addToOrder(item)"
 v-on:decrement="decreaseDressing(item)"
 :item="item"
-:lang="uiLabels.lang"
+:lang="lang"
 :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -132,7 +132,7 @@ v-on:decrement="decreaseDressing(item)"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseToppings(item)"
   :item="item"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :key="item.ingredient_id">
 </Ingredient>
 <Ingredient
@@ -143,7 +143,7 @@ v-for="item in ingredients"
 v-on:increment="addToOrder(item)"
 v-on:decrement="decreaseToppings(item)"
 :item="item"
-:lang="uiLabels.lang"
+:lang="lang"
 :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -162,7 +162,7 @@ v-on:decrement="decreaseToppings(item)"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseSides(item)"
   :item="item"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :key="item.ingredient_id">
 </Ingredient>
 <Ingredient
@@ -173,7 +173,7 @@ v-for="item in ingredients"
 v-on:increment="addToOrder(item)"
 v-on:decrement="decreaseSides(item)"
 :item="item"
-:lang="uiLabels.lang"
+:lang="lang"
 :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -191,7 +191,7 @@ v-on:decrement="decreaseSides(item)"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseBeverage(item)"
   :item="item"
-  :lang="uiLabels.lang"
+  :lang="lang"
   :key="item.ingredient_id">
 </Ingredient>
 <Ingredient
@@ -202,7 +202,7 @@ v-for="item in ingredients"
 v-on:increment="addToOrder(item)"
 v-on:decrement="decreaseBeverage(item)"
 :item="item"
-:lang="uiLabels.lang"
+:lang="lang"
 :key="item.ingredient_id">
 </Ingredient>
 </div>
@@ -217,17 +217,17 @@ v-on:decrement="decreaseBeverage(item)"
       <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
       <div class="column cc" style="text-align:left">
         <ul style="list-style-type:none">
-          <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-          <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-          <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-          <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+          <li v-show="breadOrder"><b>{{uiLabels.bread}}: </b>{{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+          <li v-show="burgerOrder"><b>{{uiLabels.burger}}: </b>{{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+          <li v-show="dressingOrder"><b>{{uiLabels.dressing}}: </b>{{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+          <li v-show="toppingsOrder"><b>{{uiLabels.toppings}}: </b>{{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
         </ul>
       </div>
       <div class="column dd" style="text-align:left">
         <div class="dd1" style="text-align:left">
           <ul style="list-style-type:none">
-            <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-            <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+            <li v-show="sidesOrder"><b>{{uiLabels.sides}}: </b>{{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="beverageOrder"><b>{{uiLabels.beverage}}: </b>{{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
           </ul>
         </div>
         <div class="dd2" style="text-align:left">

@@ -14,7 +14,9 @@ export default new Vuex.Store({
     changeKey:0,
     totalPrice:0,
     price:0,
-    orderInLine:0
+    orderInLine:0,
+    uiLabels: {},
+    lang:"en"
   },
   getters: {
     getSocket: state => state.socket,
@@ -24,7 +26,8 @@ export default new Vuex.Store({
     getChangeIngredients: state => state.changeIngredients,
     getPrice: state => state.totalPrice,
     getChangeKey: state => state.changeKey,
-    orderInLine: state => state.orderInLine
+    orderInLine: state => state.orderInLine,
+    lang: state => state.lang
   },
   mutations: {
     orderInLine(state) {
@@ -68,6 +71,12 @@ export default new Vuex.Store({
     },
     startOver(state){
       state.no=0
+    },
+    setUiLabels: function (store, labels) {
+      store.uiLabels = labels;
+    },
+    switchLang: function (store, lang) {
+      store.lang = lang;
     }
   },
   actions: {
