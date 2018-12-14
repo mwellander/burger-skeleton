@@ -30,13 +30,13 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 29,Rödlök,Raw Red Onion,2,1,1,1,5,rodlokNy.png
 30,Gul Lök,Raw Yellow Onion,2,1,1,1,5,onionyellow.png
 31,Salami,Salami,2,1,1,0,10,salamiNy.png
-32,Surkål,Sauerkraut,2,1,1,1,5,No_image.png
+32,Surkål,Sauerkraut,2,1,1,1,5,surkal.png
 33,Tomat,Tomato,2,1,1,1,5,tomato.png
 34,Vegansk Ost,Vegan Cheese,2,1,1,1,10,cheese.png
-35,Aioli,Aioli,3,1,1,0,5,No_image.png
+35,Aioli,Aioli,3,1,1,0,5,aioli.png
 36,Ajvar,Ajvar,3,1,1,1,5,ajvar.png
 37,Barbecuesås,Barbecue Sauce,3,1,1,1,0,barbecuesasNy3.png
-38,Klassisk Hamburgarsås,Classic Hamburger Dressing,3,1,1,0,5,No_image.png
+38,Klassisk Hamburgarsås,Classic Hamburger Dressing,3,1,1,0,5,burgerdressing.png
 39,Dijonsås,Dijon Sauce,3,1,1,0,5,senap2Ny3.png
 40,Guacamole,Guacamole,3,1,1,1,10,avocado.png
 41,Hot Salsa,Hot Salsa,3,1,1,1,5,hotsalsaNy.png

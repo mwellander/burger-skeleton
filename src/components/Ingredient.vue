@@ -92,7 +92,6 @@ cursor: pointer;
 } */
 #incrementButton:active{
   background-color: green;
-   margin-bottom: 20px;
 
 }
 #decrementButton:active{
