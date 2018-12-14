@@ -16,9 +16,9 @@
 
     <div class="receipt">
       <div class="row">
-        <div class="column aa aaa"><h3>{{ uiLabels.yourOrder }}</h3></div>
+        <div class="aa aaa"><h3>{{ uiLabels.yourOrder }}</h3></div>
         <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
-        <div class="column cc" style="text-align:left">
+        <div class="cc" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
               Order {{ key.noB }}
@@ -40,20 +40,12 @@
                 <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
             </span></li>
           </ul>
-
-          <!-- <ul style="list-style-type:none">
-            <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-          </ul> -->
         </div>
         <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }}:-</u></h3>
-      </div>
-
-      <div style="text-align:right">
-        <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-        <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
+        <div style="text-align:right">
+          <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+          <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
+        </div>
       </div>
     </div>
   </div>

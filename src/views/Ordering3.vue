@@ -81,53 +81,26 @@ v-on:decrement="decreaseBeverage3(item)"
       <ul style="list-style-type:none">
         <li>{{ Sides3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
       </ul>
-    <!-- </div>
-    <div class="buttonPanelBread" id="buttonPanelSides3">
-      <button id="nextButton" v-show="sides3" v-on:click='toBeverage3()'>{{uiLabels.next}}</button>
-    </div> -->
-
-    <!-- <div class="Page" id="beveragePage3">
-      <Ingredient
-      ref="ingredient"
-      v-show="state3 === 'beverage3'"
-      v-if="item.category===6 && item.stock > 0"
-      v-for="item in ingredients"
-      v-on:increment="addToOrder3(item)"
-      :item="item"
-      :lang="uiLabels.lang"
-      :key="item.ingredient_id">
-    </Ingredient>
-  </div>
-  <div class="buttonPanel" id="buttonPanelBeverage3">
-    <button id="previousButton" v-show="beverage3" v-on:click="toSides3()">{{uiLabels.previous}}</button>
-  </div> -->
-
-  <!-- <div class="receipt">
-    <div class="row">
-      <div class="column aa"><h3>{{ uiLabels.sides }}</h3></div>
-      <div class="column aa"><h3>{{ uiLabels.beverage }}</h3></div>
-      <div class="column cc" style="text-align:left">
-        <ul style="list-style-type:none">
-          <li>{{ Sides3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-        </ul> -->
       </div>
       <div class="column dd" style="text-align:left">
-        <ul style="list-style-type:none">
-          <li>{{ Beverage3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-        </ul>
-        <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></h3>
+        <div class="dd1" style="text-align:left">
+          <ul style="list-style-type:none">
+            <li>{{ Beverage3.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+          </ul>
+        </div>
+        <div class="dd2" style="text-align:left">
+          <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></div>
+          <div v-show="change" style="text-align:right">
+            <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
+            <a><button class="orderButtonO" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button></a>
+          </div>
+          <div v-show="!change" style="text-align:right">
+            <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+            <a><button class="orderButtonO" v-if="sidesOrder3==true || beverageOrder3==true" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
+            <a><button class="orderButtonO graknapp" v-if="sidesOrder3==false && beverageOrder3==false" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
+          </div>
+        </div>
       </div>
-    </div>
-
-
-    <div v-show="change" style="text-align:right">
-      <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-      <a><button class="orderButtonO" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button></a>
-    </div>
-    <div v-show="!change" style="text-align:right">
-      <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-      <a><button class="orderButtonO" v-if="sidesOrder3==true || beverageOrder3==true" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
-      <a><button class="orderButtonO graknapp" v-if="sidesOrder3==false && beverageOrder3==false" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
     </div>
   </div>
   <!-- <div v-show="change" style="text-align:right">
