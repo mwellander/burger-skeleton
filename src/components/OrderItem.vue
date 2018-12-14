@@ -16,9 +16,9 @@
 		<hr>
 </div>
 </template>
-
-
 <script>
+
+import sharedVueStuff from '@/components/sharedVueStuff.js'
 export default {
   name: 'OrderItem',
   props: {
@@ -27,6 +27,7 @@ export default {
     orderId: String,
     lang: String
   },
+	mixins: [sharedVueStuff],
 	data: function(){
 		return{
 		Bread: [],
@@ -43,8 +44,6 @@ export default {
 		sidesLabel: false,
 		beverageLabel: false,
 		readyBurgersLabel: false
-
-
 	}
 	},
 
