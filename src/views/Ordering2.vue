@@ -115,8 +115,8 @@
     <div class="column dd" style="text-align:left">
       <div class="dd1" style="text-align:left">
         <ul style="list-style-type:none">
-          <li v-show="sidesOrder2">{{uiLabels.sides}}: {{ Sides2.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-          <li v-show="beverageOrder2">{{uiLabels.beverage}}: {{ Beverage2.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+          <li v-show="sidesOrder2"><b>{{uiLabels.sides}}: </b>{{ Sides2.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+          <li v-show="beverageOrder2"><b>{{uiLabels.beverage}}: </b>{{ Beverage2.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
         </ul>
       </div>
       <div class="dd2" style="text-align:left">
@@ -487,6 +487,7 @@ export default {
 }
 .tabs2 button:hover {
   background-color:#ddd;
+  cursor:pointer;
 }
 
 #toChangeBackground2 {

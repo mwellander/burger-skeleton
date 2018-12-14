@@ -389,6 +389,7 @@ export default {
   }
   .tabs3 button:hover {
     background-color:#ddd;
+    cursor:pointer;
   }
   #toChangeBackground3 {
     opacity: 1;

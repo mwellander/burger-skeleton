@@ -25,24 +25,27 @@
         <div class="column cc ccPlus" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
-              Order {{ key.noB }}
-              <button v-on:click="showOrder(index)" class="showButton">{{uiLabels.show}}
+              <font face="helvetica" size="4"><b> Order {{ key.noB }}</b>
+              <button v-on:click="showOrder(index)" class="showButton">
+                <span v-show="!show || key.ingredients!==showArray">{{uiLabels.show}}</span>
+                <span v-show="show && key.ingredients===showArray">{{uiLabels.hide}}</span>
               </button>
               <a :href="key.path">
                 <button v-on:click="changeOrder(key,index)" class="changeButton">{{uiLabels.change}}
                     </button></a>
                   <button v-on:click="deleteBurger(index)" class="deleteButton">{{uiLabels.erase}}
                 </button>
-              {{key.price}}:-<br>
+              {{key.price}}:-<br></font>
+              <font face="helvetica">
             <span v-show="show && key.ingredients===showArray" id="showOrder">
-                <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="readyBurgerOrder">{{uiLabels.burger}}: {{ ReadyBurger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-                <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-            </span></li>
+                <li v-show="breadOrder"><b>{{uiLabels.bread}}: </b>{{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="burgerOrder"><b>{{uiLabels.burger}}: </b>{{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="dressingOrder"><b>{{uiLabels.dressing}}: </b>{{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="toppingsOrder"><b>{{uiLabels.toppings}}: </b>{{ Toppings.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="readyBurgerOrder"><b>{{uiLabels.burger}}:</b> {{ ReadyBurger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="sidesOrder"><b>{{uiLabels.sides}}: </b>{{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+                <li v-show="beverageOrder"><b>{{uiLabels.beverage}}:</b> {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
+            </span></font></li>
           </ul>
         </div>
         <div class="column dd ddPlus" style="text-align:left">
@@ -327,21 +330,23 @@ if (this.alert2===false){
      }
      .changeButton{
        background-color:#5dade2;
-       font-family: "Comic Sans MS", cursive, sans-serif;
+       font-family: "Helvetica", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
      }
      .deleteButton{
        background-color:#f44336;
-       font-family: "Comic Sans MS", cursive, sans-serif;
+       font-family: "Helvetica", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
      }
      .showButton{
        background-color:#aed6f1;
-       font-family: "Comic Sans MS", cursive, sans-serif;
+       font-family: "Helvetica", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
+       width:3.5em;
+       margin-left:0.4em;
      }
      #toChangeBackground4 {
        opacity: 1;
