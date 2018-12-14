@@ -506,15 +506,12 @@ export default {
 } */
 
 #currentStock {
-  /* overflow: scroll; */
   z-index: 2;
   grid-column: 1 / span 3;
-  /* grid-row: 2 / span 2; */
   width: 100%;
   height: 40em;
   text-align: center;
-  background-color: lightblue;
-  /* padding: 50px 0; */
+  background-color: #cddcea;
   display: none;
   font-size: 100%;
 }
@@ -528,8 +525,6 @@ export default {
 }
 
 .tabsKitchen align center{
-  /* background-color: #000000; */
-  /* background-color: green; */
   overflow: hidden;
   position: sticky;
   top: 0;
@@ -537,7 +532,6 @@ export default {
   z-index: 20;
   width: 100%;
 }
-
 .tabsKitchen button{
   border: 2px solid #fff;
   color: white;
@@ -547,7 +541,6 @@ export default {
   font-size: 100%;
   margin: 4px 2px;
   cursor: pointer;
-
 }
 .tabsKitchen button:hover {
   background-color:#ddd;

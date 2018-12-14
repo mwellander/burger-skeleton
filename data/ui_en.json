@@ -46,7 +46,7 @@
   "lang": "en",
   "change":"Change",
   "saveChange":"Save Change",
-  "cancelChange":"Cancel Change",
+  "cancelChange":"Cancel",
   "confirmMess": "Are you sure you want to cancel your order?",
   "yes": "Yes!",
   "no": "No!",
@@ -65,5 +65,9 @@
   "orderKitchen": "Order",
   "nothingInCart": "Your cart is empty!",
   "show":"Show",
-  "noKetchup": "NoKetchup"
+  "noKetchup": "NoKetchup",
+  "vegan": "Vegan",
+  "dairy":"Dairy Free",
+  "gluten":"Gluten Free",
+  "hide":"Hide"
 }

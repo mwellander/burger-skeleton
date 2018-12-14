@@ -10,26 +10,33 @@
       <div class="createBurgerButton">
         <a href="#/customburger"><button>{{uiLabels.createBurger}}</button></a>
       </div>
+      <div class="readyBurgerButton">
       <a href="#/favouriteburger"><button>{{uiLabels.favouriteBurger}}</button></a>
+    </div>
+    <div class="sidesButton">
       <a href="#/sidesandbeverage"><button>{{uiLabels.sidesDrink}}</button></a>
     </div>
+  </div>
 
     <div class="receipt">
       <div class="row">
-        <div class="column aa aaa"><h3>{{ uiLabels.yourOrder }}</h3></div>
+        <div class="aa"><h3>{{ uiLabels.yourOrder }}</h3></div>
         <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
-        <div class="column cc" style="text-align:left">
+        <div class="column cc ccPlus" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
-              Order {{ key.noB }}
-              <button v-on:click="showOrder(index)" class="showButton">{{uiLabels.show}}
+              <font face="helvetica" size="4"><b> Order {{ key.noB }}</b>
+              <button v-on:click="showOrder(index)" class="showButton">
+                <span v-show="!show || key.ingredients!==showArray">{{uiLabels.show}}</span>
+                <span v-show="show && key.ingredients===showArray">{{uiLabels.hide}}</span>
               </button>
               <a :href="key.path">
                 <button v-on:click="changeOrder(key,index)" class="changeButton">{{uiLabels.change}}
                     </button></a>
                   <button v-on:click="deleteBurger(index)" class="deleteButton">{{uiLabels.erase}}
                 </button>
-              {{key.price}}:-<br>
+              {{key.price}}:-<br></font>
+              <font face="helvetica">
             <span v-show="show && key.ingredients===showArray" id="showOrder">
                 <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
                 <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
@@ -38,22 +45,21 @@
                 <li v-show="readyBurgerOrder">{{uiLabels.burger}}: {{ ReadyBurger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
                 <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
                 <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            </span></li>
+            </span></font></li>
           </ul>
-
-          <!-- <ul style="list-style-type:none">
-            <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="toppingsOrder">{{uiLabels.toppings}}: {{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-          </ul> -->
         </div>
-        <h3 class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }}:-</u></h3>
-      </div>
-
-      <div style="text-align:right">
-        <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-        <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
+        <div class="column dd ddPlus" style="text-align:left">
+          <div class="dd1">
+            <p></p>
+          </div>
+          <div class="dd2">
+            <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }}:-</u></div>
+            <div style="text-align:right">
+              <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+              <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -279,11 +285,16 @@ if (this.alert2===false){
         padding:0.8em;
      }
    }
-     .aaa {
-       width: 100%;
+     .ccPlus {
+       width: 65%;
+     }
+     .ddPlus {
+       width: 35%;
      }
      .buttonHome {
        color: black;
+       display: grid;
+       grid-template-columns:50% 50%;
      }
      .buttonHome button {
        width: 100%;
@@ -299,30 +310,43 @@ if (this.alert2===false){
        cursor: pointer;
        border-radius: 1.5em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+       height:4em;
      }
      .createBurgerButton {
        margin-top: 7%;
+       grid-column: 1/span 2;
+       height:10em;
+     }
+     .readyBurgerButton{
+       grid-column:1;
+       height:4em;
+     }
+     .sidesButton{
+       grid-column:2;
+       /* height:4em; */
      }
      .buttonHome button:hover {
        background-color:#ddd;
      }
      .changeButton{
        background-color:#5dade2;
-       font-family: "Comic Sans MS", cursive, sans-serif;
+       font-family: "Helvetica", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
      }
      .deleteButton{
        background-color:#f44336;
-       font-family: "Comic Sans MS", cursive, sans-serif;
+       font-family: "Helvetica", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
      }
      .showButton{
        background-color:#aed6f1;
-       font-family: "Comic Sans MS", cursive, sans-serif;
+       font-family: "Helvetica", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
+       width:3.5em;
+       margin-left:0.4em;
      }
      #toChangeBackground4 {
        opacity: 1;

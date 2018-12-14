@@ -1,11 +1,22 @@
 <template>
   <div class="ingredient">
     <div v-if="item.stock > 0">
-      <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
-      <label>
-        <br>{{item["ingredient_"+ lang]}}, {{item.selling_price}}:-
-          </label>
+      <div class="allergies" style="text-align:left">
+        <span v-show="item.vegan===1" id="vegan">....</span>
+        <span v-show="item.milk_free===1" id="milk">....</span>
+        <span v-show="item.gluten_free===1" id="gluten">....</span>
+        <span v-show="item.gluten_free===0&&item.milk_free===0&&item.vegan===0"><br></span>
+      </div>
+      <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
+      <label><font face="helvetica">
+        <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
+
+
+
+
+      </font></label>
         <br>
+
         <!-- <div class = "btn-group"> -->
         <br><button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
         <button id="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
@@ -13,9 +24,9 @@
       <div v-if="item.stock <= 0">
         <div id="notInStockNow">{{uiLabels.showNotInStock}}</div>
         <br><div id="picture"><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
-        <label>
-          <br>{{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{ item.stock }}
-            </label>
+        <label><span id="ingredientText">
+          <br>{{item["ingredient_"+ uiLabels.lang]}}, {{item.selling_price}}:-
+        </span></label>
           <br>
           <br>
         </div>
@@ -85,29 +96,41 @@ export default {
 background-color: #808080;
 border: 1px solid black;
 cursor: pointer;
+margin: 0.7em;
+border-radius: 20%;
+font-size: 1.3em;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
 }
 #incrementButton{
    background-color: #808080;
    border: 1px solid black;
    cursor: pointer;
+   margin: 0.6em;
+   border-radius: 20%;
+   font-size: 1.3em;
+
+
 
 }
-/* #decrementButton:hover {
-  background-color: #f44336;
+#decrementButton:hover {
+  background-color: #F08080;
   color: black;
-  transition-duration: 0.8s;
+  transition-duration: 0.3s;
 }
 #incrementButton:hover {
-  background-color: #4CAF50;
+  background-color: #8FBC8F;
   color: black;
-  transition-duration: 0.8s;
-} */
+  transition-duration: 0.3s;
+}
 #incrementButton:active{
   background-color: green;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 4px 20px 0 #8FBC8F;
 
 }
 #decrementButton:active{
   background-color: red;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 4px 20px 0 #F08080;
 }
 /* .btn-group button{
    background-color: #808080;
@@ -127,4 +150,31 @@ cursor: pointer;
   position: absolute;
 }
 
+#vegan{
+  background-color:green;
+  display:inline-block;
+  border-radius:50%;
+  color:green;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#milk{
+  background-color:yellow;
+  display:inline-block;
+  border-radius:50%;
+  color:yellow;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#gluten{
+  background-color:blue;
+  display:inline-block;
+  border-radius:50%;
+  color:blue;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#ingredientText{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
 </style>

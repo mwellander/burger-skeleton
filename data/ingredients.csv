@@ -36,7 +36,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 35,Aioli,Aioli,3,1,1,0,5,aioli.png
 36,Ajvar,Ajvar,3,1,1,1,5,ajvar.png
 37,Barbecuesås,Barbecue Sauce,3,1,1,1,0,barbecuesasNy3.png
-38,Klassisk Hamburgarsås,Classic Hamburger Dressing,3,1,1,0,5,burgerdressing.png
+38,Klassisk Hamburgarsås,Classic Burger Dressing,3,1,1,0,5,burgerdressing.png
 39,Dijonsås,Dijon Sauce,3,1,1,0,5,senap2Ny3.png
 40,Guacamole,Guacamole,3,1,1,1,10,avocado.png
 41,Hot Salsa,Hot Salsa,3,1,1,1,5,hotsalsaNy.png
@@ -47,7 +47,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 46,Sriracha,Sriracha,3,1,1,1,0,sriratchaNy3.png
 47,Teriyakisås,Teriyaki sauce,3,1,1,1,5,teriyakiNy3.png
 48,Tryffelmajonnäs,Truffle Mayonnaise,3,1,1,0,5,moyonnaise.jpg
-49,Tzatziki,Tzatziki,3,0,1,0,5,tzatziki.png
+49,Tzatziki,Tzatziki,3,0,1,0,5,cucumber.png
 50,Brioche,Brioche,4,0,0,0,10,briocheNy2.png
 51,Glutenfritt Bröd,Gluten Free Bread,4,1,1,1,10,bread_white.png
 52,Veganskt Bröd,Vegan Bun,4,0,0,1,10,bread_white.png
@@ -64,5 +64,5 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 63,Kycklingburgare,Chicken Burger,7,1,0,0,70,kycklingburgareNy4.png
 64,Vegetarisk Bönburgare,Vegetarian Bean Burger,7,1,0,0,70,bonburgareNy4.png
 65,Vegansk Sojaburgare,Vegan Soy Burger,7,1,0,1,70,sojaburgareNy4.png
-66,Glutenfri Kycklingburgare,Gluten Free Chicken Burger,7,1,1,0,70,kycklingburgareNy4.png
+66,Glutenfri Burgare,Gluten Free Burger,7,1,1,0,70,kycklingburgareNy4.png
 67,Glutenfri Sojaburgare,Gluten Free Soy Burger,7,1,1,1,70,sojaburgareNy4.png
