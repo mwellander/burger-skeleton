@@ -21,7 +21,7 @@
         <div class="column cc" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
-              Order {{ key.noB }} 
+              Order {{ key.noB }}
               <button v-on:click="showOrder(index)" class="showButton">{{uiLabels.show}}
               </button>
               <a :href="key.path">
@@ -31,7 +31,6 @@
                 </button>
               {{key.price}}:-<br>
             <span v-show="show && key.ingredients===showArray" id="showOrder">
-              <ul style="list-style-type:none">
                 <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
                 <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
                 <li v-show="dressingOrder">{{uiLabels.dressing}}: {{ Dressing.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
@@ -39,7 +38,6 @@
                 <li v-show="readyBurgerOrder">{{uiLabels.burger}}: {{ ReadyBurger.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
                 <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
                 <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+uiLabels.lang]).join(", ") }}</li>
-              </ul>
             </span></li>
           </ul>
 
@@ -301,7 +299,6 @@ if (this.alert2===false){
        cursor: pointer;
        border-radius: 1.5em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-       overflow:scroll;
      }
      .createBurgerButton {
        margin-top: 7%;
