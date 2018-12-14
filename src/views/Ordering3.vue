@@ -25,6 +25,17 @@
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state3 === 'sides3'"
+v-if="item.category===5 && item.stock <= 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder3(item)"
+v-on:decrement="decreaseSides3(item)"
+:item="item"
+:lang="uiLabels.lang"
+:key="item.ingredient_id">
+</Ingredient>
 </div>
 <div class="buttonPanelBread" id="buttonPanelSides3">
 <button id="nextButton" v-show="sides3" v-on:click='toBeverage3()'>{{uiLabels.next}}</button>
@@ -41,6 +52,17 @@
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
+</Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state3 === 'beverage3'"
+v-if="item.category===6 && item.stock <= 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder3(item)"
+v-on:decrement="decreaseBeverage3(item)"
+:item="item"
+:lang="uiLabels.lang"
+:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBeverage3">
