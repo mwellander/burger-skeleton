@@ -2,7 +2,7 @@
   <div class="ingredient">
       <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
       <label>
-        <br>{{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{ item.stock }}
+        <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-, {{ item.stock }}
           </label>
         <br>
         <!-- <div class = "btn-group"> -->
