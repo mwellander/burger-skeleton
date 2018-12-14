@@ -5,7 +5,7 @@
       <label>
         <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
           </label>
-        <br>
+
         <!-- <div class = "btn-group"> -->
         <br><button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
         <button id="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
@@ -86,29 +86,41 @@ export default {
 background-color: #808080;
 border: 1px solid black;
 cursor: pointer;
+margin: 0.7em;
+border-radius: 20%;
+font-size: 1.3em;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
 }
 #incrementButton{
    background-color: #808080;
    border: 1px solid black;
    cursor: pointer;
+   margin: 0.6em;
+   border-radius: 20%;
+   font-size: 1.3em;
+
+
 
 }
-/* #decrementButton:hover {
-  background-color: #f44336;
+#decrementButton:hover {
+  background-color: #F08080;
   color: black;
-  transition-duration: 0.8s;
+  transition-duration: 0.3s;
 }
 #incrementButton:hover {
-  background-color: #4CAF50;
+  background-color: #8FBC8F;
   color: black;
-  transition-duration: 0.8s;
-} */
+  transition-duration: 0.3s;
+}
 #incrementButton:active{
   background-color: green;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 4px 20px 0 #8FBC8F;
 
 }
 #decrementButton:active{
   background-color: red;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 4px 20px 0 #F08080;
 }
 /* .btn-group button{
    background-color: #808080;
