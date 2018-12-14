@@ -1,7 +1,13 @@
 <template>
   <div class="ingredient">
     <div v-if="item.stock > 0">
-      <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
+      <div id="allergies" style="text-align:left">
+        <span v-show="item.vegan===1" id="vegan">....</span>
+        <span v-show="item.milk_free===1" id="milk">....</span>
+        <span v-show="item.gluten_free===1" id="gluten">....</span>
+        <span v-show="item.gluten_free===0&&item.milk_free===0&&item.vegan===0"><br></span>
+      </div>
+      <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
       <label>
         <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
           </label>
@@ -127,5 +133,28 @@ cursor: pointer;
   margin-top: 4em;
   position: absolute;
 }
-
+#vegan{
+  background-color:green;
+  display:inline-block;
+  border-radius:50%;
+  color:green;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#milk{
+  background-color:yellow;
+  display:inline-block;
+  border-radius:50%;
+  color:yellow;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#gluten{
+  background-color:blue;
+  display:inline-block;
+  border-radius:50%;
+  color:blue;
+  font-size:0.5em;
+  margin:0.2em;
+}
 </style>

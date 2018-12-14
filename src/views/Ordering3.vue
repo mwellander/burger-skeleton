@@ -1,8 +1,12 @@
 <template>
   <div id="ordering3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="Ordering.vue">
+    <div class="headOfPage" style="text-align:right">
+    <span id="vegan2">....</span> {{uiLabels.vegan}}
+    <span id="milk2">....</span> {{uiLabels.dairy}}
+    <span id="gluten2">....</span> {{uiLabels.gluten}}
+  </div>
     <div id="toChangeBackground3">
       <div class="tabs3">
         <button id="tabSides3" v-on:click="toSides3()">{{uiLabels.sides}}</button>
@@ -396,7 +400,7 @@ export default {
     overflow: hidden;
     position: fixed;
     top: 1;
-    padding-top: 2.5em;
+    padding-top: 1.8em;
     background-color: black;
     height: 6em;
   }

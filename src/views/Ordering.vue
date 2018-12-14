@@ -10,6 +10,12 @@
     <a href="#beverage">{{ uiLabels.beverage }}</a>
   </div> -->
   <!-- <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button> -->
+
+  <div class="headOfPage" style="text-align:right">
+  <span id="vegan2">....</span> {{uiLabels.vegan}}
+  <span id="milk2">....</span> {{uiLabels.dairy}}
+  <span id="gluten2">....</span> {{uiLabels.gluten}}
+</div>
   <div id="toChangeBackground">
     <div class="tabs">
       <button id="tabBread" v-on:click="toBread()">{{uiLabels.bread}}</button>
@@ -20,9 +26,9 @@
       <button id="tabBeverage" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
     </div>
 
-  <div style="text-align:left">
-    <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
-  </div>
+    <div style="text-align:left">
+      <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
+    </div>
 
     <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
     <br>
@@ -1365,7 +1371,7 @@ bottom: 16.3em;
   overflow: hidden;
   position: fixed;
   top: 1;
-  padding-top: 2.5em;
+  padding-top: 1.8em;
   background-color: black;
   height: 6em;
 }
@@ -1639,6 +1645,36 @@ text-align: center;
   border-radius: 1em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   margin: auto;
+}
+#vegan2{
+  background-color:green;
+  display:inline-block;
+  border-radius:50%;
+  color:green;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#milk2{
+  background-color:yellow;
+  display:inline-block;
+  border-radius:50%;
+  color:yellow;
+  font-size:0.5em;
+  margin:0.2em;
+}
+#gluten2{
+  background-color:blue;
+  display:inline-block;
+  border-radius:50%;
+  color:blue;
+  font-size:0.5em;
+  margin:0.2em;
+}
+.headOfPage{
+  color:white;
+  top:0;
+  margin-top:0.4em;
+  font-size:1em;
 }
 
 </style>
