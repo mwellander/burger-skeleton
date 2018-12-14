@@ -123,7 +123,8 @@
         <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></div>
         <div v-show="change" style="text-align:right">
           <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-          <a><button class="orderButtonO" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
+          <a><button class="orderButtonO" v-if="readyBurgerOrder==true||sidesOrder2==true||beverageOrder2==true" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
+          <a><button class="orderButtonO graknapp" v-if="readyBurgerOrder==false&&sidesOrder2==false&&beverageOrder2==false" v-on:click="saveChanges2()">{{ uiLabels.saveChange }}</button></a>
         </div>
 
         <div v-show="!change" style="text-align:right">

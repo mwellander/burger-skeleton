@@ -92,12 +92,13 @@ v-on:decrement="decreaseBeverage3(item)"
           <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></div>
           <div v-show="change" style="text-align:right">
             <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-            <a><button class="orderButtonO" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button></a>
+            <button class="orderButtonO" v-if="sidesOrder3==true || beverageOrder3==true" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button>
+            <button class="orderButtonO graknapp" v-if="sidesOrder3==false && beverageOrder3==false" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button>
           </div>
           <div v-show="!change" style="text-align:right">
             <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-            <a><button class="orderButtonO" v-if="sidesOrder3==true || beverageOrder3==true" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
-            <a><button class="orderButtonO graknapp" v-if="sidesOrder3==false && beverageOrder3==false" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button></a>
+            <button class="orderButtonO" v-if="sidesOrder3==true || beverageOrder3==true" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button>
+            <button class="orderButtonO graknapp" v-if="sidesOrder3==false && beverageOrder3==false" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button>
           </div>
         </div>
       </div>
