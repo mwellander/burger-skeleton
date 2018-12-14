@@ -1,16 +1,16 @@
 <template>
   <div class="ingredient">
     <div v-if="item.stock > 0">
-      <div id="allergies" style="text-align:left">
+      <div class="allergies" style="text-align:left">
         <span v-show="item.vegan===1" id="vegan">....</span>
         <span v-show="item.milk_free===1" id="milk">....</span>
         <span v-show="item.gluten_free===1" id="gluten">....</span>
         <span v-show="item.gluten_free===0&&item.milk_free===0&&item.vegan===0"><br></span>
       </div>
       <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
-      <label>
+      <label><font face="helvetica">
         <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
-          </label>
+      </font></label>
         <br>
         <!-- <div class = "btn-group"> -->
         <br><button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
@@ -19,9 +19,9 @@
       <div v-if="item.stock <= 0">
         <div id="notInStockNow">{{uiLabels.showNotInStock}}</div>
         <br><div id="picture"><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
-        <label>
+        <label><span id="ingredientText">
           <br>{{item["ingredient_"+ uiLabels.lang]}}, {{item.selling_price}}:-, {{ item.stock }}
-            </label>
+        </span></label>
           <br>
           <br>
         </div>
@@ -133,6 +133,7 @@ cursor: pointer;
   margin-top: 4em;
   position: absolute;
 }
+
 #vegan{
   background-color:green;
   display:inline-block;
@@ -156,5 +157,8 @@ cursor: pointer;
   color:blue;
   font-size:0.5em;
   margin:0.2em;
+}
+#ingredientText{
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 </style>

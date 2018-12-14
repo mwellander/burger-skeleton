@@ -1488,6 +1488,7 @@ export default {
   top:0;
   margin-top:0.4em;
   font-size:1em;
+  font-family: "Helvetica", cursive, sans-serif;
 }
 
 </style>

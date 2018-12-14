@@ -10,9 +10,13 @@
       <div class="createBurgerButton">
         <a href="#/customburger"><button>{{uiLabels.createBurger}}</button></a>
       </div>
+      <div class="readyBurgerButton">
       <a href="#/favouriteburger"><button>{{uiLabels.favouriteBurger}}</button></a>
+    </div>
+    <div class="sidesButton">
       <a href="#/sidesandbeverage"><button>{{uiLabels.sidesDrink}}</button></a>
     </div>
+  </div>
 
     <div class="receipt">
       <div class="row">
@@ -276,6 +280,8 @@ if (this.alert2===false){
      }
      .buttonHome {
        color: black;
+       display: grid;
+       grid-template-columns:50% 50%;
      }
      .buttonHome button {
        width: 100%;
@@ -291,9 +297,20 @@ if (this.alert2===false){
        cursor: pointer;
        border-radius: 1.5em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+       height:4em;
      }
      .createBurgerButton {
        margin-top: 7%;
+       grid-column: 1/span 2;
+       height:10em;
+     }
+     .readyBurgerButton{
+       grid-column:1;
+       height:4em;
+     }
+     .sidesButton{
+       grid-column:2;
+       /* height:4em; */
      }
      .buttonHome button:hover {
        background-color:#ddd;
