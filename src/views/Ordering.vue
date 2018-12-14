@@ -1312,6 +1312,7 @@ bottom: 16.3em;
   padding: 0.7em 0.5em;
   /* padding:  14px 16px; */
   text-decoration: none;
+  cursor:pointer;
 }
 .tabs button:hover {
   background-color:#ddd;
