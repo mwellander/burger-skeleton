@@ -64,6 +64,7 @@
   "nothingInCart": "Du har inte lagt något i varukorgen!",
   "showNotInStock": "Tyvärr är dessa produkter slut",
   "orderKitchen": "Beställning",
-  "nothingInCart": "Din varukorg är tom!"
+  "nothingInCart": "Din varukorg är tom!",
+  "show":"Visa"
 
 }
