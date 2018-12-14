@@ -80,19 +80,20 @@ cursor: pointer;
    cursor: pointer;
 
 }
-#decrementButton:hover {
-  background-color: #f44336; /* Green */
+/* #decrementButton:hover {
+  background-color: #f44336;
   color: black;
   transition-duration: 0.8s;
 }
 #incrementButton:hover {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   color: black;
   transition-duration: 0.8s;
-}
+} */
 #incrementButton:active{
   background-color: green;
-  transition:1s;
+   margin-bottom: 20px;
+
 }
 #decrementButton:active{
   background-color: red;
