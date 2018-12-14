@@ -41,6 +41,17 @@
       :lang="uiLabels.lang"
       :key="item.ingredient_id">
     </Ingredient>
+      <Ingredient
+      ref="ingredient"
+      v-show="state === 'bread'"
+      v-if="item.category===4 && item.stock <= 0"
+      v-for="item in ingredients"
+      v-on:increment="addToOrder(item)"
+      v-on:decrement="decreaseBread(item)"
+      :item="item"
+      :lang="uiLabels.lang"
+      :key="item.ingredient_id">
+    </Ingredient>
   </div>
   <div id="buttonPanelBread">
     <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
@@ -58,6 +69,17 @@
     :lang="uiLabels.lang"
     :key="item.ingredient_id">
   </Ingredient>
+  <Ingredient
+  ref="ingredient"
+  v-show="state === 'burger'"
+  v-if="item.category===1 && item.stock <= 0"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder(item)"
+  v-on:decrement="decreaseBurger(item)"
+  :item="item"
+  :lang="uiLabels.lang"
+  :key="item.ingredient_id">
+</Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBurger">
   <button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
@@ -76,6 +98,17 @@
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
+</Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state === 'dressing'"
+v-if="item.category===3 && item.stock <= 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder(item)"
+v-on:decrement="decreaseDressing(item)"
+:item="item"
+:lang="uiLabels.lang"
+:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelDressing">
@@ -96,6 +129,17 @@
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state === 'toppings'"
+v-if="item.category===2 && item.stock <= 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder(item)"
+v-on:decrement="decreaseToppings(item)"
+:item="item"
+:lang="uiLabels.lang"
+:key="item.ingredient_id">
+</Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelToppings">
   <button id="previousButton" v-show="toppings" v-on:click="toDressing()">{{uiLabels.previous}}</button>
@@ -115,6 +159,17 @@
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
 </Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state === 'sides'"
+v-if="item.category===5 && item.stock <= 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder(item)"
+v-on:decrement="decreaseSides(item)"
+:item="item"
+:lang="uiLabels.lang"
+:key="item.ingredient_id">
+</Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelSides">
   <button id="previousButton" v-show="sides" v-on:click="toToppings()">{{uiLabels.previous}}</button>
@@ -132,6 +187,17 @@
   :item="item"
   :lang="uiLabels.lang"
   :key="item.ingredient_id">
+</Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state === 'beverage'"
+v-if="item.category===6 && item.stock <= 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder(item)"
+v-on:decrement="decreaseBeverage(item)"
+:item="item"
+:lang="uiLabels.lang"
+:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBeverage">

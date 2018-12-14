@@ -1,25 +1,38 @@
 <template>
   <div class="ingredient">
+    <div v-if="item.stock > 0">
       <br><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
       <label>
-        <br>{{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{ item.stock }}
+        <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
           </label>
         <br>
         <!-- <div class = "btn-group"> -->
         <br><button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
         <button id="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
+      </div>
+      <div v-if="item.stock <= 0">
+        <div id="notInStockNow">{{uiLabels.showNotInStock}}</div>
+        <br><div id="picture"><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
+        <label>
+          <br>{{item["ingredient_"+ uiLabels.lang]}}, {{item.selling_price}}:-, {{ item.stock }}
+            </label>
+          <br>
+          <br>
+        </div>
+      </div>
         <!-- </div> -->
   </div>
 </template>
 <script>
 
-
+import sharedVueStuff from '@/components/sharedVueStuff.js'
 export default {
   name: 'Ingredient',
   props: {
     item: Object,
     lang: String
   },
+  mixins: [sharedVueStuff],
     data: function () {
     return {
       counter: 0
@@ -103,5 +116,16 @@ cursor: pointer;
    color: black;
    font-size: 1em;
 } */
+
+#picture {
+  opacity: 0.3;
+}
+
+#notInStockNow {
+  font-size: 1em;
+  z-index:1;
+  margin-top: 4em;
+  position: absolute;
+}
 
 </style>
