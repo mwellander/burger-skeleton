@@ -49,14 +49,14 @@
           </ul>
         </div>
         <div class="column dd ddPlus" style="text-align:left">
-          <div class="dd1">
+          <div class="dd1 dd11">
             <p></p>
           </div>
           <div class="dd2">
             <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }}:-</u></div>
             <div style="text-align:right">
-              <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-              <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
+              <button class="cancelButton cancelButtonMobHome" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+              <button class="orderButtonO orderButtonMobHome" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
             </div>
           </div>
         </div>
@@ -307,6 +307,19 @@ if (this.alert2===false){
     .confirmNoContinue {
      font-size: 0.8em;
     }
+    .orderButtonMobHome {
+      font-size:1.5em;
+      margin-right: 0.4em;
+    }
+    .cancelButtonMobHome {
+      margin-right: 3em;
+    }
+    .dd11 {
+      height: 4em;
+    }
+    .buttonHome button{
+      font-size: 1.5em;
+    }
   }
   @media screen and (min-width: 700px) {
      #home {
@@ -346,7 +359,17 @@ if (this.alert2===false){
      }
      .confirmNoContinue {
       font-size: 1em;
+    }
+     .orderButtonMobHome {
+       font-size:1em;
+       margin-right: 0em;
      }
+     .cancelButtonMobHome {
+       margin-right: 0em;
+     }
+    .buttonHome button{
+      font-size: 2em;
+    }
    }
 
      .ccPlus {
@@ -371,7 +394,6 @@ if (this.alert2===false){
        text-align: center;
        text-decoration: none;
        display: inline-block;
-       font-size: 2em;
        cursor: pointer;
        border-radius: 1.5em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
