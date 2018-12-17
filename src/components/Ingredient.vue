@@ -95,10 +95,11 @@ export default {
   background-color: #808080;
   border: 1px solid black;
   cursor: pointer;
-  margin: 0.7em;
+  margin: 0.6em;
   border-radius: 20%;
   font-size: 1.3em;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  bottom:0em;
 }
 #incrementButton{
    background-color: #808080;
@@ -109,6 +110,7 @@ export default {
    font-size: 1.3em;
    animation-name: incrementButtonAnimation;
    animation-duration: 4s;
+   bottom:0em;
 }
 #decrementButton:hover {
   background-color: #F08080;
