@@ -1018,12 +1018,14 @@ export default {
                 height: 100%;
                 min-width: 100px;
                 min-height: 100px;
+                font-family: "Helvetica", cursive, sans-serif;
               }
               @media screen and (min-width: 300px) {
                 #ordering{
                   width:20em;
                   margin-left:3%;
                   margin-right:3%;
+                  font-family: "Helvetica", cursive, sans-serif;
                 }
                 .receipt {
                   width: 20em;
@@ -1213,6 +1215,7 @@ export default {
               }
 
 #nextButton {
+  font-family: "Helvetica", cursive, sans-serif;
   grid-column: 3;
   background-color: #4CAF50;
   border: 0.1em solid black;
@@ -1227,6 +1230,7 @@ export default {
   border-radius: 1em;
 }
 #previousButton {
+  font-family: "Helvetica", cursive, sans-serif;
   grid-column: 1;
   background-color: #0000CD;
   border: 0.1em solid black;
@@ -1240,6 +1244,7 @@ export default {
   border-radius: 1em;
 }
 .receipt {
+  font-family: "Helvetica", cursive, sans-serif;
   bottom: 0;
   position: fixed;
   left: center;
@@ -1262,6 +1267,7 @@ export default {
   height:3em;
 }
 .orderButtonO {
+  font-family: "Helvetica", cursive, sans-serif;
   background-color: #4CAF50;
   border: 0.1em solid black;
   color: black;
@@ -1276,6 +1282,7 @@ export default {
   background-color: gray;
 }
 .cancelButton {
+  font-family: "Helvetica", cursive, sans-serif;
   background-color: #f44336;
   border: 0.1em solid black;
   color: black;
@@ -1288,6 +1295,7 @@ export default {
 }
 
 .tabs {
+  font-family: "Helvetica", cursive, sans-serif;
   overflow: hidden;
   position: fixed;
   top: 1;
@@ -1296,6 +1304,7 @@ export default {
   height: 6em;
 }
 .tabs button {
+  font-family: "Helvetica", cursive, sans-serif;
   float: left;
   display: block;
   background-color: grey;
@@ -1382,7 +1391,7 @@ export default {
   background-color: grey;
   width: 25em;
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 50% 50%;
   height: 15em;
   margin: auto;
   padding: 1em 2em;
@@ -1391,21 +1400,22 @@ export default {
 }
 
 .confirmText {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  margin-top: 1em;
+  font-family: "Helvetica", cursive, sans-serif;
   font-size: 2em;
-  grid-column: 1/ span 3;
+  grid-column: 1/ span 2;
   grid-row: 1;
 }
 
 .confirmCancel {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Helvetica", cursive, sans-serif;
   font-size: 1em;
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 2;
   background-color: #6495ED;
   border: 0.1em solid black;
   color: black;
-  padding: 1em 1em;
+  padding: 1em 2em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -1416,14 +1426,14 @@ export default {
   margin: auto;
 }
 .confirmNoCancel {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Helvetica", cursive, sans-serif;
   font-size: 1em;
   grid-column: 1;
   grid-row: 2;
   background-color: #ADD8E6;
   border: 0.1em solid black;
   color: black;
-  padding: 1em 1em;
+  padding: 1em 2em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -1433,9 +1443,9 @@ export default {
   margin: auto;
 }
 .confirmOK {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Helvetica", cursive, sans-serif;
   font-size: 1em;
-  grid-column:2;
+  grid-column: 1/ span 2;
   grid-row: 2;
   background-color: #ADD8E6;
   border: 0.1em solid black;
