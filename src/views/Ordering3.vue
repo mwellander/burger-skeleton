@@ -350,7 +350,7 @@ export default {
       width:22.4em;
     }
     .tabs3 button {
-      width: 20em;
+      width: 22.4em;
       font-size: 0.5em;
     }
   }

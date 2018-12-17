@@ -1022,16 +1022,14 @@ export default {
 }
 @media screen and (min-width: 300px) {
   #ordering{
-    width:20em;
-    margin-left:3%;
-    margin-right:3%;
+    width:22.4em;
     font-family: "Helvetica", cursive, sans-serif;
   }
   .receipt {
-    width: 20em;
+    width: 22.4em;
   }
   .tabs{
-    width:20em;
+    width:22.4em;
   }
   .tabs button {
     width: 6.66em;
