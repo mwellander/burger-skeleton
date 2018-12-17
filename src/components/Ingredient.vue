@@ -7,19 +7,17 @@
         <span v-show="item.gluten_free===1" id="gluten">....</span>
         <span v-show="item.gluten_free===0&&item.milk_free===0&&item.vegan===0"><br></span>
       </div>
-      <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
+      <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="85">
       <label><font face="helvetica">
         <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
       </font></label>
-        <br>
-        <!-- <div class = "btn-group"> -->
         <br>
         <button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
         <button id="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
       </div>
       <div v-if="item.stock <= 0">
         <div id="notInStockNow">{{uiLabels.showNotInStock}}</div>
-        <br><div id="picture"><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
+        <br><div id="picture"><img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="85">
         <label><span id="ingredientText">
           <br>{{item["ingredient_"+ uiLabels.lang]}}, {{item.selling_price}}:-
         </span></label>
@@ -92,6 +90,7 @@ export default {
   font-size: 1em;
   }
 }
+
 #decrementButton{
   background-color: #808080;
   border: 1px solid black;
