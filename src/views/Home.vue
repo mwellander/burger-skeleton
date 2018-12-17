@@ -333,12 +333,17 @@ if (this.alert2===false){
        font-family: "Helvetica", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
+       width:5em;
+       border-radius:1.5em;
+       margin:0.2em;
      }
      .deleteButton{
        background-color:#f44336;
        font-family: "Helvetica", cursive, sans-serif;
        font-size:0.7em;
        padding:0.1em;
+       border-radius:1.5em;
+       width:5em;
      }
      .showButton{
        background-color:#aed6f1;
@@ -347,6 +352,7 @@ if (this.alert2===false){
        padding:0.1em;
        width:3.5em;
        margin-left:0.4em;
+       border-radius:1.5em;
      }
      #toChangeBackground4 {
        opacity: 1;
