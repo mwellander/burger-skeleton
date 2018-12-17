@@ -1013,7 +1013,195 @@ export default {
               }}
 </script>
 <style>
-              /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
+/* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
+#ordering {
+  height: 100%;
+  min-width: 100px;
+  min-height: 100px;
+  font-family: "Helvetica", cursive, sans-serif;
+}
+@media screen and (min-width: 300px) {
+  #ordering{
+    width:20em;
+    margin-left:3%;
+    margin-right:3%;
+    font-family: "Helvetica", cursive, sans-serif;
+  }
+  .receipt {
+    width: 20em;
+  }
+  .tabs{
+    width:20em;
+  }
+  .tabs button {
+    width: 6.66em;
+    font-size: 0.5em;
+  }
+  .Page{
+    bottom: 18.5em;
+    top: 4.5em;
+    width: 20em;
+  }
+
+  .breadPage{
+    bottom: 18.5em;
+    top: 4.5em;
+    width: 20em;
+  }
+  #buttonPanelBread{
+    width:20em;
+    grid-template-columns: 30% 40% 30%;
+    height: 3.5em;
+    bottom: 14.7em;
+  }
+  .buttonPanel{
+    width:20em;
+    grid-template-columns: 30% 40% 30%;
+    height: 3.5em;
+    bottom: 14.7em;
+  }
+  #previousButton{
+    padding: 1em 1em;
+  }
+  .ingredient{
+    font-size:0.5em;
+    padding: 0.2em;
+  }
+  #myBurger{
+    font-size:0.7em;
+  }
+  #sidesAndBeverage{
+    font-size:0.7em;
+  }
+  .orderButtonO{
+    font-size:0.7em;
+  }
+  .cancelButton{
+    font-size:0.7em;
+  }
+  .totalText{
+    font-size:0.7em;
+    /* margin-bottom: 6em; */
+  }
+  .column{
+    font-size: 0.6em;
+  }
+  .cc{
+    height: 13em;
+  }
+  .dd{
+    height: 10em;
+  }
+
+}
+@media screen and (min-width: 700px) {
+  #ordering{
+    width:40em;
+    margin: auto;
+  }
+  .tabs{
+    width:40em;
+  }
+  .tabs button {
+    width: 5.55em;
+    font-size: 1.2em;
+  }
+  .receipt {
+    width:40em;
+  }
+  .Page {
+    bottom:20em;
+    top: 7em;
+    width: 40em;
+  }
+  .breadPage {
+    bottom:20em;
+    top: 7em;
+    width: 40em;
+  }
+  #buttonPanelBread{
+    width:40em;
+    grid-template-columns: 20% 60% 20%;
+    height: 3.5em;
+    bottom: 16.3em;
+  }
+  .buttonPanel{
+    width:40em;
+    grid-template-columns: 20% 60% 20%;
+    height: 3.5em;
+    bottom: 16.3em;
+  }
+  .previousButton{
+    padding: 1em 2em;
+  }
+  .ingredient{
+    font-size:1em;
+    padding: 1em;
+  }
+  #myBurger{
+    font-size:1em;
+  }
+  #sidesAndBeverage{
+    font-size:1em;
+  }
+  .orderButtonO{
+    font-size:1em;
+  }
+  .cancelButton{
+    font-size:1em;
+  }
+  .totalText{
+    font-size:1.3em;
+    /* margin-bottom: 5em; */
+  }
+  .column{
+    font-size: 1em;
+  }
+  .cc{
+    height: 11.3em;
+  }
+  /* .dd{
+    height: 11.3em;
+  } */
+  .dd1 {
+    height:6.8em;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 0em;
+}
+.aa {
+  height:3em;
+  overflow:hidden;
+  background-color: white;
+  border-bottom: 0.1em solid black;
+}
+.cc {
+  overflow:scroll;
+  background-color: white;
+  text-align:left;
+}
+.dd {
+  /* overflow:scroll; */
+  background-color: white;
+  text-align:left;
+}
+.dd1 {
+  overflow:scroll;
+}
+.dd2 {
+
+}
 #ordering {
   height: 100%;
   min-width: 100px;
@@ -1212,6 +1400,7 @@ export default {
 * {
   box-sizing: border-box;
 }
+>>>>>>> d22abcac7319488a40807c217bee0c38a2e044b9
 
 .row:after {
   content: "";
@@ -1518,5 +1707,6 @@ export default {
   font-size:1em;
   font-family: "Helvetica", cursive, sans-serif;
 }
+
 
 </style>
