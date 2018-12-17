@@ -485,25 +485,25 @@ export default {
           store.commit('addNoBurger', this.path);
           store.commit('emptyChangeIngrediens');
           window.location.replace("#/home");
+      }
+      else if(this.beverageOrder === true && this.sidesOrder === false
+        && this.burgerOrder === false && this.breadOrder === false
+        && this.dressingOrder === false && this.toppingsOrder === false) {
+        store.commit('addToOrder4',this.chosenIngredients);
+        store.commit('addPrice',this.price);
+        store.commit('addNoBurger', this.path);
+        store.commit('emptyChangeIngrediens');
+        window.location.replace("#/home");
+      }
+      else if(this.beverageOrder === false && this.sidesOrder === true
+        && this.burgerOrder === false && this.breadOrder === false
+        && this.dressingOrder === false && this.toppingsOrder === false) {
+          store.commit('addToOrder4',this.chosenIngredients);
+          store.commit('addPrice',this.price);
+          store.commit('addNoBurger', this.path);
+          store.commit('emptyChangeIngrediens');
+          window.location.replace("#/home");
         }
-        else if(this.beverageOrder === true && this.sidesOrder === false
-          && this.burgerOrder === false && this.breadOrder === false
-          && this.dressingOrder === false && this.toppingsOrder === false) {
-            store.commit('addToOrder4',this.chosenIngredients);
-            store.commit('addPrice',this.price);
-            store.commit('addNoBurger', this.path);
-            store.commit('emptyChangeIngrediens');
-            window.location.replace("#/home");
-          }
-          else if(this.beverageOrder === false && this.sidesOrder === true
-            && this.burgerOrder === false && this.breadOrder === false
-            && this.dressingOrder === false && this.toppingsOrder === false) {
-              store.commit('addToOrder4',this.chosenIngredients);
-              store.commit('addPrice',this.price);
-              store.commit('addNoBurger', this.path);
-              store.commit('emptyChangeIngrediens');
-              window.location.replace("#/home");
-            }
             else if (this.burgerOrder === false && this.breadOrder === false) {
               this.breadAndBurgerAlert();
             }
@@ -952,10 +952,10 @@ export default {
                     window.location.replace("#/home");
                   }
                 },
-                cancelChanges: function(){
+            cancelChanges: function(){
                   store.commit('emptyChangeIngrediens');
                 },
-                cancelAlert: function() {
+            cancelAlert: function() {
                   var background = document.getElementById("toChangeBackground");
                   if (this.alert===false){
                     this.alert=true;
@@ -968,7 +968,7 @@ export default {
                     background.style['pointer-events'] = "auto";
                   }
                 },
-                breadAndBurgerAlert: function() {
+            breadAndBurgerAlert: function() {
                   var background = document.getElementById("toChangeBackground");
                   if (this.breadburgeralert===false){
                     this.breadburgeralert=true;
@@ -982,7 +982,7 @@ export default {
                     this.toBread();
                   }
                 },
-                breadAlert: function() {
+            breadAlert: function() {
                   var background = document.getElementById("toChangeBackground");
                   if (this.breadalert===false){
                     this.breadalert=true;
@@ -996,7 +996,7 @@ export default {
                     this.toBread();
                   }
                 },
-                burgerAlert: function() {
+            burgerAlert: function() {
                   var background = document.getElementById("toChangeBackground");
                   if (this.burgeralert===false){
                     this.burgeralert=true;
@@ -1011,206 +1011,204 @@ export default {
                   }
                 }
               }}
-              </script>
-              <style>
+</script>
+<style>
               /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
-              #ordering {
-                height: 100%;
-                min-width: 100px;
-                min-height: 100px;
-              }
-              @media screen and (min-width: 300px) {
-                #ordering{
-                  width:20em;
-                  margin-left:3%;
-                  margin-right:3%;
-                }
-                .receipt {
-                  width: 20em;
-                }
-                .tabs{
-                  width:20em;
-                }
-                .tabs button {
-                  width: 6.66em;
-                  font-size: 0.5em;
-                }
-                .Page{
-                  bottom: 18.5em;
-                  top: 4.5em;
-                  width: 20em;
-                }
+#ordering {
+  height: 100%;
+  min-width: 100px;
+  min-height: 100px;
+}
+@media screen and (min-width: 300px) {
+  #ordering{
+    width:22.4em;
+  }
+  .receipt {
+    width: 22.4em;
+  }
+  .tabs{
+    width:22.4em;
+  }
+  .tabs button {
+    width: 6.66em;
+    font-size: 0.5em;
+  }
+  .Page{
+    bottom: 18.5em;
+    top: 4.5em;
+    width: 20em;
+  }
+  .breadPage{
+    bottom: 18.5em;
+    top: 4.5em;
+    width: 20em;
+  }
+  #buttonPanelBread{
+    width:20em;
+    grid-template-columns: 30% 40% 30%;
+    height: 3.5em;
+    bottom: 14.7em;
+  }
+  .buttonPanel{
+    width:20em;
+    grid-template-columns: 30% 40% 30%;
+    height: 3.5em;
+    bottom: 14.7em;
+  }
+  #previousButton{
+    padding: 1em 1em;
+  }
+  .ingredient{
+    font-size:0.5em;
+    padding: 0.2em;
+  }
+  #myBurger{
+    font-size:0.7em;
+  }
+  #sidesAndBeverage{
+    font-size:0.7em;
+  }
+  .orderButtonO{
+    font-size:0.66em;
+  }
+  .cancelButton{
+    font-size:0.66em;
+  }
+  .totalText{
+    font-size:1.2em;
+  }
+  .column{
+    font-size: 0.8em;
+  }
+  .aa {
+    height: 3em;
+  }
+  .cc{
+    height: 13em;
+  }
+  .dd1{
+    height: 9.5em;
+  }
+}
+@media screen and (min-width: 700px) {
+  #ordering{
+    width:40em;
+    margin: auto;
+  }
+  .tabs{
+    width:40em;
+  }
+  .tabs button {
+    width: 5.55em;
+    font-size: 1.2em;
+  }
+  .receipt {
+    width:40em;
+  }
+  .Page {
+    bottom:20em;
+    top: 7em;
+    width: 40em;
+  }
+  .breadPage {
+    bottom:20em;
+    top: 7em;
+    width: 40em;
+  }
+  .aa {
+    height: 3em;
+  }
+  #buttonPanelBread{
+    width:40em;
+    grid-template-columns: 20% 60% 20%;
+    height: 3.5em;
+    bottom: 16.3em;
+  }
+  .buttonPanel{
+    width:40em;
+    grid-template-columns: 20% 60% 20%;
+    height: 3.5em;
+    bottom: 16.3em;
+  }
+  .previousButton{
+    padding: 1em 2em;
+  }
+  .ingredient{
+    font-size:1em;
+    padding: 1em;
+  }
+  #myBurger{
+    font-size:1em;
+  }
+  #sidesAndBeverage{
+    font-size:1em;
+  }
+  .orderButtonO{
+    font-size:1em;
+  }
+  .cancelButton{
+    font-size:1em;
+  }
+  .totalText{
+    font-size:1.3em;
+    /* margin-bottom: 5em; */
+  }
+  .column{
+    font-size: 1em;
+  }
+  .cc{
+    height: 11.3em;
+  }
+  /* .dd{
+  height: 11.3em;
+  } */
+  .dd1 {
+    height:6.8em;
+  }
+}
+* {
+  box-sizing: border-box;
+}
 
-                .breadPage{
-                  bottom: 18.5em;
-                  top: 4.5em;
-                  width: 20em;
-                }
-                #buttonPanelBread{
-                  width:20em;
-                  grid-template-columns: 30% 40% 30%;
-                  height: 3.5em;
-                  bottom: 14.7em;
-                }
-                .buttonPanel{
-                  width:20em;
-                  grid-template-columns: 30% 40% 30%;
-                  height: 3.5em;
-                  bottom: 14.7em;
-                }
-                #previousButton{
-                  padding: 1em 1em;
-                }
-                .ingredient{
-                  font-size:0.5em;
-                  padding: 0.2em;
-                }
-                #myBurger{
-                  font-size:0.7em;
-                }
-                #sidesAndBeverage{
-                  font-size:0.7em;
-                }
-                .orderButtonO{
-                  font-size:0.7em;
-                }
-                .cancelButton{
-                  font-size:0.7em;
-                }
-                .totalText{
-                  font-size:0.7em;
-                  /* margin-bottom: 6em; */
-                }
-                .column{
-                  font-size: 0.6em;
-                }
-                .cc{
-                  height: 13em;
-                }
-                .dd{
-                  height: 10em;
-                }
-              }
-              @media screen and (min-width: 700px) {
-                #ordering{
-                  width:40em;
-                  margin: auto;
-                }
-                .tabs{
-                  width:40em;
-                }
-                .tabs button {
-                  width: 5.55em;
-                  font-size: 1.2em;
-                }
-                .receipt {
-                  width:40em;
-                }
-                .Page {
-                  bottom:20em;
-                  top: 7em;
-                  width: 40em;
-                }
-                .breadPage {
-                  bottom:20em;
-                  top: 7em;
-                  width: 40em;
-                }
-                #buttonPanelBread{
-                  width:40em;
-                  grid-template-columns: 20% 60% 20%;
-                  height: 3.5em;
-                  bottom: 16.3em;
-                }
-                .buttonPanel{
-                  width:40em;
-                  grid-template-columns: 20% 60% 20%;
-                  height: 3.5em;
-                  bottom: 16.3em;
-                }
-                .previousButton{
-                  padding: 1em 2em;
-                }
-                .ingredient{
-                  font-size:1em;
-                  padding: 1em;
-                }
-                #myBurger{
-                  font-size:1em;
-                }
-                #sidesAndBeverage{
-                  font-size:1em;
-                }
-                .orderButtonO{
-                  font-size:1em;
-                }
-                .cancelButton{
-                  font-size:1em;
-                }
-                .totalText{
-                  font-size:1.3em;
-                  /* margin-bottom: 5em; */
-                }
-                .column{
-                  font-size: 1em;
-                }
-                .cc{
-                  height: 11.3em;
-                }
-                /* .dd{
-                  height: 11.3em;
-                } */
-                .dd1 {
-                  height:6.8em;
-                }
-              }
-              * {
-                box-sizing: border-box;
-              }
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 0em;
+}
+.aa {
+  /* height:3em; */
+  overflow:hidden;
+  background-color: white;
+  border-bottom: 0.1em solid black;
+}
+.cc {
+  overflow:scroll;
+  background-color: white;
+  text-align:left;
+}
+.dd {
+  background-color: white;
+  text-align:left;
+}
+.dd1 {
+  overflow:scroll;
+}
 
-              .row:after {
-                content: "";
-                display: table;
-                clear: both;
-              }
-              .column {
-                float: left;
-                width: 50%;
-                padding: 0em;
-              }
-              .aa {
-                height:3em;
-                overflow:hidden;
-                background-color: white;
-                border-bottom: 0.1em solid black;
-              }
-              .cc {
-                overflow:scroll;
-                background-color: white;
-                text-align:left;
-              }
-              .dd {
-                /* overflow:scroll; */
-                background-color: white;
-                text-align:left;
-              }
-              .dd1 {
-                overflow:scroll;
-              }
-              .dd2 {
-
-              }
-
-              #buttonPanelBread {
-                z-index: 3;
-                display: grid;
-                position: fixed;
-              }
-              .buttonPanel {
-                background-color: black;
-                display: grid;
-                position: fixed;
-              }
+#buttonPanelBread {
+  z-index: 3;
+  display: grid;
+  position: fixed;
+}
+.buttonPanel {
+  background-color: black;
+  display: grid;
+  position: fixed;
+}
 
 #nextButton {
   grid-column: 3;
@@ -1222,7 +1220,6 @@ export default {
   text-decoration: none;
   display: inline-block;
   font-size: 1em;
-  /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
 }
@@ -1235,7 +1232,6 @@ export default {
   text-decoration: none;
   display: inline-block;
   font-size: 1em;
-  /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
 }

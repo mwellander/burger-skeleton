@@ -25,7 +25,7 @@
         <div class="column cc ccPlus" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
-              <font face="helvetica" size="4"><b> Order {{ key.noB }}</b>
+              <font face="helvetica"><b> Order {{ key.noB }}</b>
               <button v-on:click="showOrder(index)" class="showButton">
                 <span v-show="!show || key.ingredients!==showArray">{{uiLabels.show}}</span>
                 <span v-show="show && key.ingredients===showArray">{{uiLabels.hide}}</span>
@@ -49,14 +49,14 @@
           </ul>
         </div>
         <div class="column dd ddPlus" style="text-align:left">
-          <div class="dd1">
+          <div class="dd1 dd11">
             <p></p>
           </div>
           <div class="dd2">
             <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }}:-</u></div>
             <div style="text-align:right">
-              <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-              <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
+              <button class="cancelButton cancelButtonMobHome" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+              <button class="orderButtonO orderButtonMobHome" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
             </div>
           </div>
         </div>
@@ -273,9 +273,18 @@ if (this.alert2===false){
 <style scoped>
   @media screen and (min-width: 300px) {
     #home {
-      /* margin: auto; */
-      width: 20em;
+      width: 22em;
       background-color: black;
+    }
+    .orderButtonMobHome {
+      font-size:1.5em;
+      margin-right: 0.4em;
+    }
+    .cancelButtonMobHome {
+      margin-right: 3em;
+    }
+    .dd11 {
+      height: 4em;
     }
   }
   @media screen and (min-width: 700px) {
@@ -283,6 +292,13 @@ if (this.alert2===false){
         width:40em;
         margin: auto;
         padding:0.8em;
+     }
+     .orderButtonMobHome {
+       font-size:1em;
+       margin-right: 0em;
+     }
+     .cancelButtonMobHome {
+       margin-right: 0em;
      }
    }
      .ccPlus {
