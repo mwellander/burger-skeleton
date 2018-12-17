@@ -49,14 +49,14 @@
           </ul>
         </div>
         <div class="column dd ddPlus" style="text-align:left">
-          <div class="dd1">
+          <div class="dd1 dd11">
             <p></p>
           </div>
           <div class="dd2">
             <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }}:-</u></div>
             <div style="text-align:right">
-              <button class="cancelButton" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-              <button class="orderButtonO" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
+              <button class="cancelButton cancelButtonMobHome" v-on:click="cancelAlert4a()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
+              <button class="orderButtonO orderButtonMobHome" v-on:click="placeOrder()">{{ uiLabels.pay }}</button>
             </div>
           </div>
         </div>
@@ -274,9 +274,51 @@ if (this.alert2===false){
   @media screen and (min-width: 300px) {
     #home {
       /* margin: auto; */
-      width: 20em;
+      width: 21em;
       background-color: black;
       font-family: "Helvetica", cursive, sans-serif;
+    }
+    .createBurgerButton {
+      margin-top: 7%;
+      grid-row: 1;
+      grid-column: 1 /span 2;
+    }
+    .readyBurgerButton{
+      grid-row:2;
+      grid-column: 1 /span 2;
+    }
+    .sidesButton{
+      grid-row:3;
+      grid-column: 1 /span 2;
+    }
+    .alertPay {
+      width: 18em;
+      height: 10em;
+      padding: 0.5em 1em;
+      border: 0.2em solid black;
+    }
+     .confirmTextPay {
+       margin-top: 0.7em;
+       font-size: 1.5em;
+     }
+    .confirmContinue {
+      font-size: 0.8em;
+    }
+    .confirmNoContinue {
+     font-size: 0.8em;
+    }
+    .orderButtonMobHome {
+      font-size:1.5em;
+      margin-right: 0.4em;
+    }
+    .cancelButtonMobHome {
+      margin-right: 3em;
+    }
+    .dd11 {
+      height: 4em;
+    }
+    .buttonHome button{
+      font-size: 1.5em;
     }
   }
   @media screen and (min-width: 700px) {
@@ -286,7 +328,50 @@ if (this.alert2===false){
         padding:0.8em;
         font-family: "Helvetica", cursive, sans-serif;
      }
+     .createBurgerButton {
+       margin-top: 7%;
+       grid-row: 1;
+       grid-column: 1 /span 2;
+       height:10em;
+     }
+     .readyBurgerButton{
+       grid-row: 2;
+       grid-column:1;
+       height:4em;
+     }
+     .sidesButton{
+       grid-row: 2;
+       grid-column:2;
+       height: 4em;
+     }
+     .alertPay {
+       width: 25em;
+       height: 15em;
+       padding: 1em 2em;
+       border: 0.5em solid black;
+     }
+     .confirmTextPay {
+       margin-top: 1em;
+       font-size: 2em;
+     }
+     .confirmContinue {
+       font-size: 1em;
+     }
+     .confirmNoContinue {
+      font-size: 1em;
+    }
+     .orderButtonMobHome {
+       font-size:1em;
+       margin-right: 0em;
+     }
+     .cancelButtonMobHome {
+       margin-right: 0em;
+     }
+    .buttonHome button{
+      font-size: 2em;
+    }
    }
+
      .ccPlus {
        width: 65%;
      }
@@ -309,29 +394,13 @@ if (this.alert2===false){
        text-align: center;
        text-decoration: none;
        display: inline-block;
-       font-size: 2em;
        cursor: pointer;
        border-radius: 1.5em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
        height:4em;
        font-family: "Helvetica", cursive, sans-serif;
      }
-     .createBurgerButton {
-       margin-top: 7%;
-       grid-column: 1/span 2;
-       height:10em;
-       font-family: "Helvetica", cursive, sans-serif;
-     }
-     .readyBurgerButton{
-       grid-column:1;
-       height:4em;
-       font-family: "Helvetica", cursive, sans-serif;
-     }
-     .sidesButton{
-       grid-column:2;
-       font-family: "Helvetica", cursive, sans-serif;
-       /* height:4em; */
-     }
+
      .buttonHome button:hover {
        background-color:#ddd;
      }
@@ -365,48 +434,41 @@ if (this.alert2===false){
        opacity: 1;
        pointer-events: auto;
      }
+
      .alertPay {
        z-index: 100;
        position: relative;
        background-color: grey;
-       width: 25em;
        display: grid;
        grid-template-columns: 40% 20% 40%;
-       height: 15em;
        margin: auto;
-       padding: 1em 2em;
-       border: 0.5em solid black;
        text-align: center;
      }
 
      .confirmTextPay {
-       margin-top: 1em;
        font-family: "Helvetica", cursive, sans-serif;
-       font-size: 2em;
        grid-column: 1/ span 3;
        grid-row: 1;
      }
      .confirmContinue {
        font-family: "Helvetica", cursive, sans-serif;
-       font-size: 1em;
        grid-column: 3;
        grid-row: 2;
        background-color: #6495ED;
        border: 0.1em solid black;
        color: black;
-       padding: 1em 1em;
        text-align: center;
        text-decoration: none;
        display: inline-block;
        cursor: pointer;
-       border-radius: 1em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
        vertical-align: middle;
        margin: auto;
+       padding: 1em 1em;
+       border-radius: 1em;
      }
      .confirmNoContinue {
        font-family: "Helvetica", cursive, sans-serif;
-       font-size: 1em;
        grid-column: 1;
        grid-row: 2;
        background-color: #ADD8E6;

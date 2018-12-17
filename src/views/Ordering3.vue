@@ -344,12 +344,10 @@ export default {
   }
   @media screen and (min-width: 300px) {
     #ordering3 {
-      width:20em;
-      margin-left:3%;
-      margin-right:3%;
+      width:22.4em;
     }
     .tabs3{
-      width:20em;
+      width:22.4em;
     }
     .tabs3 button {
       width: 20em;
