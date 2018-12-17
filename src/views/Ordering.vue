@@ -266,18 +266,6 @@ v-on:decrement="decreaseBeverage(item)"
   <div class="confirmText">{{uiLabels.missingBurger}}</div>
   <button class="confirmOK" v-on:click="burgerAlert()">{{uiLabels.ok}}</button>
 </div>
-<!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
-<div>
-<OrderItem
-v-for="(order, key) in orders"
-v-if="order.status !== 'done'"
-:order-id="key"
-:order="order"
-:ui-labels="uiLabels"
-:lang="lang"
-:key="key">
-</OrderItem>
-</div> -->
 </div>
 </template>
 <script>

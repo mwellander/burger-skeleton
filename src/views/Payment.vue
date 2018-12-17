@@ -29,12 +29,45 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (min-width: 300px) {
+  #paymentside {
+    /* margin: auto; */
+    width: 22.4em;
+    background-color: black;
+    font-family: "Helvetica", cursive, sans-serif;
+  }
+  .startButton{
+    bottom:100em;
+    padding: 0em 0em;
+    font-size:3em;
+  }
+  .thankYou{
+    font-size:1em;
+    height:4em;
+  }
+}
+@media screen and (min-width: 700px) {
+   #paymentside {
+      width:40em;
+      margin: auto;
+      padding:0.8em;
+      font-family: "Helvetica", cursive, sans-serif;
+   }
+   .startButton{
+     bottom:50em;
+     padding: 1em 1em;
+     font-size:4em;
+   }
+   .thankYou{
+     font-size:2em;
+     height:3em;
+   }
+ }
 #paymentSide {
   height: 100%;
   min-width: 100px;
   min-height: 100px;
   margin: auto;
-  width: 40em;
 }
 
 .thankYou {
@@ -46,7 +79,6 @@ export default {
   margin-left: 10%;
   margin-right: 10%;
   width:80%;
-  height:3em;
   border: 0.1em solid black;
   padding: 0.5em 0.5em;
   text-decoration: none;
@@ -68,13 +100,9 @@ export default {
   background-color: #4CAF50;
   border: 0.1em solid black;
   color: black;
-  padding: 1em 1em;
   text-decoration: none;
   display: inline-block;
-  font-size: 4em;
-  /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
-  bottom:50em;
 }
 </style>
