@@ -15,7 +15,6 @@
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
-import sharedVueStuff from '@/components/sharedVueStuff.js'
 export default {
   name: 'OrderItemToPrepare',
   components: { OrderItem },
@@ -25,7 +24,6 @@ export default {
     orderId: String,
     lang: String
   },
-  mixins: [sharedVueStuff],
   methods: {
     orderStarted: function () {
       // sending 'done' message to parent component or view so that it

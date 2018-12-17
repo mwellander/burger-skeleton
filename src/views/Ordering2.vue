@@ -477,6 +477,7 @@ export default {
   height: 6em;
 }
 .tabs2 button {
+  font-family: "Helvetica", cursive, sans-serif;
   float: left;
   display: block;
   background-color: grey;
@@ -497,6 +498,7 @@ export default {
 }
 
 #buttonPanelReadyBurger{
+  font-family: "Helvetica", cursive, sans-serif;
   width:40em;
   grid-template-columns: 20% 60% 20%;
   height: 3.5em;

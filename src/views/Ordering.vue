@@ -234,8 +234,8 @@ v-on:decrement="decreaseBeverage(item)"
           <div class="totalText" style="text-align:right"><u>{{uiLabels.total}}: {{ price }} kr</u></div>
           <div v-show="change" style="text-align:right">
             <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-            <button class="orderButtonO graknapp" v-if="breadOrder==false&&burgerOrder==false&&sidesOrder==false&&beverageOrder==false||burgerOrder==true&&breadOrder==false||burgerOrder==false&&breadOrder==true||burgerOrder==false&&breadOrder==false&&toppingsOrder==true||burgerOrder==false&&breadOrder==false&&dressingOrder==true" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
-            <button class="orderButtonO" v-else-if="breadOrder==true&&burgerOrder==true||sidesOrder==true||beverageOrder==true" v-on:click="sendOrderHome()">{{ uiLabels.placeOrder }}</button>
+            <button class="orderButtonO graknapp" v-if="breadOrder==false&&burgerOrder==false&&sidesOrder==false&&beverageOrder==false||burgerOrder==true&&breadOrder==false||burgerOrder==false&&breadOrder==true||burgerOrder==false&&breadOrder==false&&toppingsOrder==true||burgerOrder==false&&breadOrder==false&&dressingOrder==true" v-on:click="saveChanges()">{{ uiLabels.placeOrder }}</button>
+            <button class="orderButtonO" v-else-if="breadOrder==true&&burgerOrder==true||sidesOrder==true||beverageOrder==true" v-on:click="saveChanges()">{{ uiLabels.saveChange }}</button>
           </div>
           <div v-show="!change" style="text-align:right">
             <button class="cancelButton" v-on:click="cancelAlert()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
@@ -1018,10 +1018,12 @@ export default {
   height: 100%;
   min-width: 100px;
   min-height: 100px;
+  font-family: "Helvetica", cursive, sans-serif;
 }
 @media screen and (min-width: 300px) {
   #ordering{
     width:22.4em;
+    font-family: "Helvetica", cursive, sans-serif;
   }
   .receipt {
     width: 22.4em;
@@ -1159,9 +1161,6 @@ export default {
   .cc{
     height: 11.3em;
   }
-  /* .dd{
-  height: 11.3em;
-  } */
   .dd1 {
     height:6.8em;
   }
@@ -1211,6 +1210,7 @@ export default {
 }
 
 #nextButton {
+  font-family: "Helvetica", cursive, sans-serif;
   grid-column: 3;
   background-color: #4CAF50;
   border: 0.1em solid black;
@@ -1224,6 +1224,7 @@ export default {
   border-radius: 1em;
 }
 #previousButton {
+  font-family: "Helvetica", cursive, sans-serif;
   grid-column: 1;
   background-color: #0000CD;
   border: 0.1em solid black;
@@ -1236,6 +1237,7 @@ export default {
   border-radius: 1em;
 }
 .receipt {
+  font-family: "Helvetica", cursive, sans-serif;
   bottom: 0;
   position: fixed;
   left: center;
@@ -1258,6 +1260,7 @@ export default {
   height:3em;
 }
 .orderButtonO {
+  font-family: "Helvetica", cursive, sans-serif;
   background-color: #4CAF50;
   border: 0.1em solid black;
   color: black;
@@ -1272,6 +1275,7 @@ export default {
   background-color: gray;
 }
 .cancelButton {
+  font-family: "Helvetica", cursive, sans-serif;
   background-color: #f44336;
   border: 0.1em solid black;
   color: black;
@@ -1284,6 +1288,7 @@ export default {
 }
 
 .tabs {
+  font-family: "Helvetica", cursive, sans-serif;
   overflow: hidden;
   position: fixed;
   top: 1;
@@ -1292,6 +1297,7 @@ export default {
   height: 6em;
 }
 .tabs button {
+  font-family: "Helvetica", cursive, sans-serif;
   float: left;
   display: block;
   background-color: grey;
@@ -1378,7 +1384,7 @@ export default {
   background-color: grey;
   width: 25em;
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 50% 50%;
   height: 15em;
   margin: auto;
   padding: 1em 2em;
@@ -1387,21 +1393,22 @@ export default {
 }
 
 .confirmText {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  margin-top: 1em;
+  font-family: "Helvetica", cursive, sans-serif;
   font-size: 2em;
-  grid-column: 1/ span 3;
+  grid-column: 1/ span 2;
   grid-row: 1;
 }
 
 .confirmCancel {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Helvetica", cursive, sans-serif;
   font-size: 1em;
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 2;
   background-color: #6495ED;
   border: 0.1em solid black;
   color: black;
-  padding: 1em 1em;
+  padding: 1em 2em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -1412,14 +1419,14 @@ export default {
   margin: auto;
 }
 .confirmNoCancel {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Helvetica", cursive, sans-serif;
   font-size: 1em;
   grid-column: 1;
   grid-row: 2;
   background-color: #ADD8E6;
   border: 0.1em solid black;
   color: black;
-  padding: 1em 1em;
+  padding: 1em 2em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -1429,9 +1436,9 @@ export default {
   margin: auto;
 }
 .confirmOK {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Helvetica", cursive, sans-serif;
   font-size: 1em;
-  grid-column:2;
+  grid-column: 1/ span 2;
   grid-row: 2;
   background-color: #ADD8E6;
   border: 0.1em solid black;
