@@ -22,10 +22,10 @@ import sharedVueStuff from '@/components/sharedVueStuff.js'
 export default {
   name: 'OrderItem',
   props: {
-    uiLabels: Object,
+    // uiLabels: Object,
     order: Object,
     orderId: String,
-    lang: String,
+    // lang: String,
   },
 	mixins: [sharedVueStuff],
 	data: function(){

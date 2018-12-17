@@ -71,6 +71,7 @@ export default {
 }
 
 .startButton{
+  font-family: "Helvetica", cursive, sans-serif;
   vertical-align: middle;
   text-align: center;
   margin-top: 1em;

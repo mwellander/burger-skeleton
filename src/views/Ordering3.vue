@@ -379,6 +379,7 @@ export default {
     height: 6em;
   }
   .tabs3 button {
+    font-family: "Helvetica", cursive, sans-serif;
     float: left;
     display: block;
     background-color: grey;

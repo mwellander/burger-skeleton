@@ -25,7 +25,7 @@ export default {
   name: 'IngredientKitchen',
   props: {
     item: Object,
-    lang: String,
+    // lang: String,
   },
   mixins: [sharedVueStuff],
 

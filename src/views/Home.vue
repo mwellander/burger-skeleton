@@ -25,7 +25,7 @@
         <div class="column cc ccPlus" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
-              <font face="helvetica" size="4"><b> Order {{ key.noB }}</b>
+              <b> Order {{ key.noB }}</b>
               <button v-on:click="showOrder(index)" class="showButton">
                 <span v-show="!show || key.ingredients!==showArray">{{uiLabels.show}}</span>
                 <span v-show="show && key.ingredients===showArray">{{uiLabels.hide}}</span>
@@ -35,8 +35,8 @@
                     </button></a>
                   <button v-on:click="deleteBurger(index)" class="deleteButton">{{uiLabels.erase}}
                 </button>
-              {{key.price}}:-<br></font>
-              <font face="helvetica">
+              {{key.price}}:-<br>
+
             <span v-show="show && key.ingredients===showArray" id="showOrder">
                 <li v-show="breadOrder">{{uiLabels.bread}}: {{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
                 <li v-show="burgerOrder">{{uiLabels.burger}}: {{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
@@ -45,7 +45,7 @@
                 <li v-show="readyBurgerOrder">{{uiLabels.burger}}: {{ ReadyBurger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
                 <li v-show="sidesOrder">{{uiLabels.sides}}: {{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
                 <li v-show="beverageOrder">{{uiLabels.beverage}}: {{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            </span></font></li>
+            </span></li>
           </ul>
         </div>
         <div class="column dd ddPlus" style="text-align:left">
@@ -70,10 +70,10 @@
     <button class="confirmNoCancel" v-on:click="cancelAlert4a()">{{uiLabels.no}}</button>
     </div>
 
-    <div class="alert" v-show="alert2">
-      <div class="confirmText">{{uiLabels.nothingToOrder}}</div>
-      <button class="confirmCancel" v-on:click="cancelAlert4b()">{{uiLabels.continue}}</button>
-    <a href="#/start" class="confirmNoCancel" role="button" v-on:click="cancelOrder()">{{uiLabels.cancelThisOrder}}</a>
+    <div class="alertPay" v-show="alert2">
+      <div class="confirmTextPay">{{uiLabels.nothingToOrder}}</div>
+      <button class="confirmContinue" v-on:click="cancelAlert4b()">{{uiLabels.continue}}</button>
+    <a href="#/start" class="confirmNoContinue" role="button" v-on:click="cancelOrder()">{{uiLabels.cancelThisOrder}}</a>
     </div>
 
   </div>
@@ -276,6 +276,7 @@ if (this.alert2===false){
       /* margin: auto; */
       width: 20em;
       background-color: black;
+      font-family: "Helvetica", cursive, sans-serif;
     }
   }
   @media screen and (min-width: 700px) {
@@ -283,6 +284,7 @@ if (this.alert2===false){
         width:40em;
         margin: auto;
         padding:0.8em;
+        font-family: "Helvetica", cursive, sans-serif;
      }
    }
      .ccPlus {
@@ -295,6 +297,7 @@ if (this.alert2===false){
        color: black;
        display: grid;
        grid-template-columns:50% 50%;
+       font-family: "Helvetica", cursive, sans-serif;
      }
      .buttonHome button {
        width: 100%;
@@ -311,18 +314,22 @@ if (this.alert2===false){
        border-radius: 1.5em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
        height:4em;
+       font-family: "Helvetica", cursive, sans-serif;
      }
      .createBurgerButton {
        margin-top: 7%;
        grid-column: 1/span 2;
        height:10em;
+       font-family: "Helvetica", cursive, sans-serif;
      }
      .readyBurgerButton{
        grid-column:1;
        height:4em;
+       font-family: "Helvetica", cursive, sans-serif;
      }
      .sidesButton{
        grid-column:2;
+       font-family: "Helvetica", cursive, sans-serif;
        /* height:4em; */
      }
      .buttonHome button:hover {
@@ -351,6 +358,62 @@ if (this.alert2===false){
      #toChangeBackground4 {
        opacity: 1;
        pointer-events: auto;
+     }
+     .alertPay {
+       z-index: 100;
+       position: relative;
+       background-color: grey;
+       width: 25em;
+       display: grid;
+       grid-template-columns: 40% 20% 40%;
+       height: 15em;
+       margin: auto;
+       padding: 1em 2em;
+       border: 0.5em solid black;
+       text-align: center;
+     }
+
+     .confirmTextPay {
+       margin-top: 1em;
+       font-family: "Helvetica", cursive, sans-serif;
+       font-size: 2em;
+       grid-column: 1/ span 3;
+       grid-row: 1;
+     }
+     .confirmContinue {
+       font-family: "Helvetica", cursive, sans-serif;
+       font-size: 1em;
+       grid-column: 3;
+       grid-row: 2;
+       background-color: #6495ED;
+       border: 0.1em solid black;
+       color: black;
+       padding: 1em 1em;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       cursor: pointer;
+       border-radius: 1em;
+       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+       vertical-align: middle;
+       margin: auto;
+     }
+     .confirmNoContinue {
+       font-family: "Helvetica", cursive, sans-serif;
+       font-size: 1em;
+       grid-column: 1;
+       grid-row: 2;
+       background-color: #ADD8E6;
+       border: 0.1em solid black;
+       color: black;
+       padding: 1em 1em;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       cursor: pointer;
+       border-radius: 1em;
+       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+       margin: auto;
      }
 
 </style>
