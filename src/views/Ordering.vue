@@ -266,18 +266,6 @@ v-on:decrement="decreaseBeverage(item)"
   <div class="confirmText">{{uiLabels.missingBurger}}</div>
   <button class="confirmOK" v-on:click="burgerAlert()">{{uiLabels.ok}}</button>
 </div>
-<!-- <h3>{{ uiLabels.ordersInQueue }}</h3>
-<div>
-<OrderItem
-v-for="(order, key) in orders"
-v-if="order.status !== 'done'"
-:order-id="key"
-:order="order"
-:ui-labels="uiLabels"
-:lang="lang"
-:key="key">
-</OrderItem>
-</div> -->
 </div>
 </template>
 <script>
@@ -1277,6 +1265,25 @@ export default {
   .dd1{
     height: 9.5em;
   }
+  .alert {
+    width: 18em;
+    height: 10em;
+    padding: 0.5em 1em;
+    border: 0.2em solid black;
+  }
+   .confirmText {
+     margin-top: 0.7em;
+     font-size: 1.5em;
+   }
+  .confirmCancel {
+    font-size: 0.8em;
+  }
+  .confirmNoCancel {
+   font-size: 0.8em;
+  }
+  .confirmOK {
+    font-size: 0.8em;
+  }
 }
 @media screen and (min-width: 700px) {
   #ordering{
@@ -1350,6 +1357,31 @@ export default {
   .dd1 {
     height:6.8em;
   }
+  .alert {
+    width: 25em;
+    height: 15em;
+    padding: 1em 2em;
+    border: 0.5em solid black;
+  }
+  .alert {
+    width: 25em;
+    height: 15em;
+    padding: 1em 2em;
+    border: 0.5em solid black;
+  }
+  .confirmText {
+    margin-top: 1em;
+    font-size: 2em;
+  }
+  .confirmCancel {
+    font-size: 1em;
+  }
+  .confirmNoCancel {
+   font-size: 1em;
+ }
+ .confirmOK {
+   font-size: 1em;
+ }
 }
 * {
   box-sizing: border-box;
@@ -1569,27 +1601,20 @@ export default {
   z-index: 100;
   position: relative;
   background-color: grey;
-  width: 25em;
   display: grid;
   grid-template-columns: 50% 50%;
-  height: 15em;
   margin: auto;
-  padding: 1em 2em;
-  border: 0.5em solid black;
   text-align: center;
 }
 
 .confirmText {
-  margin-top: 1em;
   font-family: "Helvetica", cursive, sans-serif;
-  font-size: 2em;
   grid-column: 1/ span 2;
   grid-row: 1;
 }
 
 .confirmCancel {
   font-family: "Helvetica", cursive, sans-serif;
-  font-size: 1em;
   grid-column: 2;
   grid-row: 2;
   background-color: #6495ED;
@@ -1607,7 +1632,6 @@ export default {
 }
 .confirmNoCancel {
   font-family: "Helvetica", cursive, sans-serif;
-  font-size: 1em;
   grid-column: 1;
   grid-row: 2;
   background-color: #ADD8E6;
@@ -1624,7 +1648,6 @@ export default {
 }
 .confirmOK {
   font-family: "Helvetica", cursive, sans-serif;
-  font-size: 1em;
   grid-column: 1/ span 2;
   grid-row: 2;
   background-color: #ADD8E6;
