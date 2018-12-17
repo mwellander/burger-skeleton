@@ -1092,6 +1092,7 @@ export default {
                 .dd{
                   height: 10em;
                 }
+              
               }
               @media screen and (min-width: 700px) {
                 #ordering{
@@ -1490,5 +1491,6 @@ export default {
   font-size:1em;
   font-family: "Helvetica", cursive, sans-serif;
 }
+
 
 </style>
