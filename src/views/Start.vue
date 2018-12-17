@@ -5,6 +5,8 @@
   <div id="start">
     <div class="logo">
       {{uiLabels.welcome}}
+      <br>
+    <div id="NoKetchupLogo"><img src="../assets/Images_ingedients/ketchupNy.png" height="100"/>{{uiLabels.noKetchup}}<img src="../assets/Images_ingedients/ketchupNy.png" height="100"/></div>
     </div>
     <div style="text-align:left">
       <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
@@ -53,7 +55,7 @@ export default {
   margin-left: 10%;
   margin-right: 10%;
   width:80%;
-  height:3em;
+  height:6em;
   border: 0.1em solid black;
   padding: 0.5em 0.5em;
   text-decoration: none;
@@ -62,6 +64,10 @@ export default {
   border-radius: 1em;
   vertical-align: middle;
   text-align: center;
+}
+
+#NoKetchupLogo {
+  font-size: 2em;
 }
 
 .startButton{

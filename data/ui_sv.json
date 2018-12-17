@@ -38,7 +38,7 @@
   "sidesDrink": "Tillbehör/Dryck",
   "readyBurger":"Favoritburgare",
   "start": "Påbörja Beställning",
-  "welcome": "Väkommen till NoKetchup",
+  "welcome": "Väkommen till",
   "readyBurger": "Favoritburgare",
   "yourOrder": "Din beställning",
   "add": "Lägg till",
@@ -71,5 +71,4 @@
   "gluten":"Glutenfri",
   "hide":"Göm",
   "noKetchup": "NoKetchup"
-
 }
