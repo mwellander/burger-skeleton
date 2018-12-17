@@ -1,7 +1,7 @@
 ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,selling_price,image
 1,Bönburgare,Bean Patty,1,1,1,1,40,beans.png
 2,Nötfärsburgare 100g,Beef Patty 100g,1,1,1,0,40,koNy2.png
-3,Nötfärsburgare 200g,Beef Patty 200g,1,1,1,0,60,koNy2.png
+3,Nötfärsburgare 200g,Beef Patty 200g,1,1,1,0,60,koNy2x2.png
 4,Kycklingburgare,Chicken Patty,1,1,0,0,40,kycklingNy2.png
 5,Friterad halloumi,Deep-fried Halloumi,1,0,0,0,40,halloumi.png
 6,Fiskfilé,Fish Filet,1,1,0,0,40,fiskNy2.png
@@ -40,13 +40,13 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 39,Dijonsås,Dijon Sauce,3,1,1,0,5,senap2Ny3.png
 40,Guacamole,Guacamole,3,1,1,1,10,avocado.png
 41,Hot Salsa,Hot Salsa,3,1,1,1,5,hotsalsaNy.png
-42,Hummus,Hummus,3,1,1,1,10,hummus.jpg
+42,Hummus,Hummus,3,1,1,1,10,hummus.png
 43,Ketchup,Ketchup,3,1,1,1,0,ketchupNy.png
-44,Majonnäs,Mayonnaise,3,1,1,0,5,moyonnaise.jpg
+44,Majonnäs,Mayonnaise,3,1,1,0,5,moyonnaise.png
 45,Senap,Mustard,3,1,1,1,0,senap1Ny3.png
 46,Sriracha,Sriracha,3,1,1,1,0,sriratchaNy3.png
 47,Teriyakisås,Teriyaki sauce,3,1,1,1,5,teriyakiNy3.png
-48,Tryffelmajonnäs,Truffle Mayonnaise,3,1,1,0,5,moyonnaise.jpg
+48,Tryffelmajonnäs,Truffle Mayonnaise,3,1,1,0,5,moyonnaise.png
 49,Tzatziki,Tzatziki,3,0,1,0,5,cucumber.png
 50,Brioche,Brioche,4,0,0,0,10,briocheNy2.png
 51,Glutenfritt Bröd,Gluten Free Bread,4,1,1,1,10,bread_white.png
@@ -54,7 +54,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 53,Fullkornsbrioche,Whole Wheat Brioche,4,0,0,0,10,fullkornsbriocheNy2.png
 54,Nachochips,Nachos,5,1,0,1,20,nachos2.0.png
 55,Potatisstrips,Potato Fries,5,1,1,1,20,pommesNy.png
-56,Sötpotatisstrips,Sweet Potato Fries,5,1,1,1,30,sweetpotato.jpg
+56,Sötpotatisstrips,Sweet Potato Fries,5,1,1,1,30,sweetfries.png
 57,Chokladmilkshake,Chocolate Milk Shake,6,0,1,0,40,ChocolateMilkshake.png
 58,Pucko,Pucko,6,0,1,0,25,puckoNy3.png
 59,Läsk,Soda,6,1,1,1,20,laskNy.png

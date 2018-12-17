@@ -10,15 +10,11 @@
       <img v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="95">
       <label><font face="helvetica">
         <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
-
-
-
-
       </font></label>
         <br>
-
         <!-- <div class = "btn-group"> -->
-        <br><button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
+        <br>
+        <button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
         <button id="incrementButton" v-on:click="incrementCounter">{{ "+" }}</button>
       </div>
       <div v-if="item.stock <= 0">
@@ -66,6 +62,10 @@ export default {
 }
 </script>
 <style scoped>
+/* @keyframes incrementButtonAnimation {
+  from {background-color: #808080;}
+  to {background-color: yellow;}
+} */
 @media screen and (min-width: 300px){
   #incrementButton{
     padding:0.2em;
@@ -93,14 +93,13 @@ export default {
   }
 }
 #decrementButton{
-background-color: #808080;
-border: 1px solid black;
-cursor: pointer;
-margin: 0.7em;
-border-radius: 20%;
-font-size: 1.3em;
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+  background-color: #808080;
+  border: 1px solid black;
+  cursor: pointer;
+  margin: 0.7em;
+  border-radius: 20%;
+  font-size: 1.3em;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 #incrementButton{
    background-color: #808080;
@@ -109,9 +108,8 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
    margin: 0.6em;
    border-radius: 20%;
    font-size: 1.3em;
-
-
-
+   animation-name: incrementButtonAnimation;
+   animation-duration: 4s;
 }
 #decrementButton:hover {
   background-color: #F08080;
@@ -126,18 +124,11 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 #incrementButton:active{
   background-color: green;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 4px 20px 0 #8FBC8F;
-
 }
 #decrementButton:active{
   background-color: red;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 4px 20px 0 #F08080;
 }
-/* .btn-group button{
-   background-color: #808080;
-   border: 1px solid black;
-   color: black;
-   font-size: 1em;
-} */
 
 #picture {
   opacity: 0.3;
