@@ -109,14 +109,25 @@
     <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li v-show="readyBurgerOrder">{{ ReadyBurger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li v-show="readyBurgerOrder"><span v-bind:key="index" v-for="(item,index) in ReadyBurger">{{item["ingredient_"+ lang]}}
+          <button class="deleteIngredient" v-on:click="deleteIngredient2(ReadyBurger,index,'readyBurger')"><i class="fa fa-trash"></i></button>
+            <span v-show="index!==ReadyBurger.length-1">, </span>
+        </span></li>
       </ul>
     </div>
     <div class="column dd" style="text-align:left">
       <div class="dd1" style="text-align:left">
         <ul style="list-style-type:none">
-          <li v-show="sidesOrder2"><b>{{uiLabels.sides}}: </b>{{ Sides2.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-          <li v-show="beverageOrder2"><b>{{uiLabels.beverage}}: </b>{{ Beverage2.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+          <li v-show="sidesOrder2"><b>{{uiLabels.sides}}: </b>
+            <span v-bind:key="index" v-for="(item,index) in Sides2">{{item["ingredient_"+ lang]}}
+              <button class="deleteIngredient" v-on:click="deleteIngredient2(Sides2,index,'sides')"><i class="fa fa-trash"></i></button>
+                <span v-show="index!==Sides2.length-1">, </span>
+            </span></li>
+          <li v-show="beverageOrder2"><b>{{uiLabels.beverage}}: </b>
+            <span v-bind:key="index" v-for="(item,index) in Beverage2">{{item["ingredient_"+ lang]}}
+              <button class="deleteIngredient" v-on:click="deleteIngredient2(Beverage2,index,'beverage')"><i class="fa fa-trash"></i></button>
+                <span v-show="index!==Beverage2.length-1">, </span>
+            </span></li>
         </ul>
       </div>
       <div class="dd2" style="text-align:left">
@@ -182,8 +193,6 @@ export default {
             beverage2:false,
             chosenIngredients2:[],
             chosenIngredients5:[],
-            chosenIngredientsBurger2: [],
-            chosenIngredientsSides2: [],
             Sides2: [],
             Beverage2: [],
             ReadyBurger: [],
@@ -203,6 +212,25 @@ export default {
     }.bind(this));
   },
   methods: {
+    deleteIngredient2: function(array,index,ingredient){
+        for(var i=0;i<this.chosenIngredients2.length;i++){
+          if(this.chosenIngredients2[i]===array[index]){
+            this.chosenIngredients2.splice(i,1);
+          }
+        }
+        this.price -=array[index].selling_price;
+        array.splice(index,1);
+        if(array.length===0){
+          if(ingredient==="readyBurger"){
+            this.readyBurgerOrder=false;
+          }
+          if(ingredient==="sides"){
+            this.sidesOrder2=false;
+          }
+          if(ingredient==="beverage"){
+            this.beverageOrder2=false;
+          }
+      }},
     decreaseReadyBurger: function(item){
       var g1 = this.chosenIngredients2.findIndex(function(chosenIngredients2){
         return chosenIngredients2.ingredient_id === item.ingredient_id;
@@ -270,6 +298,7 @@ export default {
       }
     },
     ifChange2: function(){
+      this.price=0;
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){
         this.change=true;
@@ -292,7 +321,6 @@ export default {
     addToOrder2: function(item){
       this.chosenIngredients2.push(item);
       if(item.category===5 || item.category===6){
-        this.chosenIngredientsSides2.push(item);
         if(item.category===5){
           this.Sides2.push(item);
           this.sidesOrder2=true;
