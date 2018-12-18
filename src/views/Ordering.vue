@@ -1432,15 +1432,11 @@ export default {
 * {
   box-sizing: border-box;
 }
-<<<<<<< HEAD
-
-=======
 .deleteIngredient{
     border: none;
     background-color: transparent;
     outline: none;
 }
->>>>>>> 331fb88bf0fee91421c2d532416e03973b8b0199
 .row:after {
   content: "";
   display: table;
