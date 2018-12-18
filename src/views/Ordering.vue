@@ -217,17 +217,41 @@ v-on:decrement="decreaseBeverage(item)"
       <div class="column aa" id="sidesAndBeverage"><h3>{{ uiLabels.sideOrder }}</h3></div>
       <div class="column cc" style="text-align:left">
         <ul style="list-style-type:none">
-          <li v-show="breadOrder"><b>{{uiLabels.bread}}: </b>{{ Bread.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-          <li v-show="burgerOrder"><b>{{uiLabels.burger}}: </b>{{ Burger.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-          <li v-show="dressingOrder"><b>{{uiLabels.dressing}}: </b>{{ Dressing.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-          <li v-show="toppingsOrder"><b>{{uiLabels.toppings}}: </b>{{ Toppings.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+          <li v-show="breadOrder"><b>{{uiLabels.bread}}: </b>
+            <span v-bind:key="index" v-for="(item,index) in Bread">{{item["ingredient_"+ lang]}}
+              <button class="deleteIngredient" v-on:click="deleteIngredient(Bread,index,'bread')"><i class="fa fa-trash"></i></button>
+                <span v-show="index!==Bread.length-1">, </span>
+            </span></li>
+          <li v-show="burgerOrder"><b>{{uiLabels.burger}}: </b>
+            <span v-bind:key="index" v-for="(item,index) in Burger">{{item["ingredient_"+ lang]}}
+              <button class="deleteIngredient" v-on:click="deleteIngredient(Burger,index,'burger')"><i class="fa fa-trash"></i></button>
+                <span v-show="index!==Burger.length-1">, </span>
+            </span></li>
+          <li v-show="dressingOrder"><b>{{uiLabels.dressing}}: </b>
+            <span v-bind:key="index" v-for="(item,index) in Dressing">{{item["ingredient_"+ lang]}}
+              <button class="deleteIngredient" v-on:click="deleteIngredient(Dressing,index,'dressing')"><i class="fa fa-trash"></i></button>
+                <span v-show="index!==Dressing.length-1">, </span>
+            </span></li>
+          <li v-show="toppingsOrder"><b>{{uiLabels.toppings}}: </b>
+            <span v-bind:key="index" v-for="(item,index) in Toppings">{{item["ingredient_"+ lang]}}
+              <button class="deleteIngredient" v-on:click="deleteIngredient(Toppings,index,'toppings')"><i class="fa fa-trash"></i></button>
+                <span v-show="index!==Toppings.length-1">, </span>
+            </span></li>
         </ul>
       </div>
       <div class="column dd" style="text-align:left">
         <div class="dd1" style="text-align:left">
           <ul style="list-style-type:none">
-            <li v-show="sidesOrder"><b>{{uiLabels.sides}}: </b>{{ Sides.map(item => item["ingredient_"+lang]).join(", ") }}</li>
-            <li v-show="beverageOrder"><b>{{uiLabels.beverage}}: </b>{{ Beverage.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li v-show="sidesOrder"><b>{{uiLabels.sides}}: </b>
+              <span v-bind:key="index" v-for="(item,index) in Sides">{{item["ingredient_"+ lang]}}
+                <button class="deleteIngredient" v-on:click="deleteIngredient(Sides,index,'sides')"><i class="fa fa-trash"></i></button>
+                  <span v-show="index!==Sides.length-1">, </span>
+              </span></li>
+            <li v-show="beverageOrder"><b>{{uiLabels.beverage}}: </b>
+              <span v-bind:key="index" v-for="(item,index) in Beverage">{{item["ingredient_"+ lang]}}
+                <button class="deleteIngredient" v-on:click="deleteIngredient(Beverage,index,'beverage')"><i class="fa fa-trash"></i></button>
+                <span v-show="index!==Beverage.length-1">, </span>
+              </span></li>
           </ul>
         </div>
         <div class="dd2" style="text-align:left">
@@ -294,7 +318,6 @@ export default {
     return {
       chosenIngredients5:[],
       chosenIngredients:[],
-      chosenIngredientsBurger: [],
       chosenIngredientsSides: [],
       Burger: [],
       Toppings: [],
@@ -327,7 +350,6 @@ export default {
       breadalert: false,
       burgeralert: false,
     }
-    //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
   mounted: function(){
     this.ifChange();
@@ -338,6 +360,35 @@ export default {
     }.bind(this));
   },
   methods: {
+    deleteIngredient: function(array,index,ingredient){
+      for(var i=0;i<this.chosenIngredients.length;i++){
+        if(this.chosenIngredients[i]===array[index]){
+          this.chosenIngredients.splice(i,1);
+        }
+      }
+      this.price -=array[index].selling_price;
+      array.splice(index,1);
+      if(array.length===0){
+        if(ingredient==="bread"){
+          this.breadOrder=false;
+        }
+        if(ingredient==="burger"){
+          this.burgerOrder=false;
+        }
+        if(ingredient==="dressing"){
+          this.dressingOrder=false;
+        }
+        if(ingredient==="toppings"){
+          this.toppingsOrder=false;
+        }
+        if(ingredient==="sides"){
+          this.sidesOrder=false;
+        }
+        if(ingredient==="beverage"){
+          this.beverageOrder=false;
+        }
+      }
+    },
     getFlag: function () {
       return require('@/assets/' + this.flag[this.lang]);
     },
@@ -456,6 +507,7 @@ export default {
       }
     },
     ifChange: function(){
+      this.price=0;
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){
         this.change=true;
@@ -517,7 +569,6 @@ export default {
           },
           cancelOrder: function () {
             this.chosenIngredients=[];
-            this.chosenIngredientsBurger= [];
             this.chosenIngredientsSides= [];
             this.Burger= [];
             this.Toppings= [];
@@ -879,7 +930,6 @@ export default {
               }
             }
             else{
-              this.chosenIngredientsBurger.push(item);
               if(item.category===1){
                 this.Burger.push(item);
                 this.burgerOrder=true;
@@ -1388,8 +1438,11 @@ export default {
 * {
   box-sizing: border-box;
 }
->>>>>>> d22abcac7319488a40807c217bee0c38a2e044b9
-
+.deleteIngredient{
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
 .row:after {
   content: "";
   display: table;

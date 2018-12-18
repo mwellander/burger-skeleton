@@ -79,13 +79,19 @@ v-on:decrement="decreaseBeverage3(item)"
     <div class="column aa"><h3>{{ uiLabels.beverage }}</h3></div>
     <div class="column cc" style="text-align:left">
       <ul style="list-style-type:none">
-        <li>{{ Sides3.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+        <li><span v-bind:key="index" v-for="(item,index) in Sides3">{{item["ingredient_"+ lang]}}
+          <button class="deleteIngredient" v-on:click="deleteIngredient3(Sides3,index,'sides')"><i class="fa fa-trash"></i></button>
+            <span v-show="index!==Sides3.length-1">, </span>
+        </span></li>
       </ul>
       </div>
       <div class="column dd" style="text-align:left">
         <div class="dd1" style="text-align:left">
           <ul style="list-style-type:none">
-            <li>{{ Beverage3.map(item => item["ingredient_"+lang]).join(", ") }}</li>
+            <li><span v-bind:key="index" v-for="(item,index) in Beverage3">{{item["ingredient_"+ lang]}}
+              <button class="deleteIngredient" v-on:click="deleteIngredient3(Beverage3,index,'beverage')"><i class="fa fa-trash"></i></button>
+                <span v-show="index!==Beverage3.length-1">, </span>
+            </span></li>
           </ul>
         </div>
         <div class="dd2" style="text-align:left">
@@ -168,6 +174,23 @@ export default {
     }.bind(this));
   },
   methods:{
+    deleteIngredient3: function(array,index,ingredient){
+      for(var i=0;i<this.chosenIngredients3.length;i++){
+        if(this.chosenIngredients3[i]===array[index]){
+          this.chosenIngredients3.splice(i,1);
+        }
+      }
+      this.price -=array[index].selling_price;
+      array.splice(index,1);
+      if(array.length===0){
+        if(ingredient==="sides"){
+          this.sidesOrder3=false;
+        }
+        if(ingredient==="beverage"){
+          this.beverageOrder3=false;
+        }
+      }
+    },
     decreaseSides3: function(item){
       var j1 = this.chosenIngredients3.findIndex(function(chosenIngredients3){
         return chosenIngredients3.ingredient_id === item.ingredient_id;
@@ -217,6 +240,7 @@ export default {
     }
     },
     ifChange3: function(){
+      this.price=0;
       this.chosenIngredients5=store.getters.getChangeIngredients;
       if(this.chosenIngredients5.length>0){
         this.change=true;
