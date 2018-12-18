@@ -1138,7 +1138,6 @@ export default {
   }
   .totalText{
     font-size:1.3em;
-    /* margin-bottom: 5em; */
   }
   .column{
     font-size: 1em;
@@ -1146,9 +1145,6 @@ export default {
   .cc{
     height: 11.3em;
   }
-  /* .dd{
-    height: 11.3em;
-  } */
   .dd1 {
     height:6.8em;
   }
@@ -1386,7 +1382,6 @@ export default {
 * {
   box-sizing: border-box;
 }
->>>>>>> d22abcac7319488a40807c217bee0c38a2e044b9
 
 .row:after {
   content: "";
