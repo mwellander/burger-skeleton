@@ -471,10 +471,10 @@ export default {
 }
 @media screen and (min-width: 300px) {
   #ordering2 {
-    width:22.5em;
+    width:22.4em;
   }
   .tabs2{
-    width:22.5em;
+    width:22.4em;
   }
   .tabs2 button {
     width: 13.3em;
