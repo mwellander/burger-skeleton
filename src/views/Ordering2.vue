@@ -483,7 +483,7 @@ export default {
   #buttonPanelReadyBurger{
     width:22.4em;
     bottom: 14.7em;
-    grid-template-columns: 30% 40% 30%;
+    grid-template-columns: 25% 50% 25%;
   }
 }
 @media screen and (min-width: 700px) {

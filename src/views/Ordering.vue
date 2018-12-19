@@ -1085,12 +1085,12 @@ export default {
   }
   #buttonPanelBread{
     width:22.4em;
-    grid-template-columns: 30% 40% 30%;
+    grid-template-columns: 25% 50% 25%;
     bottom: 14.7em;
   }
   .buttonPanel{
     width:22.4em;
-    grid-template-columns: 30% 40% 30%;
+    grid-template-columns: 25% 50% 25%;
     height: 3.5em;
     bottom: 14.7em;
   }
