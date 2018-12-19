@@ -319,6 +319,7 @@ if (this.alert2===false){
     }
     .buttonHome button{
       font-size: 1.5em;
+      height:3em;
     }
   }
   @media screen and (min-width: 700px) {
@@ -369,6 +370,7 @@ if (this.alert2===false){
      }
     .buttonHome button{
       font-size: 2em;
+      height:4em;
     }
    }
 
@@ -397,7 +399,6 @@ if (this.alert2===false){
        cursor: pointer;
        border-radius: 1.5em;
        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-       height:4em;
        font-family: "Helvetica", cursive, sans-serif;
      }
 

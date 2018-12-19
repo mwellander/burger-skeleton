@@ -374,8 +374,13 @@ export default {
       width:22.4em;
     }
     .tabs3 button {
-      width: 22.4em;
-      font-size: 0.5em;
+      width: 16em;
+      font-size: 0.7em;
+    }
+    #buttonPanelSides3{
+      width:22.4em;
+      bottom: 14.7em;
+      grid-template-columns: 30% 40% 30%;
     }
   }
   @media screen and (min-width: 700px) {
@@ -389,6 +394,11 @@ export default {
     .tabs3 button {
       width: 16.6em;
       font-size: 1.2em;
+    }
+    #buttonPanelSides3{
+      width:40em;
+      bottom: 16.3em;
+      grid-template-columns: 20% 60% 20%;
     }
   }
 
@@ -419,21 +429,15 @@ export default {
     opacity: 1;
     pointer-events: auto;
   }
-
-  #buttonPanelSides3{
-    width: 40em;
-    grid-template-columns: 20% 60% 20%;
+#buttonPanelSides3{
     height: 3.5em;
-    bottom: 16.3em;
     z-index: 3;
     display: grid;
     position: fixed;
   }
-
 #tabSides3{
   background-color: #D3D3D3;
 }
-
 #tabBeverage3 {
   background-color: grey;
 }

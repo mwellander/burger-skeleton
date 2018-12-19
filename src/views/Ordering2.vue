@@ -477,8 +477,13 @@ export default {
     width:22.4em;
   }
   .tabs2 button {
-    width: 13.3em;
-    font-size: 0.5em;
+    width: 10.6em;
+    font-size: 0.7em;
+  }
+  #buttonPanelReadyBurger{
+    width:22.4em;
+    bottom: 14.7em;
+    grid-template-columns: 30% 40% 30%;
   }
 }
 @media screen and (min-width: 700px) {
@@ -492,6 +497,11 @@ export default {
   .tabs2 button {
     width: 11.1em;
     font-size: 1.2em;
+  }
+  #buttonPanelReadyBurger{
+    width:40em;
+    bottom: 16.3em;
+    grid-template-columns: 20% 60% 20%;
   }
 }
 .tabs2 {
@@ -525,10 +535,7 @@ export default {
 
 #buttonPanelReadyBurger{
   font-family: "Helvetica", cursive, sans-serif;
-  width:40em;
-  grid-template-columns: 20% 60% 20%;
   height: 3.5em;
-  bottom: 16.3em;
   z-index: 3;
   display: grid;
   position: fixed;
