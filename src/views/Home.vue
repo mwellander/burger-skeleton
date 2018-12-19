@@ -21,7 +21,6 @@
     <div class="receipt">
       <div class="row">
         <div class="aa"><h3>{{ uiLabels.yourOrder }}</h3></div>
-        <!-- <div class="column aa"><h3>{{ uiLabels.sideOrder }}</h3></div> -->
         <div class="column cc ccPlus" style="text-align:left">
           <ul style="list-style-type:none">
             <li v-bind:key="(key.noB)" v-for="(key,index) in noBurger">
@@ -75,29 +74,27 @@
       <button class="confirmContinue" v-on:click="cancelAlert4b()">{{uiLabels.continue}}</button>
     <a href="#/start" class="confirmNoContinue" role="button" v-on:click="cancelOrder()">{{uiLabels.cancelThisOrder}}</a>
     </div>
-
   </div>
 </template>
 
 <script>
-  import Ingredient from '@/components/Ingredient.vue'
-  import OrderItem from '@/components/OrderItem.vue'
-  import sharedVueStuff from '@/components/sharedVueStuff.js'
-  import ordering from '@/views/Ordering.vue'
-  import store from '@/store.js'
-  export default {
-    name: 'Home' ,
-    components: {
-      Ingredient,
-      OrderItem,
-      ordering
+import Ingredient from '@/components/Ingredient.vue'
+import OrderItem from '@/components/OrderItem.vue'
+import sharedVueStuff from '@/components/sharedVueStuff.js'
+import ordering from '@/views/Ordering.vue'
+import store from '@/store.js'
+export default {
+  name: 'Home' ,
+  components: {
+    Ingredient,
+    OrderItem,
+    ordering
   },
   mixins: [sharedVueStuff,ordering,store],
   data: function(){
     return{
       burgers:store.getters.getChosenIngredients4,
       noBurger:store.getters.getNoBurger,
-      //orderInLine: store.getters.orderInLine,
       price:0,
       alert: false,
       alert2: false,
@@ -170,11 +167,11 @@
           else if(item.category===6){
             this.Beverage.push(item);
             this.beverageOrder=true;
-            }
+          }
           else if(item.category===7){
             this.ReadyBurger.push(item);
             this.readyBurgerOrder=true;
-              }
+          }
         }
       }
       else{
@@ -235,45 +232,44 @@
           window.location.replace("#/payment");
         }
         store.commit('cancelOrder');
-    }
+      }
     },
     cancelOrder: function(){
       store.commit('cancelOrder');
     },
     cancelAlert4a: function() {
-  var background = document.getElementById("toChangeBackground4");
-  if (this.alert===false){
-    this.alert=true;
-    background.style.opacity = 0.5;
-    background.style['pointer-events'] = "none";
+      var background = document.getElementById("toChangeBackground4");
+      if (this.alert===false){
+        this.alert=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.alert=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    },
+    cancelAlert4b: function() {
+      var background = document.getElementById("toChangeBackground4");
+      if (this.alert2===false){
+        this.alert2=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.alert2=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    }
   }
-  else {
-    this.alert=false;
-    background.style.opacity = 1;
-    background.style['pointer-events'] = "auto";
-  }
-},
-cancelAlert4b: function() {
-    var background = document.getElementById("toChangeBackground4");
-if (this.alert2===false){
-    this.alert2=true;
-    background.style.opacity = 0.5;
-    background.style['pointer-events'] = "none";
-  }
-  else {
-    this.alert2=false;
-    background.style.opacity = 1;
-    background.style['pointer-events'] = "auto";
-  }
-  }
-}
 }
 </script>
 
 <style scoped>
   @media screen and (min-width: 300px) {
     #home {
-      /* margin: auto; */
       width: 21em;
       background-color: black;
       font-family: "Helvetica", cursive, sans-serif;
@@ -326,7 +322,6 @@ if (this.alert2===false){
      #home {
         width:40em;
         margin: auto;
-        padding:0.8em;
         font-family: "Helvetica", cursive, sans-serif;
      }
      .createBurgerButton {
@@ -371,6 +366,9 @@ if (this.alert2===false){
     .buttonHome button{
       font-size: 2em;
       height:4em;
+    }
+    .dd11 {
+      height:6.8em;
     }
    }
 

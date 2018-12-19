@@ -1,6 +1,5 @@
 <template>
   <div class="ingredientKitchen">
-    <!-- <label> -->
     <form :id="stock+item.ingredient_id">
       <div class="ingredientName">
         {{item["ingredient_"+ lang]}}
@@ -16,27 +15,22 @@
       </div>
       <h1 v-if="item.stock<=0">{{uiLabels.finished}}</h1>
     </form>
-    <!-- </label> -->
   </div>
 </template>
+
 <script>
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 export default {
   name: 'IngredientKitchen',
   props: {
     item: Object,
-    // lang: String,
   },
   mixins: [sharedVueStuff],
-
   data: function () {
     return {
       stock: this.item.stock,
     };
   },
-  // computed: {
-  //   stock: function() { return this.item.stock; }
-  // },
   methods: {
     updateStock: function (e) {
       // sending 'increment' message to parent component or view so that it
@@ -48,44 +42,33 @@ export default {
       var currentStock;
       if (e.target.className === "positive buttonLayout") {
         currentStock = Number(this.item.stock) + Number(numberToUpdate);
-
       }
       else if (e.target.className === "negative buttonLayout"){
         currentStock = Number(this.item.stock) - Number(numberToUpdate);
       }
       this.$store.state.socket.emit('updateStock', {"ingredient":this.item}, currentStock);
       document.getElementById(id).value = "";
-
     },
     resetCounter: function () {
       this.counter = 0;}
-      // ,
-      // addStocks: function(){
-      //   increaseBy = document.getElementById("addStock").value;
-      //   this.stock += increaseBy;
-      //   console.log("increaseBy",increaseBy);
-      // }
     }
   }
   </script>
-  <style scoped>
 
+  <style scoped>
   form {
     width: 100%;
     display: grid;
     grid-template-columns: 33% 33% 33%
   }
-
   .ingredientName {
     font-size: 1.5em;
     grid-column: 1;
   }
-
   .ingredientAddStock {
     grid-column: 2;
     text-align: center;
   }
-
   .notInStock {
     grid-column: 3;
     text-align: center;

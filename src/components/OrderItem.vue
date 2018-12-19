@@ -1,9 +1,8 @@
 <template>
-
 	<div>
-			{{order.type}} {{getIngredientArray()}}
-			<div id="infolabelBurger"> {{uiLabels.orderKitchen}} {{order.orderInLine}}, {{order.noInOrder}}/{{order.burgerArrayLength}}</div>
-			<ul id = "ingredientList" style="list-style-type:none">
+		{{order.type}} {{getIngredientArray()}}
+		<div id="infolabelBurger"> {{uiLabels.orderKitchen}} {{order.orderInLine}}, {{order.noInOrder}}/{{order.burgerArrayLength}}</div>
+		<ul id = "ingredientList" style="list-style-type:none">
 			<li v-show="breadLabel">{{uiLabels.bread}}: {{ this.Bread.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
 			<li v-show="burgerLabel">{{uiLabels.burger}}: {{ this.Burger.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
 			<li v-show="dressingLabel">{{uiLabels.dressing}}: {{ this.Dressing.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
@@ -14,18 +13,16 @@
 		</ul>
 		<slot name="knapp"></slot>
 		<hr>
-</div>
+	</div>
 </template>
-<script>
 
+<script>
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 export default {
   name: 'OrderItem',
   props: {
-    // uiLabels: Object,
     order: Object,
     orderId: String,
-    // lang: String,
   },
 	mixins: [sharedVueStuff],
 	data: function(){
@@ -48,9 +45,7 @@ export default {
 	},
 
 methods: {
-
 	getIngredientArray: function(){
-		//console.log("hej")
 		this.Bread = this.getCategoryItems(4)
 		this.Burger = this.getCategoryItems(1)
 		this.Dressing = this.getCategoryItems(3)
@@ -73,7 +68,6 @@ methods: {
 		this.beverageLabel = true;
 		if(this.ReadyBurger.length !== 0)
 		this.readyBurgersLabel = true;
-
 	},
 
 	getCategoryItems: function (category) {
@@ -86,6 +80,7 @@ methods: {
 }}}
 
 </script>
+
 <style scoped>
 	#infolabelBurger {
 		font-size: 1.2em;
@@ -94,14 +89,3 @@ methods: {
 		font-size: 0.7em;
 	}
 </style>
-
-
-
-
-
-<!-- <div>
-	{{orderId}} {{order.type}}{{uiLabels.bread}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}<br>
-	<br>
-	<slot name="knapp"></slot>
-	<hr>
-</div> -->

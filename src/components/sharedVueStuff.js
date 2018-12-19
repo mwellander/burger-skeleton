@@ -36,10 +36,6 @@ var sharedVueStuff = {
     this.$store.state.socket.on('switchLang', function (data) {
       this.$store.commit('setUiLabels', data);
     }.bind(this));
-    //
-    // this.$store.state.socket.on('switchLang', function (data) {
-    //   this.uiLabels = data;
-    // }.bind(this));
 
     this.$store.state.socket.on('currentQueue', function (data) {
       this.orders = data.orders;
