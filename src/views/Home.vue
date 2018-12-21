@@ -48,7 +48,7 @@
           </ul>
         </div>
         <div class="column dd ddPlus" style="text-align:left">
-          <div class="dd1 dd11">
+          <div class="dd11">
             <p></p>
           </div>
           <div class="dd2">
@@ -222,7 +222,7 @@ export default {
           var order = {
             ingredients:this.noBurger[i].ingredients,
             price:this.price,
-            orderInLine: store.getters.orderInLine,
+            //orderInLine: store.getters.orderInLine,
             burgerArrayLength: lengthBurger,
             noInOrder: i+1,
           };
@@ -377,6 +377,9 @@ export default {
      }
      .ddPlus {
        width: 35%;
+     }
+     .dd11 {
+       overflow: scroll;
      }
      .buttonHome {
        color: black;
