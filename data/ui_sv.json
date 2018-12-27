@@ -70,5 +70,6 @@
   "dairy":"Mjölkfri",
   "gluten":"Glutenfri",
   "hide":"Göm",
-  "noKetchup": "NoKetchup"
+  "noKetchup": "NoKetchup",
+  "confirmMessOneOrder": "Är du säker på att du vill ta bort den här ordern?"
 }

@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 @media screen and (min-width: 300px) {
-  #paymentside {
+  #paymentSide {
     /* margin: auto; */
     width: 22.4em;
     background-color: black;
@@ -47,7 +47,7 @@ export default {
   }
 }
 @media screen and (min-width: 700px) {
-   #paymentside {
+   #paymentSide {
       width:40em;
       margin: auto;
       padding:0.8em;

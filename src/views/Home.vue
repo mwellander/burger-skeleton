@@ -32,7 +32,7 @@
               <a :href="key.path">
                 <button v-on:click="changeOrder(key,index)" class="changeButton">{{uiLabels.change}}
                     </button></a>
-                  <button v-on:click="deleteBurger(index)" class="deleteButton">{{uiLabels.erase}}
+                  <button v-on:click="cancelAlert4c(index)" class="deleteButton">{{uiLabels.erase}}
                 </button>
               {{key.price}}:-<br>
 
@@ -74,6 +74,12 @@
       <button class="confirmContinue" v-on:click="cancelAlert4b()">{{uiLabels.continue}}</button>
     <a href="#/start" class="confirmNoContinue" role="button" v-on:click="cancelOrder()">{{uiLabels.cancelThisOrder}}</a>
     </div>
+
+    <div class="alert" v-show="alert3">
+      <div class="confirmText">{{uiLabels.confirmMessOneOrder}}</div>
+      <button class="confirmCancel" v-on:click="deleteBurger()">{{uiLabels.yes}}</button>
+      <button class="confirmNoCancel" v-on:click="cancelAlert4c(0)">{{uiLabels.no}}</button>
+    </div>
   </div>
 </template>
 
@@ -98,6 +104,7 @@ export default {
       price:0,
       alert: false,
       alert2: false,
+      alert3: false,
       burgerArrayLength:0,
       noInOrder:0,
       show:false,
@@ -116,6 +123,7 @@ export default {
       sidesOrder:false,
       beverageOrder:false,
       readyBurgerOrder:false,
+      indexToDelete:0,
     }
   },
   mounted: function(){
@@ -199,13 +207,15 @@ export default {
         this.price+=this.noBurger[i].price;
       }
     },
-    deleteBurger: function(index){
+    deleteBurger: function(){
+      var index = this.indexToDelete;
       store.commit('deleteBurger',index);
       this.noBurger=store.getters.getNoBurger;
       this.getPrice();
       if(this.noBurger.length===0){
         store.commit('startOver');
       }
+      this.cancelAlert4c(0);
     },
     changeOrder: function(key,index){
       key.index=index;
@@ -259,6 +269,20 @@ export default {
       }
       else {
         this.alert2=false;
+        background.style.opacity = 1;
+        background.style['pointer-events'] = "auto";
+      }
+    },
+    cancelAlert4c: function (index) {
+      this.indexToDelete = index;
+      var background = document.getElementById("toChangeBackground4");
+      if (this.alert3===false){
+        this.alert3=true;
+        background.style.opacity = 0.5;
+        background.style['pointer-events'] = "none";
+      }
+      else {
+        this.alert3=false;
         background.style.opacity = 1;
         background.style['pointer-events'] = "auto";
       }
