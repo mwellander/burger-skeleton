@@ -14,7 +14,7 @@ export default new Vuex.Store({
     changeKey:0,
     totalPrice:0,
     price:0,
-    orderInLine:0,
+    //orderInLine:0,
     uiLabels: {},
     lang:"en"
   },
@@ -26,13 +26,13 @@ export default new Vuex.Store({
     getChangeIngredients: state => state.changeIngredients,
     getPrice: state => state.totalPrice,
     getChangeKey: state => state.changeKey,
-    orderInLine: state => state.orderInLine,
+    //orderInLine: state => state.orderInLine,
     lang: state => state.lang
   },
   mutations: {
-    orderInLine(state) {
-      state.orderInLine += 1
-    },
+    // orderInLine(state) {
+    //   state.orderInLine += 1
+    // },
     addToOrder4(state,item){
       state.chosenIngredients4 = item
     },

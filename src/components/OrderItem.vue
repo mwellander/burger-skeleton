@@ -1,7 +1,7 @@
 <template>
 	<div>
 		{{order.type}} {{getIngredientArray()}}
-		<div id="infolabelBurger"> {{uiLabels.orderKitchen}} {{order.orderInLine}}, {{order.noInOrder}}/{{order.burgerArrayLength}}</div>
+		<div id="infolabelBurger"> {{uiLabels.orderKitchen}} {{orderId}}, {{order.noInOrder}}/{{order.burgerArrayLength}}</div>
 		<ul id = "ingredientList" style="list-style-type:none">
 			<li v-show="breadLabel">{{uiLabels.bread}}: {{ this.Bread.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
 			<li v-show="burgerLabel">{{uiLabels.burger}}: {{ this.Burger.map(item=>item["ingredient_"+ lang]).join(", ") }}</li>
@@ -40,7 +40,7 @@ export default {
 		toppingsLabel: false,
 		sidesLabel: false,
 		beverageLabel: false,
-		readyBurgersLabel: false
+		readyBurgersLabel: false,
 	}
 	},
 

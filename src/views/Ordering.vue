@@ -1114,17 +1114,20 @@ export default {
     font-size:1.2em;
     /* margin-bottom: 6em; */
   }
-  .column{
+  .column {
     font-size: 0.8em;
   }
   .aa {
     height: 3em;
   }
-  .cc{
+  .cc {
     height: 13em;
   }
-  .dd{
+  /* .dd {
     height: 10em;
+  } */
+  .dd1 {
+    height: 9em;
   }
   .alert {
     width: 18em;

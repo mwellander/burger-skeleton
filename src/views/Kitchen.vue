@@ -145,15 +145,14 @@ v-on:updateStock="updateStock()"
 </OrderItem>
 </div>
 </section>
-
 </template>
+
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemStarted from '@/components/OrderItemStarted.vue'
 import Ingredient from '@/components/Ingredient.vue'
 import IngredientKitchen from '@/components/IngredientKitchen.vue'
-
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 
