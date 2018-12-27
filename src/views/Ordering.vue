@@ -1068,19 +1068,22 @@ export default {
   }
   .tabs{
     width:22.4em;
+
   }
   .tabs button {
     width: 5.3em;
     font-size: 0.7em;
+    height: 3.3em;
   }
   .Page{
     bottom: 18.5em;
-    top: 4.5em;
+    top: 5.7em;
     width: 22.4em;
+
   }
   .breadPage{
     bottom: 18.5em;
-    top: 4.5em;
+    top: 5.7em;
     width: 22.4em;
   }
   #buttonPanelBread{
