@@ -80,6 +80,9 @@ export default {
     #ingredientLabel{
       font-size: 1.5em;
     }
+    #notInStockNow {
+      font-size: 1.2em;
+    }
   }
 
   @media screen and (min-width: 700px){
@@ -98,6 +101,9 @@ export default {
     }
     #ingredientLabel{
       font-size: 1em;
+    }
+    #notInStockNow {
+      font-size: 0.9em;
     }
   }
 
@@ -144,7 +150,6 @@ export default {
     opacity: 0.3;
   }
   #notInStockNow {
-    font-size: 1em;
     z-index:1;
     margin-top: 4em;
     position: absolute;
@@ -174,6 +179,6 @@ export default {
     margin:0.2em;
   }
   #ingredientText{
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Helvetica", cursive, sans-serif;
   }
 </style>

@@ -1265,6 +1265,9 @@ export default {
    font-size: 1em;
    padding: 1em 2em;
  }
+ .deleteIngredient {
+   font-size: 1em;
+ }
 }
 * {
   box-sizing: border-box;
