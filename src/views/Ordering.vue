@@ -12,9 +12,9 @@
   <!-- <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button> -->
 
   <div class="headOfPage" style="text-align:right">
-  <span id="vegan2">....</span> {{uiLabels.vegan}}
-  <span id="milk2">....</span> {{uiLabels.dairy}}
-  <span id="gluten2">....</span> {{uiLabels.gluten}}
+  <button class="allergyButton" id="veganButton" v-on:click="veganButton()"><span id="vegan2">....</span> {{uiLabels.vegan}}</button>
+  <button class="allergyButton" id="dairyButton" v-on:click="dairyButton()"><span id="milk2">....</span> {{uiLabels.dairy}}</button>
+  <button class="allergyButton" id="glutenButton" v-on:click="glutenButton()"><span id="gluten2">....</span> {{uiLabels.gluten}}</button>
 </div>
   <div id="toChangeBackground">
     <div class="tabs">
@@ -38,19 +38,8 @@
     <div class="breadPage" id="breadPage">
       <Ingredient
       ref="ingredient"
-      v-show="state === 'bread'"
+      v-show="state === 'bread'&&allergies(item)"
       v-if="item.category===4 && item.stock > 0"
-      v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"
-      v-on:decrement="decreaseBread(item)"
-      :item="item"
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
-      <Ingredient
-      ref="ingredient"
-      v-show="state === 'bread'"
-      v-if="item.category===4 && item.stock <= 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
       v-on:decrement="decreaseBread(item)"
@@ -66,7 +55,7 @@
   <div class="Page" id="burgerPage">
     <Ingredient
     ref="ingredient"
-    v-show="state === 'burger'"
+    v-show="state === 'burger'&&allergies(item)"
     v-if="item.category===1 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
@@ -75,17 +64,6 @@
     :lang="lang"
     :key="item.ingredient_id">
   </Ingredient>
-  <Ingredient
-  ref="ingredient"
-  v-show="state === 'burger'"
-  v-if="item.category===1 && item.stock <= 0"
-  v-for="item in ingredients"
-  v-on:increment="addToOrder(item)"
-  v-on:decrement="decreaseBurger(item)"
-  :item="item"
-  :lang="lang"
-  :key="item.ingredient_id">
-</Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBurger">
   <button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
@@ -96,7 +74,7 @@
 <div class="Page" id="dressingPage">
   <Ingredient
   ref="ingredient"
-  v-show="state === 'dressing'"
+  v-show="state === 'dressing'&&allergies(item)"
   v-if="item.category===3 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
@@ -104,17 +82,6 @@
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
-</Ingredient>
-<Ingredient
-ref="ingredient"
-v-show="state === 'dressing'"
-v-if="item.category===3 && item.stock <= 0"
-v-for="item in ingredients"
-v-on:increment="addToOrder(item)"
-v-on:decrement="decreaseDressing(item)"
-:item="item"
-:lang="lang"
-:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelDressing">
@@ -126,7 +93,7 @@ v-on:decrement="decreaseDressing(item)"
 <div class="Page" id="toppingPage">
   <Ingredient
   ref="ingredient"
-  v-show="state === 'toppings'"
+  v-show="state === 'toppings'&&allergies(item)"
   v-if="item.category===2 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
@@ -134,17 +101,6 @@ v-on:decrement="decreaseDressing(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
-</Ingredient>
-<Ingredient
-ref="ingredient"
-v-show="state === 'toppings'"
-v-if="item.category===2 && item.stock <= 0"
-v-for="item in ingredients"
-v-on:increment="addToOrder(item)"
-v-on:decrement="decreaseToppings(item)"
-:item="item"
-:lang="lang"
-:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelToppings">
@@ -156,7 +112,7 @@ v-on:decrement="decreaseToppings(item)"
 <div class="Page" id="sidesPage">
   <Ingredient
   ref="ingredient"
-  v-show="state === 'sides'"
+  v-show="state === 'sides'&&allergies(item)"
   v-if="item.category===5 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
@@ -164,17 +120,6 @@ v-on:decrement="decreaseToppings(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
-</Ingredient>
-<Ingredient
-ref="ingredient"
-v-show="state === 'sides'"
-v-if="item.category===5 && item.stock <= 0"
-v-for="item in ingredients"
-v-on:increment="addToOrder(item)"
-v-on:decrement="decreaseSides(item)"
-:item="item"
-:lang="lang"
-:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelSides">
@@ -185,7 +130,7 @@ v-on:decrement="decreaseSides(item)"
 <div class="Page" id="beveragePage">
   <Ingredient
   ref="ingredient"
-  v-show="state === 'beverage'"
+  v-show="state === 'beverage'&&allergies(item)"
   v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
@@ -193,17 +138,6 @@ v-on:decrement="decreaseSides(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
-</Ingredient>
-<Ingredient
-ref="ingredient"
-v-show="state === 'beverage'"
-v-if="item.category===6 && item.stock <= 0"
-v-for="item in ingredients"
-v-on:increment="addToOrder(item)"
-v-on:decrement="decreaseBeverage(item)"
-:item="item"
-:lang="lang"
-:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBeverage">
@@ -349,6 +283,9 @@ export default {
       breadburgeralert: false,
       breadalert: false,
       burgeralert: false,
+      vegan:0,
+      dairy:0,
+      gluten:0
     }
   },
   mounted: function(){
@@ -360,6 +297,54 @@ export default {
     }.bind(this));
   },
   methods: {
+    veganButton: function(){
+      var veganButton = document.getElementById("veganButton");
+      if(this.vegan===0){
+        this.vegan=1;
+        veganButton.style.backgroundColor = "#D3D3D3";
+      }
+      else{
+        this.vegan=0;
+        veganButton.style.backgroundColor = "grey";
+      }
+    },
+    dairyButton: function(){
+      var dairyButton = document.getElementById("dairyButton");
+      if(this.dairy===0){
+        this.dairy=1;
+        dairyButton.style.backgroundColor = "#D3D3D3";
+      }
+      else{
+        this.dairy=0;
+        dairyButton.style.backgroundColor = "grey";
+      }
+    },
+    glutenButton: function(){
+      var glutenButton = document.getElementById("glutenButton");
+      if(this.gluten===0){
+        this.gluten=1;
+        glutenButton.style.backgroundColor = "#D3D3D3";
+      }
+      else{
+        this.gluten=0;
+        glutenButton.style.backgroundColor = "grey";
+      }
+    },
+    allergies: function(item){
+      if(this.vegan===1&&item.vegan===1){
+            return true
+      }
+      if(this.dairy===1&&item.milk_free===1){
+        return true
+      }
+      if(this.gluten===1&&item.gluten_free===1){
+        return true
+      }
+      if(this.vegan===0&&this.dairy===0&&this.gluten===0){
+        return true
+      }
+      return false
+    },
     deleteIngredient: function(array,index,ingredient){
       for(var i=0;i<this.chosenIngredients.length;i++){
         if(this.chosenIngredients[i]===array[index]){
@@ -1610,6 +1595,13 @@ export default {
   margin-top:0.4em;
   font-family: "Helvetica", cursive, sans-serif;
 }
-
+.allergyButton{
+  background-color: grey;
+  cursor: pointer;
+  border: 0.1em solid black;
+}
+.allergyButton:hover{
+  background-color:#ddd;
+}
 
 </style>
