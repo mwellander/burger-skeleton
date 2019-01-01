@@ -331,16 +331,19 @@ export default {
       }
     },
     allergies: function(item){
-      if(this.vegan===1&&item.vegan===1){
-            return true
+      var isVegan=false;
+      var isDairy=false;
+      var isGluten=false;
+      if(this.vegan===1&&item.vegan===1||this.vegan===0){
+        isVegan=true;
       }
-      if(this.dairy===1&&item.milk_free===1){
-        return true
+      if(this.dairy===1&&item.milk_free===1||this.dairy===0){
+        isDairy=true;
       }
-      if(this.gluten===1&&item.gluten_free===1){
-        return true
+      if(this.gluten===1&&item.gluten_free===1||this.gluten===0){
+        isGluten=true;
       }
-      if(this.vegan===0&&this.dairy===0&&this.gluten===0){
+      if(isVegan===true&&isDairy===true&&isGluten===true){
         return true
       }
       return false

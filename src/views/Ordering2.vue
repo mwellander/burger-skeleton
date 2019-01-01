@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="Ordering.vue">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="headOfPage" style="text-align:right">
-    <span id="vegan2">....</span> {{uiLabels.vegan}}
-    <span id="milk2">....</span> {{uiLabels.dairy}}
-    <span id="gluten2">....</span> {{uiLabels.gluten}}
+    <button class="allergyButton" id="veganButton" v-on:click="veganButton()"><span id="vegan2">....</span> {{uiLabels.vegan}}</button>
+    <button class="allergyButton" id="dairyButton" v-on:click="dairyButton()"><span id="milk2">....</span> {{uiLabels.dairy}}</button>
+    <button class="allergyButton" id="glutenButton" v-on:click="glutenButton()"><span id="gluten2">....</span> {{uiLabels.gluten}}</button>
   </div>
     <div id="toChangeBackground2">
       <div class="tabs2">
@@ -22,7 +22,7 @@
       <div class="breadPage" id="readyBurgerPage">
         <Ingredient
         ref="ingredient"
-        v-show="state2 === 'readyBurger'"
+        v-show="state2 === 'readyBurger'&&allergies(item)"
         v-if="item.category===7 && item.stock > 0"
         v-for="item in ingredients"
         v-on:increment="addToOrder2(item)"
@@ -31,16 +31,6 @@
         :lang="lang"
         :key="item.ingredient_id">
       </Ingredient>
-      <Ingredient
-      ref="ingredient"
-      v-show="state2 === 'readyBurger'"
-      v-if="item.category===7 && item.stock <= 0"
-      v-for="item in ingredients"
-      v-on:increment="addToOrder2(item)"
-      :item="item"
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
     </div>
     <div class="buttonPanelBread" id="buttonPanelReadyBurger">
       <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
@@ -49,7 +39,7 @@
     <div class="Page" id="sidesPage2">
       <Ingredient
       ref="ingredient"
-      v-show="state2 === 'sides2'"
+      v-show="state2 === 'sides2'&&allergies(item)"
       v-if="item.category===5 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
@@ -58,17 +48,6 @@
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
-    <Ingredient
-    ref="ingredient"
-    v-show="state2 === 'sides2'"
-    v-if="item.category===5 && item.stock <= 0"
-    v-for="item in ingredients"
-    v-on:increment="addToOrder2(item)"
-    v-on:decrement="decreaseReadyBurger(item)"
-    :item="item"
-    :lang="lang"
-    :key="item.ingredient_id">
-  </Ingredient>
   </div>
   <div class="buttonPanel" id="buttonPanelSides2">
     <button id="previousButton" v-show="sides2" v-on:click="toReadyBurger()">{{uiLabels.previous}}</button>
@@ -78,7 +57,7 @@
   <div class="Page" id="beveragePage2">
     <Ingredient
     ref="ingredient"
-    v-show="state2 === 'beverage2'"
+    v-show="state2 === 'beverage2'&&allergies(item)"
     v-if="item.category===6 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
@@ -87,17 +66,6 @@
     :lang="lang"
     :key="item.ingredient_id">
   </Ingredient>
-  <Ingredient
-  ref="ingredient"
-  v-show="state2 === 'beverage2'"
-  v-if="item.category===6 && item.stock <= 0"
-  v-for="item in ingredients"
-  v-on:increment="addToOrder2(item)"
-  v-on:decrement="decreaseSides2(item)"
-  :item="item"
-  :lang="lang"
-  :key="item.ingredient_id">
-</Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBeverage2">
   <button id="previousButton" v-show="beverage2" v-on:click="toSides2()">{{uiLabels.previous}}</button>

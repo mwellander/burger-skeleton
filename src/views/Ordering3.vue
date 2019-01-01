@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="Ordering.vue">
     <div class="headOfPage" style="text-align:right">
-    <span id="vegan2">....</span> {{uiLabels.vegan}}
-    <span id="milk2">....</span> {{uiLabels.dairy}}
-    <span id="gluten2">....</span> {{uiLabels.gluten}}
+    <button class="allergyButton" id="veganButton" v-on:click="veganButton()"><span id="vegan2">....</span> {{uiLabels.vegan}}</button>
+    <button class="allergyButton" id="dairyButton" v-on:click="dairyButton()"><span id="milk2">....</span> {{uiLabels.dairy}}</button>
+    <button class="allergyButton" id="glutenButton" v-on:click="glutenButton()"><span id="gluten2">....</span> {{uiLabels.gluten}}</button>
   </div>
     <div id="toChangeBackground3">
       <div class="tabs3">
@@ -18,20 +18,9 @@
       <!-- <br> -->
       <br>
 <div class="breadPage" id="sidesPage3">
-  <Ingredient
-  ref="ingredient"
-  v-show="state3 === 'sides3'"
-  v-if="item.category===5 && item.stock > 0"
-  v-for="item in ingredients"
-  v-on:increment="addToOrder3(item)"
-  v-on:decrement="decreaseSides3(item)"
-  :item="item"
-  :lang="lang"
-  :key="item.ingredient_id">
-</Ingredient>
 <Ingredient
 ref="ingredient"
-v-show="state3 === 'sides3'"
+v-show="state3 === 'sides3'&&allergies(item)"
 v-if="item.category===5 && item.stock <= 0"
 v-for="item in ingredients"
 v-on:increment="addToOrder3(item)"
@@ -48,7 +37,7 @@ v-on:decrement="decreaseSides3(item)"
 <div class="Page" id="beveragePage3">
   <Ingredient
   ref="ingredient"
-  v-show="state3 === 'beverage3'"
+  v-show="state3 === 'beverage3'&&allergies(item)"
   v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
@@ -56,17 +45,6 @@ v-on:decrement="decreaseSides3(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
-</Ingredient>
-<Ingredient
-ref="ingredient"
-v-show="state3 === 'beverage3'"
-v-if="item.category===6 && item.stock <= 0"
-v-for="item in ingredients"
-v-on:increment="addToOrder3(item)"
-v-on:decrement="decreaseBeverage3(item)"
-:item="item"
-:lang="lang"
-:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBeverage3">
