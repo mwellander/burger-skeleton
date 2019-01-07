@@ -63,14 +63,14 @@ export default {
   @media screen and (min-width: 300px){
     #incrementButton{
       padding:0.2em;
-      width:1.5em;
-      height:1.5em;
+      width:3em;
+      height:3em;
       font-size: 0.4em;
     }
     #decrementButton{
       padding:0.2em;
-      width:1.5em;
-      height:1.5em;
+      width:3em;
+      height:3em;
       font-size: 0.4em;
     }
     #images {
@@ -78,7 +78,7 @@ export default {
     }
 
     #ingredientLabel{
-      font-size: 1.5em;
+      font-size: 2em;
     }
     #notInStockNow {
       font-size: 1.2em;
