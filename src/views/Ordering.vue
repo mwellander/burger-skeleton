@@ -1168,12 +1168,12 @@ export default {
   }
   .Page {
     bottom:20em;
-    top: 7em;
+    top: 8em;
     width: 40em;
   }
   .breadPage {
     bottom:20em;
-    top: 7em;
+    top: 8em;
     width: 40em;
   }
   #buttonPanelBread{
