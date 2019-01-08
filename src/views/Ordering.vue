@@ -39,7 +39,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state === 'bread'&&allergies(item)"
-      v-if="item.category===4 && item.stock > 0"
+      v-if="item.category===4"
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
       v-on:decrement="decreaseBread(item)"
@@ -56,7 +56,7 @@
     <Ingredient
     ref="ingredient"
     v-show="state === 'burger'&&allergies(item)"
-    v-if="item.category===1 && item.stock > 0"
+    v-if="item.category===1"
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
     v-on:decrement="decreaseBurger(item)"
@@ -75,7 +75,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'dressing'&&allergies(item)"
-  v-if="item.category===3 && item.stock > 0"
+  v-if="item.category===3"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseDressing(item)"
@@ -94,7 +94,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'toppings'&&allergies(item)"
-  v-if="item.category===2 && item.stock > 0"
+  v-if="item.category===2"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseToppings(item)"
@@ -113,7 +113,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'sides'&&allergies(item)"
-  v-if="item.category===5 && item.stock > 0"
+  v-if="item.category===5"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseSides(item)"
@@ -131,7 +131,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'beverage'&&allergies(item)"
-  v-if="item.category===6 && item.stock > 0"
+  v-if="item.category===6"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseBeverage(item)"

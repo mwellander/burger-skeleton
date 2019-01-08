@@ -8,7 +8,7 @@
         <span v-show="item.gluten_free===0&&item.milk_free===0&&item.vegan===0"><br></span>
       </div>
       <img id = "images" v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="85">
-      <label id = "ingredientLabel"><font face="helvetica">
+      <label id="ingredientLabel"><font face="helvetica">
         <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
       </font></label>
         <br>
@@ -76,12 +76,11 @@ export default {
     #images {
       height: 7em;
     }
-
-    #ingredientLabel{
+    #ingredientLabel {
       font-size: 2em;
     }
     #notInStockNow {
-      font-size: 1.2em;
+      font-size: 1.1em;
     }
   }
 
@@ -99,7 +98,7 @@ export default {
     #images {
       height: 4.5em;
     }
-    #ingredientLabel{
+    #ingredientLabel {
       font-size: 1em;
     }
     #notInStockNow {
