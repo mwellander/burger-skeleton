@@ -77,7 +77,7 @@ export default {
       height: 7em;
     }
     #ingredientLabel {
-      font-size: 2em;
+      font-size: 1.5em;
     }
     #notInStockNow {
       font-size: 1.1em;

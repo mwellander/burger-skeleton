@@ -17,7 +17,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 16,Cheddar,Cheddar Cheese,2,0,1,0,10,cheese.png
 17,Koriander,Cilantro,2,1,1,1,5,korianderNy.png
 18,Coleslaw,Coleslaw,2,1,1,0,5,coleslaw.jpg
-19,Friterade Lökringar,Deep-fried Onion Rings,2,1,0,1,15,onion_rings.png
+19,Friterade Lökringar,Fried Onion Rings,2,1,0,1,15,onion_rings.png
 20,Stekt Ägg,Fried Egg,2,1,1,0,10,fried_egg.png
 21,Chèvre,Goat Cheese,2,0,1,0,10,chevreNy3.png
 22,Jalapeño,Jalapeño,2,1,1,1,5,jalapenoNy.png
@@ -36,7 +36,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 35,Aioli,Aioli,3,1,1,0,5,aioli.png
 36,Ajvar,Ajvar,3,1,1,1,5,ajvar.png
 37,Barbecuesås,Barbecue Sauce,3,1,1,1,0,barbecuesasNy3.png
-38,Klassisk Hamburgarsås,Classic Burger Dressing,3,1,1,0,5,burgerdressing.png
+38,Hamburgarsås,Burger Dressing,3,1,1,0,5,burgerdressing.png
 39,Dijonsås,Dijon Sauce,3,1,1,0,5,senap2Ny3.png
 40,Guacamole,Guacamole,3,1,1,1,10,avocado.png
 41,Hot Salsa,Hot Salsa,3,1,1,1,5,hotsalsaNy.png
@@ -58,11 +58,11 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 57,Chokladmilkshake,Chocolate Milk Shake,6,0,1,0,40,ChocolateMilkshake.png
 58,Pucko,Pucko,6,0,1,0,25,puckoNy3.png
 59,Läsk,Soda,6,1,1,1,20,laskNy.png
-60,Jordgubbsmilkshake,Strawberry Milk Shake,6,0,1,0,40,stawberry_milkshake.png
-61,Vegansk Mango Lassi,Vegan Mango Lassi,6,1,1,1,40,mangodryckNy3.png
-62,NoKetchups Favorit,NoKetchup's Favourite,7,0,0,0,70,favoritburgareNy4.png
+60,Jordgubbsmilkshake,Strawberry Milkshake,6,0,1,0,40,stawberry_milkshake.png
+61,Vegan Mango Lassi,Vegan Mango Lassi,6,1,1,1,40,mangodryckNy3.png
+62,NoKetchups Favorit,NoKetchup's Special,7,0,0,0,70,favoritburgareNy4.png
 63,Kycklingburgare,Chicken Burger,7,1,0,0,70,kycklingburgareNy4.png
-64,Vegetarisk Bönburgare,Vegetarian Bean Burger,7,1,0,0,70,bonburgareNy4.png
+64,Bönburgare,Bean Burger,7,1,0,0,70,bonburgareNy4.png
 65,Vegansk Sojaburgare,Vegan Soy Burger,7,1,0,1,70,sojaburgareNy4.png
 66,Glutenfri Burgare,Gluten Free Burger,7,1,1,0,70,kycklingburgareNy4.png
-67,Glutenfri Sojaburgare,Gluten Free Soy Burger,7,1,1,1,70,sojaburgareNy4.png
+67,Glutenfri Sojaburgare,No Gluten Soy Burger,7,1,1,1,70,sojaburgareNy4.png
