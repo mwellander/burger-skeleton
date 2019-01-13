@@ -232,7 +232,7 @@ export default {
           var order = {
             ingredients:this.noBurger[i].ingredients,
             price:this.price,
-            //orderInLine: store.getters.orderInLine,
+            orderInLine: store.getters.orderInLine,
             burgerArrayLength: lengthBurger,
             noInOrder: i+1,
           };
