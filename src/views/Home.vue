@@ -340,6 +340,7 @@ export default {
     .buttonHome button{
       font-size: 1.5em;
       height:3em;
+      margin: 3%;
     }
   }
   @media screen and (min-width: 700px) {
@@ -390,6 +391,7 @@ export default {
     .buttonHome button{
       font-size: 2em;
       height:4em;
+      margin: 0%;
     }
     .dd11 {
       height:6.8em;
@@ -413,7 +415,6 @@ export default {
      }
      .buttonHome button {
        width: 100%;
-       margin: 3%;
        background-color: #4CAF50;
        border: 0.1em solid black;
        color: black;

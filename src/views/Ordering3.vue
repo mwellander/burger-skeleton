@@ -21,7 +21,7 @@
 <Ingredient
 ref="ingredient"
 v-show="state3 === 'sides3'&&allergies(item)"
-v-if="item.category===5 && item.stock <= 0"
+v-if="item.category===5"
 v-for="item in ingredients"
 v-on:increment="addToOrder3(item)"
 v-on:decrement="decreaseSides3(item)"
@@ -38,7 +38,7 @@ v-on:decrement="decreaseSides3(item)"
   <Ingredient
   ref="ingredient"
   v-show="state3 === 'beverage3'&&allergies(item)"
-  v-if="item.category===6 && item.stock > 0"
+  v-if="item.category===6"
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
   v-on:decrement="decreaseBeverage3(item)"
@@ -343,6 +343,7 @@ export default {
     height: 100%;
     min-width: 100px;
     min-height: 100px;
+    font-family: "Helvetica", cursive, sans-serif;
   }
   @media screen and (min-width: 300px) {
     #ordering3 {

@@ -23,7 +23,7 @@
         <Ingredient
         ref="ingredient"
         v-show="state2 === 'readyBurger'&&allergies(item)"
-        v-if="item.category===7 && item.stock > 0"
+        v-if="item.category===7"
         v-for="item in ingredients"
         v-on:increment="addToOrder2(item)"
         v-on:decrement="decreaseReadyBurger(item)"
@@ -40,7 +40,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'sides2'&&allergies(item)"
-      v-if="item.category===5 && item.stock > 0"
+      v-if="item.category===5"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       v-on:decrement="decreaseSides2(item)"
@@ -58,7 +58,7 @@
     <Ingredient
     ref="ingredient"
     v-show="state2 === 'beverage2'&&allergies(item)"
-    v-if="item.category===6 && item.stock > 0"
+    v-if="item.category===6"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
     v-on:decrement="decreaseBeverage2(item)"
@@ -436,6 +436,7 @@ export default {
   height: 100%;
   min-width: 100px;
   min-height: 100px;
+  font-family: "Helvetica", cursive, sans-serif;
 }
 @media screen and (min-width: 300px) {
   #ordering2 {
