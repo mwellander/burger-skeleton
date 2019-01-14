@@ -21,7 +21,18 @@
 <Ingredient
 ref="ingredient"
 v-show="state3 === 'sides3'&&allergies(item)"
-v-if="item.category===5"
+v-if="item.category===5 && item.stock >= 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder3(item)"
+v-on:decrement="decreaseSides3(item)"
+:item="item"
+:lang="lang"
+:key="item.ingredient_id">
+</Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state3 === 'sides3'&&allergies(item)"
+v-if="item.category===5 && item.stock < 0"
 v-for="item in ingredients"
 v-on:increment="addToOrder3(item)"
 v-on:decrement="decreaseSides3(item)"
@@ -38,13 +49,24 @@ v-on:decrement="decreaseSides3(item)"
   <Ingredient
   ref="ingredient"
   v-show="state3 === 'beverage3'&&allergies(item)"
-  v-if="item.category===6"
+  v-if="item.category===6 && item.stock >= 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
   v-on:decrement="decreaseBeverage3(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
+</Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state3 === 'beverage3'&&allergies(item)"
+v-if="item.category===6 && item.stock < 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder3(item)"
+v-on:decrement="decreaseBeverage3(item)"
+:item="item"
+:lang="lang"
+:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBeverage3">

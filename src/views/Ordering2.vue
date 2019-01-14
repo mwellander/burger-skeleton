@@ -23,7 +23,7 @@
         <Ingredient
         ref="ingredient"
         v-show="state2 === 'readyBurger'&&allergies(item)"
-        v-if="item.category===7"
+        v-if="item.category===7 && item.stock >= 0"
         v-for="item in ingredients"
         v-on:increment="addToOrder2(item)"
         v-on:decrement="decreaseReadyBurger(item)"
@@ -31,6 +31,17 @@
         :lang="lang"
         :key="item.ingredient_id">
       </Ingredient>
+      <Ingredient
+      ref="ingredient"
+      v-show="state2 === 'readyBurger'&&allergies(item)"
+      v-if="item.category===7 && item.stock < 0"
+      v-for="item in ingredients"
+      v-on:increment="addToOrder2(item)"
+      v-on:decrement="decreaseReadyBurger(item)"
+      :item="item"
+      :lang="lang"
+      :key="item.ingredient_id">
+    </Ingredient>
     </div>
     <div class="buttonPanelBread" id="buttonPanelReadyBurger">
       <button id="nextButton" v-show="readyBurger" v-on:click='toSides2()'>{{uiLabels.next}}</button>
@@ -40,7 +51,18 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'sides2'&&allergies(item)"
-      v-if="item.category===5"
+      v-if="item.category===5 && item.stock >= 0"
+      v-for="item in ingredients"
+      v-on:increment="addToOrder2(item)"
+      v-on:decrement="decreaseSides2(item)"
+      :item="item"
+      :lang="lang"
+      :key="item.ingredient_id">
+      </Ingredient>
+      <Ingredient
+      ref="ingredient"
+      v-show="state2 === 'sides2'&&allergies(item)"
+      v-if="item.category===5 && item.stock < 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       v-on:decrement="decreaseSides2(item)"
@@ -58,7 +80,18 @@
     <Ingredient
     ref="ingredient"
     v-show="state2 === 'beverage2'&&allergies(item)"
-    v-if="item.category===6"
+    v-if="item.category===6 && item.stock >= 0"
+    v-for="item in ingredients"
+    v-on:increment="addToOrder2(item)"
+    v-on:decrement="decreaseBeverage2(item)"
+    :item="item"
+    :lang="lang"
+    :key="item.ingredient_id">
+    </Ingredient>
+    <Ingredient
+    ref="ingredient"
+    v-show="state2 === 'beverage2'&&allergies(item)"
+    v-if="item.category===6 && item.stock < 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
     v-on:decrement="decreaseBeverage2(item)"

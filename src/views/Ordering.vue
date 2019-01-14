@@ -39,7 +39,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state === 'bread'&&allergies(item)"
-      v-if="item.category===4"
+      v-if="item.category===4 && item.stock >= 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
       v-on:decrement="decreaseBread(item)"
@@ -47,6 +47,17 @@
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
+    <Ingredient
+    ref="ingredient"
+    v-show="state === 'bread'&&allergies(item)"
+    v-if="item.category===4 && item.stock < 0"
+    v-for="item in ingredients"
+    v-on:increment="addToOrder(item)"
+    v-on:decrement="decreaseBread(item)"
+    :item="item"
+    :lang="lang"
+    :key="item.ingredient_id">
+  </Ingredient>
   </div>
   <div id="buttonPanelBread">
     <button id="nextButton" v-show="bread" v-on:click='toBurger()'>{{uiLabels.next}}</button>
@@ -56,7 +67,7 @@
     <Ingredient
     ref="ingredient"
     v-show="state === 'burger'&&allergies(item)"
-    v-if="item.category===1"
+    v-if="item.category===1 && item.stock >= 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
     v-on:decrement="decreaseBurger(item)"
@@ -64,6 +75,17 @@
     :lang="lang"
     :key="item.ingredient_id">
   </Ingredient>
+  <Ingredient
+  ref="ingredient"
+  v-show="state === 'burger'&&allergies(item)"
+  v-if="item.category===1 && item.stock < 0"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder(item)"
+  v-on:decrement="decreaseBurger(item)"
+  :item="item"
+  :lang="lang"
+  :key="item.ingredient_id">
+</Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelBurger">
   <button id="previousButton" v-show="burger" v-on:click="toBread()">{{uiLabels.previous}}</button>
@@ -75,13 +97,24 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'dressing'&&allergies(item)"
-  v-if="item.category===3"
+  v-if="item.category===3 && item.stock >= 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseDressing(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
+</Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state === 'dressing'&&allergies(item)"
+v-if="item.category===3 && item.stock < 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder(item)"
+v-on:decrement="decreaseDressing(item)"
+:item="item"
+:lang="lang"
+:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelDressing">
@@ -94,13 +127,24 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'toppings'&&allergies(item)"
-  v-if="item.category===2"
+  v-if="item.category===2 && item.stock >= 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseToppings(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
+</Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state === 'toppings'&&allergies(item)"
+v-if="item.category===2 && item.stock < 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder(item)"
+v-on:decrement="decreaseToppings(item)"
+:item="item"
+:lang="lang"
+:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelToppings">
@@ -113,13 +157,24 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'sides'&&allergies(item)"
-  v-if="item.category===5"
+  v-if="item.category===5 && item.stock >= 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseSides(item)"
   :item="item"
   :lang="lang"
   :key="item.ingredient_id">
+</Ingredient>
+<Ingredient
+ref="ingredient"
+v-show="state === 'sides'&&allergies(item)"
+v-if="item.category===5 && item.stock < 0"
+v-for="item in ingredients"
+v-on:increment="addToOrder(item)"
+v-on:decrement="decreaseSides(item)"
+:item="item"
+:lang="lang"
+:key="item.ingredient_id">
 </Ingredient>
 </div>
 <div class="buttonPanel" id="buttonPanelSides">
@@ -131,7 +186,18 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'beverage'&&allergies(item)"
-  v-if="item.category===6"
+  v-if="item.category===6 && item.stock >= 0"
+  v-for="item in ingredients"
+  v-on:increment="addToOrder(item)"
+  v-on:decrement="decreaseBeverage(item)"
+  :item="item"
+  :lang="lang"
+  :key="item.ingredient_id">
+</Ingredient>
+  <Ingredient
+  ref="ingredient"
+  v-show="state === 'beverage'&&allergies(item)"
+  v-if="item.category===6 && item.stock < 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseBeverage(item)"
