@@ -1,15 +1,6 @@
 <template>
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--  <div class="navbar">
-    <a href="#burger">{{ uiLabels.burger }}</a>
-    <a href="#toppings">{{ uiLabels.toppings }}</a>
-    <a href="#dressing">{{ uiLabels.dressing }}</a>
-    <a href="#bread">{{ uiLabels.bread }}</a>
-    <a href="#sides">{{ uiLabels.sides }}</a>
-    <a href="#beverage">{{ uiLabels.beverage }}</a>
-  </div> -->
-  <!-- <button class="startButton" id="startButton" v-show="!started" v-on:click="startOrder()">Start Order</button> -->
 
   <div class="headOfPage" style="text-align:right">
   <button class="allergyButton" id="veganButton" v-on:click="veganButton()"><span id="vegan2">....</span> {{uiLabels.vegan}}</button>
@@ -29,17 +20,13 @@
     <div style="text-align:left">
       <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
     </div>
-
-    <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
     <br>
-    <!-- <br> -->
-    <!-- <h1 v-show="started">{{ uiLabels.ingredients }}</h1> -->
 
     <div class="breadPage" id="breadPage">
       <Ingredient
       ref="ingredient"
       v-show="state === 'bread'&&allergies(item)"
-      v-if="item.category===4 && item.stock >= 0"
+      v-if="item.category===4 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"
       v-on:decrement="decreaseBread(item)"
@@ -50,7 +37,7 @@
     <Ingredient
     ref="ingredient"
     v-show="state === 'bread'&&allergies(item)"
-    v-if="item.category===4 && item.stock < 0"
+    v-if="item.category===4 && item.stock <= 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
     v-on:decrement="decreaseBread(item)"
@@ -67,7 +54,7 @@
     <Ingredient
     ref="ingredient"
     v-show="state === 'burger'&&allergies(item)"
-    v-if="item.category===1 && item.stock >= 0"
+    v-if="item.category===1 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder(item)"
     v-on:decrement="decreaseBurger(item)"
@@ -78,7 +65,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'burger'&&allergies(item)"
-  v-if="item.category===1 && item.stock < 0"
+  v-if="item.category===1 && item.stock <= 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseBurger(item)"
@@ -97,7 +84,7 @@
   <Ingredient
   ref="ingredient"
   v-show="state === 'dressing'&&allergies(item)"
-  v-if="item.category===3 && item.stock >= 0"
+  v-if="item.category===3 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseDressing(item)"
@@ -108,7 +95,7 @@
 <Ingredient
 ref="ingredient"
 v-show="state === 'dressing'&&allergies(item)"
-v-if="item.category===3 && item.stock < 0"
+v-if="item.category===3 && item.stock <= 0"
 v-for="item in ingredients"
 v-on:increment="addToOrder(item)"
 v-on:decrement="decreaseDressing(item)"
@@ -127,7 +114,7 @@ v-on:decrement="decreaseDressing(item)"
   <Ingredient
   ref="ingredient"
   v-show="state === 'toppings'&&allergies(item)"
-  v-if="item.category===2 && item.stock >= 0"
+  v-if="item.category===2 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseToppings(item)"
@@ -138,7 +125,7 @@ v-on:decrement="decreaseDressing(item)"
 <Ingredient
 ref="ingredient"
 v-show="state === 'toppings'&&allergies(item)"
-v-if="item.category===2 && item.stock < 0"
+v-if="item.category===2 && item.stock <= 0"
 v-for="item in ingredients"
 v-on:increment="addToOrder(item)"
 v-on:decrement="decreaseToppings(item)"
@@ -157,7 +144,7 @@ v-on:decrement="decreaseToppings(item)"
   <Ingredient
   ref="ingredient"
   v-show="state === 'sides'&&allergies(item)"
-  v-if="item.category===5 && item.stock >= 0"
+  v-if="item.category===5 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseSides(item)"
@@ -168,7 +155,7 @@ v-on:decrement="decreaseToppings(item)"
 <Ingredient
 ref="ingredient"
 v-show="state === 'sides'&&allergies(item)"
-v-if="item.category===5 && item.stock < 0"
+v-if="item.category===5 && item.stock <= 0"
 v-for="item in ingredients"
 v-on:increment="addToOrder(item)"
 v-on:decrement="decreaseSides(item)"
@@ -186,7 +173,7 @@ v-on:decrement="decreaseSides(item)"
   <Ingredient
   ref="ingredient"
   v-show="state === 'beverage'&&allergies(item)"
-  v-if="item.category===6 && item.stock >= 0"
+  v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseBeverage(item)"
@@ -197,7 +184,7 @@ v-on:decrement="decreaseSides(item)"
   <Ingredient
   ref="ingredient"
   v-show="state === 'beverage'&&allergies(item)"
-  v-if="item.category===6 && item.stock < 0"
+  v-if="item.category===6 && item.stock <= 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder(item)"
   v-on:decrement="decreaseBeverage(item)"
@@ -1169,7 +1156,6 @@ export default {
   }
   .totalText{
     font-size:1.2em;
-    /* margin-bottom: 6em; */
   }
   .column {
     font-size: 0.8em;
@@ -1180,9 +1166,6 @@ export default {
   .cc {
     height: 13em;
   }
-  /* .dd {
-    height: 10em;
-  } */
   .dd1 {
     height: 9em;
   }
@@ -1271,7 +1254,6 @@ export default {
   }
   .totalText{
     font-size:1.3em;
-    /* margin-bottom: 5em; */
   }
   .column{
     font-size: 1em;
@@ -1282,9 +1264,6 @@ export default {
   .cc{
     height: 11.3em;
   }
-  /* .dd{
-    height: 11.3em;
-  } */
   .dd1 {
     height:6.8em;
   }
@@ -1347,7 +1326,6 @@ export default {
   text-align:left;
 }
 .dd {
-  /* overflow:scroll; */
   background-color: white;
   text-align:left;
 }
@@ -1373,7 +1351,6 @@ export default {
   padding: 0em;
 }
 .aa {
-  /* height:3em; */
   overflow:hidden;
   background-color: white;
   border-bottom: 0.1em solid black;
@@ -1495,7 +1472,6 @@ export default {
   border: 0.1em solid black;
   text-align: center;
   padding: 0.7em 0.5em;
-  /* padding:  14px 16px; */
   text-decoration: none;
   cursor:pointer;
 }
@@ -1535,7 +1511,6 @@ export default {
 }
 .ingredient {
   border: 1px solid #ccd;
-  /* background-image: url('~@/assets/exampleImage.jpg'); */
   background-color: black;
   color: white;
 }

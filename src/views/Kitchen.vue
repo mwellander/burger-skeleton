@@ -4,7 +4,6 @@
     <div class="box a">
       <div id="staffText">{{ uiLabels.staffView }}</div>
       <div id="noKetchupText"><img src="../assets/Images_ingedients/ketchupNy.png" height="100"/>{{uiLabels.noKetchup}}<img src="../assets/Images_ingedients/ketchupNy.png" height="100"/></div>
-      <!-- <button v-on:click="switchLang()" class="LanguageButtonK">{{ uiLabels.language }}</button> -->
       <button v-on:click="stockView()" class="OrderButtonK" id="OrderButton">{{ uiLabels.ordersToView }}</button>
       <button v-on:click="stockView()" class="StockButton" id="StockButton">{{ uiLabels.stock }}</button>
     </div>
@@ -19,13 +18,8 @@
         <button id="tabKitchenBeverage" v-on:click="toBeverage()">{{uiLabels.beverage}}</button>
         <button id="tabKitchenFavoriteBurger" v-on:click="toReadyMadeBurger()">{{uiLabels.favouriteBurger}}</button>
       </div>
-      <!--
-      <br>
-      <br>
-      <br> -->
+
       <div id="itemInStock">
-        <!-- kom ihåg att ändra addToOrder-funktionen (ska vara en funktion som antingen
-        minskar eller ökar saldot) -->
         <IngredientKitchen
         ref="ingredientKitchen"
         v-show="state === 'burger'"
@@ -183,11 +177,6 @@ export default {
     }
   },
   methods: {
-    // updateStock: function(item, payload){
-    //   console.log(item, payload)
-    //   this.$store.state.socket.emit("updateStock", {item,payload});
-    //
-    // },
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
     },
@@ -488,21 +477,6 @@ export default {
   width: 60%;
   margin: auto;
 }
-
-/* .LanguageButtonK {
-  background-color: #000000;
-  border: 2px solid #fff;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 100%;
-  margin: 4px 2px;
-  cursor: pointer;
-  grid-column: 1;
-  grid-row: 1;
-} */
 
 #currentStock {
   z-index: 2;

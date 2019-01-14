@@ -15,13 +15,12 @@
       <div style="text-align:left">
         <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
       </div>
-      <!-- <br> -->
       <br>
 <div class="breadPage" id="sidesPage3">
 <Ingredient
 ref="ingredient"
 v-show="state3 === 'sides3'&&allergies(item)"
-v-if="item.category===5 && item.stock >= 0"
+v-if="item.category===5 && item.stock > 0"
 v-for="item in ingredients"
 v-on:increment="addToOrder3(item)"
 v-on:decrement="decreaseSides3(item)"
@@ -32,7 +31,7 @@ v-on:decrement="decreaseSides3(item)"
 <Ingredient
 ref="ingredient"
 v-show="state3 === 'sides3'&&allergies(item)"
-v-if="item.category===5 && item.stock < 0"
+v-if="item.category===5 && item.stock <= 0"
 v-for="item in ingredients"
 v-on:increment="addToOrder3(item)"
 v-on:decrement="decreaseSides3(item)"
@@ -49,7 +48,7 @@ v-on:decrement="decreaseSides3(item)"
   <Ingredient
   ref="ingredient"
   v-show="state3 === 'beverage3'&&allergies(item)"
-  v-if="item.category===6 && item.stock >= 0"
+  v-if="item.category===6 && item.stock > 0"
   v-for="item in ingredients"
   v-on:increment="addToOrder3(item)"
   v-on:decrement="decreaseBeverage3(item)"
@@ -60,7 +59,7 @@ v-on:decrement="decreaseSides3(item)"
 <Ingredient
 ref="ingredient"
 v-show="state3 === 'beverage3'&&allergies(item)"
-v-if="item.category===6 && item.stock < 0"
+v-if="item.category===6 && item.stock <= 0"
 v-for="item in ingredients"
 v-on:increment="addToOrder3(item)"
 v-on:decrement="decreaseBeverage3(item)"
@@ -110,13 +109,7 @@ v-on:decrement="decreaseBeverage3(item)"
       </div>
     </div>
   </div>
-  <!-- <div v-show="change" style="text-align:right">
-  <a href="#/home"><button class="cancelButton" v-on:click="cancelChanges()"><i class="fa fa-trash"></i>{{ uiLabels.cancelChange }}</button></a>
-  <button class="orderButtonO" v-on:click="saveChanges3()">{{ uiLabels.saveChange }}</button>
-  </div>
-  <div v-show="!change" style="text-align:right">
-                   <button class="cancelButton" v-on:click="cancelAlert3()"><i class="fa fa-trash"></i>{{ uiLabels.cancelOrder }}</button>
-                   <button class="orderButtonO" v-on:click="sendOrderHome3()">{{ uiLabels.placeOrder }}</button> -->
+
   </div>
 <div class="alert" v-show="alert">
   <div class="confirmText">{{uiLabels.confirmMess}}</div>
@@ -297,16 +290,6 @@ export default {
       tabForSides3.style.backgroundColor = "#D3D3D3";
       tabForBeverage3.style.backgroundColor = "grey";
     },
-  //   toBeverage3: function(){
-  //     this.state3="beverage3";
-  //     this.sides3=false;
-  //     this.beverage3=true;
-  //
-  //   buttonPanelSides3.style.display = "grid";
-  //   buttonPanelBeverage3.style.display = "none";
-  //
-  //
-  // },
   toBeverage3: function(){
     this.state3="beverage3";
     this.sides3=false;
@@ -419,7 +402,6 @@ export default {
     border: 0.1em solid black;
     text-align: center;
     padding: 0.7em 0.5em;
-    /* padding:  14px 16px; */
     text-decoration: none;
   }
   .tabs3 button:hover {

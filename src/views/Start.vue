@@ -1,7 +1,4 @@
 <template>
-
-  <!-- Måste komma ihåg att fixa så språket skickas med -->
-
   <div id="start">
     <div class="logo">
       {{uiLabels.welcome}}
@@ -71,7 +68,6 @@ export default {
    }
  }
 #start {
-  /* height: 100%; */
   min-width: 100px;
   min-height: 100px;
   margin: auto;
@@ -118,7 +114,6 @@ export default {
   color: black;
   text-decoration: none;
   display: inline-block;
-  /* margin: 4px 2px; */
   cursor: pointer;
   border-radius: 1em;
 }

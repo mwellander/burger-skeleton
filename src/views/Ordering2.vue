@@ -18,12 +18,11 @@
         <button class="LanguageButtonO" v-on:click="switchLang()"><img :src="getFlag()" height="30em"></button>
       </div>
       <br>
-      <!-- <br> -->
       <div class="breadPage" id="readyBurgerPage">
         <Ingredient
         ref="ingredient"
         v-show="state2 === 'readyBurger'&&allergies(item)"
-        v-if="item.category===7 && item.stock >= 0"
+        v-if="item.category===7 && item.stock > 0"
         v-for="item in ingredients"
         v-on:increment="addToOrder2(item)"
         v-on:decrement="decreaseReadyBurger(item)"
@@ -34,7 +33,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'readyBurger'&&allergies(item)"
-      v-if="item.category===7 && item.stock < 0"
+      v-if="item.category===7 && item.stock <= 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       v-on:decrement="decreaseReadyBurger(item)"
@@ -51,7 +50,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'sides2'&&allergies(item)"
-      v-if="item.category===5 && item.stock >= 0"
+      v-if="item.category===5 && item.stock > 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       v-on:decrement="decreaseSides2(item)"
@@ -62,7 +61,7 @@
       <Ingredient
       ref="ingredient"
       v-show="state2 === 'sides2'&&allergies(item)"
-      v-if="item.category===5 && item.stock < 0"
+      v-if="item.category===5 && item.stock <= 0"
       v-for="item in ingredients"
       v-on:increment="addToOrder2(item)"
       v-on:decrement="decreaseSides2(item)"
@@ -80,7 +79,7 @@
     <Ingredient
     ref="ingredient"
     v-show="state2 === 'beverage2'&&allergies(item)"
-    v-if="item.category===6 && item.stock >= 0"
+    v-if="item.category===6 && item.stock > 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
     v-on:decrement="decreaseBeverage2(item)"
@@ -91,7 +90,7 @@
     <Ingredient
     ref="ingredient"
     v-show="state2 === 'beverage2'&&allergies(item)"
-    v-if="item.category===6 && item.stock < 0"
+    v-if="item.category===6 && item.stock <= 0"
     v-for="item in ingredients"
     v-on:increment="addToOrder2(item)"
     v-on:decrement="decreaseBeverage2(item)"
@@ -202,7 +201,6 @@ export default {
             change:false,
             nothingalert: false,
     }
-    //orderArray: chosenIngredients.map(item => item["ingredient_"+lang])
   },
   mounted: function(){
     this.ifChange2();
@@ -522,7 +520,6 @@ export default {
   border: 0.1em solid black;
   text-align: center;
   padding: 0.7em 0.5em;
-  /* padding:  14px 16px; */
   text-decoration: none;
 }
 .tabs2 button:hover {

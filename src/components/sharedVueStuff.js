@@ -5,10 +5,8 @@ var sharedVueStuff = {
   data: function () {
     return {
       orders: {},
-      // uiLabels: {},
       flag : {sv: "Flag_of_Britain.svg.png", en: "800px-Flag_of_Sweden.svg.png" },
       ingredients: {},
-      // lang: store.getters.lang,
     }
   },
   computed: {
@@ -28,7 +26,6 @@ var sharedVueStuff = {
 
     this.$store.state.socket.on('initialize', function (data) {
       this.orders = data.orders;
-      // this.uiLabels = data.uiLabels;
       this.$store.commit('setUiLabels', data.uiLabels);
       this.ingredients = data.ingredients;
     }.bind(this));

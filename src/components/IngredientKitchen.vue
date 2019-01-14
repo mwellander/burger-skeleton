@@ -33,10 +33,6 @@ export default {
   },
   methods: {
     updateStock: function (e) {
-      // sending 'increment' message to parent component or view so that it
-      // can catch it with v-on:increment in the component declaration
-      //this.stockAdd = document.getElementById("stockInput").value;
-      //this.$emit('updateStock', this.stock);
       var id = this.item.ingredient_en + this.item.ingredient_id;
       var numberToUpdate = document.getElementById(id).value;
       var currentStock;
