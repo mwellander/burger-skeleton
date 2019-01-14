@@ -9,7 +9,7 @@
       </div>
       <img id = "images" v-bind:src="require('../assets/Images_ingedients/' + item.image)" height="85">
       <label id="ingredientLabel"><font face="helvetica">
-        <br>{{item["ingredient_"+ lang]}},<br> {{item.selling_price}}:-
+        <br>{{item["ingredient_"+ lang]}}<br> {{item.selling_price}}:-
       </font></label>
         <br>
         <button id="decrementButton" v-on:click="decrementCounter">{{ "-" }}</button>
@@ -72,7 +72,7 @@ export default {
       height: 7em;
     }
     #ingredientLabel {
-      font-size: 1.5em;
+      font-size: 1.4em;
     }
     #notInStockNow {
       font-size: 1.1em;
