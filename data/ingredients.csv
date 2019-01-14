@@ -5,7 +5,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 4,Kycklingburgare,Chicken Patty,1,1,0,0,40,kycklingNy2.png
 5,Friterad halloumi,Deep-fried Halloumi,1,0,0,0,40,halloumi.png
 6,Fiskfilé,Fish Filet,1,1,0,0,40,fiskNy2.png
-7,Grillad Aubergine,Grilled Eggplant,1,1,1,1,30,eggplant.png
+7,Grillad Aubergine,Grilled Eggplant,1,1,1,1,30,eggplantF.png
 8,Hummer,Lobster,1,1,1,0,80,hummerNy.png
 9,Pulled Jackfruit,Pulled Jackfruit,1,1,1,1,40,jackfruit.png
 10,Pulled Pork,Pulled Pork,1,1,1,0,40,grisNy2.png
