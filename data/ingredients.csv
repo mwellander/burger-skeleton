@@ -65,4 +65,4 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 64,Bönburgare,Bean Burger,7,1,0,0,70,bonburgareNy4.png
 65,Vegansk Sojaburgare,Vegan Soy Burger,7,1,0,1,70,sojaburgareNy4.png
 66,Glutenfri Burgare,Gluten Free Burger,7,1,1,0,70,kycklingburgareNy4.png
-67,Glutenfri Sojaburgare,No Gluten Soy Burger,7,1,1,1,70,sojaburgareNy4.png
+67,Glutenfri Sojaburgare,Gluten Soy Burger,7,1,1,1,70,sojaburgareNy4.png
